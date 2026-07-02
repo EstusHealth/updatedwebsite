@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-theme="neon">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#0b0714" />
+
+  <!-- Theme boot: runs before paint to prevent a theme flash. Shared storage
+       key and values with the design-system mock for continuity. -->
+  <script>
+    (function () {
+      var VALID = ['neon', 'neon-light'];
+      var theme = 'neon';
+      try {
+        var saved = localStorage.getItem('estus-theme');
+        if (VALID.indexOf(saved) !== -1) theme = saved;
+      } catch (e) { /* storage unavailable: fall through to default */ }
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
