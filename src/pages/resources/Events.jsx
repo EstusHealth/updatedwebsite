@@ -5,6 +5,13 @@ import { SPOTIFY_SHOW } from '../../lib/site'
 const EVENTBRITE = 'https://www.eventbrite.com.au/o/estus-health'
 const INSTAGRAM = 'https://www.instagram.com/estus_health/'
 
+// Featured upcoming event. Update (or clear) as the schedule changes.
+const NEXT_EVENT = {
+  title: 'Saying No: Boundary Setting for Neurodivergent Brains',
+  blurb: 'A practical session on boundaries for neurodivergent brains — why they feel so hard, and how to set them without burning out.',
+  url: 'https://www.eventbrite.com/e/saying-no-boundary-setting-for-neurodivergent-brains-tickets-1990458277289',
+}
+
 export default function Events() {
   return (
     <>
@@ -22,7 +29,15 @@ export default function Events() {
           <span className="eyebrow">Live events</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Bi-monthly, in person and online.</h2>
           <p className="lead" style={{ marginTop: 14 }}>We run events every couple of months on the things clients and clinicians keep asking about. Recent topics include gaming in therapy and boundary setting. See what's coming up and grab a spot on Eventbrite.</p>
-          <p style={{ marginTop: 20 }}><Btn href={EVENTBRITE} big>See upcoming events ↗</Btn></p>
+          {NEXT_EVENT && (
+            <div className="card card--static" style={{ marginTop: 24 }}>
+              <span className="badge">Next event</span>
+              <h3 style={{ margin: '14px 0 0' }}>{NEXT_EVENT.title}</h3>
+              <p style={{ color: 'var(--text-soft)', margin: '10px 0 0' }}>{NEXT_EVENT.blurb}</p>
+              <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={NEXT_EVENT.url}>Get tickets ↗</Btn></p>
+            </div>
+          )}
+          <p style={{ marginTop: 24 }}><Btn href={EVENTBRITE} variant="btn--ghost">See all events ↗</Btn></p>
           {/* NOTE: pull live upcoming/past events from Eventbrite at build time; do not hardcode dates. */}
         </div>
       </section>
