@@ -39,6 +39,6 @@ export const FOOTER_RESOURCES = [
 export const SOCIALS = [
   { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/estus_health/' },
   { label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@Estushealth' },
-  { label: 'Facebook', icon: 'facebook', href: '#' },
+  { label: 'Facebook', icon: 'facebook', href: 'https://www.facebook.com/profile.php?id=61567995865625' },
   { label: 'LinkedIn', icon: 'linkedin', href: '#' },
 ]
