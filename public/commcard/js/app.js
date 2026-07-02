@@ -350,6 +350,9 @@
       previewArea.style.backgroundColor = state.builderColorLight;
       previewArea.style.borderLeft = `4px solid ${state.builderColor}`;
     }
+    // The preview background is always a light colour, so keep the text dark
+    // and readable regardless of the app theme (matches the exported card).
+    preview.style.color = text ? '#1A0F0A' : state.builderColor;
   };
 
   // =============================================
