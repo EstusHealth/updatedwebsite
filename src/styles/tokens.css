@@ -530,24 +530,32 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
 /* ==========================================================================
    13 · THEME SWITCHER
    ========================================================================== */
-.theme-switch {
+.mode-switch {
   position: fixed; right: 18px; bottom: 18px; z-index: 80;
-  display: flex; gap: 9px; align-items: center;
+  display: flex; gap: 6px; align-items: center;
   background: var(--surface);
   border: 3px solid var(--line); border-radius: 999px;
-  padding: 9px 13px;
+  padding: 6px 8px 6px 14px;
   box-shadow: 5px 5px 0 var(--shadow-col);
 }
-.theme-switch .lbl { font-family: var(--f-display); font-size: .6rem; text-transform: uppercase; color: var(--text-soft); letter-spacing: .5px; }
-.sw {
-  width: 24px; height: 24px; border-radius: 50%;
-  border: 3px solid var(--line); cursor: pointer; padding: 0;
-  transition: transform .1s ease;
+.mode-switch .lbl {
+  font-family: var(--f-display); font-size: .62rem;
+  text-transform: uppercase; color: var(--text-soft); letter-spacing: .5px;
+  margin-right: 2px;
 }
-.sw:hover { transform: scale(1.12); }
-.sw[aria-pressed="true"] { outline: 3px solid var(--mauve); outline-offset: 2px; }
-.sw--night { background: linear-gradient(135deg, #ff2e9a, #1ce8f0); }
-.sw--day   { background: linear-gradient(135deg, #2ca5b8, #ab5c95 55%, #344982); }
+.mode-opt {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-family: var(--f-display); font-size: .72rem; font-weight: 600;
+  color: var(--text-soft);
+  background: transparent; border: 2px solid transparent; border-radius: 999px;
+  padding: 6px 12px; cursor: pointer;
+  transition: color .12s ease, background .12s ease, border-color .12s ease;
+}
+.mode-opt:hover { color: var(--text); }
+.mode-opt svg { flex: none; }
+.mode-opt[aria-pressed="true"] {
+  color: var(--bg); background: var(--mauve); border-color: var(--mauve);
+}
 
 /* ==========================================================================
    14 · MOTION
@@ -581,6 +589,6 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
   .foot-grid { grid-template-columns: 1fr; }
   .cta-box { padding: 36px 22px; }
   .sun { display: none !important; }
-  .theme-switch { right: 12px; bottom: 12px; padding: 8px 11px; }
-  .theme-switch .lbl { display: none; }
+  .mode-switch { right: 12px; bottom: 12px; padding: 5px 6px; }
+  .mode-switch .lbl { display: none; }
 }

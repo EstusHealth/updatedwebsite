@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Instagram, Facebook, Linkedin, Youtube } from 'lucide-react'
+import { Instagram, Facebook, Linkedin, Youtube, Sun, Moon } from 'lucide-react'
 import { SERVICES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
 
 const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
@@ -13,21 +13,25 @@ const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linke
 
 function ThemeSwitch() {
   const [theme, setTheme] = useState(() =>
-    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'neon'
+    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'neon-light'
   )
   const apply = (t) => {
-    const valid = t === 'neon' || t === 'neon-light' ? t : 'neon'
+    const valid = t === 'neon' || t === 'neon-light' ? t : 'neon-light'
     document.documentElement.setAttribute('data-theme', valid)
     try { localStorage.setItem('estus-theme', valid) } catch (e) { /* non-fatal */ }
     setTheme(valid)
   }
   return (
-    <div className="theme-switch" role="group" aria-label="Colour theme">
-      <span className="lbl" aria-hidden="true">Theme</span>
-      <button className="sw sw--night" title="Neon night" aria-label="Neon night theme"
-        aria-pressed={theme === 'neon'} onClick={() => apply('neon')} />
-      <button className="sw sw--day" title="Neon day" aria-label="Neon day theme"
-        aria-pressed={theme === 'neon-light'} onClick={() => apply('neon-light')} />
+    <div className="mode-switch" role="group" aria-label="Colour mode">
+      <span className="lbl" aria-hidden="true">Mode</span>
+      <button className="mode-opt" aria-pressed={theme === 'neon-light'}
+        title="Light mode" onClick={() => apply('neon-light')}>
+        <Sun size={15} aria-hidden="true" /> Light
+      </button>
+      <button className="mode-opt" aria-pressed={theme === 'neon'}
+        title="Dark mode" onClick={() => apply('neon')}>
+        <Moon size={15} aria-hidden="true" /> Dark
+      </button>
     </div>
   )
 }
