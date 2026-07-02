@@ -1,6 +1,0 @@
-{
-  "rewrites": [
-    { "source": "/commcard/:path*", "destination": "/commcard/:path*" },
-    { "source": "/((?!commcard).*)", "destination": "/index.html" }
-  ]
-}
