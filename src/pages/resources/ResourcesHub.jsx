@@ -107,7 +107,7 @@ export default function ResourcesHub() {
           <h2 className="sec-head" style={{ marginTop: 16 }}>Come along, or catch up.</h2>
           <p className="lead" style={{ margin: '14px auto 0' }}>Live events, a growing archive of recordings, our podcast, and the weekly Journal Club on Instagram.</p>
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
-            <Btn to="/resources/events" big>Events & Media ▸</Btn>
+            <Btn to="/events" big>Events & Media ▸</Btn>
           </div>
         </div>
       </section>

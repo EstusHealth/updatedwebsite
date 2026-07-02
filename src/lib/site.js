@@ -32,5 +32,13 @@ export const FOOTER_RESOURCES = [
   { to: '/resources/understanding-pda', label: 'Understanding PDA' },
   { to: '/resources/commcard', label: 'CommCard' },
   { to: '/resources/open-loops', label: 'Open Loops' },
-  { to: '/resources/events', label: 'Events & Media' },
+]
+
+// Social media links shown bottom-left of the footer. Placeholder hrefs
+// ('#') can be swapped for the real profile URLs when they are ready.
+export const SOCIALS = [
+  { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/estushealth' },
+  { label: 'Facebook', icon: 'facebook', href: '#' },
+  { label: 'LinkedIn', icon: 'linkedin', href: '#' },
+  { label: 'YouTube', icon: 'youtube', href: '#' },
 ]

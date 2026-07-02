@@ -11,7 +11,7 @@ export default function Events() {
       <SEO
         title="Events & Media | Estus Health"
         description="Live events, a growing archive of recordings, our Performance Lab: Protocols podcast, and the weekly Journal Club on Instagram."
-        path="/resources/events"
+        path="/events"
       />
       <PageHero eyebrow="Events & Media" title="Come along," accent="or catch up."
         sub="Live events, a permanent archive of recordings, our podcast, and the weekly Journal Club. Everything in one place, so nothing disappears after the live date." />

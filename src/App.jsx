@@ -50,6 +50,7 @@ export default function App() {
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/events" element={<Events />} />
 
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />
@@ -64,7 +65,6 @@ export default function App() {
         <Route path="/resources/commcard" element={<CommCard />} />
         <Route path="/resources/open-loops" element={<OpenLoops />} />
         <Route path="/resources/second-brain" element={<SecondBrain />} />
-        <Route path="/resources/events" element={<Events />} />
 
         <Route path="/resources/pda-quiz" element={<PDAQuiz />} />
         <Route path="/resources/chronotype-quiz" element={<ChronotypeQuiz />} />
@@ -75,6 +75,7 @@ export default function App() {
         <Route path="/resources/eds-hsd-quiz" element={<EDSQuiz />} />
 
         {/* Legacy redirects: keep old indexed URLs alive. */}
+        <Route path="/resources/events" element={<Navigate to="/events" replace />} />
         <Route path="/learn" element={<Navigate to="/resources" replace />} />
         <Route path="/learn/:slug" element={<LearnRedirect />} />
         <Route path="/about/approach" element={<Navigate to="/team" replace />} />

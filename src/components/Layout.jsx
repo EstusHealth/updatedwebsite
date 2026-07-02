@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { SERVICES, FOOTER_RESOURCES, CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { Instagram, Facebook, Linkedin, Youtube } from 'lucide-react'
+import { SERVICES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
+
+const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
 
 /* ==========================================================================
    Nav route map per revision brief section 5:
@@ -69,6 +72,7 @@ function Nav() {
             </li>
             <li><Link to="/team">Team</Link></li>
             <li><Link to="/resources">Free Resources</Link></li>
+            <li><Link to="/events">Events & Media</Link></li>
           </ul>
         </nav>
 
@@ -88,6 +92,7 @@ function Nav() {
         {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}</Link>)}
         <Link to="/team">Team</Link>
         <Link to="/resources">Free Resources</Link>
+        <Link to="/events">Events & Media</Link>
         <a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal ↗</a>
         <Link to="/contact"><strong>Get Started</strong></Link>
       </nav>
@@ -104,6 +109,18 @@ function Footer() {
           <div>
             <div className="brand"><span className="mark" aria-hidden="true">E</span> Estus Health</div>
             <p className="blurb">Neuroaffirming occupational therapy across Perth and via telehealth Australia-wide.</p>
+            <ul className="foot-social" aria-label="Social media">
+              {SOCIALS.map((s) => {
+                const Icon = SOCIAL_ICONS[s.icon]
+                return (
+                  <li key={s.label}>
+                    <a href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} title={s.label}>
+                      {Icon ? <Icon size={20} aria-hidden="true" /> : s.label}
+                    </a>
+                  </li>
+                )
+              })}
+            </ul>
           </div>
           <nav aria-label="Services">
             <h2>Services</h2>
