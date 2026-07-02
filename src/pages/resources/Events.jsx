@@ -1,6 +1,6 @@
 import SEO from '../../components/SEO'
 import { PageHero, CTABand, Btn } from '../../components/Bits'
-import { SPOTIFY_SHOW } from '../../lib/site'
+import { PODCASTS } from '../../lib/site'
 
 const EVENTBRITE = 'https://www.eventbrite.com.au/o/estus-health'
 const INSTAGRAM = 'https://www.instagram.com/estus_health/'
@@ -17,11 +17,11 @@ export default function Events() {
     <>
       <SEO
         title="Events & Media | Estus Health"
-        description="Live events, a growing archive of recordings, our Performance Lab: Protocols podcast, and the weekly Journal Club on Instagram."
+        description="Live events, a growing archive of recordings, our podcasts (Performance Lab: Protocols and OT and Yap), and the weekly Journal Club on Instagram."
         path="/events"
       />
       <PageHero eyebrow="Events & Media" title="Come along," accent="or catch up."
-        sub="Live events, a permanent archive of recordings, our podcast, and the weekly Journal Club. Everything in one place, so nothing disappears after the live date." />
+        sub="Live events, a permanent archive of recordings, our podcasts, and the weekly Journal Club. Everything in one place, so nothing disappears after the live date." />
 
       {/* Eventbrite */}
       <section style={{ paddingTop: 0 }}>
@@ -51,15 +51,24 @@ export default function Events() {
         </div>
       </section>
 
-      {/* Podcast */}
+      {/* Podcasts */}
       <section>
         <div className="wrap wrap--narrow">
-          <span className="eyebrow">Podcast</span>
-          <div className="card card--static" style={{ marginTop: 20 }}>
-            <span className="badge">Performance Lab: Protocols</span>
-            <p style={{ color: 'var(--text-soft)', margin: '14px 0 0' }}>Conversations at the intersection of allied health, gaming, AI, and behavioural science. Leadership, retention, burnout, chronic pain, tech in therapy. With clinicians who are actually doing the work.</p>
-            <p style={{ color: 'var(--text-soft)', margin: '10px 0 0', fontSize: '.9rem' }}>Episodes feature Liam and Nik.</p>
-            <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={SPOTIFY_SHOW}>Listen on Spotify ↗</Btn></p>
+          <span className="eyebrow">Podcasts</span>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>Two shows, one team.</h2>
+          <div className="grid grid-2" style={{ marginTop: 24 }}>
+            <div className="card card--static">
+              <span className="badge">{PODCASTS.performanceLab.name}</span>
+              <p style={{ color: 'var(--text-soft)', margin: '14px 0 0' }}>Conversations at the intersection of allied health, gaming, AI, and behavioural science. Leadership, retention, burnout, chronic pain, tech in therapy. With clinicians who are actually doing the work.</p>
+              <p style={{ color: 'var(--text-soft)', margin: '10px 0 0', fontSize: '.9rem' }}>Hosted by Liam.</p>
+              <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={PODCASTS.performanceLab.url}>Listen on Spotify ↗</Btn></p>
+            </div>
+            <div className="card card--static">
+              <span className="badge">{PODCASTS.otAndYap.name}</span>
+              <p style={{ color: 'var(--text-soft)', margin: '14px 0 0' }}>Nik's own show: honest, curious conversations about occupational therapy, neurodivergence, and everything in between. Less lecture, more yap.</p>
+              <p style={{ color: 'var(--text-soft)', margin: '10px 0 0', fontSize: '.9rem' }}>Hosted by Nik.</p>
+              <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={PODCASTS.otAndYap.url}>Listen on Spotify ↗</Btn></p>
+            </div>
           </div>
         </div>
       </section>

@@ -1,7 +1,7 @@
 import SEO from '../components/SEO'
 import { PageHero, CTABand, Btn } from '../components/Bits'
 import { Confetti } from '../components/Decor'
-import { SPOTIFY_SHOW } from '../lib/site'
+import { PODCASTS } from '../lib/site'
 
 const PRINCIPLES = [
   { h: 'Lived Experience Matters', p: 'Several members of our team are neurodivergent ourselves. We understand this work from the inside: the struggles, the strengths, and what actually helps.' },
@@ -26,7 +26,7 @@ const BIOS = [
     approach: 'Came to OT through accounting, finance, and university librarianship before realising he wanted to help people build systems that work for their brains. Being diagnosed autistic later in life reshaped how he understands himself. Sessions are direct, practical, and built around real life, not textbook goals.',
     interests: "Holds a top-four world record speedrun in Tony Hawk's Pro Skater, with 20+ years of competitive gaming. Named the company after the healing item in Dark Souls. Finds spreadsheets relaxing and budgets for fun. Deeply interested in machine learning, AI, and how they'll reshape healthcare. Background spans accounting, finance, computer science, and ML alongside OT.",
     works: ['PDA profiles', 'Gaming-informed therapy', 'Driving OT', 'Executive function', 'Late diagnosis', 'Complex health', 'Autism'],
-    podcast: true,
+    podcast: PODCASTS.performanceLab,
   },
   {
     id: 'nam', name: 'Nam Lang', img: '/team-nam.jpg', archetype: 'Storyteller',
@@ -36,7 +36,7 @@ const BIOS = [
     approach: "Specialises in autistic youth and young adults through the things they already care about. Anime, gaming, and storytelling aren't rewards in his sessions, they're the medium. Interests are windows into how someone thinks, what they value, and where they feel most themselves.",
     interests: 'Uses anime storylines as therapeutic tools. Keen sportsperson: football, gym, always training for something. PC and Xbox gamer (Minecraft, Roblox, Sea of Thieves, Repo), always open to co-op. Currently building a PC with a wood-grain CPU cooler. Speaks multiple languages, and brings a multicultural lens to his clinical work.',
     works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft Program', 'Paediatrics'],
-    podcast: false,
+    podcast: null,
   },
   {
     id: 'nik', name: 'Nik Peshwani', img: '/team-nik.jpg', archetype: 'Experimenter',
@@ -46,7 +46,7 @@ const BIOS = [
     approach: "Turned down a place in medical school, realising he wanted to improve quality of life, not just treat illness. Brings a gaming-informed, identity-respecting lens, particularly for high-masking people who've spent years being told they're fine. Leads with curiosity instead of labels.",
     interests: 'Currently deep into The Finals. Plays Minecraft, Dead by Daylight, and Rocket League ("badly," by his own admission, but his clients love teaching him). Catan is his all-time favourite board game. Big into fitness, macros, nutrition, and supplements. A lifelong learner who experiments on himself before recommending anything to clients. Speaks Hindi, Gujarati, English, and Sindhi.',
     works: ['Executive function', 'ADHD', 'Adolescents & adults', 'Sleep', 'Sensory profiles', 'Hypermobility & pain', 'Late diagnosis'],
-    podcast: true,
+    podcast: PODCASTS.otAndYap,
   },
 ]
 
@@ -77,7 +77,7 @@ function Bio({ b }) {
             </div>
             {b.podcast && (
               <p style={{ marginTop: 16 }}>
-                <Btn href={SPOTIFY_SHOW} variant="btn--ghost">Performance Lab: Protocols ↗</Btn>
+                <Btn href={b.podcast.url} variant="btn--ghost">{b.podcast.name} ↗</Btn>
               </p>
             )}
           </div>

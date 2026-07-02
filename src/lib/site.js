@@ -9,7 +9,12 @@
 export const REFERRAL_FORM = 'https://questot.forms.pracsuite.com/t/9rrusgskOVlmiQQtMYzCuYn7'
 export const CLIENT_PORTAL = 'https://questot.bookings.pracsuite.com/'
 export const EMAIL = 'hello@estushealth.com'
-export const SPOTIFY_SHOW = 'https://open.spotify.com/show/3IsFpkUItgNPDrwIu9dyy6'
+
+// Podcasts. Performance Lab: Protocols is Liam's show; OT and Yap is Nik's.
+export const PODCASTS = {
+  performanceLab: { name: 'Performance Lab: Protocols', host: 'Liam', url: 'https://open.spotify.com/show/3IsFpkUItgNPDrwIu9dyy6' },
+  otAndYap: { name: 'OT and Yap', host: 'Nik', url: 'https://open.spotify.com/show/0inAJS350wpidn8xLcPY9m' },
+}
 export const COMMCARD_APP = '/commcard/' // bundled standalone PWA in public/commcard
 export const COMMCARD_EXTERNAL = 'https://commcard.estushealth.com'
 
