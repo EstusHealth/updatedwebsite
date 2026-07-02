@@ -604,6 +604,23 @@
       });
     }
 
+    // Builder show fullscreen (no download needed)
+    const builderShow = document.getElementById('builder-show');
+    if (builderShow) {
+      builderShow.addEventListener('click', () => {
+        const text = document.getElementById('builder-text')?.value?.trim();
+        if (!text) {
+          alert('Please enter a phrase first.');
+          return;
+        }
+        showFullscreen(text, {
+          colorLight: state.builderColorLight,
+          color: state.builderColor,
+          colorDark: state.builderColor
+        });
+      });
+    }
+
     // Builder download
     const builderDownload = document.getElementById('builder-download');
     if (builderDownload) {
