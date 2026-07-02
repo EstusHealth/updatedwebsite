@@ -37,8 +37,8 @@ export const FOOTER_RESOURCES = [
 // Social media links shown bottom-left of the footer. Placeholder hrefs
 // ('#') can be swapped for the real profile URLs when they are ready.
 export const SOCIALS = [
-  { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/estushealth' },
+  { label: 'Instagram', icon: 'instagram', href: 'https://www.instagram.com/estus_health/' },
+  { label: 'YouTube', icon: 'youtube', href: 'https://www.youtube.com/@Estushealth' },
   { label: 'Facebook', icon: 'facebook', href: '#' },
   { label: 'LinkedIn', icon: 'linkedin', href: '#' },
-  { label: 'YouTube', icon: 'youtube', href: '#' },
 ]

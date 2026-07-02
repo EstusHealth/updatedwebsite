@@ -3,7 +3,7 @@ import { PageHero, CTABand, Btn } from '../../components/Bits'
 import { SPOTIFY_SHOW } from '../../lib/site'
 
 const EVENTBRITE = 'https://www.eventbrite.com.au/o/estus-health'
-const INSTAGRAM = 'https://www.instagram.com/estushealth'
+const INSTAGRAM = 'https://www.instagram.com/estus_health/'
 
 export default function Events() {
   return (
