@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Performance Lab Palette (Modified for Readability) */
+    --background: 35 30% 92%; /* Noctua Cream */
+    --foreground: 20 25% 15%; /* Noctua Black */
+
+    /* Pure White for Cards */
+    --card: 0 0% 100%;       
+    --card-foreground: 20 25% 15%;
+
+    --popover: 35 25% 88%;
+    --popover-foreground: 20 25% 15%;
+
+    --primary: 25 35% 35%;    /* Noctua Brown */
+    --primary-foreground: 35 30% 92%;
+
+    --secondary: 35 20% 82%;
+    --secondary-foreground: 20 25% 15%;
+
+    --muted: 35 15% 85%;
+    --muted-foreground: 20 15% 40%;
+
+    --accent: 25 35% 35%;
+    --accent-foreground: 35 30% 92%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 20% 75%;
+    --input: 25 20% 75%;
+    --ring: 25 35% 35%;
+
+    --radius: 0.25rem;
+
+    /* Custom Tokens Preserved for Reference */
+    --noctua-brown: 25 35% 35%;
+    --noctua-brown-dark: 20 30% 22%;
+    --noctua-cream: 35 30% 92%;
+    --noctua-cream-light: 35 35% 96%;
+    --noctua-black: 20 25% 15%;
+    --noctua-tan: 35 25% 88%;
+
+    /* Typography Variables */
+    --font-display: 'Oswald', sans-serif;
+    --font-serif: 'Libre Baskerville', serif;
+    --font-body: 'Inter', sans-serif;
+
+    /* Gradients */
+    --gradient-light: linear-gradient(180deg, hsl(35 30% 92%) 0%, hsl(35 25% 88%) 100%);
+  }
+
+  .dark {
+    --background: 20 25% 10%;
+    --foreground: 35 30% 92%;
+    --card: 20 30% 22%;
+    --card-foreground: 35 30% 92%;
+    --primary: 25 35% 35%;
+    --primary-foreground: 35 30% 92%;
+    --muted: 20 30% 22%;
+    --muted-foreground: 35 20% 70%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body);
+    /* Subtle background gradient from new theme */
+    background-image: var(--gradient-light);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  /* Grain Texture */
+  .grain-overlay {
+    position: relative;
+  }
+  
+  .grain-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Text Gradient Accent */
+  .text-gradient-accent {
+    background: linear-gradient(135deg, hsl(25 40% 50%) 0%, hsl(25 35% 35%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Card Class Update */
+  .noctua-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-sm transition-transform hover:-translate-y-1;
+  }
+}
+
+/* Performance Lab bounce animation */
+@keyframes plBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+
+/* Quiz button glow pulse */
+@keyframes quizGlow {
+  0%, 100% {
+    box-shadow: 0 0 6px 2px hsla(25, 35%, 35%, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 18px 6px hsla(25, 35%, 35%, 0.5);
+  }
+}
+
+.btn-quiz-glow {
+  animation: quizGlow 2.5s ease-in-out infinite;
+}
+
+/* Capacity Tracker ticker scroll */
+@keyframes tickerScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-scroll {
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}

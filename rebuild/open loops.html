@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Open Loops - Estus Health</title>
+<style>
+  :root{
+    --silver:#c0c0c0;
+    --face:#c0c0c0;
+    --white:#ffffff;
+    --hi:#dfdfdf;
+    --gray:#808080;
+    --black:#0a0a0a;
+    --navy:#000080;
+    --teal:#008080;
+    --title:linear-gradient(90deg,#000080 0%,#1084d0 100%);
+    --estus:#804000;
+    --health:#008000;
+    --sleep:#000080;
+    --school:#6a6a00;
+    --identity:#800000;
+    --relationships:#aa3300;
+    --energy:#804000;
+    --admin:#555555;
+    --reflect:#008080;
+    --font:Tahoma,"MS Sans Serif",Geneva,Verdana,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font);
+    font-size:14px;
+    color:var(--black);
+    background:var(--teal);
+    min-height:100vh;
+    padding:18px 12px 60px;
+    line-height:1.45;
+  }
+  /* Bevels */
+  .raised{box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);}
+  .sunken{box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);}
+
+  .window{max-width:780px;margin:0 auto;background:var(--face);padding:3px;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);}
+  .window + .window{margin-top:16px}
+
+  .titlebar{background:var(--title);color:#fff;display:flex;align-items:center;justify-content:space-between;padding:3px 4px;font-weight:bold;letter-spacing:.02em}
+  .titlebar .tl{display:flex;align-items:center;gap:6px;overflow:hidden}
+  .logo{width:18px;height:18px;background:var(--estus);color:#fff;font-weight:bold;display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto;box-shadow:inset -1px -1px var(--black), inset 1px 1px #c98a55;}
+  .titlebar .tt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+  .tbtns{display:flex;gap:2px;flex:0 0 auto}
+  .tbtn{width:18px;height:16px;background:var(--face);color:#000;font-size:10px;font-weight:bold;display:flex;align-items:center;justify-content:center;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);line-height:1;padding-bottom:2px}
+
+  .body{padding:14px}
+  @media(min-width:640px){.body{padding:18px}}
+
+  h1{font-size:17px;margin-bottom:4px}
+  .tagline{font-size:13px;margin-bottom:12px}
+
+  .readme{background:var(--white);padding:12px 14px;margin-bottom:16px;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);}
+  .readme p{margin-bottom:8px;font-size:13px}
+  .readme p:last-child{margin-bottom:0}
+  .readme b{display:inline-block;min-width:0}
+  .steps{list-style:none;counter-reset:s;margin-top:4px}
+  .steps li{counter-increment:s;position:relative;padding-left:28px;margin-bottom:7px;font-size:13px}
+  .steps li::before{content:counter(s);position:absolute;left:0;top:0;width:19px;height:19px;background:var(--navy);color:#fff;font-weight:bold;font-size:12px;display:flex;align-items:center;justify-content:center}
+
+  .lock{display:inline-block;font-size:12px;background:var(--face);padding:5px 10px;margin-top:6px;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);}
+
+  .seclabel{font-weight:bold;font-size:14px;margin:18px 0 4px;display:flex;align-items:center;gap:8px}
+  .seclabel .sn{background:var(--navy);color:#fff;font-size:11px;padding:2px 7px}
+  .secnote{font-size:12px;color:#333;margin-bottom:10px}
+
+  /* Picker */
+  .picker{background:var(--white);padding:6px;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);max-height:380px;overflow-y:auto}
+  .catgroup{margin-bottom:10px}
+  .catgroup:last-child{margin-bottom:2px}
+  .cathead{display:flex;align-items:center;gap:7px;font-weight:bold;font-size:12px;text-transform:uppercase;letter-spacing:.04em;padding:4px 6px;background:var(--face);box-shadow:inset -1px -1px var(--gray), inset 1px 1px var(--white);margin-bottom:4px}
+  .swatch{width:11px;height:11px;background:var(--c);flex:0 0 auto}
+  .pitem{display:flex;align-items:flex-start;gap:9px;padding:6px 6px;cursor:pointer;font-size:13px}
+  .pitem:hover{background:#e8e8e8}
+  .pitem.sel{background:#000080;color:#fff}
+  .cb{width:15px;height:15px;flex:0 0 auto;background:var(--white);margin-top:1px;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);position:relative}
+  .pitem.sel .cb::after{content:"";position:absolute;left:4px;top:1px;width:5px;height:9px;border:solid #000;border-width:0 2px 2px 0;transform:rotate(45deg)}
+
+  .customrow{display:flex;gap:8px;margin-top:10px;flex-direction:column}
+  @media(min-width:520px){.customrow{flex-direction:row}}
+  input[type=text]{font-family:var(--font);font-size:14px;width:100%;padding:6px 8px;border:none;background:var(--white);box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);}
+  input[type=text]:focus{outline:1px dotted #000;outline-offset:-3px}
+
+  .btn{font-family:var(--font);font-size:13px;background:var(--face);color:#000;border:none;padding:7px 16px;cursor:pointer;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);white-space:nowrap}
+  .btn:active{box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);padding:8px 15px 6px 17px}
+  .btn:disabled{color:var(--gray);text-shadow:1px 1px var(--white);cursor:default}
+  .btn:focus{outline:1px dotted #000;outline-offset:-4px}
+
+  /* Entry */
+  .entry{background:var(--white);padding:8px;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);min-height:80px}
+  .empty{color:var(--gray);font-style:italic;text-align:center;padding:26px 12px;font-size:13px}
+  .eitem{background:var(--face);padding:9px 10px;margin-bottom:8px;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);border-left:5px solid var(--c)}
+  .eitem:last-child{margin-bottom:0}
+  .eitem.closed .etext{text-decoration:line-through;color:#555}
+  .etop{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+  .etag{font-size:10px;font-weight:bold;text-transform:uppercase;letter-spacing:.05em;color:var(--c)}
+  .etext{font-size:13px;margin-top:2px}
+  .xbtn{font-family:var(--font);background:var(--face);font-size:11px;font-weight:bold;padding:1px 6px;cursor:pointer;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);flex:0 0 auto}
+  .xbtn:active{box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray)}
+  .eacts{display:flex;gap:6px;margin-top:9px;flex-wrap:wrap}
+  .act{font-family:var(--font);font-size:11px;background:var(--face);padding:5px 10px;cursor:pointer;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);}
+  .act.on{box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);font-weight:bold}
+  .stepedit{display:flex;gap:6px;margin-top:8px}
+  .note{font-size:12px;margin-top:8px;padding:6px 9px;background:var(--white);box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);}
+  .note b{color:var(--navy)}
+  .parked{font-size:12px;margin-top:8px;color:#444;font-style:italic}
+
+  .saverow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center}
+  .reassure{font-size:12px;color:#333;font-style:italic;margin-top:12px}
+
+  /* status bar */
+  .statusbar{display:flex;gap:3px;margin-top:14px}
+  .sb{font-size:12px;padding:3px 8px;flex:1;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--gray);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+  .sb.grow{flex:2}
+
+  /* about window */
+  .about .body{font-size:13px}
+  .about p{margin-bottom:8px}
+  .about a{color:var(--navy);font-weight:bold}
+  .quote{background:var(--white);padding:12px 14px;font-style:italic;margin-bottom:12px;box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);}
+
+  .toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--face);padding:8px 16px;font-size:13px;font-weight:bold;box-shadow:inset -1px -1px var(--black), inset 1px 1px var(--white), inset -2px -2px var(--gray), inset 2px 2px var(--hi);opacity:0;transition:opacity .2s;z-index:50;pointer-events:none}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <div class="tl">
+      <div class="logo">E</div>
+      <span class="tt">Open Loops - Estus Health</span>
+    </div>
+    <div class="tbtns">
+      <div class="tbtn">_</div>
+      <div class="tbtn">&#9633;</div>
+      <div class="tbtn">&times;</div>
+    </div>
+  </div>
+  <div class="body">
+
+    <h1>Open Loops</h1>
+    <p class="tagline">Your brain is holding too many windows open. Let's get them onto one screen.</p>
+
+    <div class="readme">
+      <p>An open loop is anything unfinished your brain keeps quietly running in the background. A text you have not sent. A form you have not filled. A feeling you have not named. Hold enough of them and everything feels loud.</p>
+      <p style="font-weight:bold;margin-bottom:6px">How this works:</p>
+      <ol class="steps">
+        <li>Tick the loops below that feel true today. You do not have to type a thing. Recognising is easier than remembering.</li>
+        <li>Add your own at the bottom of the list if something is missing.</li>
+        <li>For each one in your entry, pick a tiny next step, park it for later, or close it. All three count.</li>
+        <li>Copy or save your entry, or just screenshot it. Then let your brain put it down.</li>
+      </ol>
+      <span class="lock">Nothing here is saved or sent anywhere. It lives on your screen only.</span>
+    </div>
+
+    <div class="seclabel"><span class="sn">STEP 1</span> Tick what feels true today</div>
+    <p class="secnote">Click any line to add it to your entry. Click again to remove it.</p>
+    <div class="picker" id="picker"></div>
+
+    <div class="customrow">
+      <input type="text" id="customInput" placeholder="Add your own loop, then choose where it belongs below">
+      <select id="customCat" style="font-family:var(--font);font-size:14px;padding:6px;background:var(--white);box-shadow:inset -1px -1px var(--white), inset 1px 1px var(--black), inset -2px -2px var(--hi), inset 2px 2px var(--gray);border:none"></select>
+      <button class="btn" id="addBtn" disabled>Add</button>
+    </div>
+
+    <div class="seclabel"><span class="sn">STEP 2</span> Your journal entry</div>
+    <p class="secnote">This is your one page for today. Decide one small thing for each loop.</p>
+    <div class="entry" id="entry"></div>
+
+    <div class="seclabel"><span class="sn">STEP 3</span> Put it down</div>
+    <div class="saverow">
+      <button class="btn" id="copyBtn">Copy list</button>
+      <button class="btn" id="mdBtn">Copy as template (Markdown)</button>
+      <button class="btn" id="dlBtn">Save .md</button>
+    </div>
+    <p class="secnote" style="margin-top:8px">The Markdown template drops into Obsidian, Notion, or any notes app with blank fields to fill in, so your loops become a real journal entry you can keep working on.</p>
+    <p class="reassure">No streaks here. No guilt. Do this once a month or once a year and it still works. The point is the unload, not the habit.</p>
+
+    <div class="statusbar">
+      <div class="sb grow" id="sbStatus">0 loops in your entry</div>
+      <div class="sb" id="sbBreak">0 closed</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="window about">
+  <div class="titlebar">
+    <div class="tl"><div class="logo">E</div><span class="tt">About</span></div>
+    <div class="tbtns"><div class="tbtn">&times;</div></div>
+  </div>
+  <div class="body">
+    <div class="quote">If your brain works like this, you are not disorganised. You are running a lot of windows with no native close button. That is what we help with.</div>
+    <p style="font-weight:bold">Estus Health</p>
+    <p>Neuroaffirming occupational therapy. Telehealth across Australia. NDIS and private.</p>
+    <p><a href="https://www.estushealth.com" target="_blank" rel="noopener">www.estushealth.com</a></p>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var CATS = [
+    {id:'health', label:'Health', c:'var(--health)'},
+    {id:'sleep', label:'Sleep', c:'var(--sleep)'},
+    {id:'school', label:'School or Work', c:'var(--school)'},
+    {id:'identity', label:'Identity', c:'var(--identity)'},
+    {id:'relationships', label:'Relationships', c:'var(--relationships)'},
+    {id:'energy', label:'Energy', c:'var(--energy)'},
+    {id:'admin', label:'Life admin', c:'var(--admin)'},
+    {id:'reflect', label:'Reflect', c:'var(--reflect)'}
+  ];
+  var ITEMS = {
+    health:[
+      "There is an appointment I keep putting off booking",
+      "My body has been asking for something I keep ignoring",
+      "There is a health thing I am a bit scared to look into",
+      "I have not been taking care of the basics: water, food, movement"
+    ],
+    sleep:[
+      "My sleep and wake times have drifted",
+      "Something keeps pulling me out of sleep",
+      "I am scrolling instead of winding down",
+      "I am exhausted but I cannot make myself go to bed"
+    ],
+    school:[
+      "There is an unfinished task quietly nagging at me",
+      "I owe someone a piece of work or a reply",
+      "I am behind on something and avoiding how behind",
+      "A deadline is coming and I have not started"
+    ],
+    identity:[
+      "I avoided something today and I am not sure why",
+      "I have been masking and it is wearing me down",
+      "I am holding a feeling I have not named yet",
+      "I am being hard on myself for how today went"
+    ],
+    relationships:[
+      "I owe someone a message",
+      "There is a conversation I am dreading",
+      "I let someone down and I feel bad about it",
+      "I want to reach out but I have no energy for it"
+    ],
+    energy:[
+      "Something drained me today that I did not see coming",
+      "I said yes to more than I had room for",
+      "I have no buffer left and tomorrow is full",
+      "I keep pushing past empty"
+    ],
+    admin:[
+      "A form or email has been open far too long",
+      "There is mail or messages I am avoiding opening",
+      "Money admin I keep putting off",
+      "Small tasks have piled into one big dread"
+    ],
+    reflect:[
+      "One thing my brain actually did well today",
+      "One loop still open in my head right now",
+      "If tomorrow had room for one thing, what would it be"
+    ]
+  };
+
+  var loops = [];
+  var nextId = 1;
+
+  var pickerEl = document.getElementById('picker');
+  var entryEl = document.getElementById('entry');
+  var customInput = document.getElementById('customInput');
+  var customCat = document.getElementById('customCat');
+  var addBtn = document.getElementById('addBtn');
+  var sbStatus = document.getElementById('sbStatus');
+  var sbBreak = document.getElementById('sbBreak');
+
+  function cmap(id){ for(var i=0;i<CATS.length;i++){ if(CATS[i].id===id) return CATS[i]; } return CATS[0]; }
+  function keyFor(cat,text){ return cat+'::'+text; }
+  function esc(s){ return s.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
+  // custom category options
+  CATS.forEach(function(c){ if(c.id==='reflect') return; var o=document.createElement('option'); o.value=c.id; o.textContent=c.label; customCat.appendChild(o); });
+
+  function buildPicker(){
+    pickerEl.innerHTML='';
+    CATS.forEach(function(cat){
+      var list = ITEMS[cat.id]; if(!list) return;
+      var g=document.createElement('div'); g.className='catgroup';
+      var h=document.createElement('div'); h.className='cathead';
+      h.innerHTML='<span class="swatch" style="--c:'+cat.c+'"></span>'+cat.label;
+      g.appendChild(h);
+      list.forEach(function(text){
+        var k=keyFor(cat.id,text);
+        var sel = loops.some(function(l){return l.key===k;});
+        var row=document.createElement('div');
+        row.className='pitem'+(sel?' sel':'');
+        row.innerHTML='<span class="cb"></span><span>'+esc(text)+'</span>';
+        row.onclick=function(){
+          if(sel){ loops=loops.filter(function(l){return l.key!==k;}); }
+          else { loops.push({id:nextId++, key:k, text:text, domain:cat.id, state:null, step:''}); }
+          renderAll();
+        };
+        g.appendChild(row);
+      });
+      pickerEl.appendChild(g);
+    });
+  }
+
+  function addCustom(){
+    var t=customInput.value.trim(); if(!t) return;
+    loops.push({id:nextId++, key:null, text:t, domain:customCat.value, state:null, step:''});
+    customInput.value=''; addBtn.disabled=true;
+    renderAll(); toast('Added to your entry');
+  }
+  customInput.addEventListener('input', function(){ addBtn.disabled = customInput.value.trim().length===0; });
+  customInput.addEventListener('keydown', function(e){ if(e.key==='Enter') addCustom(); });
+  addBtn.onclick = addCustom;
+
+  function renderEntry(){
+    entryEl.innerHTML='';
+    if(loops.length===0){
+      entryEl.innerHTML='<div class="empty">Nothing in your entry yet. Tick a few loops above. An empty page is a fine place to start.</div>';
+      return;
+    }
+    loops.forEach(function(l){
+      var c=cmap(l.domain);
+      var el=document.createElement('div');
+      el.className='eitem'+(l.state==='close'?' closed':'');
+      el.style.setProperty('--c', c.c);
+
+      var mid='';
+      if(l.state==='park'){ mid='<div class="parked">Parked. Acknowledged, not now. That counts.</div>'; }
+      else if(l.state==='step' && l.step){ mid='<div class="note"><b>Tiny next step:</b> '+esc(l.step)+'</div>'; }
+      else if(l.state==='step'){ mid='<div class="stepedit"><input type="text" class="stepin" placeholder="One tiny step, smaller than feels worth it"><button class="btn savestep">Save</button></div>'; }
+
+      el.innerHTML=
+        '<div class="etop"><div style="flex:1"><div class="etag">'+c.label+'</div><div class="etext">'+esc(l.text)+'</div></div>'+
+        '<button class="xbtn rm">X</button></div>'+
+        mid+
+        '<div class="eacts">'+
+          '<button class="act'+(l.state==='park'?' on':'')+'" data-a="park">Park it</button>'+
+          '<button class="act'+(l.state==='step'?' on':'')+'" data-a="step">Tiny next step</button>'+
+          '<button class="act'+(l.state==='close'?' on':'')+'" data-a="close">Close it</button>'+
+        '</div>';
+
+      el.querySelector('.rm').onclick=function(){ loops=loops.filter(function(x){return x.id!==l.id;}); renderAll(); };
+      Array.prototype.forEach.call(el.querySelectorAll('.act'),function(b){
+        b.onclick=function(){
+          var a=b.getAttribute('data-a');
+          if(a==='park') l.state=(l.state==='park'?null:'park');
+          else if(a==='close') l.state=(l.state==='close'?null:'close');
+          else { l.state=(l.state==='step'?null:'step'); if(l.state!=='step') l.step=''; }
+          renderAll();
+        };
+      });
+      var save=el.querySelector('.savestep');
+      if(save){
+        var inp=el.querySelector('.stepin');
+        setTimeout(function(){inp&&inp.focus();},0);
+        var go=function(){ l.step=inp.value.trim(); renderAll(); };
+        save.onclick=go; inp.onkeydown=function(e){ if(e.key==='Enter') go(); };
+      }
+      entryEl.appendChild(el);
+    });
+  }
+
+  function renderStatus(){
+    var n=loops.length, closed=loops.filter(function(l){return l.state==='close';}).length;
+    sbStatus.textContent = n + (n===1?' loop in your entry':' loops in your entry');
+    sbBreak.textContent = closed + ' closed';
+  }
+
+  function renderAll(){ buildPicker(); renderEntry(); renderStatus(); }
+
+  function toExport(){
+    var lines=['MY OPEN LOOPS', new Date().toLocaleDateString(), ''];
+    CATS.forEach(function(cat){
+      var inC=loops.filter(function(l){return l.domain===cat.id;});
+      if(inC.length===0) return;
+      lines.push(cat.label.toUpperCase());
+      inC.forEach(function(l){
+        var m=l.state==='close'?'[closed] ':l.state==='park'?'[parked] ':'';
+        lines.push('  - '+m+l.text);
+        if(l.state==='step' && l.step) lines.push('      next step: '+l.step);
+      });
+      lines.push('');
+    });
+    lines.push('From the Open Loops tool by Estus Health, www.estushealth.com');
+    return lines.join('\n');
+  }
+
+  function toMarkdown(){
+    var d=new Date().toISOString().slice(0,10);
+    var out=[];
+    out.push('# Open Loops Journal Entry');
+    out.push('');
+    out.push('Date: '+d);
+    out.push('');
+    out.push('> An open loop is anything unfinished your brain keeps running in the background.');
+    out.push('> Add a tiny next step and any notes. Park what is not for now. Close what is done.');
+    out.push('');
+    CATS.forEach(function(cat){
+      var inC=loops.filter(function(l){return l.domain===cat.id;});
+      if(inC.length===0) return;
+      out.push('## '+cat.label);
+      out.push('');
+      inC.forEach(function(l){
+        out.push('### '+l.text);
+        if(cat.id==='reflect'){
+          out.push('- Response: '+(l.step||''));
+        } else {
+          out.push('- ['+(l.state==='close'?'x':' ')+'] Done');
+          out.push('- Next step: '+(l.state==='step'&&l.step?l.step:''));
+          out.push('- Status: '+(l.state==='park'?'parked':l.state==='close'?'closed':'open'));
+          out.push('- Notes: ');
+        }
+        out.push('');
+      });
+    });
+    out.push('---');
+    out.push('');
+    out.push('Made with the Open Loops tool by Estus Health, www.estushealth.com');
+    return out.join('\n');
+  }
+
+  function copyText(t,msg){ if(navigator.clipboard){ navigator.clipboard.writeText(t).then(function(){toast(msg);},function(){fb(t,msg);}); } else fb(t,msg); }
+  function fb(t,msg){ var a=document.createElement('textarea'); a.value=t; document.body.appendChild(a); a.select(); try{document.execCommand('copy');toast(msg);}catch(e){toast('Could not copy');} document.body.removeChild(a); }
+  function download(t,name,mime){ var b=new Blob([t],{type:mime}); var u=URL.createObjectURL(b); var a=document.createElement('a'); a.href=u; a.download=name; document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(u); }
+
+  document.getElementById('copyBtn').onclick=function(){
+    if(loops.length===0){ toast('Nothing to copy yet'); return; }
+    copyText(toExport(),'List copied');
+  };
+  document.getElementById('mdBtn').onclick=function(){
+    if(loops.length===0){ toast('Nothing to copy yet'); return; }
+    copyText(toMarkdown(),'Markdown template copied');
+  };
+  document.getElementById('dlBtn').onclick=function(){
+    if(loops.length===0){ toast('Nothing to save yet'); return; }
+    download(toMarkdown(),'open-loops-journal.md','text/markdown');
+    toast('Saved .md');
+  };
+
+  var toastEl=document.getElementById('toast'), tt;
+  function toast(m){ toastEl.textContent=m; toastEl.classList.add('show'); clearTimeout(tt); tt=setTimeout(function(){toastEl.classList.remove('show');},1600); }
+
+  renderAll();
+})();
+</script>
+</body>
+</html>

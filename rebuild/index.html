@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en-AU" data-theme="neon">
+<head>
+<!-- ==========================================================================
+  ESTUS HEALTH · LANDING PAGE · FINAL (Neon Edition)
+  ==========================================================================
+  This file is the design brief for every other page on the rebuild.
+
+  DESIGN LANGUAGE
+  · Two themes: "neon" (night, default) and "neon-light" (day, brand palette).
+    Themes are pure token swaps on <html data-theme>. New pages must never
+    hardcode colours; use the semantic tokens in section 01 only.
+  · Type: Bungee (display/buttons/eyebrows), Archivo Black (headings),
+    Poppins (body). Never Bungee or Archivo for body copy.
+  · Signature details: offset hard shadows, 3px borders, dot-grid background,
+    rotated eyebrow chips, squiggle underline, synthwave sun, ticker band.
+  · Motion is decorative only and fully disabled by prefers-reduced-motion.
+
+  COPY RULES (from brand guidelines)
+  · Second person. Short sentences. Active voice. No em-dashes anywhere.
+  · Lead with the person's experience, not the service.
+  · "Neuroaffirming", not "neurodivergent-friendly".
+  · Banned words: journey, empower, holistic, passionate, dedicated team.
+
+  ROUTE MAP (per content handover revision brief, section 5)
+  · Services dropdown: OT, Gaming-Informed, Minecraft, Assessments. No Sleep.
+  · Team: single link, no dropdown.
+  · Free Resources: single link to the /resources hub (NEW ROUTE, replaces
+    /learn as destination; existing /learn/* URLs remain valid content).
+  · Get Started: primary CTA, points at /contact for self AND pro referrers.
+  · Client Portal: persistent, visually separate, external (Pracsuite).
+  · NEW ROUTES pending build: /resources, /resources/open-loops,
+    /resources/events. Marked with "NEW ROUTE" comments where linked.
+
+  ONE PRIMARY ACTION PER PAGE
+  · This page: Get Started → referral. Everything else is secondary.
+========================================================================== -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estus Health | Neuroaffirming &amp; Gaming-Informed OT in Perth</title>
+<meta name="description" content="Neuroaffirming occupational therapy in Perth for autistic adults, teens, and PDA profiles. Gaming-informed therapy, executive function support, NDIS and telehealth Australia-wide.">
+<link rel="canonical" href="https://www.estushealth.com/">
+<meta name="theme-color" content="#0b0714">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Estus Health">
+<meta property="og:title" content="Estus Health | Neuroaffirming &amp; Gaming-Informed OT in Perth">
+<meta property="og:description" content="A small team of neurodivergent clinicians who build sessions around how your brain actually works. Perth and telehealth Australia-wide.">
+<meta property="og:url" content="https://www.estushealth.com/">
+<meta property="og:image" content="https://www.estushealth.com/team-photo.jpeg">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Theme boot: runs before paint to prevent a theme flash. Storage key and
+     values are shared with the previous concept build for continuity. -->
+<script>
+  (function () {
+    var VALID = ['neon', 'neon-light'];
+    var theme = 'neon';
+    try {
+      var saved = localStorage.getItem('estus-theme');
+      if (VALID.indexOf(saved) !== -1) theme = saved;
+    } catch (e) { /* storage unavailable: fall through to default */ }
+    document.documentElement.setAttribute('data-theme', theme);
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   01 · DESIGN TOKENS
+   Brand palette first, then semantic tokens. Components only ever reference
+   semantic tokens, which is what makes the theme swap a one-attribute change.
+   ========================================================================== */
+:root {
+  /* Brand palette (day / print reference) */
+  --white: #ffffff;
+  --grey:  #e5e5e5;
+  --teal:  #2ca5b8;
+  --mauve: #ab5c95;
+  --navy:  #344982;
+
+  /* Semantic tokens: light base, used by the "neon-light" (day) theme */
+  --bg:           #ffffff;
+  --dot:          #e5e5e5;   /* dot-grid on page background */
+  --dot-2:        #d4d4d4;   /* dot-grid on tinted bands */
+  --surface:      #ffffff;   /* cards, nav chips */
+  --surface-2:    #e5e5e5;   /* tinted band backgrounds */
+  --heading:      #344982;
+  --text:         #22305c;
+  --text-soft:    #41507e;
+  --line:         #344982;   /* borders */
+  --shadow-col:   #344982;   /* default offset shadow */
+  --nav-bg:       rgba(255, 255, 255, .92);
+  --band-bg:      #344982;   /* dark "who we help" band */
+  --foot-bg:      #344982;
+  --eyebrow-bg:   #344982;
+  --eyebrow-text: #ffffff;
+  --btn-text:     #ffffff;
+  --menu-bg:      #ffffff;
+
+  /* Shared primitives */
+  --shadow:       8px 8px 0 var(--shadow-col);
+  --shadow-teal:  8px 8px 0 var(--teal);
+  --shadow-mauve: 8px 8px 0 var(--mauve);
+  --radius: 20px;
+  --f-display: 'Bungee', system-ui, sans-serif;
+  --f-head:    'Archivo Black', system-ui, sans-serif;
+  --f-body:    'Poppins', system-ui, sans-serif;
+}
+
+/* --- NEON NIGHT (default): Vice City after dark ------------------------- */
+html[data-theme="neon"] {
+  --teal:  #1ce8f0;
+  --mauve: #ff2e9a;
+  --bg:           #0b0714;
+  --dot:          #1d1236;
+  --dot-2:        #241645;
+  --surface:      #150e2a;
+  --surface-2:    #100a20;
+  --heading:      #ffffff;
+  --text:         #ece4ff;
+  --text-soft:    #a99fd6;
+  --line:         #1ce8f0;
+  --shadow-col:   #ff2e9a;
+  --nav-bg:       rgba(11, 7, 20, .85);
+  --band-bg:      #08040f;
+  --foot-bg:      #08040f;
+  --eyebrow-bg:   #ff2e9a;
+  --eyebrow-text: #0b0714;
+  --btn-text:     #07121a;
+  --menu-bg:      #150e2a;
+}
+
+/* Night-only glow layer. Kept together so the day theme stays clean. */
+html[data-theme="neon"] .eyebrow            { box-shadow: 0 0 14px rgba(255, 46, 154, .7); }
+html[data-theme="neon"] .hero h1            { color: #eafcff; text-shadow: 0 0 10px rgba(28, 232, 240, .9), 0 0 30px rgba(28, 232, 240, .5); }
+html[data-theme="neon"] .hero h1 .accent    { color: #ff5cb3;  text-shadow: 0 0 10px rgba(255, 46, 154, .95), 0 0 32px rgba(255, 46, 154, .6); }
+html[data-theme="neon"] .sec-head           { text-shadow: 0 0 16px rgba(28, 232, 240, .4); }
+html[data-theme="neon"] .band .sec-head     { text-shadow: 0 0 16px rgba(255, 46, 154, .45); }
+html[data-theme="neon"] .under path:nth-of-type(1) { stroke: #1ce8f0; }
+html[data-theme="neon"] .under path:nth-of-type(2) { stroke: #ff2e9a; }
+html[data-theme="neon"] .under              { filter: drop-shadow(0 0 5px rgba(28, 232, 240, .7)) drop-shadow(0 0 5px rgba(255, 46, 154, .5)); }
+html[data-theme="neon"] .btn                { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 18px rgba(28, 232, 240, .55); }
+html[data-theme="neon"] .btn--alt           { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 18px rgba(255, 46, 154, .6); }
+html[data-theme="neon"] .btn--ghost         { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 14px rgba(28, 232, 240, .4); }
+html[data-theme="neon"] .btn:hover          { box-shadow: 7px 7px 0 rgba(0, 0, 0, .5), 0 0 26px rgba(28, 232, 240, .8); }
+html[data-theme="neon"] .btn--alt:hover     { box-shadow: 7px 7px 0 rgba(0, 0, 0, .5), 0 0 26px rgba(255, 46, 154, .85); }
+html[data-theme="neon"] .card               { box-shadow: var(--shadow), 0 0 22px rgba(28, 232, 240, .2); }
+html[data-theme="neon"] .team .card:nth-child(1) { box-shadow: 8px 8px 0 var(--teal),  0 0 24px rgba(28, 232, 240, .3); }
+html[data-theme="neon"] .team .card:nth-child(2) { box-shadow: 8px 8px 0 var(--mauve), 0 0 24px rgba(255, 46, 154, .3); }
+html[data-theme="neon"] .pill               { color: #0b0714; }
+html[data-theme="neon"] .photo-tag          { color: #07121a; }
+html[data-theme="neon"] .photo-card         { box-shadow: 12px 12px 0 var(--mauve), 0 0 30px rgba(28, 232, 240, .4); }
+html[data-theme="neon"] .pay .card:nth-child(1) .num,
+html[data-theme="neon"] .pay .card:nth-child(2) .num { color: #0b0714; }
+html[data-theme="neon"] .cta-box            { box-shadow: 12px 12px 0 rgba(0, 0, 0, .5), 0 0 34px rgba(28, 232, 240, .3); }
+html[data-theme="neon"] .hero {
+  background:
+    radial-gradient(120% 85% at 50% -15%, rgba(255, 46, 154, .22), transparent 60%),
+    radial-gradient(90% 60% at 82% 0%,   rgba(28, 232, 240, .16), transparent 55%);
+}
+/* CRT scanlines, night only. Fixed, non-interactive, subtle. */
+html[data-theme="neon"] body::after {
+  content: "";
+  position: fixed; inset: 0; z-index: 70; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .16) 0 1px, transparent 1px 3px);
+  opacity: .35; mix-blend-mode: multiply;
+}
+
+/* --- NEON DAY: same bones, brand palette, no glow ------------------------ */
+html[data-theme="neon-light"] .hero h1 .accent {
+  color: #ab5c95;
+  background: linear-gradient(100deg, #2ca5b8, #ab5c95 55%, #344982);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+html[data-theme="neon-light"] .hero {
+  background:
+    radial-gradient(120% 90% at 50% -20%, rgba(44, 165, 184, .16), transparent 62%),
+    radial-gradient(85% 60% at 82% 0%,    rgba(171, 92, 149, .14), transparent 55%);
+}
+
+/* Synthwave suns: one per theme, hidden on the other and on small screens. */
+.sun { display: none; }
+html[data-theme="neon"]       .sun--night,
+html[data-theme="neon-light"] .sun--day {
+  display: block;
+  position: absolute; right: 3%; top: 96px;
+  width: min(360px, 40vw); z-index: 0;
+  pointer-events: none;
+}
+html[data-theme="neon"] .sun--night { opacity: .9; filter: drop-shadow(0 0 26px rgba(255, 46, 154, .5)); }
+html[data-theme="neon-light"] .sun--day { opacity: .95; }
+
+/* ==========================================================================
+   02 · BASE
+   ========================================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--f-body);
+  color: var(--text);
+  background: var(--bg);
+  background-image: radial-gradient(var(--dot) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color .25s ease, color .25s ease;
+}
+a   { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+h1, h2, h3 { font-family: var(--f-head); line-height: 1.02; margin: 0; }
+
+:focus-visible { outline: 3px solid var(--mauve); outline-offset: 3px; border-radius: 4px; }
+
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  background: var(--mauve); color: #fff;
+  font-family: var(--f-display); font-size: .8rem; text-transform: uppercase;
+  padding: 10px 18px; border-radius: 0 0 12px 12px;
+  transition: top .15s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ==========================================================================
+   03 · LAYOUT & SHARED PIECES
+   ========================================================================== */
+.wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+section { position: relative; padding: 84px 0; }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--f-display); font-size: .72rem;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--eyebrow-text); background: var(--eyebrow-bg);
+  padding: 8px 16px; border-radius: 999px;
+  transform: rotate(-1.5deg);
+  box-shadow: 3px 3px 0 var(--teal);
+}
+.sec-head {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  text-transform: uppercase; letter-spacing: -1px;
+  color: var(--heading);
+}
+.lead { font-size: 1.12rem; color: var(--text-soft); max-width: 60ch; }
+
+/* Buttons. One primary style, two variants. Never two primaries side by side. */
+.btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--f-display); font-size: .9rem;
+  text-transform: uppercase; letter-spacing: .5px;
+  padding: 15px 26px; border-radius: 999px;
+  border: 3px solid var(--line);
+  background: var(--teal); color: var(--btn-text);
+  cursor: pointer; white-space: nowrap;
+  box-shadow: 5px 5px 0 var(--shadow-col);
+  transition: transform .12s ease, box-shadow .12s ease;
+}
+.btn:hover  { transform: translate(-2px, -2px); box-shadow: 8px 8px 0 var(--shadow-col); }
+.btn:active { transform: translate(2px, 2px);   box-shadow: 2px 2px 0 var(--shadow-col); }
+.btn--alt   { background: var(--mauve); }
+.btn--ghost { background: var(--surface); color: var(--text); }
+.btn--big   { font-size: 1.05rem; padding: 19px 34px; }
+
+.card {
+  background: var(--surface);
+  border: 3px solid var(--line); border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 26px; position: relative; z-index: 2;
+  transition: transform .14s ease, box-shadow .14s ease;
+}
+.card:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--shadow-col); }
+
+/* Decorative confetti. Positioned per-instance inline; always aria-hidden. */
+.confetti { position: absolute; pointer-events: none; z-index: 0; }
+.dot-shape { border-radius: 50%; }
+.ring { border-radius: 50%; background: transparent; }
+.tri  { width: 0; height: 0; border-left: 16px solid transparent; border-right: 16px solid transparent; }
+.sq   { border-radius: 6px; }
+
+/* ==========================================================================
+   04 · NAVIGATION
+   Route map per revision brief: Services (dropdown) / Team / Free Resources,
+   then Client Portal (separate, external) + Get Started (primary CTA).
+   ========================================================================== */
+.nav {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--nav-bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid var(--line);
+}
+.nav-in { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 18px; }
+.brand {
+  display: flex; align-items: center; gap: 11px;
+  font-family: var(--f-display); font-size: 1.15rem;
+  color: var(--heading); text-transform: uppercase; letter-spacing: .5px;
+}
+.brand .mark {
+  width: 40px; height: 40px; border-radius: 11px;
+  background: var(--mauve); border: 3px solid var(--navy);
+  display: grid; place-items: center;
+  color: var(--white); font-family: var(--f-display);
+  box-shadow: 3px 3px 0 var(--teal);
+  transform: rotate(-4deg);
+}
+.links { display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; list-style: none; }
+.links > li { position: relative; }
+.links a, .links button.menu-btn {
+  font-family: var(--f-body); font-weight: 600; font-size: .95rem;
+  color: var(--text); background: none; border: none; cursor: pointer; padding: 0;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.links a:hover, .links button.menu-btn:hover { color: var(--mauve); }
+.menu-btn .chev { transition: transform .15s ease; font-size: .7em; }
+.menu-btn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+/* Services dropdown: hover/focus-within on desktop, button toggle everywhere. */
+.menu {
+  position: absolute; left: -14px; top: calc(100% + 14px);
+  min-width: 250px; margin: 0; padding: 10px; list-style: none;
+  background: var(--menu-bg);
+  border: 3px solid var(--line); border-radius: 16px;
+  box-shadow: 6px 6px 0 var(--shadow-col);
+  opacity: 0; visibility: hidden; transform: translateY(-6px);
+  transition: opacity .15s ease, transform .15s ease, visibility .15s;
+}
+.has-menu:hover .menu,
+.has-menu:focus-within .menu,
+.has-menu.open .menu { opacity: 1; visibility: visible; transform: translateY(0); }
+.menu a {
+  display: block; padding: 10px 12px; border-radius: 10px;
+  font-size: .92rem; width: 100%;
+}
+.menu a:hover { background: var(--surface-2); color: var(--mauve); }
+
+.nav-cta { display: flex; gap: 10px; align-items: center; }
+.nav-cta .btn { padding: 11px 18px; font-size: .75rem; box-shadow: 4px 4px 0 var(--shadow-col); }
+
+.burger {
+  display: none;
+  background: var(--navy); border: none; border-radius: 10px;
+  width: 46px; height: 42px; cursor: pointer;
+}
+.burger span { display: block; height: 3px; background: #fff; margin: 5px 9px; border-radius: 2px; }
+
+/* Mobile drawer: every route reachable in one tap, portal + CTA included. */
+.mnav { display: none; border-top: 3px dashed var(--line); padding: 14px 0 20px; }
+.mnav.open { display: block; }
+.mnav a { display: block; padding: 11px 4px; font-weight: 600; color: var(--text); border-bottom: 1px solid var(--dot); }
+.mnav .group { font-family: var(--f-display); font-size: .68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-soft); padding: 14px 4px 4px; }
+.mnav .sub { padding-left: 18px; }
+
+/* ==========================================================================
+   05 · HERO
+   ========================================================================== */
+.hero { padding: 70px 0 90px; overflow: hidden; }
+.hero-grid {
+  display: grid; grid-template-columns: 1.05fr .95fr; gap: 48px;
+  align-items: center; position: relative; z-index: 2;
+}
+.hero h1 {
+  font-family: var(--f-display);
+  font-size: clamp(3.2rem, 13vw, 8.5rem);
+  color: var(--heading); text-transform: uppercase;
+  letter-spacing: -2px; line-height: .92;
+  margin: 20px 0 8px;
+}
+.hero h1 .accent { color: var(--mauve); }
+.under { width: min(440px, 82%); height: auto; margin: 8px 0 24px; overflow: visible; }
+.hero .sub { font-size: 1.35rem; font-weight: 600; color: var(--text); max-width: 36ch; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
+
+.photo-card {
+  position: relative; overflow: hidden;
+  background: var(--surface);
+  border: 4px solid var(--line); border-radius: 24px;
+  box-shadow: 12px 12px 0 var(--mauve);
+  transform: rotate(2deg);
+}
+.photo-card img { width: 100%; height: 100%; object-fit: cover; }
+.photo-tag {
+  position: absolute; left: -10px; bottom: 18px; z-index: 3;
+  background: var(--teal); color: #fff;
+  font-family: var(--f-display); font-size: .8rem;
+  padding: 9px 16px; border: 3px solid var(--navy); border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--navy);
+  transform: rotate(-3deg);
+}
+
+/* ==========================================================================
+   06 · TICKER
+   ========================================================================== */
+.ticker {
+  background: var(--navy);
+  border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy);
+  overflow: hidden; padding: 14px 0;
+  transform: rotate(-1deg) scale(1.03);
+  margin: 10px 0;
+}
+.ticker .track { display: flex; white-space: nowrap; width: max-content; }
+.ticker span { font-family: var(--f-display); color: var(--white); font-size: 1rem; text-transform: uppercase; padding: 0 22px; }
+.ticker span b { color: var(--teal); }
+.ticker span:nth-child(even) b { color: var(--mauve); }
+
+/* ==========================================================================
+   07 · TEAM TEASER
+   Home shows a teaser only. Full archetype bios live at /about/team.
+   Card order fixed: Liam (teal shadow), Nam (mauve), Nik (default).
+   ========================================================================== */
+.team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.team .card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+.team .card:nth-child(1) { box-shadow: var(--shadow-teal); }
+.team .card:nth-child(1):hover { box-shadow: 11px 11px 0 var(--teal); }
+.team .card:nth-child(2) { box-shadow: var(--shadow-mauve); }
+.team .card:nth-child(2):hover { box-shadow: 11px 11px 0 var(--mauve); }
+.team .pic { aspect-ratio: 1 / 1; border-bottom: 3px solid var(--line); background: var(--surface-2); }
+.team .pic img { width: 100%; height: 100%; object-fit: cover; }
+.team .body { padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.team h3 { font-size: 1.5rem; color: var(--heading); text-transform: uppercase; }
+.role { font-weight: 600; font-size: .9rem; color: var(--mauve); }
+.team p { font-size: .95rem; color: var(--text-soft); margin: 0; flex: 1; }
+.archetype {
+  align-self: flex-start;
+  font-family: var(--f-display); font-size: .66rem;
+  text-transform: uppercase; letter-spacing: .5px;
+  color: var(--btn-text); background: var(--teal);
+  padding: 6px 12px; border-radius: 999px; border: 2px solid var(--line);
+}
+.team .card:nth-child(2) .archetype { background: var(--mauve); }
+.status {
+  font-size: .78rem; font-weight: 600; color: var(--text-soft);
+}
+.status::before { content: "●"; color: var(--teal); margin-right: 6px; font-size: .7em; vertical-align: 1px; }
+.profile-link {
+  font-weight: 700; font-size: .9rem; color: var(--teal);
+  align-self: flex-start;
+}
+.profile-link:hover { color: var(--mauve); }
+.team-foot { margin-top: 36px; }
+
+/* ==========================================================================
+   08 · WHO WE HELP (dark band)
+   ========================================================================== */
+.band {
+  background: var(--band-bg);
+  border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy);
+}
+.band .sec-head { color: var(--white); }
+.band .lead { color: #c7d0ef; }
+.pills { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; position: relative; z-index: 2; }
+.pill {
+  font-family: var(--f-display); font-size: .82rem; text-transform: uppercase;
+  color: var(--navy); background: var(--white);
+  padding: 12px 18px; border-radius: 999px; border: 3px solid var(--white);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, .25);
+}
+.pill:nth-child(3n)   { background: var(--teal);  color: #fff; border-color: var(--teal); }
+.pill:nth-child(3n+1) { background: var(--mauve); color: #fff; border-color: var(--mauve); }
+
+/* ==========================================================================
+   09 · FEES
+   ========================================================================== */
+.pay { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+.pay .num {
+  font-family: var(--f-display); font-size: 1.1rem;
+  color: var(--white); background: var(--teal);
+  width: 46px; height: 46px; border-radius: 12px;
+  display: grid; place-items: center;
+  border: 3px solid var(--navy); box-shadow: 3px 3px 0 var(--navy);
+  margin-bottom: 14px;
+}
+.pay .card:nth-child(2) .num { background: var(--mauve); }
+.pay .card:nth-child(3) .num { background: var(--navy); color: var(--white); }
+.pay h3 { font-size: 1.15rem; color: var(--heading); text-transform: uppercase; margin-bottom: 8px; }
+.pay p { margin: 0; font-size: .95rem; color: var(--text-soft); }
+
+/* ==========================================================================
+   10 · PRACTICAL
+   ========================================================================== */
+.practical-section {
+  background: var(--surface-2);
+  background-image: radial-gradient(var(--dot-2) 1.4px, transparent 1.4px);
+  background-size: 22px 22px;
+  border-top: 3px solid var(--line); border-bottom: 3px solid var(--line);
+}
+.practical { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+.practical .k { font-family: var(--f-display); font-size: .78rem; text-transform: uppercase; color: var(--teal); letter-spacing: .5px; }
+.practical .v { font-family: var(--f-head); font-size: 1.35rem; color: var(--heading); margin: 8px 0 4px; text-transform: uppercase; }
+.practical .s { font-size: .92rem; color: var(--text-soft); }
+
+/* ==========================================================================
+   11 · CTA
+   The single conversion moment. Friction removers live in the copy:
+   no GP referral, two minutes, one business day, direct email fallback.
+   ========================================================================== */
+.cta {
+  background: linear-gradient(135deg, var(--teal), var(--mauve));
+  border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy);
+  overflow: hidden;
+}
+.cta-box {
+  background: var(--surface);
+  border: 4px solid var(--line); border-radius: 26px;
+  box-shadow: 12px 12px 0 var(--shadow-col);
+  padding: 48px 40px; text-align: center;
+  max-width: 760px; margin: 0 auto; position: relative; z-index: 2;
+}
+.cta-box h2 { font-size: clamp(2rem, 5vw, 3rem); color: var(--heading); text-transform: uppercase; letter-spacing: -1px; }
+.cta-box p { font-size: 1.08rem; color: var(--text-soft); margin: 14px auto 26px; max-width: 48ch; }
+.cta-note { font-size: .9rem; color: var(--text-soft); margin-top: 18px; }
+.cta-note a { color: var(--mauve); font-weight: 700; text-decoration: underline; }
+
+/* ==========================================================================
+   12 · FOOTER
+   Columns per revision brief: brand blurb / Services / Free Resources /
+   Contact. Free Resources replaces the old separate Learn + Resources.
+   ========================================================================== */
+.foot { background: var(--foot-bg); color: #d6ddf5; border-top: 3px solid var(--navy); }
+.foot .wrap { padding-top: 56px; padding-bottom: 34px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+.foot .brand { color: #fff; margin-bottom: 12px; }
+.foot .brand .mark { background: var(--teal); }
+.foot h2 {
+  font-family: var(--f-display); font-size: .8rem;
+  text-transform: uppercase; letter-spacing: .5px;
+  color: var(--teal); margin: 0 0 14px;
+}
+.foot ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; }
+.foot a:hover { color: #fff; text-decoration: underline; }
+.foot .blurb { font-size: .92rem; color: #aab6e0; max-width: 34ch; }
+.foot-bottom {
+  border-top: 1px solid #46579a; margin-top: 34px; padding-top: 20px;
+  font-size: .82rem; color: #93a1d6;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+
+/* ==========================================================================
+   13 · THEME SWITCHER
+   ========================================================================== */
+.theme-switch {
+  position: fixed; right: 18px; bottom: 18px; z-index: 80;
+  display: flex; gap: 9px; align-items: center;
+  background: var(--surface);
+  border: 3px solid var(--line); border-radius: 999px;
+  padding: 9px 13px;
+  box-shadow: 5px 5px 0 var(--shadow-col);
+}
+.theme-switch .lbl { font-family: var(--f-display); font-size: .6rem; text-transform: uppercase; color: var(--text-soft); letter-spacing: .5px; }
+.sw {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 3px solid var(--line); cursor: pointer; padding: 0;
+  transition: transform .1s ease;
+}
+.sw:hover { transform: scale(1.12); }
+.sw[aria-pressed="true"] { outline: 3px solid var(--mauve); outline-offset: 2px; }
+.sw--night { background: linear-gradient(135deg, #ff2e9a, #1ce8f0); }
+.sw--day   { background: linear-gradient(135deg, #2ca5b8, #ab5c95 55%, #344982); }
+
+/* ==========================================================================
+   14 · MOTION
+   All animation opt-in via prefers-reduced-motion. Nothing flashes,
+   nothing parallaxes, nothing autoplays with sound.
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  .float  { animation: float 7s ease-in-out infinite alternate; }
+  .float2 { animation: float 9s ease-in-out infinite alternate; }
+  .spin   { animation: spin 18s linear infinite; }
+  .ticker .track { animation: scroll 26s linear infinite; }
+}
+@keyframes float { from { transform: translateY(0)     rotate(var(--r, 0deg)); }
+                   to   { transform: translateY(-16px) rotate(var(--r, 0deg)); } }
+@keyframes spin   { to { transform: rotate(360deg); } }
+@keyframes scroll { to { transform: translateX(-50%); } }
+
+/* ==========================================================================
+   15 · RESPONSIVE
+   ========================================================================== */
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 34px; }
+  .photo-card { transform: rotate(1deg); max-width: 440px; }
+  .team { grid-template-columns: 1fr 1fr; }
+  .foot-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 680px) {
+  .links, .nav-cta { display: none; }
+  .burger { display: block; }
+  section { padding: 60px 0; }
+  .team, .pay, .practical { grid-template-columns: 1fr; }
+  .foot-grid { grid-template-columns: 1fr; }
+  .cta-box { padding: 36px 22px; }
+  .sun { display: none !important; }
+  .theme-switch { right: 12px; bottom: 12px; padding: 8px 11px; }
+  .theme-switch .lbl { display: none; }
+}
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- =======================================================================
+     NAV · route map per revision brief section 5
+     ======================================================================= -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="https://www.estushealth.com/" aria-label="Estus Health home">
+      <span class="mark" aria-hidden="true">E</span> Estus Health
+    </a>
+
+    <nav aria-label="Primary">
+      <ul class="links">
+        <li class="has-menu" id="services-item">
+          <button class="menu-btn" id="services-btn" aria-expanded="false" aria-controls="services-menu">
+            Services <span class="chev" aria-hidden="true">▾</span>
+          </button>
+          <ul class="menu" id="services-menu">
+            <li><a href="https://www.estushealth.com/services/occupational-therapy">Occupational Therapy</a></li>
+            <li><a href="https://www.estushealth.com/services/gaming-informed-therapy">Gaming-Informed Therapy</a></li>
+            <li><a href="https://www.estushealth.com/services/minecraft-program">Minecraft Program</a></li>
+            <li><a href="https://www.estushealth.com/services/assessments-reports">Assessments &amp; Reports</a></li>
+          </ul>
+        </li>
+        <li><a href="https://www.estushealth.com/about/team">Team</a></li>
+        <!-- NEW ROUTE: /resources hub replaces /learn as the destination -->
+        <li><a href="https://www.estushealth.com/resources">Free Resources</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn--ghost" href="https://questot.bookings.pracsuite.com/" target="_blank" rel="noopener">Client Portal</a>
+      <a class="btn" href="https://www.estushealth.com/contact">Get Started</a>
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mnav">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile drawer -->
+  <nav class="mnav wrap" id="mnav" aria-label="Mobile">
+    <p class="group">Services</p>
+    <a class="sub" href="https://www.estushealth.com/services/occupational-therapy">Occupational Therapy</a>
+    <a class="sub" href="https://www.estushealth.com/services/gaming-informed-therapy">Gaming-Informed Therapy</a>
+    <a class="sub" href="https://www.estushealth.com/services/minecraft-program">Minecraft Program</a>
+    <a class="sub" href="https://www.estushealth.com/services/assessments-reports">Assessments &amp; Reports</a>
+    <a href="https://www.estushealth.com/about/team">Team</a>
+    <a href="https://www.estushealth.com/resources">Free Resources</a>
+    <a href="https://questot.bookings.pracsuite.com/" target="_blank" rel="noopener">Client Portal ↗</a>
+    <a href="https://www.estushealth.com/contact"><strong>Get Started</strong></a>
+  </nav>
+</header>
+
+<main id="main">
+
+<!-- =======================================================================
+     HERO
+     ======================================================================= -->
+<section class="hero" aria-labelledby="hero-title">
+  <!-- Decorative confetti -->
+  <div class="confetti float" style="top:40px; right:8%; --r:0deg;" aria-hidden="true"><div class="ring" style="width:54px; height:54px; border:8px solid var(--teal);"></div></div>
+  <div class="confetti float2" style="top:150px; right:2%;" aria-hidden="true"><div class="dot-shape" style="width:26px; height:26px; background:var(--mauve);"></div></div>
+  <div class="confetti float" style="bottom:60px; left:44%; --r:12deg;" aria-hidden="true"><div class="tri" style="border-bottom:30px solid var(--line);"></div></div>
+  <div class="confetti spin" style="top:12px; left:48%;" aria-hidden="true">
+    <svg width="46" height="46" viewBox="0 0 46 46"><path d="M23 2 L27 19 L44 23 L27 27 L23 44 L19 27 L2 23 L19 19 Z" fill="var(--mauve)"/></svg>
+  </div>
+  <div class="confetti float2" style="bottom:20px; left:2%;" aria-hidden="true"><div class="sq" style="width:24px; height:24px; background:var(--teal); transform:rotate(20deg);"></div></div>
+
+  <!-- Synthwave sun, night variant -->
+  <svg class="sun sun--night" viewBox="0 0 200 210" aria-hidden="true">
+    <defs>
+      <linearGradient id="sun-night" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#ffe14d"/><stop offset=".5" stop-color="#ff2e9a"/><stop offset="1" stop-color="#9d4edd"/>
+      </linearGradient>
+      <mask id="sun-night-mask">
+        <rect width="200" height="210" fill="#000"/><circle cx="100" cy="94" r="82" fill="#fff"/>
+        <rect x="0" y="112" width="200" height="5" fill="#000"/><rect x="0" y="124" width="200" height="6" fill="#000"/>
+        <rect x="0" y="138" width="200" height="8" fill="#000"/><rect x="0" y="154" width="200" height="11" fill="#000"/>
+        <rect x="0" y="172" width="200" height="16" fill="#000"/>
+      </mask>
+    </defs>
+    <rect width="200" height="210" fill="url(#sun-night)" mask="url(#sun-night-mask)"/>
+  </svg>
+  <!-- Synthwave sun, day variant (brand palette) -->
+  <svg class="sun sun--day" viewBox="0 0 200 210" aria-hidden="true">
+    <defs>
+      <linearGradient id="sun-day" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#2ca5b8"/><stop offset=".5" stop-color="#ab5c95"/><stop offset="1" stop-color="#344982"/>
+      </linearGradient>
+      <mask id="sun-day-mask">
+        <rect width="200" height="210" fill="#000"/><circle cx="100" cy="94" r="82" fill="#fff"/>
+        <rect x="0" y="112" width="200" height="5" fill="#000"/><rect x="0" y="124" width="200" height="6" fill="#000"/>
+        <rect x="0" y="138" width="200" height="8" fill="#000"/><rect x="0" y="154" width="200" height="11" fill="#000"/>
+        <rect x="0" y="172" width="200" height="16" fill="#000"/>
+      </mask>
+    </defs>
+    <rect width="200" height="210" fill="url(#sun-day)" mask="url(#sun-day-mask)"/>
+  </svg>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">◆ Neuroaffirming OT · Perth + Telehealth ◆</span>
+      <h1 id="hero-title">Estus <span class="accent">Health</span></h1>
+      <svg class="under" viewBox="0 0 460 60" fill="none" aria-hidden="true" preserveAspectRatio="xMidYMid meet">
+        <path d="M8 26 C 44 14, 80 14, 116 26 S 188 38, 224 26 S 296 14, 332 26 S 416 38, 452 26" stroke="#2ca5b8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M8 40 C 44 28, 80 28, 116 40 S 188 52, 224 40 S 296 28, 332 40 S 416 52, 452 40" stroke="#ab5c95" stroke-width="6" stroke-linecap="round" opacity=".9"/>
+      </svg>
+      <p class="sub">A small team of neurodivergent clinicians who build sessions around how your brain actually works.</p>
+      <div class="hero-cta">
+        <a class="btn btn--big" href="https://www.estushealth.com/contact">Get Started ▸</a>
+        <a class="btn btn--alt btn--big" href="https://www.estushealth.com/about/team">Meet the Team</a>
+      </div>
+    </div>
+    <div>
+      <div class="photo-card">
+        <img src="https://www.estushealth.com/team-photo.jpeg" alt="The Estus Health team, Liam, Dai Nam, and Nik" width="600" height="600" loading="eager">
+        <span class="photo-tag">Liam · Dai Nam · Nik</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     TICKER · decorative, duplicated track for a seamless loop
+     ======================================================================= -->
+<div class="ticker" aria-hidden="true">
+  <div class="track">
+    <span>PDA profiles <b>◆</b></span><span>Late diagnosis <b>◆</b></span><span>Executive function <b>◆</b></span><span>Gaming-informed <b>◆</b></span><span>ADHD <b>◆</b></span><span>NDIS welcome <b>◆</b></span><span>Telehealth AU-wide <b>◆</b></span>
+    <span>PDA profiles <b>◆</b></span><span>Late diagnosis <b>◆</b></span><span>Executive function <b>◆</b></span><span>Gaming-informed <b>◆</b></span><span>ADHD <b>◆</b></span><span>NDIS welcome <b>◆</b></span><span>Telehealth AU-wide <b>◆</b></span>
+  </div>
+</div>
+
+<!-- =======================================================================
+     TEAM TEASER · archetype-first, per revision brief section 3.
+     Shared training stated once in the lead, never repeated per bio.
+     Full bios with expandable detail live at /about/team.
+     ======================================================================= -->
+<section id="team" aria-labelledby="team-title">
+  <div class="confetti" style="top:40px; right:5%;" aria-hidden="true"><div class="dot-shape" style="width:20px; height:20px; background:var(--teal);"></div></div>
+  <div class="confetti" style="top:80px; left:2%;" aria-hidden="true"><div class="tri" style="border-bottom:26px solid var(--mauve); transform:rotate(-15deg);"></div></div>
+  <div class="wrap">
+    <span class="eyebrow" style="box-shadow:3px 3px 0 var(--mauve);">The Crew</span>
+    <h2 class="sec-head" id="team-title" style="margin-top:16px;">Three OTs.<br>Three very different brains.</h2>
+    <p class="lead" style="margin-top:14px;">All three are trained occupational therapists. That part is the baseline. What you are really choosing is a personality, and most of us have been on the other side of that conversation.</p>
+
+    <div class="team" style="margin-top:40px;">
+      <article class="card">
+        <div class="pic"><img src="https://www.estushealth.com/team-liam.jpg" alt="Portrait of Liam Fagan" width="400" height="400" loading="lazy"></div>
+        <div class="body">
+          <span class="archetype">Systems &amp; structure</span>
+          <h3>Liam Fagan</h3>
+          <span class="role">Founder · OT · Driving assessor</span>
+          <p>Late-diagnosed autistic with a PDA profile. Gamifies his own life, finds spreadsheets relaxing, and builds systems that fit your brain instead of fighting it.</p>
+          <a class="profile-link" href="https://www.estushealth.com/about/team#liam">Meet Liam ▸</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="pic"><img src="https://www.estushealth.com/team-nam.jpg" alt="Portrait of Dai Nam Lang" width="400" height="400" loading="lazy"></div>
+        <div class="body">
+          <span class="archetype">Storyteller</span>
+          <h3>Dai Nam Lang</h3>
+          <span class="role">OT · Clinical lead, gaming &amp; anime-informed</span>
+          <p>Anime, gaming, and story are the medium, not the bribe. If a character you already love has taught the lesson, Nam starts there.</p>
+          <span class="status">Accepting new clients</span>
+          <a class="profile-link" href="https://www.estushealth.com/about/team#nam">Meet Nam ▸</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="pic"><img src="https://www.estushealth.com/team-nik.jpg" alt="Portrait of Nik Peshwani" width="400" height="400" loading="lazy"></div>
+        <div class="body">
+          <span class="archetype">Experimenter</span>
+          <h3>Nik Peshwani</h3>
+          <span class="role">OT · Clinical lead, executive function</span>
+          <p>Tests everything on himself before recommending it to you. Direct, curious, and open about what he is not good at.</p>
+          <a class="profile-link" href="https://www.estushealth.com/about/team#nik">Meet Nik ▸</a>
+        </div>
+      </article>
+    </div>
+
+    <div class="team-foot">
+      <a class="btn btn--ghost" href="https://www.estushealth.com/about/team">Meet the whole team ▸</a>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     WHO WE HELP
+     ======================================================================= -->
+<section id="who" class="band" aria-labelledby="who-title">
+  <div class="confetti spin" style="top:30px; right:6%;" aria-hidden="true">
+    <svg width="40" height="40" viewBox="0 0 46 46"><path d="M23 2 L27 19 L44 23 L27 27 L23 44 L19 27 L2 23 L19 19 Z" fill="var(--teal)"/></svg>
+  </div>
+  <div class="confetti" style="bottom:30px; left:4%;" aria-hidden="true"><div class="ring" style="width:40px; height:40px; border:7px solid var(--mauve);"></div></div>
+  <div class="wrap">
+    <span class="eyebrow" style="background:var(--teal); box-shadow:3px 3px 0 var(--white); color:#07121a;">Who We Work With</span>
+    <h2 class="sec-head" id="who-title" style="margin-top:16px;">Brains we build around.</h2>
+    <p class="lead" style="margin-top:14px;">Honest, specific, and no jargon gatekeeping. If you see yourself here, you are in the right place.</p>
+    <ul class="pills" style="list-style:none; padding:0;">
+      <li class="pill">Autistic adults &amp; teens</li>
+      <li class="pill">PDA profiles</li>
+      <li class="pill">ADHD</li>
+      <li class="pill">Late-diagnosed adults</li>
+      <li class="pill">Executive function</li>
+      <li class="pill">Chronic health &amp; fatigue</li>
+      <li class="pill">EDS · POTS · fibro</li>
+      <li class="pill">Sensory differences</li>
+      <li class="pill">Hypermobility &amp; pain</li>
+      <li class="pill">Kids &amp; school routines</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =======================================================================
+     FEES
+     ======================================================================= -->
+<section id="pay" aria-labelledby="pay-title">
+  <div class="confetti" style="top:50px; right:4%;" aria-hidden="true"><div class="sq" style="width:22px; height:22px; background:var(--mauve); transform:rotate(15deg);"></div></div>
+  <div class="wrap">
+    <span class="eyebrow">How To Pay</span>
+    <h2 class="sec-head" id="pay-title" style="margin-top:16px;">Three ways in. No gap fees.</h2>
+    <div class="pay">
+      <article class="card">
+        <div class="num" aria-hidden="true">1</div>
+        <h3>NDIS plan-managed</h3>
+        <p>Your plan manager pays us directly. No gap fees, no out-of-pocket surprises.</p>
+      </article>
+      <article class="card">
+        <div class="num" aria-hidden="true">2</div>
+        <h3>NDIS self-managed</h3>
+        <p>You manage your own funding and claim our invoices against your plan.</p>
+      </article>
+      <article class="card">
+        <div class="num" aria-hidden="true">3</div>
+        <h3>Private</h3>
+        <p>Pay per session. No referral needed. No funding body required.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     PRACTICAL
+     ======================================================================= -->
+<section id="practical" class="practical-section" aria-labelledby="practical-title">
+  <div class="wrap">
+    <span class="eyebrow" style="box-shadow:3px 3px 0 var(--mauve);" id="practical-title">The Practical Stuff</span>
+    <div class="practical">
+      <article class="card">
+        <div class="k">Hours</div>
+        <div class="v">Mon – Sat</div>
+        <div class="s">8am to 7pm AWST</div>
+      </article>
+      <article class="card">
+        <div class="k">Location</div>
+        <div class="v">Perth, WA</div>
+        <div class="s">Telehealth Australia-wide</div>
+      </article>
+      <article class="card">
+        <div class="k">Referrals</div>
+        <div class="v">Not needed</div>
+        <div class="s">Self-refer, parent-refer, or clinician-refer</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =======================================================================
+     CTA · the one conversion moment on the page.
+     Contact now serves self-referrers and professional referrers both.
+     ======================================================================= -->
+<section id="refer" class="cta" aria-labelledby="cta-title">
+  <div class="confetti float" style="top:26px; left:8%; --r:-8deg;" aria-hidden="true"><div class="tri" style="border-bottom:30px solid var(--white);"></div></div>
+  <div class="confetti float2" style="bottom:26px; right:9%;" aria-hidden="true"><div class="dot-shape" style="width:28px; height:28px; background:var(--white);"></div></div>
+  <div class="confetti spin" style="top:40px; right:16%;" aria-hidden="true">
+    <svg width="42" height="42" viewBox="0 0 46 46"><path d="M23 2 L27 19 L44 23 L27 27 L23 44 L19 27 L2 23 L19 19 Z" fill="#fff"/></svg>
+  </div>
+  <div class="wrap">
+    <div class="cta-box">
+      <h2 id="cta-title">Send us a referral.</h2>
+      <p>For yourself, your child, or your client. No GP referral required. Takes about two minutes, and we will be in touch within one business day.</p>
+      <a class="btn btn--big" href="https://questot.forms.pracsuite.com/t/9rrusgskOVlmiQQtMYzCuYn7" target="_blank" rel="noopener">Open Referral Form ▸</a>
+      <p class="cta-note">Or email us directly at <a href="mailto:hello@estushealth.com">hello@estushealth.com</a></p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =======================================================================
+     FOOTER · consolidated per revision brief: Services / Free Resources /
+     Contact. The Free Resources column replaces the old Learn + Resources.
+     ======================================================================= -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand"><span class="mark" aria-hidden="true">E</span> Estus Health</div>
+        <p class="blurb">Neuroaffirming occupational therapy across Perth and via telehealth Australia-wide.</p>
+      </div>
+      <nav aria-label="Services">
+        <h2>Services</h2>
+        <ul>
+          <li><a href="https://www.estushealth.com/services/occupational-therapy">Occupational Therapy</a></li>
+          <li><a href="https://www.estushealth.com/services/gaming-informed-therapy">Gaming-Informed Therapy</a></li>
+          <li><a href="https://www.estushealth.com/services/minecraft-program">Minecraft Program</a></li>
+          <li><a href="https://www.estushealth.com/services/assessments-reports">Assessments &amp; Reports</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Free resources">
+        <h2>Free Resources</h2>
+        <ul>
+          <!-- NEW ROUTE: /resources hub -->
+          <li><a href="https://www.estushealth.com/resources">All Free Resources</a></li>
+          <li><a href="https://www.estushealth.com/learn/pda-quiz">PDA Profile Quiz</a></li>
+          <li><a href="https://www.estushealth.com/learn/understanding-pda">Understanding PDA</a></li>
+          <li><a href="https://www.estushealth.com/resources/commcard">CommCard</a></li>
+          <!-- NEW ROUTES: pending build -->
+          <li><a href="https://www.estushealth.com/resources/open-loops">Open Loops</a></li>
+          <li><a href="https://www.estushealth.com/resources/events">Events &amp; Media</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Contact">
+        <h2>Contact</h2>
+        <ul>
+          <li>Perth, Western Australia</li>
+          <li>Telehealth Australia-wide</li>
+          <li>Mon – Sat, 8am – 7pm</li>
+          <li><a href="https://www.estushealth.com/contact">Get started →</a></li>
+          <li><a href="mailto:hello@estushealth.com">hello@estushealth.com</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Estus Health. All rights reserved.</span>
+      <a href="https://questot.bookings.pracsuite.com/" target="_blank" rel="noopener">Client Portal ↗</a>
+    </div>
+  </div>
+</footer>
+
+<!-- =======================================================================
+     THEME SWITCHER
+     ======================================================================= -->
+<div class="theme-switch" role="group" aria-label="Colour theme">
+  <span class="lbl" aria-hidden="true">Theme</span>
+  <button class="sw sw--night" data-theme-value="neon" title="Neon night" aria-label="Neon night theme" aria-pressed="true"></button>
+  <button class="sw sw--day" data-theme-value="neon-light" title="Neon day" aria-label="Neon day theme" aria-pressed="false"></button>
+</div>
+
+<script>
+/* ==========================================================================
+   Behaviour. Three small, independent modules: mobile nav, services
+   dropdown, theme switcher. No dependencies, no globals leaked.
+   ========================================================================== */
+(function () {
+  'use strict';
+
+  /* --- Mobile nav ------------------------------------------------------- */
+  var burger = document.getElementById('burger');
+  var drawer = document.getElementById('mnav');
+  burger.addEventListener('click', function () {
+    var open = drawer.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+  drawer.addEventListener('click', function (event) {
+    if (event.target.closest('a')) {
+      drawer.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  /* --- Services dropdown -------------------------------------------------
+     Hover and focus are handled in CSS. The button click covers touch and
+     keyboard; Escape and outside-click close it. */
+  var item = document.getElementById('services-item');
+  var btn = document.getElementById('services-btn');
+  function setMenu(open) {
+    item.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+  }
+  btn.addEventListener('click', function () {
+    setMenu(!item.classList.contains('open'));
+  });
+  document.addEventListener('click', function (event) {
+    if (!item.contains(event.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') { setMenu(false); btn.blur(); }
+  });
+
+  /* --- Theme switcher ----------------------------------------------------
+     Same storage key and values as the boot script in <head>. */
+  var STORAGE_KEY = 'estus-theme';
+  var VALID = ['neon', 'neon-light'];
+  var root = document.documentElement;
+  var switches = document.querySelectorAll('.sw');
+
+  function applyTheme(theme) {
+    if (VALID.indexOf(theme) === -1) theme = 'neon';
+    root.setAttribute('data-theme', theme);
+    try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) { /* non-fatal */ }
+    switches.forEach(function (sw) {
+      sw.setAttribute('aria-pressed', String(sw.dataset.themeValue === theme));
+    });
+  }
+
+  var current = root.getAttribute('data-theme') || 'neon';
+  switches.forEach(function (sw) {
+    sw.setAttribute('aria-pressed', String(sw.dataset.themeValue === current));
+    sw.addEventListener('click', function () { applyTheme(sw.dataset.themeValue); });
+  });
+})();
+</script>
+
+<!-- Structured data: helps local search for "OT Perth" queries -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Estus Health",
+  "description": "Neuroaffirming occupational therapy for autistic adults, teens, and PDA profiles. Gaming-informed therapy, executive function support, NDIS and private clients.",
+  "url": "https://www.estushealth.com/",
+  "email": "hello@estushealth.com",
+  "image": "https://www.estushealth.com/team-photo.jpeg",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Perth",
+    "addressRegion": "WA",
+    "addressCountry": "AU"
+  },
+  "areaServed": "Australia",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "opens": "08:00",
+    "closes": "19:00"
+  }
+}
+</script>
+
+</body>
+</html>
