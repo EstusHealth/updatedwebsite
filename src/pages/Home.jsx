@@ -11,7 +11,7 @@ const TICKER = ['PDA profiles', 'Late diagnosis', 'Executive function', 'Gaming-
 // pending Liam's sign-off).
 const TEASERS = [
   { name: 'Liam Fagan', hook: 'Systems-and-structure energy. Late-diagnosed, PDA profile, gamifies his own life.', img: '/team-liam.jpg' },
-  { name: 'Dai Nam Lang', hook: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
+  { name: 'Nam Lang', hook: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
   { name: 'Nik Peshwani', hook: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
 ]
 
@@ -70,8 +70,8 @@ export default function Home() {
           </div>
           <div>
             <div className="photo-card">
-              <img src="/team-photo.jpeg" alt="The Estus Health team, Liam, Dai Nam, and Nik" width="600" height="600" loading="eager" />
-              <span className="photo-tag">Liam · Dai Nam · Nik</span>
+              <img src="/team-photo.jpeg" alt="The Estus Health team, Liam, Nam, and Nik" width="600" height="600" loading="eager" />
+              <span className="photo-tag">Liam · Nam · Nik</span>
             </div>
           </div>
         </div>

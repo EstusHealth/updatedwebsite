@@ -29,7 +29,7 @@ const BIOS = [
     podcast: true,
   },
   {
-    id: 'nam', name: 'Dai Nam Lang', img: '/team-nam.jpg', archetype: 'Storyteller',
+    id: 'nam', name: 'Nam Lang', img: '/team-nam.jpg', archetype: 'Storyteller',
     role: 'Occupational Therapist · Clinical Lead, Gaming & Anime-Informed Therapy',
     status: 'Accepting new clients', statusClosed: false,
     opening: "Nam meets people through the story they're already inside of: anime, a game, a build. He works from there.",
