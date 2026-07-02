@@ -24,7 +24,7 @@ const BIOS = [
     status: 'Not accepting referrals', statusClosed: true,
     opening: "Late-diagnosed autistic, PDA profile, and the kind of person who gamifies his own laundry. If it can be tracked or turned into a system, Liam's tried it on himself first.",
     approach: 'Came to OT through accounting, finance, and university librarianship before realising he wanted to help people build systems that work for their brains. Being diagnosed autistic later in life reshaped how he understands himself. Sessions are direct, practical, and built around real life, not textbook goals.',
-    interests: "Holds a top-four world record speedrun in Tony Hawk's Pro Skater, with 20+ years of competitive gaming. Named the company after the healing item in Dark Souls. Finds spreadsheets relaxing and budgets for fun. Deeply interested in machine learning, AI, and how they'll reshape healthcare. Background spans accounting, finance, computer science, and ML alongside OT.",
+    interests: "Outside the clinic, Liam's interests run to lawn care, storm chasing, spreadsheets and engineering documentaries. He spends his downtime reading nutrition labels.",
     works: ['PDA profiles', 'Gaming-informed therapy', 'Driving OT', 'Executive function', 'Late diagnosis', 'Complex health', 'Autism'],
     podcast: PODCASTS.performanceLab,
   },
