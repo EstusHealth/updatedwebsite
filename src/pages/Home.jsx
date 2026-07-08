@@ -10,7 +10,7 @@ const TICKER = ['PDA profiles', 'Late diagnosis', 'Executive function', 'Gaming-
 // Home team teaser. Hooks marked [DRAFT] in CONTENT-HANDOVER.md (working copy,
 // pending Liam's sign-off).
 const TEASERS = [
-  { name: 'Liam Fagan', hook: 'Systems-and-structure energy. Late-diagnosed, PDA profile, gamifies his own life.', img: '/team-liam.jpg' },
+  { name: 'Liam Fagan', hook: "Systems-and-structure energy. If it can be tracked or turned into a system, Liam's tried it on himself first.", img: '/team-liam.jpg' },
   { name: 'Nam Lang', hook: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
   { name: 'Nik Peshwani', hook: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
 ]
