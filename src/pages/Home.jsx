@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet-async'
 import SEO from '../components/SEO'
 import { Btn, CTABand, ReferralButton } from '../components/Bits'
 import { Confetti, SynthwaveSun, Squiggle, Ticker } from '../components/Decor'
-import { EMAIL } from '../lib/site'
+import { EMAIL, INSTAGRAM, INSTAGRAM_EMBED } from '../lib/site'
 
 const TICKER = ['PDA profiles', 'Late diagnosis', 'Executive function', 'Gaming-informed', 'ADHD', 'NDIS welcome', 'Telehealth AU-wide']
 
@@ -143,6 +143,28 @@ export default function Home() {
             <article className="card"><div className="k">Hours</div><div className="v">Mon – Sat</div><div className="s">8am to 7pm AWST</div></article>
             <article className="card"><div className="k">Location</div><div className="v">Perth, WA</div><div className="s">Telehealth Australia-wide</div></article>
             <article className="card"><div className="k">Referrals</div><div className="v">Not needed</div><div className="s">Self-refer, parent-refer, or clinician-refer</div></article>
+          </div>
+        </div>
+      </section>
+
+      {/* INSTAGRAM */}
+      <section aria-labelledby="ig-title">
+        <Confetti kind="ring" color="var(--teal)" size={38} anim="float" style={{ top: 40, left: '4%' }} />
+        <Confetti kind="dot" color="var(--mauve)" size={22} anim="float2" style={{ bottom: 60, right: '6%' }} />
+        <div className="wrap" style={{ textAlign: 'center' }}>
+          <span className="eyebrow eyebrow--mauve">On Instagram</span>
+          <h2 className="sec-head" id="ig-title" style={{ marginTop: 16 }}>Follow along.</h2>
+          <p className="lead" style={{ margin: '14px auto 0', maxWidth: 560 }}>Latest posts, plus our weekly Journal Club, straight from the clinic.</p>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 32 }}>
+            <iframe
+              src={INSTAGRAM_EMBED}
+              title="Latest Instagram posts from Estus Health"
+              loading="lazy"
+              style={{ width: 'min(540px, 100%)', height: 520, border: '1px solid var(--line)', borderRadius: 16, background: '#fff' }}
+            />
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
+            <Btn href={INSTAGRAM} variant="btn--ghost">Follow @estus_health ↗</Btn>
           </div>
         </div>
       </section>
