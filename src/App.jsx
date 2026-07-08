@@ -19,6 +19,7 @@ import ExecutiveFunction from './pages/resources/ExecutiveFunction'
 import EdsHsd from './pages/resources/EdsHsd'
 import CommCard from './pages/resources/CommCard'
 import OpenLoops from './pages/resources/OpenLoops'
+import Lexicon from './pages/resources/Lexicon'
 import SecondBrain from './pages/resources/SecondBrain'
 import Events from './pages/resources/Events'
 
@@ -64,6 +65,7 @@ export default function App() {
         <Route path="/resources/eds-hsd" element={<EdsHsd />} />
         <Route path="/resources/commcard" element={<CommCard />} />
         <Route path="/resources/open-loops" element={<OpenLoops />} />
+        <Route path="/resources/lexicon" element={<Lexicon />} />
         <Route path="/resources/second-brain" element={<SecondBrain />} />
 
         <Route path="/resources/pda-quiz" element={<PDAQuiz />} />
