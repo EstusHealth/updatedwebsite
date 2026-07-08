@@ -181,7 +181,7 @@ export default function OpenLoops() {
         description="A free, private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them. Nothing is saved or sent."
         path="/resources/open-loops"
       />
-      <PageHero eyebrow="Free Tool" title="Open Loops"
+      <PageHero eyebrow="Journaling Tool" title="Open Loops"
         sub="Your brain is holding too many windows open. Let's get them onto one screen." decor={false} />
 
       <section style={{ paddingTop: 0 }}>
