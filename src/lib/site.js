@@ -36,6 +36,7 @@ export const FOOTER_RESOURCES = [
   { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
   { to: '/resources/understanding-pda', label: 'Understanding PDA' },
   { to: '/resources/commcard', label: 'CommCard' },
+  { to: '/resources/lexicon', label: 'The Shared Lexicon' },
   { to: '/resources/open-loops', label: 'Open Loops' },
 ]
 
