@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2fa8b5"></stop>
+      <stop offset="0.5" stop-color="#8b7bc0"></stop>
+      <stop offset="1" stop-color="#b0559e"></stop>
+    </linearGradient>
+    <clipPath id="tile">
+      <rect x="0" y="0" width="128" height="128" rx="28"></rect>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#tile)">
+    <rect x="0" y="0" width="128" height="128" fill="#3b3f7a"></rect>
+    <circle cx="60" cy="60" r="46" fill="url(#sunset)"></circle>
+    <rect x="0" y="64" width="128" height="7" fill="#3b3f7a"></rect>
+    <rect x="0" y="80" width="128" height="9" fill="#3b3f7a"></rect>
+    <rect x="0" y="98" width="128" height="12" fill="#3b3f7a"></rect>
+  </g>
+</svg>
