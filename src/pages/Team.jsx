@@ -20,8 +20,8 @@ const DONT = [
 const BIOS = [
   {
     id: 'liam', name: 'Liam Fagan', img: '/team-liam.jpg', archetype: 'Systems & structure',
-    role: 'Founder · Occupational Therapist · Driving assessor',
-    status: 'Not accepting referrals', statusClosed: true,
+    role: 'Founder · Clinical Supervisor · Driving assessor',
+    status: 'Now focused on clinical supervision and driving assessments only', statusClosed: true,
     opening: "The kind of person who gamifies his own laundry. If it can be tracked or turned into a system, Liam's tried it on himself first.",
     approach: 'Came to OT through accounting, finance, and university librarianship before realising he wanted to help people build systems that work for their brains. Sessions are direct, practical, and built around real life, not textbook goals.',
     interests: "Outside the clinic, Liam's interests run to lawn care, storm chasing, spreadsheets and engineering documentaries. He spends his downtime reading nutrition labels. Also holds a top-four world record speedrun in Tony Hawk's Pro Skater, and named the company after the healing item in Dark Souls.",
