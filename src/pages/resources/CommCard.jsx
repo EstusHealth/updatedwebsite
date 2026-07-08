@@ -38,7 +38,7 @@ export default function CommCard() {
         description="A free communication tool for moments when speaking is hard. Ready-made phrases and custom cards. No signup, no data collected. A tool by Estus Health."
         path="/resources/commcard"
       />
-      <PageHero eyebrow="Free Tool" title="Words When You Have None" sub2="A free communication tool for moments when speaking is hard."
+      <PageHero eyebrow="Augmented Communication App" title="Words When You Have None" sub2="A free communication tool for moments when speaking is hard."
         sub="CommCard gives you ready-made phrases and custom cards you can show on screen or speak aloud. No signup. No data collected. Works on any device with a browser.">
         <Btn href={COMMCARD_APP} big>Open CommCard ↗</Btn>
         <Btn href="#features" variant="btn--alt" big>Learn More Below</Btn>

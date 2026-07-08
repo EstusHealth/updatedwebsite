@@ -22,8 +22,8 @@ const GUIDES = [
 ]
 
 const TOOLS = [
-  { name: 'CommCard', tag: 'Free Tool', desc: 'Ready-made phrases and custom cards for moments when speaking is hard. No signup, no data collected.', primary: { href: COMMCARD_APP, label: 'Open CommCard ↗' }, secondary: { to: '/resources/commcard', label: 'Learn more' } },
-  { name: 'Open Loops', tag: 'Free Tool', desc: 'A private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them.', primary: { to: '/resources/open-loops', label: 'Open the tool ▸' } },
+  { name: 'CommCard', tag: 'Augmented Communication App', desc: 'Ready-made phrases and custom cards for moments when speaking is hard. No signup, no data collected.', primary: { href: COMMCARD_APP, label: 'Open CommCard ↗' }, secondary: { to: '/resources/commcard', label: 'Learn more' } },
+  { name: 'Open Loops', tag: 'Journaling Tool', desc: 'A private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them.', primary: { to: '/resources/open-loops', label: 'Open the tool ▸' } },
   { name: 'Second Brain Setup', tag: 'Free Guide', desc: 'Build a private second brain in Discord, so your actual brain can stop holding it all. A step-by-step setup you already have the app for.', primary: { to: '/resources/second-brain', label: 'Set it up ▸' } },
 ]
 
