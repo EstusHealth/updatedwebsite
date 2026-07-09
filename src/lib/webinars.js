@@ -18,8 +18,8 @@ export const WEBINARS = [
     subtitle: 'Why the controller belongs in the clinic room',
     presenter: 'Liam Fagan',
     videoId: 'rU-a07QBf5w',
-    dateISO: '2025-05-22',
-    dateLabel: 'May 2025',
+    dateISO: '2026-05-22',
+    dateLabel: 'May 2026',
     duration: '~100 min',
     blurb:
       'How gaming, used with intention, becomes a bridge to communication, regulation and real-world goals for autistic, ADHD and PDA-profile clients. Watch the full workshop, browse a therapist-tested library of co-op games, and see the frameworks behind the play.',
