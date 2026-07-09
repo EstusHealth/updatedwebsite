@@ -1,5 +1,9 @@
+import { Link } from 'react-router-dom'
 import SEO from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
+import { webinarBySlug, ytThumb } from '../../lib/webinars'
+
+const WORKSHOP = webinarBySlug('gaming-informed-therapy')
 
 const WHO = [
   'Autistic youth and adults who already love gaming',
@@ -36,9 +40,51 @@ export default function GamingInformedTherapy() {
       <PageHero eyebrow="Services" title="Gaming-Informed Therapy" sub2="Therapy through a channel that actually works"
         sub="For many neurodivergent people, gaming isn't just a hobby. It's a space where they feel competent, connected, and regulated. We meet people there, using games as a genuine therapeutic tool rather than treating them as something to overcome.">
         <ReferralButton big />
+        <Btn to={WORKSHOP.path} variant="btn--alt" big>Watch the workshop ▸</Btn>
       </PageHero>
 
-      <section style={{ paddingTop: 0 }}>
+      {/* Featured workshop recording */}
+      <section className="tint-section">
+        <div className="wrap">
+          <div className="two-col">
+            <div>
+              <span className="eyebrow">Free workshop</span>
+              <h2 className="sec-head" style={{ marginTop: 16 }}>See it in action.</h2>
+              <p className="lead" style={{ marginTop: 14 }}>Liam ran a full workshop on gaming-informed therapy for clinicians, parents and peers. Watch the recording, jump to any chapter, and browse a filterable library of therapist-tested co-op games with the frameworks behind them.</p>
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 22 }}>
+                <Btn to={WORKSHOP.path}>Watch the workshop ▸</Btn>
+                <Btn to={`${WORKSHOP.path}#game-library`} variant="btn--ghost">Browse the game library</Btn>
+              </div>
+            </div>
+            <Link to={WORKSHOP.path} className="card media-card" aria-label={`Watch: ${WORKSHOP.title}`} style={{ alignSelf: 'start' }}>
+              <div className="media-thumb">
+                <img
+                  src={ytThumb(WORKSHOP.videoId)}
+                  alt={`${WORKSHOP.title} workshop`}
+                  loading="lazy"
+                  width="1280" height="720"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.fallback) {
+                      e.currentTarget.dataset.fallback = '1'
+                      e.currentTarget.src = ytThumb(WORKSHOP.videoId, 'hqdefault')
+                    }
+                  }}
+                />
+                <span className="play-badge"><PlayIcon /></span>
+              </div>
+              <div className="media-body">
+                <span className="badge badge--mauve" style={{ alignSelf: 'flex-start' }}>{WORKSHOP.tag}</span>
+                <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.05rem', margin: '2px 0 0', letterSpacing: '-.3px' }}>{WORKSHOP.subtitle}</h3>
+                <div className="media-meta">
+                  <span>{WORKSHOP.dateLabel}</span><span aria-hidden="true">·</span><span>{WORKSHOP.duration}</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      <section>
         <div className="wrap wrap--narrow">
           <div className="prose">
             <h2>What is it?</h2>
