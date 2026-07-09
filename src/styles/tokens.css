@@ -355,6 +355,24 @@ section { position: relative; padding: 84px 0; }
 .hero .sub--italic { font-style: italic; font-weight: 500; }
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 28px; }
 
+/* Quick jump-nav chips in a page hero */
+.jump-nav { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+.jump-nav__label {
+  font-family: var(--f-display); font-size: .62rem; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--text-soft); align-self: center; margin-right: 2px;
+}
+.jump-chip {
+  display: inline-block;
+  font-family: var(--f-display); font-size: .72rem; text-transform: uppercase;
+  letter-spacing: .5px; color: var(--heading); background: var(--surface);
+  padding: 8px 15px; border-radius: 999px; border: 2px solid var(--line);
+  transition: background .15s ease, color .15s ease, transform .15s ease;
+}
+.jump-chip:hover { background: var(--teal); color: var(--btn-text); transform: translateY(-2px); }
+
+/* Offset anchor targets so the sticky nav doesn't cover section headings */
+.jump-target { scroll-margin-top: 90px; }
+
 .photo-card {
   position: relative; overflow: hidden;
   background: var(--surface);

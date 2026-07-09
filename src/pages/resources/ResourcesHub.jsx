@@ -38,10 +38,22 @@ export default function ResourcesHub() {
       />
       <PageHero eyebrow="Learn & Explore" title="Know your brain." accent="Build your life."
         sub2="Understanding your neurotype is the first step toward support that actually sticks."
-        sub="Explore our free quizzes and guides, written for people navigating these experiences, not about them. No jargon, no clinical distance." />
+        sub="Explore our free quizzes and guides, written for people navigating these experiences, not about them. No jargon, no clinical distance.">
+        <nav className="jump-nav" aria-label="Jump to section">
+          <span className="jump-nav__label">Jump to</span>
+          {[
+            ['Quizzes', '#quizzes'],
+            ['Guides', '#guides'],
+            ['Tools', '#tools'],
+            ['Events & Media', '#events'],
+          ].map(([label, href]) => (
+            <a className="jump-chip" href={href} key={href}>{label}</a>
+          ))}
+        </nav>
+      </PageHero>
 
       {/* Quizzes */}
-      <section style={{ paddingTop: 0 }}>
+      <section id="quizzes" className="jump-target" style={{ paddingTop: 0 }}>
         <Confetti kind="star" color="var(--teal)" size={38} anim="spin" style={{ top: 10, right: '5%' }} />
         <div className="wrap">
           <span className="eyebrow">Quizzes</span>
@@ -60,7 +72,7 @@ export default function ResourcesHub() {
       </section>
 
       {/* Guides */}
-      <section className="tint-section">
+      <section id="guides" className="jump-target tint-section">
         <div className="wrap">
           <span className="eyebrow eyebrow--mauve">Guides</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Read up.</h2>
@@ -81,7 +93,7 @@ export default function ResourcesHub() {
       </section>
 
       {/* Tools */}
-      <section>
+      <section id="tools" className="jump-target">
         <div className="wrap">
           <span className="eyebrow">Tools</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Free tools you can keep.</h2>
@@ -102,7 +114,7 @@ export default function ResourcesHub() {
       </section>
 
       {/* Events & Media */}
-      <section className="tint-section">
+      <section id="events" className="jump-target tint-section">
         <div className="wrap wrap--narrow" style={{ textAlign: 'center' }}>
           <span className="eyebrow eyebrow--mauve">Events & Media</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Come along, or catch up.</h2>
