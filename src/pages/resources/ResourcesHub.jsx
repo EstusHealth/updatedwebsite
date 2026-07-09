@@ -1,8 +1,9 @@
-import { useState, useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import SEO from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
+import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
 import { COMMCARD_APP } from '../../lib/site'
 
 // Sections users can jump to, in page order. [label, anchor id].
@@ -12,60 +13,6 @@ const SECTIONS = [
   ['Tools', 'tools'],
   ['Events & Media', 'events'],
 ]
-
-// Tracks which section is currently in view, for nav highlighting.
-function useActiveSection() {
-  const [active, setActive] = useState(SECTIONS[0][1])
-  useEffect(() => {
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => { if (e.isIntersecting) setActive(e.target.id) })
-      },
-      { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
-    )
-    SECTIONS.forEach(([, id]) => {
-      const el = document.getElementById(id)
-      if (el) obs.observe(el)
-    })
-    return () => obs.disconnect()
-  }, [])
-  return active
-}
-
-// True once the page has scrolled past the given sentinel element.
-function useScrolledPast(ref) {
-  const [past, setPast] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obs = new IntersectionObserver(
-      ([e]) => setPast(!e.isIntersecting && e.boundingClientRect.top < 0),
-      { threshold: 0 }
-    )
-    obs.observe(el)
-    return () => obs.disconnect()
-  }, [ref])
-  return past
-}
-
-// A row of jump-link chips. `variant` styles the hero vs. sticky version.
-function JumpNav({ active, variant = '' }) {
-  return (
-    <nav className={`jump-nav ${variant}`} aria-label="Jump to section">
-      {variant !== 'jump-nav--sticky' && <span className="jump-nav__label">Jump to</span>}
-      {SECTIONS.map(([label, id]) => (
-        <a
-          className={`jump-chip${active === id ? ' is-active' : ''}`}
-          href={`#${id}`}
-          key={id}
-          aria-current={active === id ? 'true' : undefined}
-        >
-          {label}
-        </a>
-      ))}
-    </nav>
-  )
-}
 
 const QUIZZES = [
   ['PDA Profile Quiz', '/resources/pda-quiz', 'Autism', 'Discover your PDA archetype and get personalised strategies for navigating demands.'],
@@ -92,7 +39,7 @@ const TOOLS = [
 ]
 
 export default function ResourcesHub() {
-  const active = useActiveSection()
+  const active = useActiveSection(SECTIONS)
   const sentinelRef = useRef(null)
   const showSticky = useScrolledPast(sentinelRef)
   return (
@@ -105,15 +52,11 @@ export default function ResourcesHub() {
       <PageHero eyebrow="Learn & Explore" title="Know your brain." accent="Build your life."
         sub2="Understanding your neurotype is the first step toward support that actually sticks."
         sub="Explore our free quizzes and guides, written for people navigating these experiences, not about them. No jargon, no clinical distance.">
-        <JumpNav active={active} />
+        <JumpNav sections={SECTIONS} active={active} />
       </PageHero>
 
       {/* Sticky mini-nav: slides in once the hero scrolls out of view. */}
-      <div className={`jump-sticky${showSticky ? ' is-visible' : ''}`} aria-hidden={!showSticky}>
-        <div className="wrap">
-          <JumpNav active={active} variant="jump-nav--sticky" />
-        </div>
-      </div>
+      <StickyJumpNav sections={SECTIONS} active={active} show={showSticky} />
       <div ref={sentinelRef} aria-hidden="true" />
 
       {/* Quizzes */}

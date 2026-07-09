@@ -5,6 +5,8 @@
   <url><loc>https://www.estushealth.com/contact</loc><priority>0.9</priority></url>
   <url><loc>https://www.estushealth.com/services/occupational-therapy</loc><priority>0.8</priority></url>
   <url><loc>https://www.estushealth.com/services/gaming-informed-therapy</loc><priority>0.8</priority></url>
+  <url><loc>https://www.estushealth.com/events</loc><priority>0.7</priority></url>
+  <url><loc>https://www.estushealth.com/events/gaming-informed-therapy</loc><priority>0.7</priority></url>
   <url><loc>https://www.estushealth.com/services/minecraft-program</loc><priority>0.8</priority></url>
   <url><loc>https://www.estushealth.com/services/assessments-reports</loc><priority>0.8</priority></url>
   <url><loc>https://www.estushealth.com/resources</loc><priority>0.7</priority></url>
