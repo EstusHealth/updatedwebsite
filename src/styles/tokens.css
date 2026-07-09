@@ -369,9 +369,31 @@ section { position: relative; padding: 84px 0; }
   transition: background .15s ease, color .15s ease, transform .15s ease;
 }
 .jump-chip:hover { background: var(--teal); color: var(--btn-text); transform: translateY(-2px); }
+.jump-chip.is-active { background: var(--mauve); color: var(--btn-text); }
+.jump-chip.is-active:hover { background: var(--mauve); }
 
-/* Offset anchor targets so the sticky nav doesn't cover section headings */
-.jump-target { scroll-margin-top: 90px; }
+/* Sticky mini-nav that slides in below the site nav after the hero scrolls out */
+.jump-sticky {
+  position: fixed; top: 72px; left: 0; right: 0; z-index: 40;
+  background: var(--nav-bg); backdrop-filter: blur(8px);
+  border-bottom: 3px solid var(--line);
+  transform: translateY(-120%); opacity: 0;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .jump-sticky { transition: transform .25s ease, opacity .25s ease; }
+}
+.jump-sticky.is-visible { transform: translateY(0); opacity: 1; pointer-events: auto; }
+.jump-nav--sticky {
+  margin: 0; padding: 11px 0; gap: 10px;
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.jump-nav--sticky::-webkit-scrollbar { display: none; }
+.jump-nav--sticky .jump-chip { white-space: nowrap; flex: 0 0 auto; }
+
+/* Offset anchor targets so the sticky navs don't cover section headings */
+.jump-target { scroll-margin-top: 130px; }
 
 .photo-card {
   position: relative; overflow: hidden;
