@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook, Linkedin, Youtube, Sun, Moon } from 'lucide-react'
-import { SERVICES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { SERVICES, NAV_RESOURCES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
 
 const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
 
@@ -39,16 +39,21 @@ function ThemeSwitch() {
 function Nav() {
   const [drawer, setDrawer] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
+  const [resourcesOpen, setResourcesOpen] = useState(false)
   const servicesRef = useRef(null)
-  const { pathname } = useLocation()
+  const resourcesRef = useRef(null)
+  const { pathname, hash } = useLocation()
 
-  // Close menus on navigation.
-  useEffect(() => { setDrawer(false); setServicesOpen(false) }, [pathname])
+  // Close menus on navigation (hash included, so anchor links close the menu).
+  useEffect(() => { setDrawer(false); setServicesOpen(false); setResourcesOpen(false) }, [pathname, hash])
 
-  // Close services dropdown on outside click / Escape.
+  // Close dropdowns on outside click / Escape.
   useEffect(() => {
-    const onClick = (e) => { if (servicesRef.current && !servicesRef.current.contains(e.target)) setServicesOpen(false) }
-    const onKey = (e) => { if (e.key === 'Escape') setServicesOpen(false) }
+    const onClick = (e) => {
+      if (servicesRef.current && !servicesRef.current.contains(e.target)) setServicesOpen(false)
+      if (resourcesRef.current && !resourcesRef.current.contains(e.target)) setResourcesOpen(false)
+    }
+    const onKey = (e) => { if (e.key === 'Escape') { setServicesOpen(false); setResourcesOpen(false) } }
     document.addEventListener('click', onClick)
     document.addEventListener('keydown', onKey)
     return () => { document.removeEventListener('click', onClick); document.removeEventListener('keydown', onKey) }
@@ -75,7 +80,17 @@ function Nav() {
               </ul>
             </li>
             <li><Link to="/team">Team</Link></li>
-            <li><Link to="/resources">Free Resources</Link></li>
+            <li className={`has-menu${resourcesOpen ? ' open' : ''}`} ref={resourcesRef}>
+              <button className="menu-btn" aria-expanded={resourcesOpen} aria-controls="resources-menu"
+                onClick={() => setResourcesOpen((v) => !v)}>
+                Free Resources <span className="chev" aria-hidden="true">▾</span>
+              </button>
+              <ul className="menu" id="resources-menu">
+                {NAV_RESOURCES.map((r) => (
+                  <li key={r.to}><Link to={r.to}>{r.label}</Link></li>
+                ))}
+              </ul>
+            </li>
             <li><Link to="/events">Events & Media</Link></li>
           </ul>
         </nav>
@@ -95,7 +110,8 @@ function Nav() {
         <p className="group">Services</p>
         {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}</Link>)}
         <Link to="/team">Team</Link>
-        <Link to="/resources">Free Resources</Link>
+        <p className="group">Free Resources</p>
+        {NAV_RESOURCES.map((r) => <Link key={r.to} className="sub" to={r.to}>{r.label}</Link>)}
         <Link to="/events">Events & Media</Link>
         <a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal ↗</a>
         <Link to="/contact"><strong>Get Started</strong></Link>

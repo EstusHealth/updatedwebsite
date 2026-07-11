@@ -22,6 +22,7 @@ const QUIZZES = [
   ['Gaming & Wellbeing Quiz', '/resources/gaming-quiz', 'Gaming', 'Explore the relationship between your gaming habits and your mental health, focus, and emotional regulation.'],
   ['RPG Character Build Quiz', '/resources/rpg-character-quiz', 'Gaming', 'Build your neurodivergent character sheet. Find out your stat distribution, class archetype, and innate abilities.'],
   ['EDS/HSD Management Style Quiz', '/resources/eds-hsd-quiz', 'EDS / HSD', 'Discover how you naturally manage hypermobility, fatigue, and pain. Four archetypes, practical tips, and strategies that actually fit a neurodivergent brain.'],
+  ['Learner Driver Style Quiz', '/resources/learner-driver-quiz', 'Driving', 'Three quick sections reveal your driver type, your hazard radar and focus, and your sensory style on the road, plus practical tips to grow.'],
 ]
 
 const GUIDES = [
