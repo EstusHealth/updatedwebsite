@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "title": "What Kind of Learner Driver Are You?",
+    "hook": "Three quick sections. One driver type. Zero judgment.",
+    "lengthLabel": "~3 min · 15 questions",
+    "audience": "For learner drivers (and the people teaching them)"
+  },
+  "sections": [
+    { "id": "dd", "label": "Road Radar", "subtitle": "Section 1 of 3", "blurb": "How your hazard radar and road smarts are shaping up.", "emoji": "🛞" },
+    { "id": "ef", "label": "Brain Behind the Wheel", "subtitle": "Section 2 of 3", "blurb": "Planning, focus, and keeping your cool when things change.", "emoji": "🧠" },
+    { "id": "sensory", "label": "Sensory Style", "subtitle": "Section 3 of 3", "blurb": "How you take in the sights, sounds and motion of driving.", "emoji": "🎧" }
+  ],
+  "questions": [
+    { "id": "q1", "section": "dd", "text": "A ball bounces onto the road ahead. Before you even spot a kid, what are you already doing?",
+      "options": [
+        { "id": "a", "text": "Easing off and covering the brake — where there's a ball, there's usually a kid.", "type": "SCOUT", "sectionPoints": 3 },
+        { "id": "b", "text": "Slowing a little and scanning the footpaths.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Keeping on, but watching more closely now.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Honestly? I'd probably notice the kid, not the ball.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q2", "section": "dd", "text": "You and the 3-second following gap are…",
+      "options": [
+        { "id": "a", "text": "Best mates — I actually count it out.", "type": "PLAN", "sectionPoints": 3 },
+        { "id": "b", "text": "Comfortable — I leave a good gap without thinking.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Trying — but in traffic it shrinks on me.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Gap? I like to keep things moving.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q3", "section": "dd", "text": "A light's been green a while as you approach (a 'stale' green). You…",
+      "options": [
+        { "id": "a", "text": "Ease off — it could change, and I've already planned my stop.", "type": "SCOUT", "sectionPoints": 3 },
+        { "id": "b", "text": "Check mirrors and get ready for either outcome.", "type": "PLAN", "sectionPoints": 2 },
+        { "id": "c", "text": "Keep at the limit, ready to brake.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Nudge the speed up to make it through.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q4", "section": "dd", "text": "Your honest take on road rules?",
+      "options": [
+        { "id": "a", "text": "They're the shared code that keeps everyone safe — I'm all in.", "type": "PLAN", "sectionPoints": 3 },
+        { "id": "b", "text": "Mostly sensible; I follow them and think about why.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Still learning which ones matter most in the moment.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Some feel more like suggestions when the road's empty.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q5", "section": "dd", "text": "It starts bucketing rain on a road you don't know. Your move?",
+      "options": [
+        { "id": "a", "text": "Slow down, bigger gap, lights on, both hands, full focus.", "type": "SCOUT", "sectionPoints": 3 },
+        { "id": "b", "text": "Ease off and drive to the conditions.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Grip the wheel and concentrate really hard.", "type": "SENSOR", "sectionPoints": 1 },
+        { "id": "d", "text": "Same speed — I trust the car.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q6", "section": "ef", "text": "Your supervisor says: 'Next left, then second right, pull over past the servo.' You…",
+      "options": [
+        { "id": "a", "text": "Repeat it back and picture the route — locked in.", "type": "PLAN", "sectionPoints": 3 },
+        { "id": "b", "text": "Get the first bit and ask about the rest as I go.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Remember 'left' and hope the rest comes back to me.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Wait — was it second right, or right at the second one?", "type": "SENSOR", "sectionPoints": 0 }
+      ] },
+    { "id": "q7", "section": "ef", "text": "Your favourite song comes on mid-roundabout. What happens to your driving?",
+      "options": [
+        { "id": "a", "text": "Barely notice it — the roundabout has all of me.", "type": "SCOUT", "sectionPoints": 3 },
+        { "id": "b", "text": "I enjoy it but stay on task.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Split focus for a second, then re-centre.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "I might vibe out for a moment.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q8", "section": "ef", "text": "Plans change: your usual route is closed and you're detoured somewhere new. You feel…",
+      "options": [
+        { "id": "a", "text": "Fine — I adapt and re-plan on the fly.", "type": "SPARK", "sectionPoints": 2 },
+        { "id": "b", "text": "A bit thrown, but I settle quickly.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Stressed — I really like knowing the plan.", "type": "PLAN", "sectionPoints": 1 },
+        { "id": "d", "text": "Overloaded — new and unexpected at once is a lot.", "type": "SENSOR", "sectionPoints": 0 }
+      ] },
+    { "id": "q9", "section": "ef", "text": "How do you go with catching your own mistakes while driving?",
+      "options": [
+        { "id": "a", "text": "Straight away — I'm always quietly self-checking.", "type": "SCOUT", "sectionPoints": 3 },
+        { "id": "b", "text": "Usually catch them and learn from them.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Sometimes need my supervisor to point them out.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Often don't clock them until afterwards.", "type": "SENSOR", "sectionPoints": 0 }
+      ] },
+    { "id": "q10", "section": "ef", "text": "Before you even turn the key, you…",
+      "options": [
+        { "id": "a", "text": "Seat, mirrors, belt, phone away, plan the trip — full ritual.", "type": "PLAN", "sectionPoints": 3 },
+        { "id": "b", "text": "Do the basics and set off.", "type": "CRUISE", "sectionPoints": 2 },
+        { "id": "c", "text": "Adjust things as I remember them.", "type": "ROOKIE", "sectionPoints": 1 },
+        { "id": "d", "text": "Just go — I'll sort it as I drive.", "type": "SPARK", "sectionPoints": 0 }
+      ] },
+    { "id": "q11", "section": "sensory", "text": "Your ideal vibe inside the car is…",
+      "options": [
+        { "id": "a", "text": "Quiet and calm — no radio, minimal chat, just the road.", "type": "SENSOR", "sensoryStyle": "Sensitive" },
+        { "id": "b", "text": "Low background music, comfy temperature.", "type": "CRUISE", "sensoryStyle": "Steady" },
+        { "id": "c", "text": "Music up, energy on, let's go.", "type": "SPARK", "sensoryStyle": "Seeker" },
+        { "id": "d", "text": "I don't really notice the cabin either way.", "type": "ROOKIE", "sensoryStyle": "LowKey" }
+      ] },
+    { "id": "q12", "section": "sensory", "text": "Oncoming headlights at night, harsh glare, or low sun in your eyes…",
+      "options": [
+        { "id": "a", "text": "Really get to me — I squint, tense up, want to slow right down.", "type": "SENSOR", "sensoryStyle": "Sensitive" },
+        { "id": "b", "text": "Mildly annoying; I adjust and carry on.", "type": "CRUISE", "sensoryStyle": "Steady" },
+        { "id": "c", "text": "Barely register them.", "type": "ROOKIE", "sensoryStyle": "LowKey" },
+        { "id": "d", "text": "Love night driving — lights everywhere, bring it on.", "type": "SPARK", "sensoryStyle": "Seeker" }
+      ] },
+    { "id": "q13", "section": "sensory", "text": "On a long, boring stretch of highway, you…",
+      "options": [
+        { "id": "a", "text": "Get restless and crave something happening.", "type": "SPARK", "sensoryStyle": "Seeker" },
+        { "id": "b", "text": "Find it relaxing and easy.", "type": "CRUISE", "sensoryStyle": "Steady" },
+        { "id": "c", "text": "Have to work to stay alert — easy to zone out.", "type": "ROOKIE", "sensoryStyle": "LowKey" },
+        { "id": "d", "text": "Notice every little sound and sensation in the car.", "type": "SENSOR", "sensoryStyle": "Sensitive" }
+      ] },
+    { "id": "q14", "section": "sensory", "text": "Busy intersection — pedestrians, noise, several lanes, someone talking to you. You feel…",
+      "options": [
+        { "id": "a", "text": "Overwhelmed — too much coming in at once.", "type": "SENSOR", "sensoryStyle": "Sensitive" },
+        { "id": "b", "text": "Focused but fine; I filter it out.", "type": "SCOUT", "sensoryStyle": "Steady" },
+        { "id": "c", "text": "Energised — I like a busy scene.", "type": "SPARK", "sensoryStyle": "Seeker" },
+        { "id": "d", "text": "I mostly tune the extra stuff out (maybe a bit too much).", "type": "ROOKIE", "sensoryStyle": "LowKey" }
+      ] },
+    { "id": "q15", "section": "sensory", "text": "How well do you notice when your body needs something (tired, hungry, a break) while driving?",
+      "options": [
+        { "id": "a", "text": "Immediately — I feel it clearly, and it can distract me.", "type": "SENSOR", "sensoryStyle": "Sensitive" },
+        { "id": "b", "text": "Pretty well; I plan my breaks.", "type": "PLAN", "sensoryStyle": "Steady" },
+        { "id": "c", "text": "Not until it's a big deal.", "type": "ROOKIE", "sensoryStyle": "LowKey" },
+        { "id": "d", "text": "I'd rather just push on and keep driving.", "type": "SPARK", "sensoryStyle": "Seeker" }
+      ] }
+  ]
+}
