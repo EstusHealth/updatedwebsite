@@ -31,6 +31,15 @@ export const SERVICES = [
   { to: '/services/assessments-reports', label: 'Assessments & Reports' },
 ]
 
+// Free Resources nav dropdown: the hub plus its category sections (anchors on
+// the /resources page, handled by ScrollToTop).
+export const NAV_RESOURCES = [
+  { to: '/resources', label: 'All Free Resources' },
+  { to: '/resources#quizzes', label: 'Quizzes' },
+  { to: '/resources#guides', label: 'Guides' },
+  { to: '/resources#tools', label: 'Tools' },
+]
+
 export const FOOTER_RESOURCES = [
   { to: '/resources', label: 'All Free Resources' },
   { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
