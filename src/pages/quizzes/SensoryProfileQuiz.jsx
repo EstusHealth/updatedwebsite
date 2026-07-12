@@ -443,16 +443,6 @@ function Results({ profile, version, respondentMode, setup, onRetake }) {
     fireEvent('sensory_export_pdf', { version, respondentMode: respondentMode || 'self' });
     window.print();
   };
-  const handleEmail = () => {
-    fireEvent('sensory_email', { version });
-    const subject = encodeURIComponent(`${profile.name ? profile.name + "'s" : 'My'} Estus Sensory Profile`);
-    const body = encodeURIComponent(
-      `${profile.summary}\n\n` +
-        `Tip: use the "Download PDF" button on the profile page to save the full report, then attach it here.\n\n` +
-        `Take the free Estus Sensory Profile: https://www.estushealth.com/resources/sensory-profile`
-    );
-    window.location.href = `mailto:?subject=${subject}&body=${body}`;
-  };
 
   return (
     <>
@@ -527,9 +517,6 @@ function Results({ profile, version, respondentMode, setup, onRetake }) {
           <div className="esp-export__btns">
             <button type="button" className="btn btn--big" onClick={handleDownload}>
               ⬇ Download PDF
-            </button>
-            <button type="button" className="btn btn--ghost" onClick={handleEmail}>
-              ✉ Email me a copy
             </button>
             <button type="button" className="esp-textbtn" onClick={onRetake}>
               Start again
