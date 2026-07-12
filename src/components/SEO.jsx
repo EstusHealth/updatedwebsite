@@ -7,12 +7,13 @@ const OG_IMAGE = `${SITE}/og-image.png`
   Per-page meta. Every route should render one <SEO>. Titles and descriptions
   come from CONTENT-HANDOVER.md where specified.
 */
-export default function SEO({ title, description, path = '/', image = OG_IMAGE, type = 'website' }) {
+export default function SEO({ title, description, path = '/', image = OG_IMAGE, type = 'website', noindex = false }) {
   const url = `${SITE}${path}`
   return (
     <Helmet>
       <title>{title}</title>
       {description && <meta name="description" content={description} />}
+      <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
       <link rel="canonical" href={url} />
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Estus Health" />

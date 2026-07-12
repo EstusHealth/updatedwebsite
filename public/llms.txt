@@ -1,0 +1,44 @@
+# Estus Health
+
+> Neuroaffirming occupational therapy practice in Perth, Western Australia, with telehealth across Australia. A small team of neurodivergent clinicians (Liam Fagan, Nam Lang, Nik Peshwani) working with autistic adults and teens, PDA profiles, ADHD, late-diagnosed adults, and complex health (EDS, POTS, chronic fatigue, hypermobility). NDIS and private clients welcome.
+
+Important notes:
+- This is a JavaScript-rendered React site; the sitemap at https://www.estushealth.com/sitemap.xml lists every indexable page.
+- Contact: hello@estushealth.com
+
+## Services
+
+- [Occupational Therapy](https://www.estushealth.com/services/occupational-therapy): Neuroaffirming OT for autistic adults, teens, PDA profiles, and ADHD.
+- [Gaming-Informed Therapy](https://www.estushealth.com/services/gaming-informed-therapy): Therapy that uses gaming as a genuine clinical medium.
+- [Minecraft Program](https://www.estushealth.com/services/minecraft-program): Structured Minecraft-based therapy program for kids and teens.
+- [Assessments & Reports](https://www.estushealth.com/services/assessments-reports): Functional capacity and OT assessments, including NDIS reports.
+
+## About
+
+- [Meet the Team](https://www.estushealth.com/team): The clinicians behind Estus Health.
+- [Contact & Referrals](https://www.estushealth.com/contact): Referral form, discovery-call bookings, and contact details.
+- [Events & Webinars](https://www.estushealth.com/events): Upcoming and recorded events, including the Gaming-Informed Therapy webinar.
+
+## Free Resources
+
+- [All Free Resources](https://www.estushealth.com/resources): Hub for guides, tools, and self-reflection quizzes.
+- [Understanding PDA](https://www.estushealth.com/resources/understanding-pda): Guide to Pathological Demand Avoidance.
+- [Late Autism Diagnosis](https://www.estushealth.com/resources/late-autism-diagnosis): Guide for late-diagnosed autistic adults.
+- [Executive Function & Complex Health](https://www.estushealth.com/resources/executive-function-complex-health): Executive function with chronic illness.
+- [EDS & HSD](https://www.estushealth.com/resources/eds-hsd): Ehlers-Danlos syndromes and hypermobility spectrum disorders.
+- [CommCard](https://www.estushealth.com/resources/commcard): Free communication-card web app.
+- [The Shared Lexicon](https://www.estushealth.com/resources/lexicon): Shared vocabulary for neurodivergent experiences.
+- [Open Loops](https://www.estushealth.com/resources/open-loops): Tool for managing unfinished tasks and mental load.
+- [Second Brain](https://www.estushealth.com/resources/second-brain): External memory systems for ADHD and autistic brains.
+
+## Quizzes
+
+- [PDA Profile Quiz](https://www.estushealth.com/resources/pda-quiz)
+- [Chronotype Quiz](https://www.estushealth.com/resources/chronotype-quiz)
+- [Energy Quiz](https://www.estushealth.com/resources/energy-quiz)
+- [Autistic Burnout Quiz](https://www.estushealth.com/resources/burnout-quiz)
+- [Gaming & Wellbeing Quiz](https://www.estushealth.com/resources/gaming-quiz)
+- [RPG Character Build Quiz](https://www.estushealth.com/resources/rpg-character-quiz)
+- [EDS/HSD Management Style Quiz](https://www.estushealth.com/resources/eds-hsd-quiz)
+- [Learner Driver Style Quiz](https://www.estushealth.com/resources/learner-driver-quiz)
+- [Sensory Profile Quiz](https://www.estushealth.com/resources/sensory-profile)

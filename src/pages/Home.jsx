@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import { Helmet } from 'react-helmet-async'
 import SEO from '../components/SEO'
 import { Btn, CTABand, ReferralButton } from '../components/Bits'
 import { Confetti, SynthwaveSun, Squiggle, Ticker } from '../components/Decor'
@@ -20,23 +19,6 @@ const WHO = [
   'Chronic health & fatigue', 'EDS · POTS · fibro', 'Sensory differences', 'Hypermobility & pain', 'Kids & school routines',
 ]
 
-const LD_JSON = {
-  '@context': 'https://schema.org',
-  '@type': 'MedicalBusiness',
-  name: 'Estus Health',
-  description: 'Neuroaffirming occupational therapy for autistic adults, teens, and PDA profiles. Gaming-informed therapy, executive function support, NDIS and private clients.',
-  url: 'https://www.estushealth.com/',
-  email: 'hello@estushealth.com',
-  image: 'https://www.estushealth.com/team-photo.jpeg',
-  address: { '@type': 'PostalAddress', addressLocality: 'Perth', addressRegion: 'WA', addressCountry: 'AU' },
-  areaServed: 'Australia',
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-    opens: '08:00', closes: '19:00',
-  },
-}
-
 export default function Home() {
   return (
     <>
@@ -45,9 +27,8 @@ export default function Home() {
         description="A small team of neurodivergent occupational therapists in Perth, with telehealth Australia-wide. Working with autistic adults, PDA profiles, ADHD, and complex health."
         path="/"
       />
-      <Helmet>
-        <script type="application/ld+json">{JSON.stringify(LD_JSON)}</script>
-      </Helmet>
+      {/* MedicalBusiness JSON-LD lives statically in index.html so crawlers
+          that don't execute JavaScript can read it. */}
 
       {/* HERO */}
       <section className="hero" aria-labelledby="hero-title">
