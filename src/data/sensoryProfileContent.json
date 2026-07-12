@@ -1,0 +1,290 @@
+{
+  "bands": {
+    "occasional": { "id": "occasional", "label": "Shows up occasionally", "max": 2.5 },
+    "regular": { "id": "regular", "label": "A regular part of daily life", "max": 3.5 },
+    "strong": { "id": "strong", "label": "A strong presence in daily life", "max": 6 }
+  },
+  "scaleOrder": ["SEEK", "SENS", "REG", "AVOID", "INT", "ENERGY"],
+  "scales": {
+    "REG": {
+      "code": "REG",
+      "name": "Noticing & registration",
+      "colour": "#344982",
+      "tagline": "How readily the world's details reach you",
+      "lead": {
+        "occasional": "Most sensory information reaches you without much effort — you tend to notice changes, sounds, and details as they happen.",
+        "regular": "Some sensory information takes a little longer to land, especially when you're focused or the input is quiet or in the background.",
+        "strong": "A lot of sensory information stays in the background until it becomes big or someone points it out. Your brain sets a high bar for what's worth registering, which frees up attention for what already has it."
+      },
+      "meaning": "When registration runs high, gentle or ordinary signals — a name being called, a mess on the floor, a change in the room — can slip past unnoticed. This is not inattention or not caring. It is a threshold: your nervous system waits for a stronger signal before it flags something as worth your attention. The upside is a mind that isn't constantly interrupted by trivia.",
+      "advantage": "You are hard to overwhelm with small stuff, and you can stay absorbed while the world fidgets around you.",
+      "strategies": {
+        "occasional": [
+          "Keep trusting what you notice — your radar for change is already working for you.",
+          "When something does slip past, treat it as information about the environment, not a personal failing."
+        ],
+        "regular": [
+          "Make important signals louder: alarms with vibration, visual timers, a hand on the shoulder before speaking.",
+          "Ask people to get your attention first, then give the message — a name, a pause, then the words.",
+          "Turn routines into external cues (checklists, launch pads by the door) so you rely less on noticing in the moment."
+        ],
+        "strong": [
+          "Route key information through more than one sense at once — say it, show it, and let it buzz.",
+          "Agree a signal with people close to you for \"I need you to land this now\" before the important part.",
+          "Build the environment to prompt you: labelled zones, visible reminders, and objects left in the path you'll take."
+        ]
+      }
+    },
+    "SEEK": {
+      "code": "SEEK",
+      "name": "Seeking & joy",
+      "colour": "#2f6f9e",
+      "tagline": "The input you reach for to feel good and settled",
+      "lead": {
+        "occasional": "You reach for extra sensory input now and then, but you're generally comfortable at a steady, moderate level.",
+        "regular": "You actively look for certain kinds of sensory input — movement, sound, pressure, flavour — to focus, settle, or feel like yourself.",
+        "strong": "Seeking sensation is a core part of how you regulate and enjoy the world. Movement, pressure, sound, and intensity aren't extras for you — they're fuel, focus, and delight."
+      },
+      "meaning": "Seeking means your nervous system runs better with more input, not less. The rocking, the music, the fidget, the tight hug, the spicy food — these are your body organising itself and topping up its tank. Given room to seek in ways that work, this pattern shows up as energy, motivation, and a real capacity for joy.",
+      "advantage": "You know how to bring yourself pleasure and focus, and you carry an appetite for life that's genuinely enviable.",
+      "strategies": {
+        "occasional": [
+          "Notice which sensations reliably lift or settle you, and keep them within easy reach.",
+          "Use a favourite input as a small reward or a reset between tasks."
+        ],
+        "regular": [
+          "Build seeking into the day on purpose — movement breaks, a pressure or fidget option, a go-to playlist.",
+          "Match the input to the moment: firm pressure and rhythm to settle, novelty and speed to energise.",
+          "Keep a small kit of reliable sensory tools for places where seeking is harder to do freely."
+        ],
+        "strong": [
+          "Front-load big movement and intense input before situations that ask you to sit still.",
+          "Design your spaces to feed the need safely — a crash zone, a swing, resistance, bass, cold water.",
+          "Frame seeking as maintenance, not indulgence: schedule it the way you'd schedule meals."
+        ]
+      }
+    },
+    "SENS": {
+      "code": "SENS",
+      "name": "Sensitivity",
+      "colour": "#2ca5b8",
+      "tagline": "How hard and fast input lands for you",
+      "lead": {
+        "occasional": "Most sensory input sits comfortably for you. Now and then something bright, loud, or strong stands out, but it rarely takes over.",
+        "regular": "Certain input — sound, light, touch, smell — lands harder and faster for you than for many people, and can shape how a place feels.",
+        "strong": "Your senses are finely tuned and pick up a great deal. Input others filter out reaches you clearly and quickly, so busy or intense environments can become a lot, fast."
+      },
+      "meaning": "High sensitivity means a low threshold: signals arrive at full volume with little of the natural dampening others rely on. That's why a flickering light, a scratchy tag, or a strong smell isn't a minor annoyance — it genuinely lands. The same finely tuned system that makes some places hard also makes you perceptive, detail-aware, and attuned to things others miss entirely.",
+      "advantage": "You notice the subtle and the beautiful early — texture, tone, atmosphere, the small wrong note — which is a real form of expertise.",
+      "strategies": {
+        "occasional": [
+          "Keep a light-touch toolkit handy — sunglasses, earbuds, a preferred fabric — for the odd moment input spikes.",
+          "Trust your read of a room; if something feels off, it usually is."
+        ],
+        "regular": [
+          "Reduce input at the source before managing your reaction: dim or swap lighting, lower sound, remove the tag.",
+          "Carry adjustables — noise-reducing earbuds, tinted lenses, a scarf — so you can turn the volume down anywhere.",
+          "Plan recovery around unavoidable high-input events rather than pushing through and hoping."
+        ],
+        "strong": [
+          "Treat sensory load as a real budget: choose which high-input situations are worth spending on.",
+          "Advocate for source changes where you spend time — seating away from noise, softer lighting, fragrance-free spaces.",
+          "Give yourself full permission to leave or step out early; exit is a strategy, not a failure."
+        ]
+      }
+    },
+    "AVOID": {
+      "code": "AVOID",
+      "name": "Avoiding & load management",
+      "colour": "#7a5aa0",
+      "tagline": "The active strategies you use to manage input",
+      "lead": {
+        "occasional": "You steer around a few specific sensory situations, but mostly you take the world as it comes.",
+        "regular": "You actively manage sensory load — choosing, adjusting, and planning around input so it doesn't build up on you.",
+        "strong": "You are a skilled manager of your sensory environment. You plan routes, curate spaces, and make deliberate choices to keep input at a level that works — which takes real foresight."
+      },
+      "meaning": "Avoiding isn't fear or fussiness — it's strategy. When input reliably costs you, steering around it and shaping your surroundings is a smart, energy-saving response. The planning, the safe foods, the carefully set-up room: these are competence, not limitation. The care you put into your environment is a strength that others quietly benefit from too.",
+      "advantage": "You know what you need and you build it — a rare talent for designing spaces and routines that actually work.",
+      "strategies": {
+        "occasional": [
+          "Keep doing what works; a few well-chosen swaps can prevent a lot of overload.",
+          "Notice which avoidances genuinely help versus which have quietly shrunk your world, and revisit those gently."
+        ],
+        "regular": [
+          "Make your adjustments official — ask for the seat, the lighting, the quiet room rather than just enduring.",
+          "Prepare high-load outings in advance: know the exits, the quiet corners, and your plan to leave.",
+          "Protect your set-up spaces at home and work; a reliable calm base makes the harder moments survivable."
+        ],
+        "strong": [
+          "Distinguish adjustments that expand your life from ones that are shrinking it, and get support to widen the tight ones at your pace.",
+          "Share your environment-design skills — the systems you build for yourself often help everyone around you.",
+          "Pair avoidance with graded, low-pressure exposure only where you want more access, never on someone else's timeline."
+        ]
+      }
+    },
+    "INT": {
+      "code": "INT",
+      "name": "Interoception",
+      "colour": "#ab5c95",
+      "tagline": "Reading the signals from inside your body",
+      "lead": {
+        "occasional": "You tend to read your body's internal signals clearly — hunger, thirst, temperature, and the early shape of an emotion.",
+        "regular": "Some internal signals are clear for you and others are quieter — feelings or body needs can sometimes arrive later or larger than expected.",
+        "strong": "Signals from inside your body — hunger, thirst, temperature, the build of an emotion — often stay faint until they're big. Reading the inside world takes more conscious effort for you than reading the outside one."
+      },
+      "meaning": "Interoception is the sense that reports on your inner state, and like any sense it can run loud or quiet. When it's quiet, hunger, needing the loo, tiredness, or a rising feeling can go unnoticed until they're urgent or overwhelming. This isn't a character trait — it's a wiring difference, and it responds well to external structure and gentle body check-ins.",
+      "advantage": "When you do learn your body's signals, you tend to understand them deliberately and precisely — and can explain them to others in a way many people can't.",
+      "strategies": {
+        "occasional": [
+          "Keep listening to early signals — acting on them while they're small is a genuine regulation skill.",
+          "Use your clear body-read to pace yourself: rest and refuel before empty, not after."
+        ],
+        "regular": [
+          "Put needs on a schedule instead of waiting for the signal: timed meals, drinks, and toilet breaks.",
+          "Try a twice-a-day body scan — a quick check of hunger, thirst, temperature, tension, and mood.",
+          "Name emotions using the body first (\"tight chest, fast breath\") to catch feelings before they peak."
+        ],
+        "strong": [
+          "Externalise the inside world: alarms for food and water, visual comfort scales, a feelings-and-body chart.",
+          "Build a personal signal dictionary over time — note what \"hungry,\" \"tired,\" or \"upset\" actually feel like for you.",
+          "Front-load basics before demanding situations, since you may not feel the warning until it's loud."
+        ]
+      }
+    },
+    "ENERGY": {
+      "code": "ENERGY",
+      "name": "Regulation, recovery & energy",
+      "colour": "#c25a6f",
+      "tagline": "What sensory load costs, and how you recover",
+      "lead": {
+        "occasional": "Sensory load doesn't cost you much most of the time, and you bounce back from busy days fairly easily.",
+        "regular": "Busy, loud, or changeable environments carry a real cost for you, and you need genuine recovery time to reset afterwards.",
+        "strong": "Managing sensory load takes significant energy for you. Busy days, masking your reactions, and unexpected change draw down a real battery, and recovery isn't optional — it's how you come back to yourself."
+      },
+      "meaning": "This pattern is about the cost of sensory life, not any single sense. Holding it together in loud rooms, absorbing change, and masking your reactions all quietly spend energy, and that spend is real even when it's invisible to others. Recognising the cost — and protecting recovery — is what keeps the tank from hitting empty. Needing downtime isn't fragility; it's an accurate reading of what your day actually asked of you.",
+      "advantage": "You know how to go still and recover deeply — a capacity for rest and self-restoration that a lot of people never develop.",
+      "strategies": {
+        "occasional": [
+          "Keep an eye on the cost of unusually big days, even if most days feel fine.",
+          "Protect a little wind-down time after busy stretches so small costs don't quietly add up."
+        ],
+        "regular": [
+          "Schedule recovery like an appointment — quiet, low-demand time after known-busy events, before you crash.",
+          "Watch for the after-school or after-work \"release,\" and make the landing soft rather than packed with demands.",
+          "Budget change too: even good surprises cost energy, so leave slack in the plan for them."
+        ],
+        "strong": [
+          "Treat energy as a budget you spend and refill, and plan the week around recovery, not just output.",
+          "Reduce masking where it's safe to — every reaction held in is energy spent that you'll need to repay.",
+          "Protect sleep at the source: manage light, sound, temperature, and textures before the day even ends."
+        ]
+      }
+    }
+  },
+  "domains": {
+    "auditory": { "label": "Sound", "colour": "#344982" },
+    "visual": { "label": "Sight & light", "colour": "#2f6f9e" },
+    "touch": { "label": "Touch", "colour": "#2ca5b8" },
+    "tasteSmell": { "label": "Taste & smell", "colour": "#4a9d8e" },
+    "movement": { "label": "Movement", "colour": "#7a5aa0" },
+    "proprioception": { "label": "Body position", "colour": "#9a5a9a" },
+    "interoception": { "label": "Inside the body", "colour": "#ab5c95" },
+    "multi": { "label": "Busy & mixed settings", "colour": "#c25a6f" }
+  },
+  "strengths": {
+    "intro": "Every sensory profile carries real strengths. Here are the ones that stood out in the answers.",
+    "items": {
+      "17": { "title": "An early-warning system", "line": "A growing ability to feel your body's stress signals before they take over — the foundation of self-regulation." },
+      "20": { "title": "Deep, immersive focus", "line": "When something matters to you, the noisy world falls away and you can go all the way in. That's a superpower, not a distraction." },
+      "23": { "title": "A space-shaper's eye", "line": "You instinctively arrange environments — light, sound, comfort — to work for you. People around you benefit from that skill too." },
+      "30": { "title": "A gift for sensory joy", "line": "Certain experiences bring you deep, reliable comfort and delight. Knowing your sources of joy is a genuine wellbeing skill." }
+    },
+    "seek": { "title": "Sensory zest for life", "line": "You reach for movement, sound, and sensation, and you know how to bring yourself energy and pleasure. That appetite is a strength worth protecting." },
+    "fallback": { "title": "Self-knowledge in the making", "line": "Taking the time to map your sensory world is itself a strength. The more you understand your patterns, the more you can build a life that fits them." }
+  },
+  "summary": {
+    "openers": {
+      "joy": {
+        "self": "You lead with sensory joy: certain experiences reliably bring you comfort and delight, and knowing them is a real strength.",
+        "observer": "{Name} leads with sensory joy: certain experiences reliably bring comfort and delight, and knowing them is a real strength."
+      },
+      "focus": {
+        "self": "One of your standout strengths is deep, immersive focus: when something matters, the noisy world falls away.",
+        "observer": "One of {Name}'s standout strengths is deep, immersive focus: when something matters, the noisy world falls away."
+      },
+      "environment": {
+        "self": "You have a real talent for shaping your environment to suit you, curating light, sound, and comfort with care.",
+        "observer": "{Name} has a real talent for shaping their environment, arranging light, sound, and comfort with care."
+      },
+      "awareness": {
+        "self": "A quiet strength stands out: a growing ability to notice your body's early signals before they take over.",
+        "observer": "A quiet strength stands out for {Name}: a growing ability to show early body signals before they take over."
+      },
+      "seek": {
+        "self": "You bring a real appetite for sensation and know how to move, seek, and enjoy your way into feeling settled.",
+        "observer": "{Name} brings a real appetite for sensation and knows how to move, seek, and enjoy their way into feeling settled."
+      },
+      "fallback": {
+        "self": "Taking the time to map your sensory world is a strength in itself, and this profile is a snapshot of it.",
+        "observer": "Taking the time to map {Name}'s sensory world is a strength in itself, and this profile is a snapshot of it."
+      }
+    },
+    "scaleLine": {
+      "SEEK": {
+        "self": "Seeking sensation is a big part of how you regulate: movement, sound, pressure, and intensity help you focus and feel good.",
+        "observer": "Seeking sensation is a big part of how {Name} regulates: movement, sound, pressure, and intensity help them focus and feel good."
+      },
+      "SENS": {
+        "self": "Your senses are finely tuned, so certain input lands hard and busy places can become a lot, faster than for many people.",
+        "observer": "{Name}'s senses are finely tuned, so certain input lands hard and busy places can become a lot, faster than for many people."
+      },
+      "REG": {
+        "self": "Everyday signals sometimes stay in the background for you until they get bigger, which also lets you stay wonderfully absorbed.",
+        "observer": "Everyday signals sometimes stay in the background for {Name} until they get bigger, which also lets them stay wonderfully absorbed."
+      },
+      "AVOID": {
+        "self": "You actively manage your sensory world, planning around input and shaping spaces so load doesn't build up on you.",
+        "observer": "{Name} actively manages their sensory world, and does best in spaces set up so load doesn't build up on them."
+      },
+      "INT": {
+        "self": "Signals from inside your body can be quieter, so needs and feelings sometimes arrive later or larger than expected.",
+        "observer": "Signals from inside the body can be quieter for {Name}, so needs and feelings sometimes arrive later or larger than expected."
+      },
+      "ENERGY": {
+        "self": "Sensory load carries a real cost for you, and genuine recovery time is how you come back to yourself after busy days.",
+        "observer": "Sensory load carries a real cost for {Name}, and genuine recovery time is how they come back to themselves after busy days."
+      }
+    },
+    "energyLine": {
+      "strong": {
+        "self": "Recovery matters most of all: protect quiet, low-demand time after busy days, because that's not a luxury for you, it's maintenance.",
+        "observer": "Recovery matters most of all: protecting quiet, low-demand time after busy days isn't a luxury for {Name}, it's maintenance."
+      },
+      "regular": {
+        "self": "Building in a little recovery time after busy stretches will help you stay steady.",
+        "observer": "Building in a little recovery time after busy stretches will help {Name} stay steady."
+      },
+      "occasional": {
+        "self": "Recovery comes fairly easily for you, which gives you room to spend energy where it counts.",
+        "observer": "Recovery comes fairly easily for {Name}, which gives room to spend energy where it counts."
+      }
+    }
+  },
+  "domainMap": {
+    "title": "Where your sensory world is loudest",
+    "note": "This shows which sensory areas came up most across the answers. It is a picture of where your attention and energy go, not a score, and louder is not worse.",
+    "observerNote": "This shows which sensory areas came up most across the answers. It is a picture of where {Name}'s attention and energy go, not a score, and louder is not worse."
+  },
+  "cta": {
+    "headline": "Where to from here",
+    "body": "If parts of this profile are making daily life harder than it needs to be, an occupational therapist can help. This profile is a great thing to bring to a first appointment, so you don't have to explain everything from scratch.",
+    "buttonLabel": "Talk to Estus Health",
+    "buttonHref": "/contact"
+  },
+  "disclaimer": "This is a free self-discovery tool, not a diagnostic assessment. It is not normed against other people and it does not replace an occupational therapy evaluation. It's a descriptive snapshot of your sensory patterns, meant to start a conversation, not end one.",
+  "appendix": {
+    "header": "For therapists and educators — screening information only. This tool is un-normed and non-diagnostic.",
+    "dunnMapping": "The Estus Sensory Profile is an original, descriptive instrument. It draws on published sensory-processing theory rather than any proprietary scoring system. Its six scales map onto commonly recognised patterns as follows: Noticing & Registration corresponds to low registration; Seeking & Joy to sensory seeking; Sensitivity to sensory sensitivity; and Avoiding & Load Management to sensory avoiding. Interoception and Regulation, Recovery & Energy are included as contemporary extensions reflecting the field's post-2006 emphasis on internal body awareness, masking, and the energy cost of sensory load. Scores are un-normed scale means (1–5) with descriptive bands only; no normative comparison or classification is implied.",
+    "footer": "If this profile is useful, Estus Health welcomes referrals and is happy to collaborate. A full occupational therapy assessment can build on this screening picture with normed measures and clinical observation."
+  }
+}

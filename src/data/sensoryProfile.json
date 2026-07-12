@@ -1,0 +1,369 @@
+{
+  "meta": {
+    "title": "The Estus Sensory Profile",
+    "promise": "Understand your sensory world in about 7 minutes. Free, private, yours to keep.",
+    "lengthLabel": "about 5 to 8 minutes",
+    "trustChips": ["Free", "No account needed", "Download your PDF"]
+  },
+  "whatItIs": {
+    "is": [
+      "A free self-discovery tool that maps how you take in and respond to the world through your senses.",
+      "A gentle conversation starter you can keep, share, or bring to an appointment.",
+      "Strengths-first. Every pattern it describes comes with things it gives you, not just things it costs you."
+    ],
+    "isNot": [
+      "It is not a diagnosis, and it is not a test you can pass or fail.",
+      "It is not normed against other people, so it never says you are more or less than anyone else.",
+      "It is not a substitute for an occupational therapy assessment. It is a doorway toward one if you want it."
+    ]
+  },
+  "versions": {
+    "adult": {
+      "id": "adult",
+      "label": "For teens & adults",
+      "ageLabel": "12+",
+      "blurb": "Answer for yourself. A supporter can help if you like.",
+      "respondent": "A",
+      "emoji": "🌍",
+      "ageBands": [
+        { "id": "12-17", "label": "12 to 17" },
+        { "id": "18+", "label": "18 or older" }
+      ]
+    },
+    "kids": {
+      "id": "kids",
+      "label": "For kids",
+      "ageLabel": "4–11",
+      "blurb": "A parent or carer can answer, or you can do it together.",
+      "emoji": "🧸",
+      "ageBands": [
+        { "id": "4-7", "label": "4 to 7" },
+        { "id": "8-11", "label": "8 to 11" }
+      ]
+    }
+  },
+  "respondentModes": {
+    "caregiver": {
+      "id": "caregiver",
+      "respondent": "C",
+      "scale": "standard",
+      "label": "I'm a parent or carer answering about a child",
+      "blurb": "You'll read short statements about your child and pick how often each one fits.",
+      "emoji": "💛"
+    },
+    "together": {
+      "id": "together",
+      "respondent": "K",
+      "scale": "child",
+      "label": "We're doing it together with the child",
+      "blurb": "Simple words, bigger buttons, and only three choices. There are no wrong answers. You can stop anytime and come back.",
+      "emoji": "🤝"
+    }
+  },
+  "contexts": [
+    { "id": "home", "label": "Home" },
+    { "id": "school", "label": "School" },
+    { "id": "work", "label": "Work" },
+    { "id": "out", "label": "Out & about" }
+  ],
+  "comfortSettings": [
+    { "id": "reduceMotion", "label": "Reduce motion", "hint": "Turns off animation and movement." },
+    { "id": "calmColour", "label": "Calm colours", "hint": "Softens the palette and lowers contrast a little." },
+    { "id": "largerText", "label": "Larger text", "hint": "Increases the size of everything you read." }
+  ],
+  "responseScales": {
+    "standard": [
+      { "id": "1", "value": 1, "label": "Almost never" },
+      { "id": "2", "value": 2, "label": "Rarely" },
+      { "id": "3", "value": 3, "label": "Sometimes" },
+      { "id": "4", "value": 4, "label": "Often" },
+      { "id": "5", "value": 5, "label": "Almost always" }
+    ],
+    "child": [
+      { "id": "1", "value": 1, "label": "Not really", "emoji": "😐" },
+      { "id": "3", "value": 3, "label": "Sometimes", "emoji": "🙂" },
+      { "id": "5", "value": 5, "label": "A lot", "emoji": "🤩" }
+    ],
+    "varies": { "id": "varies", "value": null, "label": "It varies / not sure" }
+  },
+  "sections": [
+    {
+      "id": "s1",
+      "title": "Sound & light",
+      "micro": "Think about a typical recent week. Go with your gut.",
+      "itemIds": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": "s2",
+      "title": "Touch & taste",
+      "micro": "There are no right answers here. Just what feels true for you.",
+      "itemIds": [6, 7, 8, 9, 10]
+    },
+    {
+      "id": "s3",
+      "title": "Movement & your body",
+      "micro": "How your body likes to move, and how it reads the space around it.",
+      "itemIds": [11, 12, 13, 14, 24]
+    },
+    {
+      "id": "s4",
+      "title": "Inside signals",
+      "micro": "The quieter signals from inside your body and your feelings.",
+      "itemIds": [15, 16, 17, 18, 25]
+    },
+    {
+      "id": "s5",
+      "title": "The busy world",
+      "micro": "Bigger spaces, other people, and how much they ask of you.",
+      "itemIds": [19, 20, 21, 22, 23]
+    },
+    {
+      "id": "s6",
+      "title": "Energy & recovery",
+      "micro": "What a full day costs you, and what helps you come back to yourself.",
+      "itemIds": [26, 27, 28, 29, 30]
+    }
+  ],
+  "items": [
+    {
+      "id": 1, "domain": "auditory", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "Everyday sounds — chewing, humming, appliances, repetitive noises — feel intrusive and hard to filter out.",
+        "C": "My child gets upset or distracted by everyday sounds others tune out (chewing, fans, humming).",
+        "K": "Little sounds, like people chewing or buzzing things, really bug me."
+      }
+    },
+    {
+      "id": 2, "domain": "auditory", "scale": "SEEK", "strengthFramed": false,
+      "wordings": {
+        "A": "I use background sound (music, TV, white noise, a fan) to help me focus or feel settled.",
+        "C": "My child seeks out sound — hums, makes noises, or wants music or TV on to stay settled.",
+        "K": "I like having music or sounds on. It helps me feel good."
+      }
+    },
+    {
+      "id": 3, "domain": "auditory", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "In group conversations or noisy rooms, I struggle to separate voices from background noise.",
+        "C": "My child struggles to follow what people say when there's background noise.",
+        "K": "When it's noisy, it's hard to hear what people are saying to me."
+      }
+    },
+    {
+      "id": 4, "domain": "visual", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "Bright lights, fluorescent lighting, or visually busy spaces drain me quickly.",
+        "C": "My child squints, shields their eyes, or gets tired and irritable in bright or visually busy places.",
+        "K": "Bright lights or really busy, colourful places make my eyes and head tired."
+      }
+    },
+    {
+      "id": 5, "domain": "visual", "scale": "REG", "strengthFramed": false,
+      "wordings": {
+        "A": "I don't notice visual details or changes around me unless someone points them out.",
+        "C": "My child walks past things — new objects, messes, obstacles — without seeming to notice them.",
+        "K": "I don't really notice when things around me change or move."
+      }
+    },
+    {
+      "id": 6, "domain": "touch", "scale": "AVOID", "strengthFramed": false,
+      "wordings": {
+        "A": "Clothing textures, tags, seams, or certain fabrics bother me enough that I choose clothes around them.",
+        "C": "My child refuses certain clothes because of tags, seams, or how the fabric feels.",
+        "K": "Some clothes feel scratchy or wrong, and I don't want to wear them."
+      }
+    },
+    {
+      "id": 7, "domain": "touch", "scale": "SEEK", "strengthFramed": false,
+      "wordings": {
+        "A": "I seek out deep pressure or touch — tight blankets, firm hugs, fidgeting with textures — to feel calm.",
+        "C": "My child seeks out squeezes, tight hugs, heavy blankets, or things to fidget with.",
+        "K": "Big squeezy hugs or cosy tight blankets help me feel calm."
+      }
+    },
+    {
+      "id": 8, "domain": "touch", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "Unexpected or light touch (someone brushing past, light tickles) is uncomfortable or startling.",
+        "C": "My child pulls away or gets upset at unexpected or light touch, like someone brushing past.",
+        "K": "When someone touches me and I'm not ready, I don't like it."
+      }
+    },
+    {
+      "id": 9, "domain": "tasteSmell", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "Strong smells — perfume, cleaning products, certain foods — affect my mood or make spaces hard to be in.",
+        "C": "My child notices and reacts strongly to smells other people barely register.",
+        "K": "Strong smells make me feel yuck or make me want to leave."
+      }
+    },
+    {
+      "id": 10, "domain": "tasteSmell", "scale": "AVOID", "strengthFramed": false,
+      "wordings": {
+        "A": "I stick to familiar \"safe foods\" and find some food textures or flavours hard to tolerate.",
+        "C": "My child eats a small range of safe foods and finds new textures or flavours hard.",
+        "K": "I like my usual foods. New or mushy or lumpy foods are hard for me."
+      }
+    },
+    {
+      "id": 11, "domain": "movement", "scale": "SEEK", "strengthFramed": false,
+      "wordings": {
+        "A": "I feel better when I'm moving — rocking, pacing, bouncing my leg, exercising.",
+        "C": "My child is happiest in motion — spinning, jumping, climbing, rocking, running.",
+        "K": "Moving my body — jumping, spinning, wiggling — feels really good."
+      }
+    },
+    {
+      "id": 12, "domain": "movement", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "I feel uneasy with heights, lifts, escalators, or fast unexpected movement.",
+        "C": "My child is cautious or fearful on swings, slides, escalators, or when their feet leave the ground.",
+        "K": "Swings, slides, or being up high can feel scary to my body."
+      }
+    },
+    {
+      "id": 13, "domain": "proprioception", "scale": "REG", "strengthFramed": false,
+      "wordings": {
+        "A": "I misjudge force or distance — bumping into doorframes, gripping too hard, dropping things.",
+        "C": "My child bumps into things, plays too rough without meaning to, or misjudges how hard to push or hold.",
+        "K": "I bump into things a lot, or squeeze things too hard by accident."
+      }
+    },
+    {
+      "id": 14, "domain": "proprioception", "scale": "SEEK", "strengthFramed": false,
+      "wordings": {
+        "A": "I chew on things, press hard when writing, or hold tension in my body without realising.",
+        "C": "My child chews on clothing or objects, pushes hard on pencils, or crashes into furniture on purpose.",
+        "K": "I like chewing on things or crashing into soft stuff."
+      }
+    },
+    {
+      "id": 15, "domain": "interoception", "scale": "INT", "strengthFramed": false,
+      "wordings": {
+        "A": "I don't notice hunger, thirst, or needing the toilet until it's urgent.",
+        "C": "My child doesn't seem to notice hunger, thirst, or needing the toilet until the last minute.",
+        "K": "Sometimes I don't know I'm hungry or need the toilet until it's really big."
+      }
+    },
+    {
+      "id": 16, "domain": "interoception", "scale": "INT", "strengthFramed": false,
+      "wordings": {
+        "A": "I find it hard to tell what emotion I'm feeling until it's already overwhelming.",
+        "C": "My child goes from seeming fine to very upset quickly, as if the feeling arrived all at once.",
+        "K": "Sometimes big feelings surprise me — I don't know they're coming until they're huge."
+      }
+    },
+    {
+      "id": 17, "domain": "interoception", "scale": "INT", "strengthFramed": true,
+      "wordings": {
+        "A": "I notice my body's early stress signals — heart rate, breathing, muscle tension — before they escalate.",
+        "C": "My child can tell someone, or show, when their body is starting to feel stressed or \"too much.\"",
+        "K": "I can tell when my body starts feeling wobbly or too-much, before it gets really big."
+      }
+    },
+    {
+      "id": 18, "domain": "interoception", "scale": "INT", "strengthFramed": false,
+      "wordings": {
+        "A": "Feeling too hot, too cold, or physically uncomfortable strongly affects my ability to function.",
+        "C": "Being too hot, too cold, or physically uncomfortable derails my child's whole day.",
+        "K": "When I'm too hot or too cold or itchy, everything gets harder."
+      }
+    },
+    {
+      "id": 19, "domain": "multi", "scale": "REG", "strengthFramed": false,
+      "wordings": {
+        "A": "People say they've called my name or spoken to me and I didn't notice.",
+        "C": "My child often doesn't respond when their name is called, especially when focused.",
+        "K": "Sometimes people say they called me, but I didn't hear them."
+      }
+    },
+    {
+      "id": 20, "domain": "multi", "scale": "REG", "strengthFramed": true,
+      "wordings": {
+        "A": "I can focus deeply on things that interest me even in environments that distract other people.",
+        "C": "When my child is absorbed in something they love, the rest of the world disappears.",
+        "K": "When I'm doing my favourite thing, I don't notice anything else."
+      }
+    },
+    {
+      "id": 21, "domain": "multi", "scale": "SENS", "strengthFramed": false,
+      "wordings": {
+        "A": "Certain places — supermarkets, shopping centres, open-plan offices — are hard mainly because of the sensory load.",
+        "C": "Busy places like supermarkets or parties reliably lead to distress for my child.",
+        "K": "Big busy places like the shops feel like too much for me."
+      }
+    },
+    {
+      "id": 22, "domain": "multi", "scale": "AVOID", "strengthFramed": false,
+      "wordings": {
+        "A": "I plan my day or route around avoiding specific sensory situations.",
+        "C": "My child avoids or resists specific places or activities because of how they feel, sound, or smell.",
+        "K": "There are places or things I say \"no\" to because they feel too much."
+      }
+    },
+    {
+      "id": 23, "domain": "multi", "scale": "AVOID", "strengthFramed": true,
+      "wordings": {
+        "A": "When I control a space, I adjust it to suit me — lighting, sound, seating, temperature.",
+        "C": "My child sets up their own spaces carefully — den-building, lights off, door closed, particular arrangements.",
+        "K": "I like making my space just right — like cosy corners or lights off."
+      }
+    },
+    {
+      "id": 24, "domain": "multi", "scale": "SEEK", "strengthFramed": false,
+      "wordings": {
+        "A": "I'm drawn to intense sensory experiences — spicy food, loud music, fast rides, cold water.",
+        "C": "My child loves big sensations — rough play, loud music, strong flavours, fast rides.",
+        "K": "I love big exciting feelings — going fast, loud songs, splashing!"
+      }
+    },
+    {
+      "id": 25, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
+      "wordings": {
+        "A": "Small unexpected changes to plans or environments take a surprising amount of energy to manage.",
+        "C": "Small changes to routine or environment cost my child a lot — even \"good\" surprises.",
+        "K": "When things change and I wasn't ready, it feels hard inside."
+      }
+    },
+    {
+      "id": 26, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
+      "wordings": {
+        "A": "After busy or loud environments, I need quiet recovery time before I can do anything else.",
+        "C": "After busy days — school, parties, outings — my child needs downtime and may fall apart at home.",
+        "K": "After a big loud day, I need quiet time to feel like me again."
+      }
+    },
+    {
+      "id": 27, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
+      "wordings": {
+        "A": "When overloaded, I tend to go quiet, withdraw, or shut down rather than getting visibly upset.",
+        "C": "When it's all too much, my child goes quiet, hides, or shuts down rather than acting out.",
+        "K": "When everything is too much, I go quiet or want to hide."
+      }
+    },
+    {
+      "id": 28, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
+      "wordings": {
+        "A": "I hide or suppress my sensory reactions around other people — and pay for it later.",
+        "C": "My child holds it together in public or at school, then releases it all in their safe place.",
+        "K": "I keep my \"too much\" feelings inside at school, and they come out at home."
+      }
+    },
+    {
+      "id": 29, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
+      "wordings": {
+        "A": "Sensory factors — noise, light, textures, temperature — make it hard to fall or stay asleep.",
+        "C": "Sensory things — pyjama textures, sounds, light, temperature — make sleep hard for my child.",
+        "K": "Sounds or itchy pyjamas or light make it hard for me to sleep."
+      }
+    },
+    {
+      "id": 30, "domain": "multi", "scale": "SEEK", "strengthFramed": true,
+      "wordings": {
+        "A": "Certain sensory experiences bring me deep joy or comfort — specific music, textures, water, nature.",
+        "C": "Certain sensory experiences light my child up — specific songs, textures, water play, spinning things.",
+        "K": "Some feelings are my favourite ever — like water, or my special song, or soft things."
+      }
+    }
+  ]
+}

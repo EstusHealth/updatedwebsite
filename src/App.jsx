@@ -37,6 +37,7 @@ const GamingQuiz = lazy(() => import('./pages/quizzes/GamingQuiz'))
 const RPGCharacterQuiz = lazy(() => import('./pages/quizzes/RPGCharacterQuiz'))
 const EDSQuiz = lazy(() => import('./pages/quizzes/EDSQuiz'))
 const LearnerDriverQuiz = lazy(() => import('./pages/quizzes/LearnerDriverQuiz'))
+const SensoryProfileQuiz = lazy(() => import('./pages/quizzes/SensoryProfileQuiz'))
 
 import NotFound from './pages/NotFound'
 
@@ -82,6 +83,7 @@ export default function App() {
         <Route path="/resources/rpg-character-quiz" element={<RPGCharacterQuiz />} />
         <Route path="/resources/eds-hsd-quiz" element={<EDSQuiz />} />
         <Route path="/resources/learner-driver-quiz" element={<LearnerDriverQuiz />} />
+        <Route path="/resources/sensory-profile" element={<SensoryProfileQuiz />} />
 
         {/* Legacy redirects: keep old indexed URLs alive. */}
         <Route path="/quiz/learner-driver-style" element={<Navigate to="/resources/learner-driver-quiz" replace />} />

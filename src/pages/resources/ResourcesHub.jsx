@@ -15,6 +15,7 @@ const SECTIONS = [
 ]
 
 const QUIZZES = [
+  ['The Estus Sensory Profile', '/resources/sensory-profile', 'Sensory', 'Map your sensory strengths and patterns in about 7 minutes. Free, private, and yours to keep as a beautifully branded PDF report. Kids and teen/adult versions.'],
   ['PDA Profile Quiz', '/resources/pda-quiz', 'Autism', 'Discover your PDA archetype and get personalised strategies for navigating demands.'],
   ['Chronotype Quiz', '/resources/chronotype-quiz', 'Sleep', "Find out whether you're a Lion, Bear, Wolf, or Dolphin sleeper, and learn how to align your schedule to your biology."],
   ['Energy & Executive Function Quiz', '/resources/energy-quiz', 'Executive Function', 'Map your energy patterns and executive function profile to understand when and why tasks feel impossible, and what actually helps.'],
