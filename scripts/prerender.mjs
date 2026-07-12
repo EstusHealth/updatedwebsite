@@ -6,11 +6,12 @@
 // dist/<route>/index.html. Vercel serves those static files directly (the
 // filesystem is checked before the SPA-fallback rewrite), while real users
 // still boot the full SPA on top of the snapshot.
+import { existsSync } from 'node:fs'
 import { readFile, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { preview } from 'vite'
-import { chromium } from 'playwright'
+import { chromium } from 'playwright-core'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
@@ -26,15 +27,30 @@ async function readRoutes() {
   return [...new Set(paths)]
 }
 
-// The Claude sandbox ships Chromium in a non-standard layout, so fall back to
-// its known path. On Vercel the first form resolves the browser installed by
-// `npx playwright install chromium`.
+// Resolve a Chromium to drive, in priority order:
+//  1. An explicit executable via PLAYWRIGHT_CHROMIUM_PATH.
+//  2. The Chromium pre-installed in this sandbox (used for local verification).
+//  3. On serverless Linux (the Vercel build image), @sparticuz/chromium — a
+//     dependency-free Chromium that needs no system libraries or OS-specific
+//     Playwright download. Vercel's build image reports as an unsupported OS
+//     and lacks Chrome's shared libs, so a normal `playwright install` browser
+//     will not launch there; this bundled build does.
+//  4. A locally-installed Google Chrome (macOS/Windows dev machines).
 async function launchBrowser() {
-  try {
-    return await chromium.launch()
-  } catch {
-    return await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
+  const explicit = process.env.PLAYWRIGHT_CHROMIUM_PATH
+  if (explicit) return chromium.launch({ executablePath: explicit })
+  if (existsSync('/opt/pw-browsers/chromium')) {
+    return chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
   }
+  if (process.platform === 'linux') {
+    const { default: sparticuz } = await import('@sparticuz/chromium')
+    return chromium.launch({
+      args: sparticuz.args,
+      executablePath: await sparticuz.executablePath(),
+      headless: true,
+    })
+  }
+  return chromium.launch({ channel: 'chrome' })
 }
 
 // Map a route path to its output file: '/' -> dist/index.html,
