@@ -340,7 +340,7 @@ function Setup({ version, setup, setSetup, onStart, onBack }) {
         </button>
         {!canStart && <span className="esp-field__hint">Pick an age band to begin.</span>}
         <p className="esp-field__hint">
-          About 5 to 8 minutes. No timers. Take any breaks you need — your progress saves as you go.
+          About 5 to 8 minutes. No timers. Take any breaks you need; your progress saves as you go.
         </p>
       </div>
     </section>
@@ -510,8 +510,8 @@ function Results({ profile, version, respondentMode, setup, onRetake }) {
           <div>
             <h2 className="esp-export__head">Take your profile with you</h2>
             <p className="esp-export__sub">
-              A polished PDF report in the Estus clinical style — strengths, patterns, strategies, and a clinician appendix.
-              It's yours to keep, share, or bring to an appointment.
+              A polished PDF report in the Estus clinical style, covering strengths, patterns, strategies, and a
+              clinician appendix. It's yours to keep, share, or bring to an appointment.
             </p>
           </div>
           <div className="esp-export__btns">
@@ -523,7 +523,7 @@ function Results({ profile, version, respondentMode, setup, onRetake }) {
             </button>
           </div>
           <p className="esp-export__hint">
-            “Download PDF” opens your browser's print dialog — choose <strong>Save as PDF</strong> as the destination.
+            “Download PDF” opens your browser's print dialog. Choose <strong>Save as PDF</strong> as the destination.
           </p>
         </div>
       </section>

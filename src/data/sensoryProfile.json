@@ -128,7 +128,7 @@
     {
       "id": 1, "domain": "auditory", "scale": "SENS", "strengthFramed": false,
       "wordings": {
-        "A": "Everyday sounds — chewing, humming, appliances, repetitive noises — feel intrusive and hard to filter out.",
+        "A": "Everyday sounds like chewing, humming, appliances, or repetitive noises feel intrusive and hard to filter out.",
         "C": "My child gets upset or distracted by everyday sounds others tune out (chewing, fans, humming).",
         "K": "Little sounds, like people chewing or buzzing things, really bug me."
       }
@@ -137,7 +137,7 @@
       "id": 2, "domain": "auditory", "scale": "SEEK", "strengthFramed": false,
       "wordings": {
         "A": "I use background sound (music, TV, white noise, a fan) to help me focus or feel settled.",
-        "C": "My child seeks out sound — hums, makes noises, or wants music or TV on to stay settled.",
+        "C": "My child seeks out sound: humming, making noises, or wanting music or TV on to stay settled.",
         "K": "I like having music or sounds on. It helps me feel good."
       }
     },
@@ -161,7 +161,7 @@
       "id": 5, "domain": "visual", "scale": "REG", "strengthFramed": false,
       "wordings": {
         "A": "I don't notice visual details or changes around me unless someone points them out.",
-        "C": "My child walks past things — new objects, messes, obstacles — without seeming to notice them.",
+        "C": "My child walks past new objects, messes, or obstacles without seeming to notice them.",
         "K": "I don't really notice when things around me change or move."
       }
     },
@@ -176,7 +176,7 @@
     {
       "id": 7, "domain": "touch", "scale": "SEEK", "strengthFramed": false,
       "wordings": {
-        "A": "I seek out deep pressure or touch — tight blankets, firm hugs, fidgeting with textures — to feel calm.",
+        "A": "I seek out deep pressure or touch, like tight blankets, firm hugs, or fidgeting with textures, to feel calm.",
         "C": "My child seeks out squeezes, tight hugs, heavy blankets, or things to fidget with.",
         "K": "Big squeezy hugs or cosy tight blankets help me feel calm."
       }
@@ -192,7 +192,7 @@
     {
       "id": 9, "domain": "tasteSmell", "scale": "SENS", "strengthFramed": false,
       "wordings": {
-        "A": "Strong smells — perfume, cleaning products, certain foods — affect my mood or make spaces hard to be in.",
+        "A": "Strong smells such as perfume, cleaning products, or certain foods affect my mood or make spaces hard to be in.",
         "C": "My child notices and reacts strongly to smells other people barely register.",
         "K": "Strong smells make me feel yuck or make me want to leave."
       }
@@ -208,9 +208,9 @@
     {
       "id": 11, "domain": "movement", "scale": "SEEK", "strengthFramed": false,
       "wordings": {
-        "A": "I feel better when I'm moving — rocking, pacing, bouncing my leg, exercising.",
-        "C": "My child is happiest in motion — spinning, jumping, climbing, rocking, running.",
-        "K": "Moving my body — jumping, spinning, wiggling — feels really good."
+        "A": "I feel better when I'm moving: rocking, pacing, bouncing my leg, exercising.",
+        "C": "My child is happiest in motion: spinning, jumping, climbing, rocking, running.",
+        "K": "Jumping, spinning, and wiggling my body feels really good."
       }
     },
     {
@@ -224,7 +224,7 @@
     {
       "id": 13, "domain": "proprioception", "scale": "REG", "strengthFramed": false,
       "wordings": {
-        "A": "I misjudge force or distance — bumping into doorframes, gripping too hard, dropping things.",
+        "A": "I misjudge force or distance, so I bump into doorframes, grip too hard, or drop things.",
         "C": "My child bumps into things, plays too rough without meaning to, or misjudges how hard to push or hold.",
         "K": "I bump into things a lot, or squeeze things too hard by accident."
       }
@@ -250,13 +250,13 @@
       "wordings": {
         "A": "I find it hard to tell what emotion I'm feeling until it's already overwhelming.",
         "C": "My child goes from seeming fine to very upset quickly, as if the feeling arrived all at once.",
-        "K": "Sometimes big feelings surprise me — I don't know they're coming until they're huge."
+        "K": "Sometimes big feelings surprise me. I don't know they're coming until they're huge."
       }
     },
     {
       "id": 17, "domain": "interoception", "scale": "INT", "strengthFramed": true,
       "wordings": {
-        "A": "I notice my body's early stress signals — heart rate, breathing, muscle tension — before they escalate.",
+        "A": "I notice my body's early stress signals, like heart rate, breathing, and muscle tension, before they escalate.",
         "C": "My child can tell someone, or show, when their body is starting to feel stressed or \"too much.\"",
         "K": "I can tell when my body starts feeling wobbly or too-much, before it gets really big."
       }
@@ -288,7 +288,7 @@
     {
       "id": 21, "domain": "multi", "scale": "SENS", "strengthFramed": false,
       "wordings": {
-        "A": "Certain places — supermarkets, shopping centres, open-plan offices — are hard mainly because of the sensory load.",
+        "A": "Certain places, like supermarkets, shopping centres, and open-plan offices, are hard mainly because of the sensory load.",
         "C": "Busy places like supermarkets or parties reliably lead to distress for my child.",
         "K": "Big busy places like the shops feel like too much for me."
       }
@@ -304,24 +304,24 @@
     {
       "id": 23, "domain": "multi", "scale": "AVOID", "strengthFramed": true,
       "wordings": {
-        "A": "When I control a space, I adjust it to suit me — lighting, sound, seating, temperature.",
-        "C": "My child sets up their own spaces carefully — den-building, lights off, door closed, particular arrangements.",
-        "K": "I like making my space just right — like cosy corners or lights off."
+        "A": "When I control a space, I adjust the lighting, sound, seating, and temperature to suit me.",
+        "C": "My child sets up their own spaces carefully: den-building, lights off, door closed, particular arrangements.",
+        "K": "I like making my space just right, like cosy corners or lights off."
       }
     },
     {
       "id": 24, "domain": "multi", "scale": "SEEK", "strengthFramed": false,
       "wordings": {
-        "A": "I'm drawn to intense sensory experiences — spicy food, loud music, fast rides, cold water.",
-        "C": "My child loves big sensations — rough play, loud music, strong flavours, fast rides.",
-        "K": "I love big exciting feelings — going fast, loud songs, splashing!"
+        "A": "I'm drawn to intense sensory experiences like spicy food, loud music, fast rides, and cold water.",
+        "C": "My child loves big sensations: rough play, loud music, strong flavours, fast rides.",
+        "K": "I love big exciting feelings, like going fast, loud songs, and splashing!"
       }
     },
     {
       "id": 25, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
       "wordings": {
         "A": "Small unexpected changes to plans or environments take a surprising amount of energy to manage.",
-        "C": "Small changes to routine or environment cost my child a lot — even \"good\" surprises.",
+        "C": "Small changes to routine or environment cost my child a lot, even \"good\" surprises.",
         "K": "When things change and I wasn't ready, it feels hard inside."
       }
     },
@@ -329,7 +329,7 @@
       "id": 26, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
       "wordings": {
         "A": "After busy or loud environments, I need quiet recovery time before I can do anything else.",
-        "C": "After busy days — school, parties, outings — my child needs downtime and may fall apart at home.",
+        "C": "After busy days at school, parties, or outings, my child needs downtime and may fall apart at home.",
         "K": "After a big loud day, I need quiet time to feel like me again."
       }
     },
@@ -344,7 +344,7 @@
     {
       "id": 28, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
       "wordings": {
-        "A": "I hide or suppress my sensory reactions around other people — and pay for it later.",
+        "A": "I hide or suppress my sensory reactions around other people, and pay for it later.",
         "C": "My child holds it together in public or at school, then releases it all in their safe place.",
         "K": "I keep my \"too much\" feelings inside at school, and they come out at home."
       }
@@ -352,17 +352,17 @@
     {
       "id": 29, "domain": "multi", "scale": "ENERGY", "strengthFramed": false,
       "wordings": {
-        "A": "Sensory factors — noise, light, textures, temperature — make it hard to fall or stay asleep.",
-        "C": "Sensory things — pyjama textures, sounds, light, temperature — make sleep hard for my child.",
+        "A": "Sensory factors like noise, light, textures, and temperature make it hard to fall or stay asleep.",
+        "C": "Sensory things like pyjama textures, sounds, light, and temperature make sleep hard for my child.",
         "K": "Sounds or itchy pyjamas or light make it hard for me to sleep."
       }
     },
     {
       "id": 30, "domain": "multi", "scale": "SEEK", "strengthFramed": true,
       "wordings": {
-        "A": "Certain sensory experiences bring me deep joy or comfort — specific music, textures, water, nature.",
-        "C": "Certain sensory experiences light my child up — specific songs, textures, water play, spinning things.",
-        "K": "Some feelings are my favourite ever — like water, or my special song, or soft things."
+        "A": "Certain sensory experiences bring me deep joy or comfort, like specific music, textures, water, or nature.",
+        "C": "Certain sensory experiences light my child up, like specific songs, textures, water play, or spinning things.",
+        "K": "Some feelings are my favourite ever, like water, or my special song, or soft things."
       }
     }
   ]
