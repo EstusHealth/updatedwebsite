@@ -150,7 +150,7 @@ function appendixRows(answers, respondent) {
       answered: scored.length,
       total: s.length,
       mean: mean == null ? null : Number(mean.toFixed(2)),
-      band: mean == null ? '—' : content.bands[bandFor(mean)].label,
+      band: mean == null ? '–' : content.bands[bandFor(mean)].label,
     };
   });
 

@@ -32,20 +32,29 @@ function Wordmark({ colour = '#111', size = 28 }) {
   return (
     <div
       className="esr-wordmark"
-      style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: size, lineHeight: 0.9, color: colour, whiteSpace: 'nowrap' }}
+      style={{ fontFamily: "'Oswald', sans-serif", fontWeight: 700, fontSize: size, lineHeight: 1, color: colour, whiteSpace: 'nowrap' }}
     >
       ESTUS <span style={{ fontWeight: 500, letterSpacing: '0.12em' }}>HEALTH</span>
     </div>
   );
 }
 
+/* Full-bleed four-band strip along the very top of each inner page. */
+function PageTopBand() {
+  return (
+    <span className="esr-page__band" aria-hidden="true">
+      <span style={{ flex: 1, background: '#344982' }} />
+      <span style={{ flex: 1, background: '#2f6f9e' }} />
+      <span style={{ flex: 1, background: '#2ca5b8' }} />
+      <span style={{ flex: 1, background: '#ab5c95' }} />
+    </span>
+  );
+}
+
 function PageHeader({ subtitle }) {
   return (
     <header className="esr-head">
-      <div>
-        <BandBar />
-        <Wordmark size={26} />
-      </div>
+      <Wordmark size={21} />
       <div className="esr-head__meta">
         <div className="esr-head__title">Sensory Profile</div>
         {subtitle && <div className="esr-head__sub">{subtitle}</div>}
@@ -75,6 +84,7 @@ function PageFooter({ page, total }) {
 function Page({ children, header = true, subtitle, page, total, cover = false }) {
   return (
     <section className={`esr-page${cover ? ' esr-page--cover' : ''}`}>
+      {!cover && <PageTopBand />}
       {header && !cover && <PageHeader subtitle={subtitle} />}
       <div className="esr-page__body">{children}</div>
       {!cover && <PageFooter page={page} total={total} />}
@@ -213,7 +223,8 @@ export default function SensoryProfileReport({ profile, versionLabel, contexts =
           <h1 className="esr-cover__title">{heading}</h1>
           <p className="esr-cover__promise">
             A descriptive snapshot of how {observer ? (profile.name || 'this child') : 'you'} take
-            {observer ? 's' : ''} in and respond{observer ? 's' : ''} to the sensory world — strengths first.
+            {observer ? 's' : ''} in and respond{observer ? 's' : ''} to the sensory world, starting
+            with {observer ? 'their' : 'your'} strengths.
           </p>
 
           <dl className="esr-cover__facts">
@@ -239,7 +250,7 @@ export default function SensoryProfileReport({ profile, versionLabel, contexts =
         </div>
 
         <div className="esr-cover__disclaimer">
-          <strong>A doorway, not a diagnosis.</strong> {profileContent.disclaimer}
+          <strong>About this profile.</strong> {profileContent.disclaimer}
         </div>
 
         <div className="esr-cover__footband">
@@ -340,7 +351,7 @@ export default function SensoryProfileReport({ profile, versionLabel, contexts =
                 <td className="esr-num">
                   {r.answered}/{r.total}
                 </td>
-                <td className="esr-num">{r.mean == null ? '—' : r.mean.toFixed(2)}</td>
+                <td className="esr-num">{r.mean == null ? '–' : r.mean.toFixed(2)}</td>
                 <td>{r.band}</td>
               </tr>
             ))}
@@ -409,13 +420,19 @@ const REPORT_CSS = `
 .esr-page:last-child { page-break-after: auto; break-after: auto; }
 .esr-page__body { flex: 1; display: flex; flex-direction: column; gap: 7mm; min-height: 0; }
 
+/* ---- Top brand strip (inner pages) ---- */
+.esr-page__band {
+  position: absolute; top: 0; left: 0; right: 0; height: 1.8mm;
+  display: flex; gap: 0;
+}
+
 /* ---- Running header ---- */
 .esr-head {
-  display: flex; align-items: flex-start; justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid var(--line-strong);
-  padding-bottom: 5mm; margin-bottom: 7mm;
+  padding-bottom: 4mm; margin-bottom: 7mm;
 }
-.esr-head__meta { text-align: right; padding-top: 1mm; }
+.esr-head__meta { text-align: right; }
 .esr-head__title {
   font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 13px;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
