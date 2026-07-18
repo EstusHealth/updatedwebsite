@@ -103,89 +103,10 @@ const SORT_ITEMS = [
   { line: 'Could you keep the noise down a bit?', answer: 'request', why: 'You are asking for a change in their behaviour. They can agree or not, so it is a request.' },
 ]
 
-/* ---- Feature 1 data: boundary-setting style quiz --------------------- */
-const STYLE_Q = [
-  {
-    q: 'Someone asks you for something you do not really want to do. What usually happens?',
-    a: [
-      ['I say yes, then quietly resent it later', 'porous'],
-      ['I say "let me check and get back to you", then decide', 'healthy'],
-      ['An instant no, almost before they finish', 'rigid'],
-    ],
-  },
-  {
-    q: 'You state a need and get push-back ("why do you even need that?"). You tend to...',
-    a: [
-      ['Back down and apologise for asking', 'porous'],
-      ['Restate it calmly, and look for a middle ground if there is one', 'healthy'],
-      ['Shut the conversation down, or walk away', 'rigid'],
-    ],
-  },
-  {
-    q: 'Across your life, your boundaries are mostly...',
-    a: [
-      ['Bendy. I flex them for almost anyone', 'porous'],
-      ['Firm, but I can adjust them when it makes sense', 'healthy'],
-      ['Fixed. Once set, they do not move', 'rigid'],
-    ],
-  },
-  {
-    q: 'When you say no, guilt shows up as...',
-    a: [
-      ['A wave big enough that I often cave', 'porous'],
-      ['A twinge that passes once I remember why', 'healthy'],
-      ['Not really a factor. No is no', 'rigid'],
-    ],
-  },
-  {
-    q: 'People who know you well would say you...',
-    a: [
-      ['Are easy to push around, a bit of a yes-person', 'porous'],
-      ['Are clear and consistent about where you stand', 'healthy'],
-      ['Keep almost everyone at arm’s length', 'rigid'],
-    ],
-  },
-  {
-    q: 'You tend to decide your boundaries...',
-    a: [
-      ['In the heat of the moment, often too late', 'porous'],
-      ['In advance, with a bit of room to adapt', 'healthy'],
-      ['In advance, as hard rules with no exceptions', 'rigid'],
-    ],
-  },
-  {
-    q: 'How often do you say yes to things that drain you?',
-    a: [
-      ['Often. I struggle to turn things down', 'porous'],
-      ['Rarely. I know what I am protecting', 'healthy'],
-      ['Almost never. I decline most things by default', 'rigid'],
-    ],
-  },
-]
+/* The full boundary-style quiz now lives as a standalone quiz at
+   /resources/boundary-style-quiz. This section links out to it instead of
+   embedding the whole thing. */
 
-const STYLE_RESULT = {
-  porous: {
-    name: 'Porous',
-    emoji: '\u{1F30A}',
-    tagline: 'You bend to keep the peace',
-    body: 'Your boundaries flex easily, sometimes too easily. You say yes to things that do not protect what you value, over-explain, and let limits get crossed again and again. It is rarely because other people are being malicious. People get used to treating you a certain way because it has been allowed. The cost shows up later as resentment and burnout.',
-    edge: 'Your growth edge is toward healthy. Start with one line that buys you time: "Let me check and get back to you." That single pause is often all you need to choose on purpose instead of on reflex.',
-  },
-  healthy: {
-    name: 'Healthy',
-    emoji: '\u{1F333}',
-    tagline: 'Firm roots, room to bend',
-    body: 'You set clear expectations, protect what you value, and stay assertive and consistent, but you can still flex when the situation genuinely calls for it. Think of the parent whose rule is "chocolate after dinner", who can make an exception on a hard day without the rule collapsing. Strong, firm, and still flexible.',
-    edge: 'Your edge is maintenance, not overhaul. Keep deciding boundaries in advance, keep restating them without heat when you get push-back, and notice which relationships flourish under them and which ones only ever pushed against them.',
-  },
-  rigid: {
-    name: 'Rigid',
-    emoji: '\u{1F9F1}',
-    tagline: 'Walls up, everyone at arm’s length',
-    body: 'Your boundaries are strong, which is a real asset, but when every one of them is fixed and non-negotiable it can tip into keeping people out. Saying no to almost everything can protect your energy and also cost you connection. Some rigid boundaries are completely healthy to keep. The trouble is when all of them are.',
-    edge: 'Your growth edge is also toward healthy, from the other direction. Pick one or two boundaries where a little flex would not cost you much, and practise negotiating a middle ground instead of a flat no.',
-  },
-}
 
 /* ---- Feature 2 data: the eight domains ------------------------------- */
 const DOMAINS = [
@@ -415,91 +336,6 @@ function SortGame() {
   )
 }
 
-// Feature 1: what is your boundary-setting style?
-function StyleQuiz() {
-  const [answers, setAnswers] = useState({})
-  const [showResult, setShowResult] = useState(false)
-
-  const answered = Object.keys(answers).length
-  const allDone = answered === STYLE_Q.length
-
-  const pick = (qi, style) => setAnswers((a) => ({ ...a, [qi]: style }))
-  const reset = () => { setAnswers({}); setShowResult(false) }
-
-  const result = useMemo(() => {
-    const tally = { porous: 0, healthy: 0, rigid: 0 }
-    Object.values(answers).forEach((s) => { tally[s] += 1 })
-    const order = ['porous', 'healthy', 'rigid']
-    let best = 'healthy', bestN = -1
-    order.forEach((k) => { if (tally[k] > bestN) { best = k; bestN = tally[k] } })
-    return { key: best, tally }
-  }, [answers])
-
-  if (showResult && allDone) {
-    const r = STYLE_RESULT[result.key]
-    return (
-      <div className="card bw-panel">
-        <div style={{ textAlign: 'center' }}>
-          <div style={{ fontSize: '3rem', lineHeight: 1 }} aria-hidden="true">{r.emoji}</div>
-          <span className="badge badge--mauve" style={{ marginTop: 12 }}>Your leaning</span>
-          <h3 style={{ fontFamily: 'var(--f-head)', fontSize: '2rem', color: 'var(--heading)', textTransform: 'uppercase', margin: '10px 0 2px' }}>{r.name}</h3>
-          <p style={{ color: 'var(--mauve)', fontWeight: 700, margin: 0 }}>{r.tagline}</p>
-        </div>
-        <div className="bw-spectrum" aria-hidden="true">
-          {['porous', 'healthy', 'rigid'].map((k) => (
-            <div key={k} className={`bw-spectrum-seg${result.key === k ? ' is-on' : ''}`}>
-              <span>{STYLE_RESULT[k].name}</span>
-              <b>{result.tally[k]}</b>
-            </div>
-          ))}
-        </div>
-        <p style={{ color: 'var(--text-soft)', marginTop: 18 }}>{r.body}</p>
-        <div className="callout" style={{ margin: '18px 0 0' }}>
-          <strong style={{ color: 'var(--mauve)', textTransform: 'uppercase', fontSize: '.72rem', letterSpacing: '.5px', display: 'block', marginBottom: 6 }}>Your growth edge</strong>
-          <span style={{ color: 'var(--text-soft)' }}>{r.edge}</span>
-        </div>
-        <p style={{ color: 'var(--text-soft)', fontSize: '.82rem', fontStyle: 'italic', margin: '16px 0 0' }}>
-          Almost everyone shows a mix, and your style can differ by domain and by who you are with. This is a reflection prompt, not a label.
-        </p>
-        <div style={{ marginTop: 18 }}>
-          <button className="btn btn--ghost" onClick={reset}>Retake</button>
-        </div>
-      </div>
-    )
-  }
-
-  return (
-    <div className="card bw-panel">
-      <div className="bw-panel-top">
-        <span className="bw-count">Answered {answered} / {STYLE_Q.length}</span>
-      </div>
-      <div style={{ display: 'grid', gap: 20 }}>
-        {STYLE_Q.map((item, qi) => (
-          <div key={qi}>
-            <p className="bw-q">{item.q}</p>
-            <div style={{ display: 'grid', gap: 8 }}>
-              {item.a.map(([label, style]) => (
-                <button
-                  key={label}
-                  className={`bw-opt${answers[qi] === style ? ' is-sel' : ''}`}
-                  onClick={() => pick(qi, style)}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      <div style={{ marginTop: 22 }}>
-        <button className="btn" onClick={() => setShowResult(true)} disabled={!allDone}>
-          {allDone ? 'See your style ▸' : `Answer all ${STYLE_Q.length} to see your style`}
-        </button>
-      </div>
-    </div>
-  )
-}
-
 // Feature 2: which domains hold your strongest boundaries?
 function DomainProfiler() {
   const [ratings, setRatings] = useState({})
@@ -709,13 +545,15 @@ export default function BoundarySettingWebinar() {
         <div className="wrap wrap--narrow">
           <span className="eyebrow eyebrow--mauve">Interactive</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>What is your boundary style?</h2>
-          <p className="lead" style={{ margin: '14px 0 20px' }}>Every boundary sits on a spectrum from porous to rigid, with healthy in the middle. Answer seven quick questions to see where you tend to land, and which direction your growth edge points.</p>
+          <p className="lead" style={{ margin: '14px 0 20px' }}>Every boundary sits on a spectrum from porous to rigid, with healthy in the middle. Our quick quiz shows where you tend to land, and which direction your growth edge points.</p>
           <div className="bw-mini-legend">
             <span><b style={{ color: 'var(--teal)' }}>Porous</b> too flexible, crossed often</span>
             <span><b style={{ color: 'var(--heading)' }}>Healthy</b> firm, but adaptable</span>
             <span><b style={{ color: 'var(--mauve)' }}>Rigid</b> fixed, everyone at arm's length</span>
           </div>
-          <StyleQuiz />
+          <p style={{ marginTop: 4 }}>
+            <Btn to="/resources/boundary-style-quiz">Take the Boundary Style quiz ▸</Btn>
+          </p>
         </div>
       </section>
 
