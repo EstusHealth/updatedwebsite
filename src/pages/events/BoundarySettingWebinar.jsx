@@ -7,7 +7,7 @@ import { webinarBySlug } from '../../lib/webinars'
 import { PODCASTS } from '../../lib/site'
 
 /* Saying No: Boundary Setting for Neurodivergent Brains, as a free, navigable
-   resource hub built from Liam Fagan and Nick Voican's live webinar. The
+   resource hub built from Liam Fagan and Nic Voican's live webinar. The
    recording is not published yet (WEBINAR.videoId is null), so the Watch
    section shows a "coming soon" state and a static outline until it is.
 
@@ -629,7 +629,7 @@ export default function BoundarySettingWebinar() {
     <>
       <SEO
         title="Saying No: Boundary Setting for Neurodivergent Brains | Estus Health"
-        description="A free, interactive companion to Liam Fagan and Nick Voican's boundary-setting webinar. Find your boundary style, map your strongest domains, tell a boundary from a rule, and get copy-ready scripts and troubleshooting."
+        description="A free, interactive companion to Liam Fagan and Nic Voican's boundary-setting webinar. Find your boundary style, map your strongest domains, tell a boundary from a rule, and get copy-ready scripts and troubleshooting."
         path={WEBINAR.path}
         type="video.other"
       />
@@ -640,7 +640,7 @@ export default function BoundarySettingWebinar() {
         eyebrow="Webinar" eyebrowClass="eyebrow--mauve" badge="Interactive resource hub"
         title="Saying No"
         sub2={WEBINAR.subtitle}
-        sub="Occupational therapists Liam Fagan and Nick Voican on boundaries for neurodivergent brains: what they really are, why they feel so hard, and how to set them without burning out. Work through the interactive tools, then take the scripts with you."
+        sub="Occupational therapists Liam Fagan and Nic Voican on boundaries for neurodivergent brains: what they really are, why they feel so hard, and how to set them without burning out. Work through the interactive tools, then take the scripts with you."
       >
         <Btn href="#style">Find your boundary style</Btn>
         <Btn href="#scripts" variant="btn--alt">Jump to the scripts</Btn>
@@ -658,7 +658,7 @@ export default function BoundarySettingWebinar() {
           <span className="eyebrow">Watch</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>The full session.</h2>
           <p className="lead" style={{ margin: '14px 0 26px' }}>
-            A live conversation for neurodivergent adults, clinicians and anyone who finds saying no hard. Both Liam and Nick are autistic occupational therapists, so this comes from a lived and a clinical lens at once. About {WEBINAR.duration.replace('~', '')} long.
+            A live conversation for neurodivergent adults, clinicians and anyone who finds saying no hard. Both Liam and Nic are autistic occupational therapists, so this comes from a lived and a clinical lens at once. About {WEBINAR.duration.replace('~', '')} long.
           </p>
           <Watch />
         </div>
@@ -749,7 +749,7 @@ export default function BoundarySettingWebinar() {
         <div className="wrap wrap--narrow">
           <span className="eyebrow eyebrow--mauve">The method</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Establishing a boundary, in six steps.</h2>
-          <p className="lead" style={{ margin: '14px 0 20px' }}>This is a long-term practice, not a one-off. Nick and Liam use these six steps with clients over months, not minutes. Tap each step to open it.</p>
+          <p className="lead" style={{ margin: '14px 0 20px' }}>This is a long-term practice, not a one-off. Nic and Liam use these six steps with clients over months, not minutes. Tap each step to open it.</p>
           <Accordion items={STEPS} color="var(--mauve)" numbered />
           <div className="callout" style={{ marginTop: 24 }}>
             <strong style={{ color: 'var(--mauve)', textTransform: 'uppercase', fontSize: '.72rem', letterSpacing: '.5px', display: 'block', marginBottom: 6 }}>The shortcut: have something to protect</strong>
@@ -783,9 +783,9 @@ export default function BoundarySettingWebinar() {
       <section id="about" className="jump-target">
         <div className="wrap wrap--narrow">
           <span className="eyebrow">About</span>
-          <h2 className="sec-head" style={{ marginTop: 16 }}>Liam Fagan and Nick Voican.</h2>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>Liam Fagan and Nic Voican.</h2>
           <div className="prose" style={{ marginTop: 18 }}>
-            <p><strong>Liam Fagan</strong> is an occupational therapist and the founder of Estus Health in Perth, working with autistic, ADHD and PDA-profile clients from paediatrics through to adults, in person and via telehealth. <strong>Nick Voican</strong> is an occupational therapist who runs Kintsugi OT, working mostly with autistic adults, largely by telehealth. Both are autistic, and both build their own practices around protecting sensory and energy needs, which is a boundary in itself.</p>
+            <p><strong>Liam Fagan</strong> is an occupational therapist and the founder of Estus Health in Perth, working with autistic, ADHD and PDA-profile clients from paediatrics through to adults, in person and via telehealth. <strong>Nic Voican</strong> is an occupational therapist who runs Kintsugi OT, working mostly with autistic adults, largely by telehealth. Both are autistic, and both build their own practices around protecting sensory and energy needs, which is a boundary in itself.</p>
             <p>They ran this session because so much of their work comes back to the same thing: helping people protect their space, time and relationships in a way that keeps the healthy relationships flourishing. Their take is deliberately practical and neuroaffirming, focused on how you actually implement this, day to day, from a neurodivergent lens.</p>
           </div>
           <div className="callout" style={{ marginTop: 22 }}>

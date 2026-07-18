@@ -7,13 +7,6 @@ import { WEBINARS, ytThumb } from '../../lib/webinars'
 const EVENTBRITE = 'https://www.eventbrite.com.au/o/estus-health'
 const INSTAGRAM = 'https://www.instagram.com/estus_health/'
 
-// Featured upcoming event. Update (or clear) as the schedule changes.
-const NEXT_EVENT = {
-  title: 'Saying No: Boundary Setting for Neurodivergent Brains',
-  blurb: 'A practical session on boundaries for neurodivergent brains — why they feel so hard, and how to set them without burning out.',
-  url: 'https://www.eventbrite.com/e/saying-no-boundary-setting-for-neurodivergent-brains-tickets-1990458277289',
-}
-
 export default function Events() {
   return (
     <>
@@ -25,31 +18,13 @@ export default function Events() {
       <PageHero eyebrow="Events & Media" title="Come along," accent="or catch up."
         sub="Live events, a permanent archive of recordings, our podcasts, and the weekly Journal Club. Everything in one place, so nothing disappears after the live date." />
 
-      {/* Eventbrite */}
-      <section style={{ paddingTop: 0 }}>
-        <div className="wrap wrap--narrow">
-          <span className="eyebrow">Live events</span>
-          <h2 className="sec-head" style={{ marginTop: 16 }}>Bi-monthly, in person and online.</h2>
-          <p className="lead" style={{ marginTop: 14 }}>We run events every couple of months on the things clients and clinicians keep asking about. Recent topics include gaming in therapy and boundary setting. See what's coming up and grab a spot on Eventbrite.</p>
-          {NEXT_EVENT && (
-            <div className="card card--static" style={{ marginTop: 24 }}>
-              <span className="badge">Next event</span>
-              <h3 style={{ margin: '14px 0 0' }}>{NEXT_EVENT.title}</h3>
-              <p style={{ color: 'var(--text-soft)', margin: '10px 0 0' }}>{NEXT_EVENT.blurb}</p>
-              <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={NEXT_EVENT.url}>Get tickets ↗</Btn></p>
-            </div>
-          )}
-          <p style={{ marginTop: 24 }}><Btn href={EVENTBRITE} variant="btn--ghost">See all events ↗</Btn></p>
-          {/* NOTE: pull live upcoming/past events from Eventbrite at build time; do not hardcode dates. */}
-        </div>
-      </section>
-
       {/* Archive */}
       <section className="tint-section">
         <div className="wrap wrap--narrow">
           <span className="eyebrow eyebrow--mauve">Event archive</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Missed one? Watch it back.</h2>
-          <p className="lead" style={{ marginTop: 14 }}>Every past event gets its own page here, with the full recording, chapter markers and interactive resources. It stays a usable resource long after the live date.</p>
+          <p className="lead" style={{ marginTop: 14 }}>Every past event gets its own page here, with the full recording, chapter markers and interactive resources. It stays a usable resource long after the live date. We run new events every couple of months, so check Eventbrite for what's coming up.</p>
+          <p style={{ marginTop: 18, marginBottom: 0 }}><Btn href={EVENTBRITE} variant="btn--ghost">See upcoming events on Eventbrite ↗</Btn></p>
           <div style={{ display: 'grid', gap: 20, marginTop: 28 }}>
             {WEBINARS.map((w) => {
               const hasVideo = !!w.videoId

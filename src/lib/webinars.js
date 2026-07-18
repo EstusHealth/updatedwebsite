@@ -16,7 +16,7 @@ export const WEBINARS = [
     tag: 'Workshop',
     title: 'Saying No: Boundary Setting',
     subtitle: 'Boundaries for neurodivergent brains, without the burnout',
-    presenter: 'Liam Fagan & Nick Voican',
+    presenter: 'Liam Fagan & Nic Voican',
     videoId: 'FoOVggbOI94',
     dateISO: '2026-07-16',
     dateLabel: 'July 2026',
