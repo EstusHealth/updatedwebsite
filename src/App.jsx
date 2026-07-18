@@ -26,6 +26,7 @@ import Events from './pages/resources/Events'
 // The webinar hub (video + filterable library + rich data) is large and not a
 // primary entry page, so it is code-split into its own chunk.
 const GamingInformedTherapyWebinar = lazy(() => import('./pages/events/GamingInformedTherapyWebinar'))
+const BoundarySettingWebinar = lazy(() => import('./pages/events/BoundarySettingWebinar'))
 
 // Quizzes are heavy (question banks + lucide-react icons) and rarely the entry
 // page, so they are code-split into their own chunks.
@@ -38,6 +39,7 @@ const RPGCharacterQuiz = lazy(() => import('./pages/quizzes/RPGCharacterQuiz'))
 const EDSQuiz = lazy(() => import('./pages/quizzes/EDSQuiz'))
 const LearnerDriverQuiz = lazy(() => import('./pages/quizzes/LearnerDriverQuiz'))
 const SensoryProfileQuiz = lazy(() => import('./pages/quizzes/SensoryProfileQuiz'))
+const BoundaryStyleQuiz = lazy(() => import('./pages/quizzes/BoundaryStyleQuiz'))
 
 import NotFound from './pages/NotFound'
 
@@ -59,6 +61,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/gaming-informed-therapy" element={<GamingInformedTherapyWebinar />} />
+        <Route path="/events/boundary-setting" element={<BoundarySettingWebinar />} />
 
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />
@@ -84,6 +87,7 @@ export default function App() {
         <Route path="/resources/eds-hsd-quiz" element={<EDSQuiz />} />
         <Route path="/resources/learner-driver-quiz" element={<LearnerDriverQuiz />} />
         <Route path="/resources/sensory-profile" element={<SensoryProfileQuiz />} />
+        <Route path="/resources/boundary-style-quiz" element={<BoundaryStyleQuiz />} />
 
         {/* Legacy redirects: keep old indexed URLs alive. */}
         <Route path="/quiz/learner-driver-style" element={<Navigate to="/resources/learner-driver-quiz" replace />} />

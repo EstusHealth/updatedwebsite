@@ -11,6 +11,20 @@
 
 export const WEBINARS = [
   {
+    slug: 'boundary-setting',
+    path: '/events/boundary-setting',
+    tag: 'Workshop',
+    title: 'Saying No: Boundary Setting',
+    subtitle: 'Boundaries for neurodivergent brains, without the burnout',
+    presenter: 'Liam Fagan & Nic Voican',
+    videoId: 'FoOVggbOI94',
+    dateISO: '2026-07-16',
+    dateLabel: 'July 2026',
+    duration: '~60 min',
+    blurb:
+      'What a boundary actually is (and the four things people mistake for one), the porous to rigid spectrum, the eight domains of life boundaries touch, and a six-step way to set them. Work through interactive tools, copy-ready scripts, and a troubleshooting guide for when you get push-back.',
+  },
+  {
     slug: 'gaming-informed-therapy',
     path: '/events/gaming-informed-therapy',
     tag: 'Workshop',

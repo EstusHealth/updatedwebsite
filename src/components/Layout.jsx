@@ -2,8 +2,15 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook, Linkedin, Youtube, Sun, Moon } from 'lucide-react'
 import { SERVICES, NAV_RESOURCES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { WEBINARS } from '../lib/webinars'
 
 const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
+
+// Events & Media nav: the hub, then a direct link to each webinar's own page.
+const NAV_EVENTS = [
+  { to: '/events', label: 'All Events & Media' },
+  ...WEBINARS.map((w) => ({ to: w.path, label: w.title })),
+]
 
 /* ==========================================================================
    Nav route map per revision brief section 5:
@@ -40,20 +47,23 @@ function Nav() {
   const [drawer, setDrawer] = useState(false)
   const [servicesOpen, setServicesOpen] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
+  const [eventsOpen, setEventsOpen] = useState(false)
   const servicesRef = useRef(null)
   const resourcesRef = useRef(null)
+  const eventsRef = useRef(null)
   const { pathname, hash } = useLocation()
 
   // Close menus on navigation (hash included, so anchor links close the menu).
-  useEffect(() => { setDrawer(false); setServicesOpen(false); setResourcesOpen(false) }, [pathname, hash])
+  useEffect(() => { setDrawer(false); setServicesOpen(false); setResourcesOpen(false); setEventsOpen(false) }, [pathname, hash])
 
   // Close dropdowns on outside click / Escape.
   useEffect(() => {
     const onClick = (e) => {
       if (servicesRef.current && !servicesRef.current.contains(e.target)) setServicesOpen(false)
       if (resourcesRef.current && !resourcesRef.current.contains(e.target)) setResourcesOpen(false)
+      if (eventsRef.current && !eventsRef.current.contains(e.target)) setEventsOpen(false)
     }
-    const onKey = (e) => { if (e.key === 'Escape') { setServicesOpen(false); setResourcesOpen(false) } }
+    const onKey = (e) => { if (e.key === 'Escape') { setServicesOpen(false); setResourcesOpen(false); setEventsOpen(false) } }
     document.addEventListener('click', onClick)
     document.addEventListener('keydown', onKey)
     return () => { document.removeEventListener('click', onClick); document.removeEventListener('keydown', onKey) }
@@ -91,7 +101,17 @@ function Nav() {
                 ))}
               </ul>
             </li>
-            <li><Link to="/events">Events & Media</Link></li>
+            <li className={`has-menu${eventsOpen ? ' open' : ''}`} ref={eventsRef}>
+              <button className="menu-btn" aria-expanded={eventsOpen} aria-controls="events-menu"
+                onClick={() => setEventsOpen((v) => !v)}>
+                Events & Media <span className="chev" aria-hidden="true">▾</span>
+              </button>
+              <ul className="menu" id="events-menu">
+                {NAV_EVENTS.map((e) => (
+                  <li key={e.to}><Link to={e.to}>{e.label}</Link></li>
+                ))}
+              </ul>
+            </li>
           </ul>
         </nav>
 
@@ -112,7 +132,8 @@ function Nav() {
         <Link to="/team">Team</Link>
         <p className="group">Free Resources</p>
         {NAV_RESOURCES.map((r) => <Link key={r.to} className="sub" to={r.to}>{r.label}</Link>)}
-        <Link to="/events">Events & Media</Link>
+        <p className="group">Events & Media</p>
+        {NAV_EVENTS.map((e) => <Link key={e.to} className="sub" to={e.to}>{e.label}</Link>)}
         <a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal ↗</a>
         <Link to="/contact"><strong>Get Started</strong></Link>
       </nav>

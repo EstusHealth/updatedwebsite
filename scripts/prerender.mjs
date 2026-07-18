@@ -87,7 +87,25 @@ async function snapshot(page, path) {
 async function main() {
   const routes = await readRoutes()
   const server = await preview({ preview: { port: PORT, strictPort: true } })
-  const browser = await launchBrowser()
+
+  // Prerendering is a build-time SEO enhancement, not a hard requirement: if no
+  // headless browser can start in this environment (for example @sparticuz
+  // Chromium missing system libs like libnss3 in the Vercel build container),
+  // skip it and ship the SPA rather than failing the whole deploy. JS-less
+  // crawlers then get the shared fallback HTML, exactly as before prerendering
+  // existed. This is loud on purpose so a broken browser is easy to spot.
+  let browser
+  try {
+    browser = await launchBrowser()
+  } catch (err) {
+    console.error('\n==================================================================')
+    console.error('  PRERENDER SKIPPED: could not launch a headless browser.')
+    console.error(`  ${err.message.split('\n')[0]}`)
+    console.error('  The SPA still deploys; JS-less crawlers get the fallback HTML.')
+    console.error('==================================================================\n')
+    await new Promise((resolve) => server.httpServer.close(resolve))
+    return
+  }
   const page = await browser.newPage()
 
   const failures = []
