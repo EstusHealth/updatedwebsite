@@ -26,6 +26,7 @@ import Events from './pages/resources/Events'
 // The webinar hub (video + filterable library + rich data) is large and not a
 // primary entry page, so it is code-split into its own chunk.
 const GamingInformedTherapyWebinar = lazy(() => import('./pages/events/GamingInformedTherapyWebinar'))
+const BoundarySettingWebinar = lazy(() => import('./pages/events/BoundarySettingWebinar'))
 
 // Quizzes are heavy (question banks + lucide-react icons) and rarely the entry
 // page, so they are code-split into their own chunks.
@@ -59,6 +60,7 @@ export default function App() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/gaming-informed-therapy" element={<GamingInformedTherapyWebinar />} />
+        <Route path="/events/boundary-setting" element={<BoundarySettingWebinar />} />
 
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />

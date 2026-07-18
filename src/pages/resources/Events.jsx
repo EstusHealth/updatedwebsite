@@ -51,37 +51,49 @@ export default function Events() {
           <h2 className="sec-head" style={{ marginTop: 16 }}>Missed one? Watch it back.</h2>
           <p className="lead" style={{ marginTop: 14 }}>Every past event gets its own page here, with the full recording, chapter markers and interactive resources. It stays a usable resource long after the live date.</p>
           <div style={{ display: 'grid', gap: 20, marginTop: 28 }}>
-            {WEBINARS.map((w) => (
-              <Link key={w.slug} to={w.path} className="card media-card media-card--wide" aria-label={`Watch: ${w.title}`}>
-                <div className="media-thumb">
-                  <img
-                    src={ytThumb(w.videoId)}
-                    alt={`${w.title} workshop`}
-                    loading="lazy"
-                    width="1280" height="720"
-                    onError={(e) => {
-                      if (!e.currentTarget.dataset.fallback) {
-                        e.currentTarget.dataset.fallback = '1'
-                        e.currentTarget.src = ytThumb(w.videoId, 'hqdefault')
-                      }
-                    }}
-                  />
-                  <span className="play-badge"><PlayIcon /></span>
-                </div>
-                <div className="media-body">
-                  <span className="badge badge--mauve" style={{ alignSelf: 'flex-start' }}>{w.tag}</span>
-                  <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.2rem', margin: '2px 0 0', letterSpacing: '-.3px' }}>{w.title}</h3>
-                  <p style={{ color: 'var(--text)', fontWeight: 600, margin: 0 }}>{w.subtitle}</p>
-                  <div className="media-meta">
-                    <span>{w.presenter}</span><span aria-hidden="true">·</span>
-                    <span>{w.dateLabel}</span><span aria-hidden="true">·</span>
-                    <span>{w.duration}</span>
+            {WEBINARS.map((w) => {
+              const hasVideo = !!w.videoId
+              return (
+                <Link key={w.slug} to={w.path} className="card media-card media-card--wide" aria-label={`${hasVideo ? 'Watch' : 'Open'}: ${w.title}`}>
+                  <div className="media-thumb">
+                    {hasVideo ? (
+                      <>
+                        <img
+                          src={ytThumb(w.videoId)}
+                          alt={`${w.title} workshop`}
+                          loading="lazy"
+                          width="1280" height="720"
+                          onError={(e) => {
+                            if (!e.currentTarget.dataset.fallback) {
+                              e.currentTarget.dataset.fallback = '1'
+                              e.currentTarget.src = ytThumb(w.videoId, 'hqdefault')
+                            }
+                          }}
+                        />
+                        <span className="play-badge"><PlayIcon /></span>
+                      </>
+                    ) : (
+                      <div style={{ textAlign: 'center', padding: '18px', color: 'var(--text-soft)' }}>
+                        <span className="badge badge--ghost">Recording coming soon</span>
+                        <p style={{ margin: '12px 0 0', fontSize: '.86rem', fontWeight: 600 }}>Interactive resource hub is live now</p>
+                      </div>
+                    )}
                   </div>
-                  <p style={{ color: 'var(--text-soft)', margin: '4px 0 0', fontSize: '.94rem' }}>{w.blurb}</p>
-                  <span className="profile-link" aria-hidden="true" style={{ marginTop: 6 }}>Watch the workshop ▸</span>
-                </div>
-              </Link>
-            ))}
+                  <div className="media-body">
+                    <span className="badge badge--mauve" style={{ alignSelf: 'flex-start' }}>{w.tag}</span>
+                    <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.2rem', margin: '2px 0 0', letterSpacing: '-.3px' }}>{w.title}</h3>
+                    <p style={{ color: 'var(--text)', fontWeight: 600, margin: 0 }}>{w.subtitle}</p>
+                    <div className="media-meta">
+                      <span>{w.presenter}</span><span aria-hidden="true">·</span>
+                      <span>{w.dateLabel}</span><span aria-hidden="true">·</span>
+                      <span>{w.duration}</span>
+                    </div>
+                    <p style={{ color: 'var(--text-soft)', margin: '4px 0 0', fontSize: '.94rem' }}>{w.blurb}</p>
+                    <span className="profile-link" aria-hidden="true" style={{ marginTop: 6 }}>{hasVideo ? 'Watch the workshop ▸' : 'Explore the resource hub ▸'}</span>
+                  </div>
+                </Link>
+              )
+            })}
           </div>
         </div>
       </section>
