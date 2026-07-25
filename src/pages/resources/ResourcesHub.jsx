@@ -4,13 +4,14 @@ import SEO from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
-import { COMMCARD_APP } from '../../lib/site'
+import { COMMCARD_APP, GIVEWAY_APP } from '../../lib/site'
 
 // Sections users can jump to, in page order. [label, anchor id].
 const SECTIONS = [
   ['Quizzes', 'quizzes'],
   ['Guides', 'guides'],
   ['Tools', 'tools'],
+  ['Driving OT', 'driving-ot'],
   ['Events & Media', 'events'],
 ]
 
@@ -39,6 +40,14 @@ const TOOLS = [
   { name: 'The Shared Lexicon', tag: 'Interactive Glossary', desc: 'A family-friendly, neuroaffirming glossary across OT, neurodivergence, LGBTQIA+, gaming and Gen Z slang. Search any term, or expand a domain to explore.', primary: { to: '/resources/lexicon', label: 'Open the lexicon ▸' } },
   { name: 'Open Loops', tag: 'Journaling Tool', desc: 'A private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them.', primary: { to: '/resources/open-loops', label: 'Open the tool ▸' } },
   { name: 'Second Brain Setup', tag: 'Free Guide', desc: 'Build a private second brain in Discord, so your actual brain can stop holding it all. A step-by-step setup you already have the app for.', primary: { to: '/resources/second-brain', label: 'Set it up ▸' } },
+]
+
+// Driving OT: the driving-specific resources, grouped in their own section so
+// learner drivers and their supporters have one place to land.
+const DRIVING = [
+  { name: 'Give Way!', tag: 'WA Road Rules Arcade', desc: 'A free arcade with 112 WA road scenarios. See the intersection from above and from the driver\'s seat, spot the hazard, then pick the safe move. Every rule referenced back to Drive Safe.', primary: { href: GIVEWAY_APP, label: 'Play Give Way! ▸' }, secondary: { to: '/resources/driving-ot', label: 'Learn more' } },
+  { name: 'Learner Driver Style Quiz', tag: 'Quiz', desc: 'Three quick sections reveal your driver type, your hazard radar and focus, and your sensory style on the road, plus practical tips to grow.', primary: { to: '/resources/learner-driver-quiz', label: 'Take the quiz ▸' } },
+  { name: 'Why driving is an OT thing', tag: 'Guide', desc: 'Scanning, predicting, deciding, and moving all at once, with the sensory load of a live road on top. Here is how we think about driving as an occupation.', primary: { to: '/resources/driving-ot', label: 'Read up ▸' } },
 ]
 
 export default function ResourcesHub() {
@@ -123,8 +132,31 @@ export default function ResourcesHub() {
         </div>
       </section>
 
+      {/* Driving OT */}
+      <section id="driving-ot" className="jump-target tint-section">
+        <Confetti kind="ring" color="var(--mauve)" size={40} anim="float" style={{ top: 30, left: '4%' }} />
+        <div className="wrap">
+          <span className="eyebrow eyebrow--mauve">Driving OT</span>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>Learn the road.</h2>
+          <p className="lead" style={{ marginTop: 14 }}>Driving is one of the most complex everyday occupations there is. These are free tools for learning it, built by OTs in Perth.</p>
+          <div className="grid grid-3" style={{ marginTop: 32 }}>
+            {DRIVING.map((d) => (
+              <article className="card" key={d.name} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <span className="badge badge--mauve" style={{ alignSelf: 'flex-start' }}>{d.tag}</span>
+                <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.1rem' }}>{d.name}</h3>
+                <p style={{ color: 'var(--text-soft)', margin: 0, flex: 1 }}>{d.desc}</p>
+                <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
+                  <Btn to={d.primary.to} href={d.primary.href}>{d.primary.label}</Btn>
+                  {d.secondary && <Btn to={d.secondary.to} variant="btn--ghost">{d.secondary.label}</Btn>}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Events & Media */}
-      <section id="events" className="jump-target tint-section">
+      <section id="events" className="jump-target">
         <div className="wrap wrap--narrow" style={{ textAlign: 'center' }}>
           <span className="eyebrow eyebrow--mauve">Events & Media</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Come along, or catch up.</h2>
