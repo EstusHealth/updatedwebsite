@@ -17,6 +17,9 @@ export const PODCASTS = {
 }
 export const COMMCARD_APP = '/commcard/' // bundled standalone PWA in public/commcard
 export const COMMCARD_EXTERNAL = 'https://commcard.estushealth.com'
+// GIVE WAY! road rules arcade: bundled standalone page in public/giveway.
+// Append ?studio to unlock the team-only Instagram export panel.
+export const GIVEWAY_APP = '/giveway/'
 
 // Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
 export const BOOKING = [
@@ -39,6 +42,7 @@ export const NAV_RESOURCES = [
   { to: '/resources#quizzes', label: 'Quizzes' },
   { to: '/resources#guides', label: 'Guides' },
   { to: '/resources#tools', label: 'Tools' },
+  { to: '/resources#driving-ot', label: 'Driving OT' },
 ]
 
 export const FOOTER_RESOURCES = [
@@ -46,6 +50,7 @@ export const FOOTER_RESOURCES = [
   { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
   { to: '/resources/understanding-pda', label: 'Understanding PDA' },
   { to: '/resources/commcard', label: 'CommCard' },
+  { to: '/resources/driving-ot', label: 'Driving OT' },
   { to: '/resources/lexicon', label: 'The Shared Lexicon' },
   { to: '/resources/open-loops', label: 'Open Loops' },
 ]

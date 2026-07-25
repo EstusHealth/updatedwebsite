@@ -23,6 +23,7 @@ import OpenLoops from './pages/resources/OpenLoops'
 import Lexicon from './pages/resources/Lexicon'
 import SecondBrain from './pages/resources/SecondBrain'
 import Events from './pages/resources/Events'
+import DrivingOT from './pages/resources/DrivingOT'
 
 // The webinar hub (video + filterable library + rich data) is large and not a
 // primary entry page, so it is code-split into its own chunk.
@@ -79,6 +80,7 @@ export default function App() {
         <Route path="/resources/open-loops" element={<OpenLoops />} />
         <Route path="/resources/lexicon" element={<Lexicon />} />
         <Route path="/resources/second-brain" element={<SecondBrain />} />
+        <Route path="/resources/driving-ot" element={<DrivingOT />} />
 
         <Route path="/resources/pda-quiz" element={<PDAQuiz />} />
         <Route path="/resources/chronotype-quiz" element={<ChronotypeQuiz />} />

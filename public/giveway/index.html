@@ -1,0 +1,2530 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Give Way! WA Road Rules Arcade | Estus Health</title>
+<meta name="description" content="A free WA road rules arcade from Estus Health. Read the scene, spot the hazard, pick the safe move. 112 scenarios drawn from Drive Safe, built for learner drivers and neurodivergent brains.">
+<meta name="theme-color" content="#0b0714">
+<link rel="canonical" href="https://www.estushealth.com/giveway/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Estus Health">
+<meta property="og:title" content="Give Way! WA Road Rules Arcade | Estus Health">
+<meta property="og:description" content="Read the scene, spot the hazard, pick the safe move. A free WA road rules arcade by Estus Health.">
+<meta property="og:url" content="https://www.estushealth.com/giveway/">
+<meta property="og:image" content="https://www.estushealth.com/og-image.png">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.ico" sizes="48x48 32x32 16x16">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ==========================================================================
+   GIVE WAY! — WA road rules arcade, in Estus Health "neon night" colours.
+   Tokens mirror html[data-theme="neon"] in src/styles/tokens.css so the
+   arcade reads as part of the site, not a bolted-on iframe.
+   ========================================================================== */
+:root{
+  /* Estus neon-night palette */
+  --teal:#1ce8f0; --mauve:#ff2e9a; --navy:#344982;
+  --bg:#0b0714; --panel:#150e2a; --panel-2:#100a20; --ink:#ece4ff;
+  --neon:#1ce8f0; --neon2:#ff2e9a;
+  --amber:#ffc23d; --red:#ff4d5e; --green:#4ade80;
+  --line:#241645; --dim:#a99fd6;
+  --f-display:'Bungee',system-ui,sans-serif;
+  --f-head:'Archivo Black',system-ui,sans-serif;
+  --f-body:'Poppins',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(120% 85% at 20% -10%, rgba(255,46,154,.20) 0%, transparent 60%),
+    radial-gradient(90% 60% at 105% 5%, rgba(28,232,240,.16) 0%, transparent 55%),
+    var(--bg);
+  background-attachment:fixed;
+  color:var(--ink);
+  font-family:var(--f-body);
+  -webkit-font-smoothing:antialiased;
+}
+/* CRT scanlines, matching the site's night theme. */
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:99;
+  background:repeating-linear-gradient(to bottom,rgba(255,255,255,.03) 0 1px,transparent 1px 3px);
+  mix-blend-mode:overlay;
+}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--mauve);outline-offset:3px;border-radius:6px}
+.skip-link{position:absolute;left:16px;top:-60px;z-index:100;background:var(--mauve);color:#fff;
+  font-family:var(--f-display);font-size:.8rem;text-transform:uppercase;padding:10px 18px;
+  border-radius:0 0 12px 12px;transition:top .15s ease}
+.skip-link:focus{top:0}
+/* Keep anchor targets clear of the sticky Estus bar. */
+[id]{scroll-margin-top:84px}
+
+/* ---------- Estus site bar ---------- */
+.sitebar{position:sticky;top:0;z-index:80;background:rgba(11,7,20,.88);backdrop-filter:blur(10px);
+  border-bottom:3px solid var(--teal)}
+.sitebar-in{max-width:1240px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:11px;font-family:var(--f-display);font-size:1.05rem;
+  color:#fff;text-transform:uppercase;letter-spacing:.5px}
+.brand .mark{width:36px;height:36px;border-radius:11px;background:var(--mauve);border:3px solid var(--navy);
+  display:grid;place-items:center;color:#fff;font-family:var(--f-display);font-size:.95rem;
+  box-shadow:3px 3px 0 var(--teal);transform:rotate(-4deg)}
+.sitebar .spacer{flex:1}
+.backlink{font-weight:600;font-size:.9rem;color:var(--dim)}
+.backlink:hover{color:var(--teal)}
+
+.wrap{max-width:1240px;margin:0 auto;padding:18px 16px 60px}
+
+/* ---------- game header ---------- */
+header.game{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-bottom:12px}
+.logo{font-family:var(--f-display);font-size:30px;letter-spacing:1px;line-height:1.05}
+.logo b{font-weight:400;color:var(--neon);text-shadow:0 0 14px rgba(28,232,240,.6)}
+.logo i{font-style:normal;color:var(--neon2);text-shadow:0 0 14px rgba(255,46,154,.55)}
+.sub{font-size:11px;color:var(--dim);letter-spacing:1px;text-transform:uppercase;font-weight:600;margin-top:4px}
+.spacer{flex:1}
+.badge{background:var(--panel);border:2px solid var(--line);border-radius:10px;padding:8px 12px;
+  font-size:11px;letter-spacing:1px;font-weight:700;text-transform:uppercase;color:var(--dim)}
+.badge span{color:var(--neon);font-weight:800}
+.badge.streak span{color:var(--amber)}
+.badge.eye span{color:#c084fc}
+
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 14px}
+.cat{background:var(--panel-2);border:2px solid var(--line);color:var(--dim);
+  padding:6px 12px;border-radius:999px;font-size:11px;letter-spacing:1px;cursor:pointer;
+  font-family:var(--f-display);font-weight:400;transition:.15s}
+.cat:hover{border-color:var(--neon);color:var(--ink)}
+.cat.on{background:var(--neon);border-color:var(--neon);color:#07121a}
+
+.views{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:900px){.views{grid-template-columns:1fr}}
+.view{background:#0d0a1e;border:3px solid var(--line);border-radius:14px;overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,.55), 0 0 22px rgba(28,232,240,.14)}
+.view h3{margin:0;padding:8px 12px;font-family:var(--f-display);font-size:11px;letter-spacing:2px;
+  color:#07121a;background:linear-gradient(90deg,var(--neon),#8ef7f9);display:flex;justify-content:space-between}
+.view.fp h3{background:linear-gradient(90deg,var(--neon2),#ff8fc8)}
+canvas{display:block;width:100%;height:auto;background:#0a0716}
+
+.qbox{margin-top:14px;background:var(--panel);border:3px solid var(--line);border-radius:20px;padding:20px;
+  box-shadow:0 0 22px rgba(28,232,240,.12)}
+.qtitle{font-family:var(--f-display);font-size:11px;letter-spacing:2px;color:var(--neon2);margin-bottom:8px}
+.q{font-size:17px;line-height:1.5;font-weight:700;margin-bottom:14px;color:var(--ink)}
+.opts{display:grid;gap:9px}
+.opt{display:flex;gap:12px;align-items:flex-start;text-align:left;width:100%;
+  background:var(--panel-2);border:2px solid var(--line);color:var(--ink);
+  padding:13px 15px;border-radius:12px;font-size:14px;line-height:1.45;cursor:pointer;
+  font-family:var(--f-body);font-weight:500;transition:.12s}
+.opt:hover:not(:disabled){border-color:var(--neon);transform:translateX(3px)}
+.opt:disabled{cursor:default}
+.opt .k{flex:0 0 26px;height:26px;border-radius:7px;background:var(--line);color:var(--ink);
+  display:grid;place-items:center;font-family:var(--f-display);font-weight:400;font-size:12px}
+.opt.right{border-color:var(--green);background:rgba(74,222,128,.12)}
+.opt.right .k{background:var(--green);color:#062b14}
+.opt.wrong{border-color:var(--red);background:rgba(255,77,94,.12)}
+.opt.wrong .k{background:var(--red);color:#2b0509}
+
+.fb{margin-top:14px;border-radius:14px;padding:15px;border:2px dashed var(--line);display:none}
+.fb.show{display:block}
+.fb .head{font-family:var(--f-display);font-size:14px;letter-spacing:1px;margin-bottom:8px}
+.fb.good{border-color:var(--green);background:rgba(74,222,128,.08)}
+.fb.good .head{color:var(--green)}
+.fb.bad{border-color:var(--amber);background:rgba(255,194,61,.08)}
+.fb.bad .head{color:var(--amber)}
+.fb p{margin:0 0 8px;font-size:14px;line-height:1.6}
+.ref{font-size:11px;color:var(--dim);letter-spacing:.5px}
+
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+/* Estus button: pill, hard border, offset shadow. */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--teal);color:#07121a;
+  border:3px solid var(--teal);padding:12px 22px;border-radius:999px;
+  font-family:var(--f-display);font-weight:400;letter-spacing:.5px;font-size:13px;text-transform:uppercase;
+  cursor:pointer;white-space:nowrap;
+  box-shadow:4px 4px 0 rgba(0,0,0,.5),0 0 18px rgba(28,232,240,.5);
+  transition:transform .12s ease, box-shadow .12s ease}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 rgba(0,0,0,.5),0 0 26px rgba(28,232,240,.75)}
+.btn:active{transform:translate(2px,2px);box-shadow:2px 2px 0 rgba(0,0,0,.5)}
+.btn.alt{background:var(--mauve);border-color:var(--mauve);color:#0b0714;
+  box-shadow:4px 4px 0 rgba(0,0,0,.5),0 0 18px rgba(255,46,154,.55)}
+.btn.alt:hover{box-shadow:6px 6px 0 rgba(0,0,0,.5),0 0 26px rgba(255,46,154,.85)}
+.btn.ghost{background:transparent;border-color:var(--teal);color:var(--teal);
+  box-shadow:4px 4px 0 rgba(0,0,0,.5),0 0 14px rgba(28,232,240,.35)}
+
+.hint{font-size:12.5px;color:var(--dim);margin-top:12px;line-height:1.6}
+.haz{display:none;margin-bottom:14px;padding:14px 16px;border-radius:14px;
+  border:2px dashed var(--amber);background:rgba(255,194,61,.09)}
+.haz.on{display:block}
+.haz.hit{border-color:var(--green);border-style:solid;background:rgba(74,222,128,.10)}
+.haz.shown{border-color:var(--amber);border-style:solid}
+.hazhead{font-family:var(--f-display);font-size:13px;letter-spacing:1px;color:var(--amber);margin-bottom:6px}
+.haz.hit .hazhead{color:var(--green)}
+.hazmsg{font-size:14px;line-height:1.55;margin-bottom:10px}
+.haz .btn{padding:9px 16px;font-size:12px}
+#fp.aim{cursor:crosshair}
+
+/* Studio panel (Instagram export): team-only, shown with ?studio in the URL. */
+.export{display:none;border-color:#4a2b63;background:#170e33}
+.export.on{display:block}
+.export .qtitle{color:var(--neon2)}
+.exgrid{display:grid;grid-template-columns:1fr 340px;gap:20px}
+@media(max-width:820px){.exgrid{grid-template-columns:1fr}}
+.lbl{display:block;font-family:var(--f-display);font-size:10px;letter-spacing:2px;color:var(--dim);margin:16px 0 6px}
+#capText{width:100%;background:var(--panel-2);border:2px solid var(--line);border-radius:12px;color:var(--ink);
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;line-height:1.6;padding:12px;resize:vertical}
+.prevwrap{text-align:center}
+#preview{width:100%;max-width:324px;border:3px solid var(--line);border-radius:12px;background:var(--bg)}
+.busy{opacity:.5;pointer-events:none}
+
+/* ---------- OT note + footer ---------- */
+.otnote{margin-top:14px;background:var(--panel);border:3px solid var(--mauve);border-radius:20px;padding:22px;
+  box-shadow:0 0 22px rgba(255,46,154,.16)}
+.otnote h2{font-family:var(--f-head);font-size:1.15rem;text-transform:uppercase;letter-spacing:-.4px;
+  color:#fff;margin:0 0 10px}
+.otnote p{margin:0 0 12px;font-size:14.5px;line-height:1.65;color:var(--ink)}
+.otnote .row{margin-top:16px}
+footer{margin-top:26px;font-size:11.5px;color:var(--dim);line-height:1.8;text-align:center}
+footer b{color:var(--ink)}
+footer a{color:var(--teal);font-weight:600}
+.tag{display:inline-block;background:var(--panel-2);border:1px solid var(--line);border-radius:6px;
+  padding:2px 8px;font-family:var(--f-display);font-size:10px;letter-spacing:1px;color:var(--dim)}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#scenario">Skip to the scenario</a>
+
+<div class="sitebar">
+  <div class="sitebar-in">
+    <a class="brand" href="/" aria-label="Estus Health home"><span class="mark" aria-hidden="true">E</span> Estus Health</a>
+    <div class="spacer"></div>
+    <a class="backlink" href="/resources/driving-ot">&#8592; Driving OT</a>
+    <a class="backlink" href="/resources">All free resources</a>
+  </div>
+</div>
+
+<div class="wrap">
+<header class="game">
+  <div>
+    <div class="logo"><b>GIVE</b> <i>WAY!</i></div>
+    <div class="sub">WA Road Rules Arcade &middot; A free tool by Estus Health &middot; 112 scenarios</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="badge">Score <span id="score">0</span>/<span id="asked">0</span></div>
+  <div class="badge streak">Streak <span id="streak">0</span></div>
+  <div class="badge">Best <span id="best">0</span></div>
+  <div class="badge eye">&#128065; Hazards <span id="eyes">0</span>/<span id="eyesT">0</span></div>
+</header>
+
+<div class="cats" id="cats"></div>
+
+<div class="views">
+  <div class="view"><h3><span>&#9635; TOP-DOWN VIEW</span><span id="tdlabel">MAP</span></h3><canvas id="td" width="600" height="470"></canvas></div>
+  <div class="view fp"><h3><span>&#9650; DRIVER'S VIEW</span><span>YOU</span></h3><canvas id="fp" width="600" height="470"></canvas></div>
+</div>
+
+<div class="qbox" id="scenario">
+  <div class="qtitle" id="cattag">SCENARIO</div>
+  <div class="q" id="question">Loading&hellip;</div>
+  <div class="haz" id="hazbar">
+    <div class="hazhead" id="hazhead">&#128065; STEP 1 &mdash; SPOT THE HAZARD</div>
+    <div class="hazmsg" id="hazmsg">Look at the driver's view and click the thing that could hurt you.</div>
+    <button class="btn alt" id="hazSkip">SHOW ME</button>
+  </div>
+  <div class="opts" id="opts"></div>
+  <div class="fb" id="fb">
+    <div class="head" id="fbhead"></div>
+    <p id="fbtext"></p>
+    <div class="ref" id="fbref"></div>
+  </div>
+  <div class="row">
+    <button class="btn" id="next">NEXT SCENARIO &#9654;</button>
+    <button class="btn ghost" id="skip">SKIP</button>
+    <button class="btn ghost" id="reset">RESET SCORE</button>
+  </div>
+  <div class="hint">The cyan car with the white outline is YOU. Lettered cars are everyone else. Dashed arrows show where each car wants to go. On &#128065; hazard scenarios, click the danger in the driver's view first. Keys: A B C D to answer, SPACE for the next scenario.</div>
+</div>
+
+<div class="otnote">
+  <h2>Why an OT built a road rules game</h2>
+  <p>Driving is one of the most complex everyday occupations there is. It asks you to scan, predict, decide, and act, all at once, while the scene keeps moving. Plenty of learners know the rules on paper and still freeze at a live intersection, because reading a page is nothing like reading a road.</p>
+  <p>So this is deliberately not a written test. Every scenario gives you the picture first, from above and from the driver's seat, then asks what you would do. Hazard rounds ask you to find the danger before you choose. That is the skill that transfers to the car.</p>
+  <p>Play it in short bursts. Getting one wrong here is free, and the explanation tells you the rule and where it comes from.</p>
+  <div class="row">
+    <a class="btn" href="/resources/driving-ot">More Driving OT &#9654;</a>
+    <a class="btn alt" href="/resources/learner-driver-quiz">Learner Driver Quiz &#9654;</a>
+  </div>
+</div>
+
+<div class="qbox export" id="studio">
+  <div class="qtitle">&#128248; STUDIO &middot; INSTAGRAM EXPORT &middot; 1080&times;1350 (4:5)</div>
+  <div class="exgrid">
+    <div>
+      <div class="q" style="font-size:15px;margin-bottom:10px">Exports the scenario currently on screen.</div>
+      <div class="row" style="margin-top:0">
+        <button class="btn" id="expTeaser">TEASER IMAGE</button>
+        <button class="btn" id="expCarousel">CAROUSEL &times;2</button>
+        <button class="btn ghost" id="expReel">REEL CLIP (9s)</button>
+      </div>
+      <div class="hint" id="expStatus">Teaser = one hook image, no answer. Carousel = question slide, then answer slide. Reel = a 9&nbsp;s animated clip with a countdown and the reveal.</div>
+      <label class="lbl" for="capText">CAPTION &amp; HASHTAGS</label>
+      <textarea id="capText" rows="10" spellcheck="false"></textarea>
+      <div class="row" style="margin-top:8px"><button class="btn ghost" id="copyCap">COPY CAPTION</button></div>
+    </div>
+    <div class="prevwrap">
+      <label class="lbl">PREVIEW</label>
+      <canvas id="preview" width="324" height="405"></canvas>
+      <div class="hint" style="margin-top:6px">Slide 1 of 2</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="tag">SOURCE</span> Rules and page references from <b>Drive Safe &mdash; A handbook for Western Australian road users</b>,
+  Department of Transport and Major Infrastructure (revised 23 February 2026).<br>
+  A study game, not a legal document. Always check the current handbook and the Road Traffic Code 2000.<br>
+  Built by <a href="/">Estus Health</a> &middot; neuroaffirming occupational therapy in Perth &middot; <a href="/contact">Get in touch</a>
+</footer>
+</div>
+<script>
+/* ============================================================
+   GIVE WAY! — WA road rules arcade
+   One scenario model, two renderers (top-down + first person).
+   World axes: +x east, +z north, y up. You always drive north
+   in the left-hand lane, approaching from the bottom.
+   ============================================================ */
+var $ = function(id){return document.getElementById(id);};
+var clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
+var lerp=function(a,b,t){return a+(b-a)*t;};
+
+var HAZ={reveal:false,ok:false,miss:null,done:false,misses:0};
+var C = {
+  grass1:'#16351f', grass2:'#1c4227', road:'#2a2f3f',
+  line:'#e8edf7', yellow:'#ffc23d', you:'#1ce8f0',
+  carA:'#ffb03a', carB:'#7db6ff', carC:'#e7ecf5',
+  bus:'#f2f4f8', bike:'#4ade80', truck:'#cfd6e6', moto:'#ff5cb3',
+  sky1:'#1d1236', sky2:'#4a2a86', sky3:'#ff8fb8',
+  ped:'#ffe9a8', signRed:'#d32338', signWhite:'#f4f7fd', signYellow:'#ffd23f'
+};
+
+function geom(w){
+  var multi = !!(w.multiLane||w.multi||w.freeway);
+  var HW  = multi ? 7 : (w.wide ? 5.2 : 3.5);
+  var YL  = (!multi || w.youLane==='right') ? -1.75 : -5.25;
+  var ADJ = multi ? (w.youLane==='right' ? -5.25 : -1.75) : -1.75;
+  return {multi:multi, HW:HW, YL:YL, OPP:1.75, ADJ:ADJ, RR:(multi?11:9)};
+}
+function carPose(c,G){
+  var d=c.d;
+  if(c.ring!==undefined){
+    var a=c.ring*Math.PI/180, Rr=G.RR-2.5;
+    return {x:Rr*Math.cos(a), z:Rr*Math.sin(a), h:Math.PI-a};
+  }
+  if(c.from==='north') return {x:G.OPP, z:d, h:Math.PI};
+  if(c.from==='east')  return {x:d, z:-1.75, h:-Math.PI/2};
+  if(c.from==='west')  return {x:-d, z:1.75, h:Math.PI/2};
+  var x=G.YL;
+  if(c.rightLane) x=G.ADJ;
+  if(c.kerbside)  x=-(G.HW-1.3);
+  if(c.bikeLane)  x=-(G.HW-1.1);
+  return {x:x, z:d, h:0};
+}
+function pedPos(pd,t,G){
+  var s=Math.sin(t*0.9)*0.5+0.5;
+  var tt=clamp(pd.t+(s-0.5)*0.12,0,1);
+  if(pd.leg==='cross') return {x:lerp(-G.HW+0.5,G.HW-0.5,tt), z:1.6};
+  if(pd.leg==='north') return {x:lerp(-G.HW,G.HW,tt), z:G.HW+1.8};
+  if(pd.leg==='west')  return {x:-G.HW-1.8, z:lerp(-G.HW,G.HW,tt)};
+  if(pd.leg==='slip')  return {x:-G.HW-2.6, z:lerp(-G.HW-3,-G.HW+1,tt)};
+  if(pd.leg==='foot')  return {x:-G.HW-2.2, z:lerp(-2,14,tt)};
+  if(pd.leg==='emerge') return {x:-(G.HW-1.0)+tt*1.2, z:(pd.z===undefined?3:pd.z)};
+  if(pd.leg==='front')  return {x:-(G.HW-1.2)+tt*1.1, z:(pd.z===undefined?2.5:pd.z)};
+  if(pd.leg==='road')   return {x:lerp(-G.HW+0.8,0.5,tt), z:(pd.z===undefined?12:pd.z)};
+  return {x:0,z:0};
+}
+function shade(hex,f){
+  var n=parseInt(hex.slice(1),16);
+  var r=clamp(Math.round(((n>>16)&255)*f),0,255);
+  var g=clamp(Math.round(((n>>8)&255)*f),0,255);
+  var b=clamp(Math.round((n&255)*f),0,255);
+  return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1);
+}
+
+/* ============================================================
+   SCENARIOS — every answer checked against Drive Safe
+   ============================================================ */
+var SCEN = [
+/* ---------- GIVE WAY & INTERSECTIONS ---------- */
+{cat:'GIVE WAY', title:'Uncontrolled crossroads',
+ q:'No signs, no lights. You want to go straight ahead. Car A is coming from your right. What do you do?',
+ world:{layout:'cross', yourIntent:'straight', cars:[{from:'east',d:9,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Give way to Car A — it is on your right','Go first, you got there first','Sound your horn and go','Give way only if Car A is turning'], ans:0,
+ why:'At a four way intersection with no signs, lights or roundabout, YOU must give way to the car on your right — whether you are turning or going straight ahead.',
+ ref:'Drive Safe 3.13.2 Uncontrolled intersections, p.69'},
+
+{cat:'GIVE WAY', title:'Car coming from your left',
+ q:'No signs, no lights. You are going straight. Car B is coming from your left. Who gives way?',
+ world:{layout:'cross', yourIntent:'straight', cars:[{from:'west',d:9,intent:'straight',label:'B',color:C.carB}]},
+ opts:['Car B gives way to you — you are on its right','You give way to Car B','Whoever is going faster goes first','Both cars must stop completely'], ans:0,
+ why:'The give way to the right rule works both ways. You are on Car B’s right, so Car B must give way to you. Still look carefully before you go — never just assume.',
+ ref:'Drive Safe 3.13.2 Uncontrolled intersections, p.69'},
+
+{cat:'GIVE WAY', title:'Turning right, no signs',
+ q:'No signs or lights. You are turning right. Car A is coming straight towards you. What must you do?',
+ world:{layout:'cross', yourIntent:'right', cars:[{from:'north',d:17,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Give way to Car A','Turn quickly in front of Car A','Car A gives way to you','Give way only if Car A indicates'], ans:0,
+ why:'If you are turning right at ANY uncontrolled intersection you must also give way to oncoming traffic travelling towards you or turning left.',
+ ref:'Drive Safe 3.13.2 Uncontrolled intersections, p.69'},
+
+{cat:'GIVE WAY', title:'Three way (T) intersection',
+ q:'Your road ends at a T intersection. Cars A and B are on the continuing road. What do you do?',
+ world:{layout:'tee', yourIntent:'left',
+   cars:[{from:'east',d:9,intent:'straight',label:'A',color:C.carA},{from:'west',d:13,intent:'straight',label:'B',color:C.carB}]},
+ opts:['Give way to both A and B','Give way only to the car on your right','Go — turning left gives you priority','Give way only to B'], ans:0,
+ why:'At a three way intersection YOU must give way to every car travelling on, or turning from, the continuing road — from the left AND from the right.',
+ ref:'Drive Safe 3.13.2 Uncontrolled intersections, p.69'},
+
+{cat:'GIVE WAY', title:'STOP sign, empty road',
+ q:'You are facing a STOP sign with a stop line painted on the road, and there is no other traffic at all. What must you do?',
+ world:{layout:'cross', control:'stop', yourIntent:'straight', cars:[]},
+ opts:['Stop completely at the line, then go when it is clear','Slow right down and roll through','Keep going — the road is clear','Stop only if you can see a car'], ans:0,
+ why:'At an intersection controlled by a STOP sign you MUST stop your vehicle at the line every single time, then give way to all traffic travelling along or turning from the intersecting road.',
+ ref:'Drive Safe 3.13.1 Controlled intersections, p.68'},
+
+{cat:'GIVE WAY', title:'Stopped back from the STOP line',
+ q:'A parked truck made you stop a few metres BEHIND the STOP line. The way is now clear. What must you do?',
+ world:{layout:'cross', control:'stop', yourIntent:'straight',
+   cars:[{from:'west',d:9,intent:'stopped',label:'TRUCK',color:C.truck,type:'truck'}]},
+ opts:['Move up and stop again at the line before going on','Drive straight through — you already stopped','Reverse and start the approach again','Give way to the truck only'], ans:0,
+ why:'If for some reason you have to stop back from the STOP line, you must stop again as close as you can before the line when you move forward.',
+ ref:'Drive Safe 3.13.1 Controlled intersections, p.68'},
+
+{cat:'GIVE WAY', title:'GIVE WAY sign',
+ q:'You are facing a GIVE WAY sign. Nothing is coming on the intersecting road. What must you do?',
+ world:{layout:'cross', control:'giveway', yourIntent:'straight', cars:[]},
+ opts:['Slow down, be ready to stop, then go on if it is clear','Come to a full stop every time, like a STOP sign','Speed up to clear the intersection','Wait three seconds, then go'], ans:0,
+ why:'A GIVE WAY sign means you must give way to all traffic travelling along or turning from the intersecting road. You do not have to stop if it is genuinely clear — but you must be ready to.',
+ ref:'Drive Safe 3.13.1 Controlled intersections, p.68'},
+
+{cat:'GIVE WAY', title:'Police officer directing traffic',
+ q:'Your light is GREEN, but a police officer in the intersection is signalling you to stop. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, officer:true, yourIntent:'straight', cars:[]},
+ opts:['Stop — the officer overrules the green light','Keep going, green means go','Stop only if the officer blows a whistle','Turn left to get out of the way'], ans:0,
+ why:'You must comply with the direction of a police officer or other authorised person. Their directions overrule traffic control signals, STOP and GIVE WAY signs, the give way to the right rule, and arrows or markings on the road.',
+ ref:'Drive Safe 3.10.4 Officer directing traffic, p.61'},
+
+{cat:'GIVE WAY', title:'Keep the intersection clear',
+ q:'Your light is green, but traffic is queued right across the far side of the intersection. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'straight',
+   cars:[{from:'south',d:7,intent:'stopped',label:'Q',color:C.carC},{from:'east',d:8,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Stop before the intersection so you do not block it','Enter anyway — the light is green','Enter and beep until the queue moves','Enter halfway and wait there'], ans:0,
+ why:'Do not enter an intersection when a queue of traffic prevents you from fully exiting the other side. Stop before you enter, so vehicles like Car A can still cross the road.',
+ ref:'Drive Safe 3.13.4 Keep intersections clear, p.70'},
+
+{cat:'GIVE WAY', title:'Turning right on a green light',
+ q:'Green circular light. You are turning right. Car A is coming straight towards you. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'right',
+   cars:[{from:'north',d:19,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Give way to Car A, then turn when there is a safe gap','Turn now — a green light means you may turn','Car A must give way to a turning vehicle','Reverse and wait for the next red'], ans:0,
+ why:'A green circular light lets you proceed only if it is safe to do so. Turning in front of oncoming traffic is dangerous — always make sure the turn can be made without interfering with the progress of oncoming vehicles.',
+ ref:'Drive Safe 3.10.1 and 3.14 Turning, pp.59, 70'},
+
+{cat:'GIVE WAY', title:'Waiting to turn right',
+ q:'You are stopped in the intersection waiting for a gap to turn right. Which way should your front wheels point?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'right',
+   cars:[{from:'north',d:14,intent:'straight',label:'A',color:C.carA},{from:'north',d:27,intent:'straight',label:'B',color:C.carB}]},
+ opts:['Straight ahead','Turned right, ready to go','Turned left','It makes no difference'], ans:0,
+ why:'Keep your wheels in the straight ahead position while you wait. If you happen to be struck from behind you will not be pushed across into the path of oncoming traffic.',
+ ref:'Drive Safe 3.14 Turning, p.70'},
+
+{cat:'GIVE WAY', title:'After turning left',
+ q:'You have just turned left into a new road. Where should your car end up?',
+ world:{layout:'tee-left', yourIntent:'left', cars:[]},
+ opts:['Close to the left side of the road','In the middle of the new road','In the right lane so you can overtake','Anywhere, as long as you indicated'], ans:0,
+ why:'When turning left you must indicate before you turn, move close to the left side of the road, use a marked left turning lane if there is one, give way to pedestrians, and keep close to the left of the road after turning.',
+ ref:'Drive Safe 3.14.2 Turning, p.71'},
+
+/* ---------- ROUNDABOUTS ---------- */
+{cat:'ROUNDABOUT', title:'Entering a roundabout',
+ q:'You are approaching a roundabout. Car A is already on the roundabout, coming around towards you. What do you do?',
+ world:{layout:'roundabout', yourIntent:'straight', cars:[{ring:25,intent:'circ',label:'A',color:C.carA}]},
+ opts:['Give way to Car A — it is already on the roundabout','Enter first, you are closest to the entry','Give way only to cars on your right','Stop and wait for the roundabout to empty'], ans:0,
+ why:'At a roundabout you must give way to ALL traffic already on the roundabout, enter only when there is an adequate and safe gap in the traffic, and always travel in a clockwise direction.',
+ ref:'Drive Safe 3.13.3 Roundabouts, p.70'},
+
+{cat:'ROUNDABOUT', title:'Turning left at a roundabout',
+ q:'Multi-lane roundabout. You are turning LEFT (the first exit). Which lane and which indicator?',
+ world:{layout:'roundabout', multi:true, yourIntent:'left', cars:[]},
+ opts:['Left lane, indicate left, stay left and exit in the left lane','Right lane, indicate left','Left lane, no indicator needed','Either lane, indicate right'], ans:0,
+ why:'When turning left at a roundabout, approach from the left lane, indicate left, stay in the left lane and exit in the left lane.',
+ ref:'Drive Safe 3.11.3 Indicators/signals at roundabouts, p.63'},
+
+{cat:'ROUNDABOUT', title:'Turning right at a roundabout',
+ q:'You are turning RIGHT at a roundabout. What is the correct approach and signalling?',
+ world:{layout:'roundabout', multi:true, youLane:'right', yourIntent:'right', cars:[]},
+ opts:['Right lane, indicate right, then indicate left as you pass the exit before yours','Left lane, indicate right the whole way around','Right lane, no indicator at all','Middle of the road, indicate left'], ans:0,
+ why:'Approach in the right lane, indicate right and stay in the right lane. Indicate left, if practicable, as you pass the exit before the one you want, and leave the roundabout in the right lane.',
+ ref:'Drive Safe 3.11.3 Indicators/signals at roundabouts, p.63'},
+
+{cat:'ROUNDABOUT', title:'Going straight ahead at a roundabout',
+ q:'You are going STRAIGHT ahead through a roundabout. What should you signal on the approach?',
+ world:{layout:'roundabout', multi:true, yourIntent:'straight', cars:[]},
+ opts:['No signal on approach, then indicate left before your exit','Indicate left on approach','Indicate right on approach','Indicate right, then left'], ans:0,
+ why:'You do not need to indicate when approaching a roundabout if you are going straight ahead. Indicate left, if practicable, as you pass the exit before the one you wish to use, and exit in the same lane you entered.',
+ ref:'Drive Safe 3.11.3 Indicators/signals at roundabouts, p.64'},
+
+{cat:'ROUNDABOUT', title:'Full turn at a roundabout',
+ q:'You want to use the roundabout to turn back the way you came (a full turn). Which rules do you follow?',
+ world:{layout:'roundabout', multi:true, youLane:'right', yourIntent:'uturn', cars:[]},
+ opts:['The same rules as turning right','The same rules as turning left','The same rules as going straight ahead','Full turns are banned at roundabouts'], ans:0,
+ why:'If you are using the roundabout to make a full turn — back into the road you came from — follow the instructions for turning right.',
+ ref:'Drive Safe 3.11.3 Indicators/signals at roundabouts, p.64'},
+
+{cat:'ROUNDABOUT', title:'Long vehicle on a roundabout',
+ q:'A long truck ahead of you is negotiating the roundabout and has signalled to turn. What should you do?',
+ world:{layout:'roundabout', yourIntent:'straight',
+   cars:[{ring:45,intent:'circ',label:'TRUCK',color:C.truck,type:'truck'}]},
+ opts:['Stay well back — do not overtake it, it needs the extra space','Overtake on the left while it swings wide','Overtake on the right quickly','Beep so it hurries up'], ans:0,
+ why:'Vehicles 7.5 metres long and longer need to make wide turns. Do not overtake a long vehicle that has signalled an intention to turn — it may cut the corner, and it is legally allowed to cross a continuous lane line leading up to the intersection.',
+ ref:'Drive Safe 3.16.5 Large and oversize vehicles, p.74'},
+
+/* ---------- TRAFFIC LIGHTS ---------- */
+{cat:'LIGHTS', title:'Yellow light ahead',
+ q:'The light turns YELLOW as you approach and you have plenty of room to pull up. What must you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'amber'}, yourIntent:'straight', cars:[]},
+ opts:['Stop — you are required to stop if you can do so safely','Speed up to beat the red','Keep the same speed and drive through','Stop only if a car is coming'], ans:0,
+ why:'A yellow light warns you that the signal is about to change to red. If the light is yellow as you approach, you are required to STOP, if you can do so safely.',
+ ref:'Drive Safe 3.10.1 Intersection traffic control signals, p.59'},
+
+{cat:'LIGHTS', title:'Red light with a green arrow',
+ q:'Red circular light with a GREEN LEFT ARROW. A pedestrian is crossing the road you want to turn into. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'red',arrow:'left-green'}, yourIntent:'left',
+   peds:[{leg:'west',t:0.5}], cars:[]},
+ opts:['Wait for the pedestrian, then turn left','Turn left now — the arrow gives you priority','You may not turn at all on a red light','Beep, then turn'], ans:0,
+ why:'A red light with a green arrow means you may turn in the direction of the arrow if it is safe to do so. Remember you must give way to ALL pedestrians crossing at the intersection.',
+ ref:'Drive Safe 3.10.2 Intersection traffic control arrows, p.60'},
+
+{cat:'LIGHTS', title:'Green light with a red arrow',
+ q:'The circular light is GREEN but there is a RED RIGHT ARROW. What are you allowed to do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green',arrow:'right-red'}, yourIntent:'straight', cars:[]},
+ opts:['Go straight ahead if it is safe, but you must not turn right','Turn right if it is safe','Stop — the red arrow stops everyone','Turn left only'], ans:0,
+ why:'A green light with a red arrow means you may go straight ahead if it is safe to do so. However, you may not turn in the direction of the arrow.',
+ ref:'Drive Safe 3.10.2 Intersection traffic control arrows, p.60'},
+
+{cat:'LIGHTS', title:'Traffic lights completely dead',
+ q:'The traffic lights at a busy intersection are showing NO lights at all. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'off'}, yourIntent:'straight',
+   cars:[{from:'east',d:10,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Slow down, be prepared to stop, treat it like a GIVE WAY sign','Treat it as a green light and drive through','Treat it as a four way STOP and take turns','Wait until the lights come back on'], ans:0,
+ why:'If the traffic control signals are not working at all and no light is displayed, always slow your vehicle and be prepared to stop. Treat the intersection as if you are facing a GIVE WAY sign.',
+ ref:'Drive Safe 3.10.1 Intersection traffic control signals, p.59'},
+
+{cat:'LIGHTS', title:'Flashing yellow at an intersection',
+ q:'The traffic light at an intersection is showing a FLASHING YELLOW light. What does that tell you?',
+ world:{layout:'cross', control:'signals', signals:{main:'flash'}, yourIntent:'straight',
+   cars:[{from:'west',d:10,intent:'straight',label:'A',color:C.carA}]},
+ opts:['The signals are not working properly — treat it as a GIVE WAY sign','The lights are about to turn green','Stop and wait for a green light','Pedestrians have priority, cars do not stop'], ans:0,
+ why:'A flashing yellow light at an intersection with traffic control signals indicates that the signals are not working properly. Treat the intersection as if you have a GIVE WAY sign facing you. Do not confuse this with a pelican crossing.',
+ ref:'Drive Safe 3.10.1 Intersection traffic control signals, p.59'},
+
+{cat:'LIGHTS', title:'Flashing yellow at a pelican crossing',
+ q:'At a PELICAN CROSSING the light is flashing yellow and two people are still on the crossing. What do you do?',
+ world:{layout:'straight', crossing:'zebra', control:'signals', signals:{main:'flash'}, yourIntent:'straight',
+   peds:[{leg:'cross',t:0.45},{leg:'cross',t:0.62}], cars:[]},
+ opts:['Give way to the pedestrians, then proceed with caution','Drive through — flashing yellow means go','Stop until the light turns green','Sound your horn'], ans:0,
+ why:'The flashing yellow light at a pelican crossing means PROCEED WITH CAUTION. It tells you that you may go ahead unless there are pedestrians crossing — and if there are, you must give way to them.',
+ ref:'Drive Safe 3.10.3 Pelican signals, p.60'},
+
+{cat:'LIGHTS', title:'Left turn on red permitted',
+ q:'Red light, and a sign says LEFT TURN ON RED PERMITTED AFTER STOPPING. What is the correct sequence?',
+ world:{layout:'cross', control:'signals', signals:{main:'red'}, leftOnRed:true, yourIntent:'left', cars:[]},
+ opts:['Stop at the red light first, then turn left if it is safe and clear','Turn left without stopping','Only turn if another car goes first','Wait for green — the sign is only advice'], ans:0,
+ why:'If a traffic sign facing you has the words LEFT TURN ON RED PERMITTED AFTER STOPPING you may turn left if you can do so safely. Watch out for and give way to pedestrians and other traffic. Remember, you must ALWAYS stop at the red light first.',
+ ref:'Drive Safe 3.10.1 Intersection traffic control signals, p.59'},
+
+{cat:'LIGHTS', title:'U-turn at traffic lights',
+ q:'You want to make a U-turn at an intersection controlled by traffic lights. There is no extra sign. Can you?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'uturn', cars:[]},
+ opts:['No — not unless there is a U TURN PERMITTED sign','Yes, on a green light','Yes, if no traffic is coming','Yes, but only on a green arrow'], ans:0,
+ why:'You must not make a U-turn at an intersection with traffic control signals unless there is a U TURN PERMITTED sign. U-turns are also banned at a NO U TURN sign, on a freeway, and any time the turn cannot be made safely.',
+ ref:'Drive Safe 3.14.3 U turns, p.71'},
+
+{cat:'LIGHTS', title:'Green light, pedestrian still crossing',
+ q:'Your light has just turned GREEN but a person is still finishing their walk across in front of you. What do you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'straight',
+   peds:[{leg:'north',t:0.55}], cars:[]},
+ opts:['Wait until they have finished crossing','Drive around behind them','Move forward slowly to hurry them along','Beep, then go'], ans:0,
+ why:'When the light is green you may proceed through the intersection provided it is safe to do so. Watch out for pedestrians who may still be crossing the road.',
+ ref:'Drive Safe 3.10.1 Intersection traffic control signals, p.59'},
+
+{cat:'LIGHTS', title:'Parallel walk crossing',
+ q:'At a parallel walk crossing the pedestrian lights go green a few seconds before yours. You are turning left. What must you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'left',
+   peds:[{leg:'west',t:0.35},{leg:'west',t:0.62}], cars:[]},
+ opts:['Give way to the pedestrians crossing with the pedestrian lights','Turn first — you have a green light','Wait for the pedestrian light to go red','Give way only to children'], ans:0,
+ why:'At parallel walk crossings the lights for pedestrians turn green a few seconds before drivers are given their green light, and turning vehicles must give way to pedestrians crossing with the pedestrian lights.',
+ ref:'Drive Safe 1.8.2 Parallel walk crossings, p.20'},
+
+/* ---------- SIGNS & LINES ---------- */
+{cat:'SIGNS & LINES', title:'Single continuous centre line',
+ q:'There is a single continuous white line down the centre of the road and a slow car ahead. May you overtake?',
+ world:{layout:'straight', centre:'single', yourIntent:'straight',
+   cars:[{from:'south',d:4,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['No — you must not cross a continuous dividing line to overtake','Yes, if the road ahead is clear','Yes, if you can do it in under five seconds','Yes, but only under 60 km/h'], ans:0,
+ why:'Where there is a single continuous dividing line you must not cross that line except to leave or enter the road, turn at an intersection, or make a U-turn. You must not cross it to overtake.',
+ ref:'Drive Safe 3.9 Road Markings, p.56'},
+
+{cat:'SIGNS & LINES', title:'Double continuous lines',
+ q:'There are DOUBLE continuous lines down the centre. You need to turn right into a side street. May you cross them?',
+ world:{layout:'tee-right', centre:'double', yourIntent:'right', cars:[]},
+ opts:['Yes — you may cross them to turn right if it is safe to do so','No, double lines can never be crossed','Only if there is a break in the lines','Only between 6 am and 6 pm'], ans:0,
+ why:'You must not cross double continuous dividing lines — BUT you can cross them to turn right at an intersection, make a U-turn, or enter or leave a road, if it is safe to do so.',
+ ref:'Drive Safe 3.9 Road Markings, p.56'},
+
+{cat:'SIGNS & LINES', title:'Broken line on your side',
+ q:'The dividing line is continuous on the far side and BROKEN on your side. A slow car is ahead. May you overtake?',
+ world:{layout:'straight', centre:'combo-broken-yours', yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Yes — you may overtake if it is safe to do so','No, any continuous line means no overtaking','Only if the other car is under 40 km/h','Only on a multi-lane road'], ans:0,
+ why:'If the broken line is on your side, to the left of the continuous line, you may cross the lines to overtake, turn right, make a U-turn, or enter or leave the road — if it is safe to do so.',
+ ref:'Drive Safe 3.9 Road Markings, p.56'},
+
+{cat:'SIGNS & LINES', title:'Continuous line on your side',
+ q:'The dividing line is CONTINUOUS on your side and broken on the other side. What must you do?',
+ world:{layout:'straight', centre:'combo-cont-yours', yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Stay to the left of both lines','Overtake — the broken line allows it','Cross only to overtake bicycles','Cross if the car ahead has stopped'], ans:0,
+ why:'Where there is a continuous line marked on your side of the road and a broken line on the other side, YOU must stay to the left of both lines.',
+ ref:'Drive Safe 3.9 Road Markings, p.56'},
+
+{cat:'SIGNS & LINES', title:'Arrows painted on the road',
+ q:'Your lane has a RIGHT TURN arrow painted on it and you cannot change lanes. What must you do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, arrows:'right', yourIntent:'right', cars:[]},
+ opts:['Turn right — you must go in the direction of the arrow','Go straight ahead if that is where you want to go','Ignore it, arrows are only advice','Reverse out of the lane'], ans:0,
+ why:'If you are travelling on a road with arrow markings you must drive in the direction of the arrows, unless you are able to change to another lane where another direction can be followed.',
+ ref:'Drive Safe 3.9 Road Markings, p.57'},
+
+{cat:'SIGNS & LINES', title:'KEEP CLEAR marking',
+ q:'The road ahead has KEEP CLEAR painted across it and traffic has stopped. What must you do?',
+ world:{layout:'straight', keepclear:true, yourIntent:'straight',
+   cars:[{from:'south',d:9,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Stop before the KEEP CLEAR area — you must not stop on it','Stop on it, it is only a suggestion','Drive slowly across it and stop there','Reverse to make room'], ans:0,
+ why:'You must not stop your vehicle on a section of road that has the words KEEP CLEAR written on it.',
+ ref:'Drive Safe 3.9 Road Markings, p.58'},
+
+{cat:'SIGNS & LINES', title:'Single yellow edge line',
+ q:'There is a single YELLOW line along the edge of the road. What does it mean?',
+ world:{layout:'straight', yellowline:true, yourIntent:'straight', cars:[]},
+ opts:['NO STOPPING — you must not stop next to it or on it','Parking allowed for 15 minutes','It marks a bus lane','It marks a bicycle lane'], ans:0,
+ why:'A NO STOPPING area may be marked with a single yellow line on the edge of the road. You must not stop a car next to or on a single yellow line unless you are held up by traffic.',
+ ref:'Drive Safe 3.9 Road Markings, p.58'},
+
+{cat:'SIGNS & LINES', title:'Merging — FORM ONE LANE',
+ q:'A FORM ONE LANE sign. Car A is beside you and slightly AHEAD of your car. Who gives way?',
+ world:{layout:'straight', multiLane:true, merge:true, yourIntent:'straight',
+   cars:[{from:'south',d:-8,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+ opts:['You give way to Car A — part of it is ahead of you','Car A gives way, you are on its left','Whoever indicates first goes','Both stop and wave each other on'], ans:0,
+ why:'When two lanes merge into one lane you must give way to another vehicle if any portion of it is ahead of your vehicle. You should also indicate that you are merging, and take turns if there are long lines of traffic.',
+ ref:'Drive Safe 3.9 Road Markings, p.57'},
+
+{cat:'SIGNS & LINES', title:'Yellow diamond warning sign',
+ q:'You see a yellow diamond sign with black lines, writing or numbers on it — a winding road or road narrows sign. What sort of sign is it, and what should you do?',
+ world:{layout:'straight', warn:true, yourIntent:'straight', cars:[]},
+ opts:['A warning sign — slow down, there may be danger ahead','A guide sign — it shows distances','A regulatory sign — it sets the speed limit','A parking sign'], ans:0,
+ why:'Warning signs alert you to possible dangers ahead. They are generally yellow with black lines, writing or numbers. When you see a warning sign, slow down — and in wet weather slow down even further.',
+ ref:'Drive Safe 3.8 Traffic Signs, p.52'},
+
+{cat:'SIGNS & LINES', title:'Traffic controller with a STOP bat',
+ q:'At roadworks a traffic controller is holding up a hand-held STOP sign. What must you do?',
+ world:{layout:'straight', roadworks:true, controller:true, yourIntent:'straight', cars:[]},
+ opts:['Stop at a safe distance from the controller and wait','Slow to 40 and drive past','Stop only if workers are on the road','Just follow the car in front'], ans:0,
+ why:'You must stop at a safe distance from the traffic controller and wait when facing a STOP bat. You may proceed with caution when faced with a SLOW bat. Roadwork signs are enforceable and regulated by law.',
+ ref:'Drive Safe 3.8 Traffic Signs, pp.53-54'},
+
+/* ---------- SHARING THE ROAD ---------- */
+{cat:'SHARING', title:'Turning left across a bicycle lane',
+ q:'You are turning left and a cyclist is riding straight ahead in the bicycle lane you must cross. What do you do?',
+ world:{layout:'tee-left', bikelane:true, yourIntent:'left',
+   cars:[{from:'south',d:-2,intent:'straight',label:'BIKE',color:C.bike,type:'bike',bikeLane:true}]},
+ opts:['Give way to the cyclist and wait until they have passed','Turn in front — you are bigger','Turn beside them at the same time','Beep so they slow down'], ans:0,
+ why:'When turning left you must look out for cyclists and give way to them if you are crossing a bicycle lane or the shoulder of the road. Do NOT turn in front of cyclists or motorcyclists — wait for them to ride past.',
+ ref:'Drive Safe 3.14.2 Turning and 1.8.3, pp.71, 21'},
+
+{cat:'SHARING', title:'Overtaking a cyclist',
+ q:'You are catching up to a cyclist on a narrow road. How much room must you leave when you overtake?',
+ world:{layout:'straight', wide:true, yourIntent:'straight',
+   cars:[{from:'south',d:5,intent:'stopped',label:'BIKE',color:C.bike,type:'bike',kerbside:true}]},
+ opts:['At least one metre — and if you cannot, slow down and wait','About 30 centimetres is fine','As much as you like, there is no rule','Two full car widths'], ans:0,
+ why:'Give riders at least one metre clearance from the side of your vehicle when you are overtaking. If it is not possible to overtake with one metre clearance, slow down and do not overtake until it is safe to do so.',
+ ref:'Drive Safe 1.8.3 Cyclists and motorcyclists, p.21'},
+
+{cat:'SHARING', title:'Cyclists riding two abreast',
+ q:'Two cyclists ahead are riding side by side in the lane. Is that legal?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'',color:C.bike,type:'bike',kerbside:true},
+         {from:'south',d:6,intent:'stopped',label:'BIKES',color:C.bike,type:'bike'}]},
+ opts:['Yes — cyclists may use the whole lane and ride two abreast','No, they must ride single file','Only on roads under 50 km/h','Only inside a marked bicycle lane'], ans:0,
+ why:'Cyclists may legally use the whole lane on roads with lane markings, and they are allowed to ride two abreast (side by side). Share the road, be courteous, and give them plenty of room.',
+ ref:'Drive Safe 1.8.3 Cyclists and motorcyclists, p.21'},
+
+{cat:'SHARING', title:'Pedestrian crossing',
+ q:'A person has stepped onto a marked pedestrian crossing ahead of you. What must you do?',
+ world:{layout:'straight', crossing:'zebra', yourIntent:'straight', peds:[{leg:'cross',t:0.35}], cars:[]},
+ opts:['Give way — you must give way to all pedestrians on the crossing','Go if you can get past before they reach your lane','Give way only to children','Sound your horn and continue'], ans:0,
+ why:'You must give way to all pedestrians on a pedestrian crossing. On some roads there are zig-zag lines painted to warn you that you are approaching a crossing.',
+ ref:'Drive Safe 3.9 Road Markings, p.58'},
+
+{cat:'SHARING', title:'Children’s crossing, flags out',
+ q:'The crossing guard has extended the CHILDREN CROSSING flags. What must you do?',
+ world:{layout:'straight', crossing:'children', flags:true, yourIntent:'straight',
+   peds:[{leg:'cross',t:0.4}], cars:[]},
+ opts:['Stop before the stop line and wait until the flags are removed','Stop only while a child is actually on the road','Slow to 10 km/h and keep moving','Give way to the guard only'], ans:0,
+ why:'When the children’s crossing guard extends the flags you must stop before the stop line and wait until the flags are removed before driving on. You must also not enter a children’s crossing if the road beyond it is blocked by traffic.',
+ ref:'Drive Safe 3.9 Road Markings and 1.8.1, pp.57, 20'},
+
+{cat:'SHARING', title:'Turning into a slip lane',
+ q:'You are using a left-turn SLIP LANE and a person is crossing it in front of you. What must you do?',
+ world:{layout:'cross', yourIntent:'left', peds:[{leg:'slip',t:0.5}], cars:[]},
+ opts:['Give way to the pedestrian','Go — slip lanes have priority','Give way only if they are already halfway','Beep and continue'], ans:0,
+ why:'Drivers and riders must give way to pedestrians crossing in front of the vehicle at a slip lane — a left turn lane at an intersection where there is an island between that lane and the lanes for other traffic.',
+ ref:'Drive Safe 1.8.1 Pedestrians, p.19'},
+
+{cat:'SHARING', title:'Bus pulling out from a bus stop',
+ q:'In a built-up area, a bus at a bus stop is indicating to pull out and has a GIVE WAY sign on its back. What do you do?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'straight',
+   cars:[{from:'south',d:9,intent:'right',label:'BUS',color:C.bus,type:'bus',kerbside:true}]},
+ opts:['Give way to the bus','Keep going — buses must wait for traffic','Give way only if the bus is empty','Overtake quickly on the right'], ans:0,
+ why:'You must give way to a bus moving out from a bus stop in a built-up area, provided the bus is indicating and has a GIVE WAY sign displayed on the back.',
+ ref:'Drive Safe 3.6 Buses and Taxis, p.50'},
+
+{cat:'SHARING', title:'Stationary police car, lights flashing',
+ q:'A police car is stopped at the roadside ahead with its warning lights flashing. What must you do?',
+ world:{layout:'straight', multiLane:true, yourIntent:'straight',
+   cars:[{from:'south',d:16,intent:'stopped',label:'POLICE',color:'#5aa9ff',type:'police',kerbside:true}]},
+ opts:['Slow to no more than 40 km/h and move over if it is safe','Keep to the speed limit and drive past','Stop completely until it leaves','Change lanes at full speed'], ans:0,
+ why:'Slow Down, Move Over (SLOMO). Approach at a safe speed and be prepared to stop, pass the stationary vehicle at no more than 40 km/h whatever lane you are in, and if it is ahead in your lane you must move over to another lane if it is safe.',
+ ref:'Drive Safe 3.1.3 Passing incident response vehicles, pp.41-42'},
+
+{cat:'SHARING', title:'Motorcyclist in your blind spot',
+ q:'You want to change lanes to the right. Your mirrors look clear. What is the safest next step?',
+ world:{layout:'straight', multiLane:true, yourIntent:'lanechange',
+   cars:[{from:'south',d:-10,intent:'straight',label:'MOTO',color:C.moto,type:'moto',rightLane:true}]},
+ opts:['Glance over your shoulder to check your blind spot before moving','Trust the mirrors and move across','Indicate and move immediately','Speed up first, then move over'], ans:0,
+ why:'Your car has blind spots at the sides and rear where a motorcycle or bicycle can be completely hidden. Check your mirrors, indicate for a sufficient distance, then glance over your shoulder before you change lanes.',
+ ref:'Drive Safe 3.15 Changing Lanes and 1.11, pp.72, 26'},
+
+/* ---------- SPEED & SAFETY ---------- */
+{cat:'SPEED', title:'Built-up area, no signs',
+ q:'You are in a suburban street with houses and street lights, and there are NO speed limit signs. What is the limit?',
+ world:{layout:'straight', houses:true, yourIntent:'straight', cars:[]},
+ opts:['50 km/h','60 km/h','40 km/h','70 km/h'], ans:0,
+ why:'In a built-up area the default speed limit is 50 km/h unless a sign shows a different speed. A built-up area has street lighting at intervals of no more than 100 m for at least 500 m, or buildings at intervals of less than 100 m for 500 m or more.',
+ ref:'Drive Safe 3.1.1 What are the speed limits?, p.40'},
+
+{cat:'SPEED', title:'Country road, no signs',
+ q:'You are on an open country road in WA with no speed limit signs at all. What is the default limit?',
+ world:{layout:'straight', yourIntent:'straight', cars:[]},
+ opts:['110 km/h','100 km/h','130 km/h','90 km/h'], ans:0,
+ why:'Outside built-up areas, where there are no speed limit signs, the default speed limit in Western Australia is currently 110 km/h. Remember a speed limit is the maximum for the BEST conditions — slow down when the road is wet, narrow, winding or busy.',
+ ref:'Drive Safe 3.1.1 What are the speed limits?, p.40'},
+
+{cat:'SPEED', title:'School zone',
+ q:'It is 8:15 am on a school day and you pass a SCHOOL ZONE 40 sign. What speed may you do?',
+ world:{layout:'straight', schoolzone:true, houses:true, yourIntent:'straight', peds:[{leg:'foot',t:0.3}], cars:[]},
+ opts:['40 km/h or less','50 km/h','60 km/h','40 km/h only when children are visible'], ans:0,
+ why:'School zone signs show a speed limit and the times it applies — typically 40 km/h between 7.30-9 am and 2.30-4 pm on school days. The times when the limit applies are shown on the sign.',
+ ref:'Drive Safe 3.1.1 What are the speed limits?, p.40'},
+
+{cat:'SPEED', title:'Following distance in the rain',
+ q:'It is raining hard. How much following distance should you leave behind the car in front?',
+ world:{layout:'straight', rain:true, yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['At least double it — four or five seconds','Still two seconds','One second is enough in traffic','Three car lengths'], ans:0,
+ why:'The two second rule is a guide for good road, traffic and weather conditions. If they are not good, increase your following distance to four or five seconds — you should at least double it when the road is wet or visibility is poor.',
+ ref:'Drive Safe 3.2.1 and 3.3.2, pp.43-44, 47'},
+
+{cat:'SPEED', title:'Learner driver top speed',
+ q:'What is the maximum speed a LEARNER driver may travel at in WA, even on a 110 km/h road?',
+ world:{layout:'straight', lplate:true, yourIntent:'straight', cars:[]},
+ opts:['100 km/h','110 km/h','90 km/h','80 km/h'], ans:0,
+ why:'Learner drivers are limited to 100 km/h. The same 100 km/h limit applies to vehicles towing caravans or trailers, buses and coaches over 5 tonnes GVM, and vehicles with a Gross Combined Mass over 12 tonnes.',
+ ref:'Drive Safe 3.1.2 — “Speed limits that apply for certain vehicles and drivers”, p.41'},
+
+{cat:'SPEED', title:'Stopping distance at 60 km/h',
+ q:'On a dry road at 60 km/h with good brakes and tyres, roughly how far do you travel from spotting a hazard to stopping?',
+ world:{layout:'straight', yourIntent:'straight', peds:[{leg:'foot',t:0.5}], cars:[]},
+ opts:['About 45 metres','About 20 metres','About 25 metres','About 80 metres'], ans:0,
+ why:'At 60 km/h you travel about 25 m while you react, plus about 20 m of braking distance — a total stopping distance of about 45 metres in the best case on a dry road with a modern car in good condition.',
+ ref:'Drive Safe 3.2.2 How long does it take to stop your car?, p.44'},
+
+{cat:'SPEED', title:'High beam at night',
+ q:'You are on high beam at night and a car is approaching. When must you dip your headlights?',
+ world:{layout:'straight', night:true, yourIntent:'straight',
+   cars:[{from:'north',d:22,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Within 200 metres of an approaching vehicle','Within 50 metres','Only when they flash you','Only in built-up areas'], ans:0,
+ why:'You are legally required to dip your headlights as soon as an approaching vehicle’s lights are dipped, when you are within 200 metres of an approaching vehicle, or when you are driving less than 200 metres behind another vehicle.',
+ ref:'Drive Safe 3.3.1 Driving at night, p.46'},
+
+{cat:'SPEED', title:'Keep left unless overtaking',
+ q:'You are on a multi-lane road with a 100 km/h limit and you are not overtaking or turning. Which lane must you use?',
+ world:{layout:'straight', multiLane:true, youLane:'right', keepleft:true, yourIntent:'straight',
+   cars:[{from:'south',d:14,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+ opts:['The left lane','Either lane, as long as you keep to the limit','The right lane, it is smoother','The middle of the road'], ans:0,
+ why:'Where the speed limit is 90 km/h or higher, or KEEP LEFT UNLESS OVERTAKING signs are installed, you must not drive in the right lane unless you are overtaking, turning right or doing a U-turn, the left lane is a special purpose or left-turn lane, or the other lanes are congested.',
+ ref:'Drive Safe 3.4.2 Roads with 2 or more lanes, p.48'},
+
+/* ---------- RAILWAY ---------- */
+{cat:'RAILWAY', title:'Boom gates coming down',
+ q:'You are approaching a rail crossing. The red lights are flashing and the boom gates are lowering. What must you do?',
+ world:{layout:'railway', boom:'down', lights:'flash', yourIntent:'straight', cars:[]},
+ opts:['Stop before the crossing and wait','Drive through quickly before the gates close','Drive around the gate on the wrong side','Stop only if you can see the train'], ans:0,
+ why:'You must stop when warning bells or flashing red lights are operating, or when boom gates are down. You must never drive through, around or under any gate, boom or barrier at a rail crossing — down, being raised, or being lowered.',
+ ref:'Drive Safe 3.5.1 When you must stop, pp.49-50'},
+
+{cat:'RAILWAY', title:'After the first train passes',
+ q:'A train has just gone past and the lights are still flashing. When can you drive on?',
+ world:{layout:'railway', boom:'down', lights:'flash', yourIntent:'straight', cars:[]},
+ opts:['Only when the lights and bells stop AND you are sure no more trains are coming','As soon as the first train has passed','When the boom starts to lift','After counting to ten'], ans:0,
+ why:'You can drive on when the lights and bell have stopped flashing and ringing and you are certain there are no more trains coming. In peak periods there may be three or four trains, and another train may be coming from the opposite direction.',
+ ref:'Drive Safe 3.5.2 When can you drive on, p.50'},
+
+{cat:'RAILWAY', title:'Traffic queued past the crossing',
+ q:'The crossing is clear, but traffic ahead means you could not fully clear the yellow cross-hatched area. What do you do?',
+ world:{layout:'railway', boom:'up', lights:'off', yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Stop before the crossing and wait for room','Enter and wait on the tracks','Enter slowly and edge forward','Use the other side of the road'], ans:0,
+ why:'You must stop before a rail crossing when traffic ahead prevents you from completely clearing the yellow KEEP CLEAR AT ALL TIMES cross-hatching safely. Never stop on the cross-hatching. Be cautious — always expect a train.',
+ ref:'Drive Safe 3.5.1 When you must stop, pp.49-50'},
+
+{cat:'RAILWAY', title:'No STOP line at a rail crossing',
+ q:'There is no STOP sign or line at a country rail crossing and you need to stop. How far back should you stop?',
+ world:{layout:'railway', boom:'none', lights:'off', yourIntent:'straight', cars:[]},
+ opts:['At least three metres from the nearest rail','Right on the rails so you can see','One metre from the rails','There is no rule, stop anywhere'], ans:0,
+ why:'If there is no STOP line or STOP sign to show you where to stop, always stop well clear of the crossing — at least three metres from the nearest rail. Remember a train can be up to one metre wider than the tracks on both sides.',
+ ref:'Drive Safe 3.5.1 When you must stop, p.49'},
+
+/* ---------- PARKING & STOPPING ---------- */
+{cat:'PARKING', title:'Parking near an intersection',
+ q:'You want to park close to a corner. How far from an intersection must you stay clear, unless signs allow it?',
+ world:{layout:'cross', houses:true, yourIntent:'park', cars:[]},
+ opts:['At least 10 metres','At least 3 metres','At least 20 metres','There is no distance rule'], ans:0,
+ why:'You must not stop in an intersection, or within 10 metres of an intersection, unless signs allow you to stop there.',
+ ref:'Drive Safe 3.17 Stopping, p.76'},
+
+{cat:'PARKING', title:'Parking near a pedestrian crossing',
+ q:'How close may you stop to a pedestrian or children’s crossing?',
+ world:{layout:'straight', wide:true, crossing:'zebra', houses:true, yourIntent:'park', cars:[]},
+ opts:['No closer than 20 m before it and 10 m after it','5 m either side','10 m before and 20 m after','Anywhere outside the painted stripes'], ans:0,
+ why:'You must not stop within 20 metres of the approach side and 10 metres of the leaving side of a pedestrian or children’s crossing. The same 20 m / 10 m rule applies to bus stops.',
+ ref:'Drive Safe 3.17 Stopping, p.76'},
+
+{cat:'PARKING', title:'Parking on a two-way street',
+ q:'You are parking on an ordinary two-way street. Where must the car go?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'park',
+   cars:[{from:'south',d:9,intent:'stopped',label:'',color:C.carC,kerbside:true}]},
+ opts:['Close to and parallel with the LEFT boundary of the street','Either side, facing either way','Close to the right kerb, facing traffic','At an angle to the kerb'], ans:0,
+ why:'When parking in a two-way street you must park close to, and parallel with, the left boundary of the street. Unless signs indicate otherwise, you may park on either side in a one-way street.',
+ ref:'Drive Safe 3.18.2 How to park, p.78'},
+
+{cat:'PARKING', title:'Pulling out of a parking spot',
+ q:'You are about to drive out of a parallel park. How long must you indicate before you drive on?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'pullout',
+   cars:[{from:'south',d:9,intent:'stopped',label:'',color:C.carC,kerbside:true}]},
+ opts:['At least 5 seconds','At least 2 seconds','No indicator is needed','Just long enough to check the mirrors'], ans:0,
+ why:'If you are starting from a stationary position at the side of a road you must indicate for at least 5 seconds prior to driving on. You must also give way to following or overtaking traffic.',
+ ref:'Drive Safe 3.11.2 Types of indicators/signals, p.62'},
+
+{cat:'PARKING', title:'Fire hydrant',
+ q:'How close to a fire hydrant or fire plug may you stop?',
+ world:{layout:'straight', wide:true, houses:true, hydrant:true, yourIntent:'park', cars:[]},
+ opts:['No closer than one metre','No closer than 5 metres','No closer than 10 metres','You may park right beside it'], ans:0,
+ why:'You must not stop within one metre of a fire hydrant or fire plug. Other no-stopping distances to remember: 20 m from a railway crossing, 3 m from a letter box, and 10 m from an intersection.',
+ ref:'Drive Safe 3.17 Stopping, p.76'},
+
+{cat:'PARKING', title:'Opening your door after parking',
+ q:'You have parked at the kerb on a busy road. What should you do before opening your door?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'park',
+   cars:[{from:'south',d:-4,intent:'straight',label:'BIKE',color:C.bike,type:'bike'}]},
+ opts:['Look out for traffic, especially cyclists, and wait until it is safe','Open it quickly so it is over fast','Open it and listen for a horn','Only check the mirror'], ans:0,
+ why:'After you park you should look out for traffic, especially cyclists, and wait until it is safe before you open the door.',
+ ref:'Drive Safe 3.18.2 How to park — “When parking on a hill”, p.79'},
+
+/* ---------- OVERTAKING & LANES ---------- */
+{cat:'OVERTAKING', title:'Overtaking near a crest',
+ q:'You are nearing the crest of a hill and cannot see the road beyond. May you overtake?',
+ world:{layout:'straight', warn:true, yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['No — you must not overtake when nearing a crest or a blind bend','Yes, if you can do it quickly','Yes, if you sound your horn','Yes, if the centre line is broken'], ans:0,
+ why:'You must not overtake another vehicle when you are nearing a blind bend or the crest of a hill, or when you do not have a good view of the road ahead.',
+ ref:'Drive Safe 3.16.2 When you must not overtake, p.73'},
+
+{cat:'OVERTAKING', title:'Overtaking on the left',
+ q:'When may you legally overtake another vehicle on its LEFT?',
+ world:{layout:'straight', multiLane:true, yourIntent:'straight',
+   cars:[{from:'south',d:6,intent:'right',label:'A',color:C.carA,rightLane:true}]},
+ opts:['On a multi-lane road when it is safe, or when the vehicle is indicating a right turn','Never — overtaking on the left is always illegal','Any time you are in a hurry','Only on a freeway'], ans:0,
+ why:'You can overtake a vehicle on the left only when directed by a police officer or other authorised person, when you are on a multi-lane road and it is safe to do so, or when a vehicle is indicating that it is turning right (you may also pass any stationary vehicles behind it).',
+ ref:'Drive Safe 3.16.1 When can you overtake?, p.73'},
+
+{cat:'OVERTAKING', title:'Vehicle stopped at a crossing',
+ q:'A car ahead has stopped at a pedestrian crossing. May you overtake it?',
+ world:{layout:'straight', crossing:'zebra', yourIntent:'straight',
+   cars:[{from:'south',d:-2,intent:'stopped',label:'A',color:C.carA}], peds:[{leg:'cross',t:0.3}]},
+ opts:['No — you must not overtake a vehicle stopped at a crossing','Yes, if you go slowly','Yes, if you cannot see anyone crossing','Yes, but on the left only'], ans:0,
+ why:'You must not overtake another vehicle when it has slowed down or stopped at a railway, pedestrian or children’s crossing. Someone you cannot see may be crossing in front of it.',
+ ref:'Drive Safe 3.16.2 When you must not overtake, p.73'},
+
+{cat:'OVERTAKING', title:'Changing lanes near an intersection',
+ q:'You are approaching an intersection and want to change lanes. What is the rule?',
+ world:{layout:'cross', multiLane:true, control:'signals', signals:{main:'green'}, yourIntent:'lanechange',
+   cars:[{from:'south',d:-6,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+ opts:['Never change lanes while going through or approaching an intersection','Change lanes if you indicate first','Change lanes only in the last 10 metres','Change lanes if the light is green'], ans:0,
+ why:'Never change lanes while going through, or approaching, an intersection — and never change lanes where the line between the lanes is a continuous line. Move into the correct lane early, not at the last moment.',
+ ref:'Drive Safe 3.15 Changing Lanes and 3.14.4, p.72'},
+
+{cat:'OVERTAKING', title:'Being overtaken',
+ q:'Another vehicle is overtaking you on a country road. What should you do?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'north',d:2,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Move left to give them clearance and do not speed up','Speed up so it is over sooner','Hold your exact position and speed','Move right to block them'], ans:0,
+ why:'You should move to the left to allow plenty of clearance for the overtaking vehicle. You must NOT increase your speed until they have completely passed you, and you must not drive in a way that prevents a vehicle from overtaking or passing you.',
+ ref:'Drive Safe 3.16.4 What to do when you are being overtaken, p.74'},
+
+{cat:'OVERTAKING', title:'Leaving a freeway',
+ q:'You are about to take a freeway exit. When should you move into the exit lane?',
+ world:{layout:'straight', freeway:true, yourIntent:'left',
+   cars:[{from:'south',d:12,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+ opts:['Well in advance — select the lane early and indicate early','At the last moment, at the exit arrow','Only once you are already on the ramp','Whenever a gap appears, even inside the exit'], ans:0,
+ why:'Select the correct lane for your destination well in advance of the exit and indicate your intention to leave the freeway well in advance. When safe, move gradually but positively into the exit lane, then slow down as you enter the exit ramp.',
+ ref:'Drive Safe 3.12.4 Leaving the freeway, p.67'}
+,
+/* ================= DEFENSIVE DRIVING ================= */
+{cat:'DEFENSIVE', title:'Parked cars in a suburban street',
+ q:'You are driving past a line of parked cars in a 50 zone. What is the defensive thing to do?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'straight',
+   hazard:{x:-3.6,y:1.0,z:3,r:1.3,label:'CHILD'},
+   cars:[{from:'south',d:-1,intent:'stopped',label:'',color:C.carC,kerbside:true},
+         {from:'south',d:8,intent:'stopped',label:'',color:C.carB,kerbside:true},
+         {from:'south',d:17,intent:'stopped',label:'',color:C.carA,kerbside:true}],
+   peds:[{leg:'emerge',t:0.35,z:3}]},
+ opts:['Ease off, cover the brake and watch the gaps — someone can step out','Hold the speed limit, it is a 50 zone','Move to the right and keep your speed','Sound your horn as you pass'], ans:0,
+ why:'Slow down when the road is busy. If there are parked cars ahead, drivers may open doors or pull out suddenly — and people may step out from between parked cars. Your speed decides how much time you have to spot a hazard and react to it.',
+ ref:'Drive Safe 1.2.2 Choosing what speed to travel, pp.3–4'},
+
+{cat:'DEFENSIVE', title:'Bus stopped at the kerb',
+ q:'A bus is stopped at the kerb ahead of you. Where is the danger you cannot see?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'straight',
+   hazard:{x:-3.6,y:1.0,z:2.5,r:1.3,label:'PEDESTRIAN'},
+   cars:[{from:'south',d:9,intent:'stopped',label:'BUS',color:C.bus,type:'bus',kerbside:true}],
+   peds:[{leg:'front',t:0.4,z:2.5}]},
+ opts:['Someone stepping out from behind or in front of the bus','Nothing — a stopped bus is not a hazard','The bus reversing into you','Passengers throwing things'], ans:0,
+ why:'Look out for pedestrians between parked cars or behind buses. People walking to or from a bus often cross without looking. Slow down and be ready to stop.',
+ ref:'Drive Safe 1.8.1 Pedestrians, p.18'},
+
+{cat:'DEFENSIVE', title:'Car waiting at a side street',
+ q:'A car is waiting to pull out of a side street on your left. What is the defensive move?',
+ world:{layout:'tee-left', houses:true, yourIntent:'straight',
+   hazard:{x:-8,y:1.0,z:1.75,r:2.2,label:'CAR EMERGING'},
+   cars:[{from:'west',d:8,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Ease off, cover the brake and check the driver has seen you','Speed up to clear the intersection quickly','Assume they will give way and hold your speed','Flash your headlights to wave them out'], ans:0,
+ why:'Be alert particularly at intersections, and when in doubt, don’t proceed. Never assume another driver has seen you — a car edging out is a hazard until you know it has stopped for you.',
+ ref:'Drive Safe 1.10 The Ten Rules to Safe Driving (rules 5 and 8), p.25'},
+
+{cat:'DEFENSIVE', title:'Motorcycle at an intersection',
+ q:'You are turning right at an intersection. What is the easiest thing to miss?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'right',
+   hazard:{x:1.75,y:1.1,z:8,r:1.5,label:'MOTORCYCLE'},
+   cars:[{from:'north',d:8,intent:'straight',label:'MOTO',color:C.moto,type:'moto'},
+         {from:'north',d:24,intent:'straight',label:'A',color:C.carB}]},
+ opts:['An oncoming motorcycle — small, and it looks further away than it is','A car in the next suburb','The traffic light changing','A pedestrian behind you'], ans:0,
+ why:'Smaller vehicles such as motorcycles appear further away and seem to be travelling slower than they actually are. At intersections drivers may simply not see them — look twice, and do not turn in front of a rider.',
+ ref:'Drive Safe 1.9.2 Ride to be seen by other road users, pp.23–24'},
+
+{cat:'DEFENSIVE', title:'Kangaroo at dusk',
+ q:'You are on a country road just after sunset. What should you be scanning for?',
+ world:{layout:'straight', night:true, gravel:true, yourIntent:'straight',
+   hazard:{x:2.2,y:0.9,z:8,r:1.5,label:'KANGAROO'},
+   animal:{x:2.2,z:8}, cars:[]},
+ opts:['Wildlife and livestock — they are worst at sunrise and after sunset','Nothing, animals avoid headlights','Only other cars','Only road signs'], ans:0,
+ why:'When driving in the country, watch out for wildlife and livestock on roads, particularly at sunrise and after sunset. Drive at a speed that lets you stop within the area lit by your headlights.',
+ ref:'Drive Safe 3.3.4 Country driving and 3.3.1, pp.48, 46'},
+
+{cat:'DEFENSIVE', title:'Roadworks with no visible workers',
+ q:'You enter a temporary 40 zone at roadworks and cannot see anybody working. What must you do?',
+ world:{layout:'straight', roadworks:true, worker:true, yourIntent:'straight',
+   hazard:{x:-4.9,y:1.3,z:6,r:1.4,label:'ROADWORKER'}, cars:[]},
+ opts:['Keep to the temporary limit — workers are not always visible','Return to the normal speed limit','Slow only where you can see a worker','Speed up to clear the zone'], ans:0,
+ why:'The law on temporary speed limits is the same as for normal ones — you must not exceed the speed shown on the sign. Some roadwork activities are mobile, and roadworkers may not always be visible when you travel through a temporary speed limit zone.',
+ ref:'Drive Safe 3.1.2 Temporary speed limits, pp.40–41'},
+
+{cat:'DEFENSIVE', title:'Fallen powerline',
+ q:'A pole has come down and a cable is lying across the road ahead. What do you do?',
+ world:{layout:'straight', powerline:true, yourIntent:'straight',
+   hazard:{x:4.7,y:0.6,z:3,r:2.0,label:'POWERLINE'}, cars:[]},
+ opts:['Stop well back, stay in the car and call 000 and Western Power','Drive over it quickly','Get out and drag it off the road','Reverse at speed without stopping'], ans:0,
+ why:'Always assume a fallen powerline is live and extremely dangerous. Stay in the car unless you have no choice but to leave, call 000 and Western Power on 13 13 51, and keep everyone at least eight metres away from the car and the electrical infrastructure.',
+ ref:'Drive Safe 4.4 Contact with electrical infrastructure, p.94'},
+
+{cat:'DEFENSIVE', title:'The two second rule',
+ q:'How do you actually check that you are two seconds behind the car in front?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:8,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Watch it pass a fixed object, then say “one thousand and one, one thousand and two”','Count three car lengths','Keep 20 metres back at any speed','Match the gap of the car behind you'], ans:0,
+ why:'Pick an object at the side of the road. As the vehicle ahead passes it, say “one thousand and one, one thousand and two”. You should take the full two seconds to reach that object — if you get there first, you are too close.',
+ ref:'Drive Safe 3.2.1 The ‘Two Second’ rule, p.43'},
+
+{cat:'DEFENSIVE', title:'The cushion of space',
+ q:'You want a margin for error on all sides of your car. Which gap can you actually control?',
+ world:{layout:'straight', multiLane:true, mirror:true, yourIntent:'straight',
+   cars:[{from:'south',d:10,intent:'straight',label:'A',color:C.carA},
+         {from:'south',d:-16,intent:'straight',label:'B',color:C.carB},
+         {from:'south',d:2,intent:'straight',label:'C',color:C.carC,rightLane:true}]},
+ opts:['The gap in front — so keep a safe following distance','The gap behind you','The gap to your right','None of them'], ans:0,
+ why:'Always allow a cushion of space at the front, rear and both sides of your vehicle — that is your margin for error in an emergency. The easiest cushion to control is the one in front of you, so always maintain a safe following distance.',
+ ref:'Drive Safe 3.2.1 The ‘Two Second’ rule, p.43'},
+
+{cat:'DEFENSIVE', title:'Being tailgated',
+ q:'Check your mirror — a car is sitting right on your bumper. What is the safe response?',
+ world:{layout:'straight', mirror:true, yourIntent:'straight',
+   cars:[{from:'south',d:-15,intent:'straight',label:'B',color:C.carA},
+         {from:'south',d:14,intent:'straight',label:'A',color:C.carB}]},
+ opts:['Increase your own gap to the car in front and let them past when you can','Brake sharply to teach them a lesson','Speed up so they back off','Hold your position and stare in the mirror'], ans:0,
+ why:'Tailgating is aggressive driving. Keep calm, aim to distance yourself from the other vehicle, and let them overtake — if a vehicle is following too closely, slow down and allow it past. A bigger gap in front is what gives you room to brake gently instead of hard.',
+ ref:'Drive Safe 4.5 Aggressive Driving or Behaviour and 1.9.2, pp.95, 24'},
+
+{cat:'DEFENSIVE', title:'A green light in the distance',
+ q:'The signal a long way ahead has been green for a while and you are travelling at the limit. What does a defensive driver do?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'straight', cars:[]},
+ opts:['Ease off — it may be yellow or red by the time you get there','Speed up to get through on the green','Keep the same speed and hope','Change lanes'], ans:0,
+ why:'If the traffic control signal ahead of you is green, it may turn yellow or red by the time you get there — and you must be able to stop safely. Easing off early means one gentle stop instead of a hard one.',
+ ref:'Drive Safe 1.2.2 Choosing what speed to travel, p.3'},
+
+{cat:'DEFENSIVE', title:'Choosing a calmer route',
+ q:'After a long day you can go home through six uncontrolled crossroads, or take a slightly longer route with signals and roundabouts. Which is the lower-risk choice?',
+ world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'straight', cars:[]},
+ opts:['The controlled route — signs and signals decide priority for you','The uncontrolled route, it is shorter','Whichever has fewer cars','It makes no difference'], ans:0,
+ why:'A controlled intersection has signals, a STOP or GIVE WAY sign, or a roundabout — the priority is decided for you. At an uncontrolled intersection you must work out who goes first every single time. Rule 6 of the Ten Rules is “plan your moves well in advance”, and rule 5 is “be patient, and when in doubt, don’t proceed”. Fewer judgement calls means fewer chances to get one wrong when you are tired.',
+ ref:'Drive Safe 3.13.1–3.13.2 and 1.10 The Ten Rules, pp.68–69, 25'},
+
+{cat:'DEFENSIVE', title:'Setting up before you drive',
+ q:'When should you sort out your music, climate, navigation and seat position?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'park', cars:[]},
+ opts:['Before you move off — set it all up while stopped','At the first red light','While driving, it only takes a second','Whenever you feel like it'], ans:0,
+ why:'Rule 4 of the Ten Rules to Safe Driving is “concentrate at all times and be prepared”. Pre-driving checks — including adjusting your mirrors from the correct driving position — are done before you drive. Every setting you fix while stopped is one you are not fiddling with at 60 km/h.',
+ ref:'Drive Safe 1.10 and 1.11 Pre-Driving Checks, pp.25–27'},
+
+{cat:'DEFENSIVE', title:'Mobile phone while driving',
+ q:'Which use of a mobile phone is legal while you are driving?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:12,intent:'straight',label:'A',color:C.carA}]},
+ opts:['A call or GPS on a phone secured in a mounting, without touching it','Texting at a red light','Holding the phone to your ear on a quiet road','Reading an email at a roundabout'], ans:0,
+ why:'A driver may only make or receive a call if the phone is secured in a mounting fixed to the vehicle, or can be operated without touching it. GPS may be used only if the phone is in a mounting and you never touch the keypad or screen. Creating, sending or looking at a text, video message or email while driving is illegal.',
+ ref:'Drive Safe 1.7 Mobile Phones, p.18'},
+
+{cat:'DEFENSIVE', title:'Warning signs of fatigue',
+ q:'Which of these means you are already too tired to drive safely?',
+ world:{layout:'straight', night:true, yourIntent:'straight', cars:[]},
+ opts:['Repeated yawning, heavy eyes and your car wandering over the road','Feeling a bit bored','Wanting a coffee','Having the radio up loud'], ans:0,
+ why:'Warning signs of driver fatigue include repeated yawning, sore or heavy eyes, daydreaming, your vehicle wandering over the road, hallucinating, slow reactions, and your speed drifting up or down without meaning to. Be honest with yourself — if you have any of these, stop immediately and take a break.',
+ ref:'Drive Safe 1.5.3 What are the warning signs of driver fatigue?, p.17'},
+
+{cat:'DEFENSIVE', title:'Fatigue has set in',
+ q:'You are 40 minutes from home and the warning signs of fatigue have started. What actually works?',
+ world:{layout:'straight', night:true, yourIntent:'straight', cars:[]},
+ opts:['Nothing except stopping immediately for a break or a nap','Winding the window down','Coffee and loud music','Pushing on because you are nearly home'], ans:0,
+ why:'Once fatigue sets in, there is nothing you can do about it except stop immediately and take a break or a nap. Fresh air and caffeine only delay it. On long trips, take a break at least every two hours.',
+ ref:'Drive Safe 1.5.4 Ways to reduce driver fatigue, p.17'},
+
+{cat:'DEFENSIVE', title:'Micro-sleep',
+ q:'A micro-sleep lasts three to five seconds. At 100 km/h, roughly how far does your car travel in that time?',
+ world:{layout:'straight', night:true, yourIntent:'straight', cars:[]},
+ opts:['Over 100 metres','About 10 metres','About 30 metres','About 500 metres'], ans:0,
+ why:'A drowsy driver can drift into a micro-sleep — a brief nap of around three to five seconds. At 100 km/h your vehicle can travel over 100 metres in that time: enough to run off the road into a tree, another vehicle or a pedestrian.',
+ ref:'Drive Safe 1.5.1 What is driver fatigue?, p.15'},
+
+{cat:'DEFENSIVE', title:'No sleep for 17 hours',
+ q:'You have been awake for about 17 to 18 hours. What is your driving ability comparable to?',
+ world:{layout:'straight', night:true, yourIntent:'straight', cars:[]},
+ opts:['A blood alcohol concentration of 0.05','Being completely fresh','One standard drink','Nothing measurable'], ans:0,
+ why:'If you have not had any sleep for 17 to 18 hours, your ability to drive will be the same as if you had a BAC of 0.05 per cent — way over the zero limit for a novice driver, and it means your crash risk doubles.',
+ ref:'Drive Safe 1.5.2 The main causes of fatigue, p.16'},
+
+{cat:'DEFENSIVE', title:'The worst hours to drive',
+ q:'Which stretch of the day is the most dangerous to drive because of your body clock?',
+ world:{layout:'straight', night:true, yourIntent:'straight', cars:[]},
+ opts:['Midnight to 6 am','Late afternoon','Mid-morning','Just after lunch'], ans:0,
+ why:'After midnight your body clock turns your alertness right down, and you are “switched off” between 2 am and 6 am. Although there are fewer drivers on the road between midnight and 6 am, statistics show they can be up to 20 times more likely to have a crash during those hours.',
+ ref:'Drive Safe 1.5.2 The main causes of fatigue, pp.15–16'},
+
+{cat:'DEFENSIVE', title:'Novice driver and alcohol',
+ q:'You are a novice driver. How much alcohol may be in your blood when you drive?',
+ world:{layout:'straight', night:true, lplate:true, yourIntent:'straight', cars:[]},
+ opts:['None at all — a zero BAC limit applies','0.05, the same as everyone else','0.02','0.08'], ans:0,
+ why:'All novice drivers are subject to a zero blood alcohol limit. You are a novice driver until you have held a licence for two years, or periods adding up to two years. To be sure you stay at zero, do not drink any alcohol at all when you intend to drive.',
+ ref:'Drive Safe 1.3.3 What is the legal limit?, p.6'},
+
+{cat:'DEFENSIVE', title:'Sobering up',
+ q:'You have had four standard drinks in an hour. What will bring your blood alcohol back down?',
+ world:{layout:'straight', night:true, houses:true, yourIntent:'park', cars:[]},
+ opts:['Only time — about one hour per standard drink','Strong coffee','A big meal','A cold shower and fresh air'], ans:0,
+ why:'The body breaks down alcohol very slowly. A healthy person takes about one hour to get rid of the alcohol from one standard drink, so four drinks in an hour take about four hours to clear. No amount of coffee or soft drink will sober you up — only time can do that.',
+ ref:'Drive Safe 1.3.5 How long does alcohol stay in your body?, p.8'},
+
+{cat:'DEFENSIVE', title:'Dazzled by high beam',
+ q:'An oncoming car has failed to dip its high beam and you are dazzled. What should you do?',
+ world:{layout:'straight', night:true, glare:true, yourIntent:'straight',
+   cars:[{from:'north',d:20,intent:'straight',label:'A',color:C.carC}]},
+ opts:['Slow down, look to the left of the road and keep left — if you cannot see, stop','Flash your own high beam back','Stare at their lights so you can judge the gap','Speed up to get past sooner'], ans:0,
+ why:'If a vehicle comes towards you with lights on high beam: slow down, look to the left of the road, keep to the left of the road, and if you cannot see — stop.',
+ ref:'Drive Safe 3.3.1 Driving at night, p.46'},
+
+{cat:'DEFENSIVE', title:'Fog or smoke',
+ q:'You drive into thick fog. What should you do with your lights?',
+ world:{layout:'straight', fog:true, yourIntent:'straight',
+   cars:[{from:'south',d:14,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Dip your headlights — high beam only lights up the fog','Switch to high beam so you see further','Turn your lights off','Use hazard lights while moving'], ans:0,
+ why:'Do not put your lights on high beam in fog or smoke — it only lights up the fog and makes the road harder to see. Dip your headlights, drive slowly, do not follow closely behind another vehicle, and use fog lights if you have them.',
+ ref:'Drive Safe 3.3.3 Driving in fog or smoke, p.47'},
+
+{cat:'DEFENSIVE', title:'Water across the road',
+ q:'A floodway ahead is covered with flowing water. What is the rule?',
+ world:{layout:'straight', flood:true, gravel:true, yourIntent:'straight', cars:[]},
+ opts:['Do not cross if it is too deep or fast flowing — check the depth first','Cross quickly to build a bow wave','Cross slowly in a low gear regardless of depth','Follow the car in front through'], ans:0,
+ why:'Floodways and river crossings are dangerous places. Check the depth by walking the crossing if it is safe to do so. If the water is flowing and deeper than the bottom of the vehicle’s chassis, do not cross. Inexperienced drivers should take an alternative route if one exists.',
+ ref:'Drive Safe 3.7 Crossing Water on Roadways, p.50'},
+
+{cat:'DEFENSIVE', title:'Pulling out on a country road',
+ q:'You are stopped in a country roadside bay and you can see a vehicle approaching in the distance. What should you do?',
+ world:{layout:'straight', gravel:true, yourIntent:'pullout',
+   cars:[{from:'north',d:26,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Wait until it has passed — do not pull out in front of it','Pull out now, there is plenty of room','Pull out and accelerate hard','Pull out and wave thanks'], ans:0,
+ why:'When driving in the country, don’t pull out onto the roadway when you see another vehicle approaching — wait until the other vehicle has passed. Distances and closing speeds are much harder to judge on open roads.',
+ ref:'Drive Safe 3.3.4 Country driving, p.48'},
+
+{cat:'DEFENSIVE', title:'Checking your blind spot setup',
+ q:'How can you tell your mirrors are adjusted well enough to cover the gap between them?',
+ world:{layout:'straight', multiLane:true, mirror:true, yourIntent:'straight',
+   cars:[{from:'south',d:-9,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+ opts:['As a passing car leaves the interior mirror, its bumper should appear in the exterior mirror','If you can see your own rear wheels','If both mirrors show the same view','Mirrors cannot be checked'], ans:0,
+ why:'To check that all mirrors are in the correct position, let a vehicle pass you on the right. As it passes out of your vision in the interior mirror, its front bumper should appear in your exterior mirror. Even so, always glance over your shoulder — motorcycles and bicycles can be completely hidden in a blind spot.',
+ ref:'Drive Safe 1.11 Pre-Driving Checks, pp.26–27'},
+
+{cat:'DEFENSIVE', title:'Tyre tread',
+ q:'What is the minimum legal tread depth on the part of the tyre that touches the road?',
+ world:{layout:'straight', wide:true, houses:true, yourIntent:'park', cars:[]},
+ opts:['1.5 mm — about the thickness of a match head','0.5 mm','3 mm','There is no minimum'], ans:0,
+ why:'Tyre tread should be at least 1.5 mm deep — about the thickness of a match head — over all parts of the tyre surface that normally contacts the road. Smooth tyres can cause you to skid and are very dangerous in the wet.',
+ ref:'Drive Safe 1.11 Pre-Driving Checks, p.26'},
+
+{cat:'DEFENSIVE', title:'Using your horn',
+ q:'When may you legally use your horn?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:10,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Only to warn other road users of danger','To tell a slow driver to hurry up','To say hello to a friend','Whenever traffic annoys you'], ans:0,
+ why:'Only use your horn to warn other road users of danger — it is an offence to use it for other purposes. You must not use the horn or any other warning instrument except in an emergency or to prevent injury to a person or property.',
+ ref:'Drive Safe 1.11 Pre-Driving Checks and 4.2, pp.26, 83'},
+
+/* ================= EMERGENCIES ================= */
+{cat:'EMERGENCY', title:'Tyre blow-out',
+ q:'A front tyre blows out at 90 km/h and the car pulls hard to one side. What do you do first?',
+ world:{layout:'straight', gravel:true, yourIntent:'straight', cars:[]},
+ opts:['Grip the wheel firmly, do not oversteer, and come off the accelerator','Brake hard immediately','Steer sharply the other way to correct it','Pull the park brake on'], ans:0,
+ why:'Keep a firm grip on the steering wheel, do not oversteer to correct the swerve or pull, and take your foot off the accelerator. Only once you have gained better control of the car do you gently apply the brakes, then slow down, pull over and stop somewhere safe with your hazard lights on.',
+ ref:'Drive Safe 4.2.2 Tyre blow-out (rapid puncture), p.84'},
+
+{cat:'EMERGENCY', title:'Brake failure',
+ q:'You press the brake pedal and the car does not slow down. What is the correct sequence?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:16,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['Pump the pedal hard and fast, change down, then gently apply the park brake','Yank the park brake on straight away','Turn the ignition off and steer','Open the door and drag your foot'], ans:0,
+ why:'It may help to pump the brake pedal hard and fast, move to a lower gear (manual or automatic), then gently apply the park brake. Use your horn and flash your headlights to warn others, move to the side of the road, and carefully stop using the park brake.',
+ ref:'Drive Safe 4.2.4 Brake failure, p.84'},
+
+{cat:'EMERGENCY', title:'Stuck accelerator',
+ q:'You lift off the accelerator but the car keeps accelerating. What do you do?',
+ world:{layout:'straight', yourIntent:'straight', cars:[]},
+ opts:['Clutch in, or select NEUTRAL, then brake firmly without locking the wheels','Turn the ignition off straight away','Steer into the kerb to scrub off speed','Pump the accelerator to unstick it'], ans:0,
+ why:'Depress the clutch, or in an automatic select NEUTRAL, then apply firm pressure on the brakes without locking the wheels. Find a safe place to pull off the road and stop — and only turn off the ignition once you have stopped. Killing the ignition while moving can lock the steering.',
+ ref:'Drive Safe 4.2.3 A stuck accelerator, p.84'},
+
+{cat:'EMERGENCY', title:'Avoiding a skid',
+ q:'What is the handbook’s ABC for staying out of a skid?',
+ world:{layout:'straight', rain:true, yourIntent:'straight', cars:[]},
+ opts:['Accelerate gently, Brake gently, Corner gently','Accelerate hard, Brake late, Corner fast','Always Brake, then Coast','Avoid Braking Completely'], ans:0,
+ why:'A skid is almost always the result of the driver’s own actions — sudden or excessive braking, harsh acceleration, coarse steering or excessive speed. You are unlikely to have much time or space to correct one, so remember the ABC of skid prevention: Accelerate gently, Brake gently, Corner gently.',
+ ref:'Drive Safe 4.2.11 Skids, p.87'},
+
+{cat:'EMERGENCY', title:'Forced onto the gravel',
+ q:'Two wheels have dropped onto the gravel edge of a country road. What do you do?',
+ world:{layout:'straight', gravel:true, yourIntent:'straight', cars:[]},
+ opts:['Do not rush back on — grip the wheel, drive straight, slow down, then check traffic','Swing straight back onto the sealed road','Brake hard immediately','Accelerate to regain grip'], ans:0,
+ why:'If you have been forced onto the gravel edge of a road, don’t rush to get back onto the road. Keep a firm grip on the steering wheel and drive in a straight line, slow down, and check traffic before you enter the road again.',
+ ref:'Drive Safe 4.2.6 Forced on to the gravel, p.85'},
+
+{cat:'EMERGENCY', title:'Head-on coming at you',
+ q:'A vehicle is on the wrong side of the road coming straight at you. What do you do?',
+ world:{layout:'straight', centre:'single', gravel:true, yourIntent:'straight',
+   cars:[{from:'south',d:18,intent:'straight',label:'A',color:C.carA,rightLane:false}]},
+ opts:['Brake firmly without skidding, flash and horn, give them all the room you can, look for an escape','Hold your lane and hope they move','Swerve to the right into their lane','Close your eyes and brake'], ans:0,
+ why:'Brake firmly without skidding while flashing your lights and sounding your horn, give the oncoming vehicle all the room you can, look for an avenue of escape, and prepare for further evasive action — including pulling off the road if necessary.',
+ ref:'Drive Safe 4.2.5 Possible head-on collision, p.85'},
+
+{cat:'EMERGENCY', title:'Stalled on a rail crossing',
+ q:'Your car has stalled on a railway crossing and you can hear a train coming. What do you do?',
+ world:{layout:'railway', boom:'up', lights:'flash', yourIntent:'straight', cars:[]},
+ opts:['Get everyone out of the car immediately','Keep trying to restart the engine','Put it in neutral and push it','Sound the horn and wait'], ans:0,
+ why:'If you hear or see a train coming, leave the car immediately. Do not risk your life or those of your passengers trying to save your car. You only try to restart or push the car off the track when no trains are coming.',
+ ref:'Drive Safe 4.2.7 Stalled on a railway crossing, p.85'},
+
+{cat:'EMERGENCY', title:'Car fire',
+ q:'Smoke starts pouring from under the bonnet. What is the order?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:16,intent:'stopped',label:'',color:'#e0553f',type:'breakdown',kerbside:true}]},
+ opts:['Slow down, stop, ignition off, everyone out and away from the fire, then call for help','Keep driving to a service station','Open the bonnet fully to look','Throw water on the engine'], ans:0,
+ why:'Slow down, stop and turn off the ignition, get passengers out of the car and away from the fire, and if the fire is beyond control move away — petrol may explode. Never touch burning wires or insulation with your bare hands.',
+ ref:'Drive Safe 4.2.10 Car fire, p.86'},
+
+{cat:'EMERGENCY', title:'Emergency vehicle behind you',
+ q:'A siren and flashing lights are right behind you. What must you do?',
+ world:{layout:'straight', multiLane:true, mirror:true, yourIntent:'straight',
+   cars:[{from:'south',d:-14,intent:'straight',label:'EMERGENCY',color:'#5aa9ff',type:'police'},
+         {from:'south',d:14,intent:'straight',label:'A',color:C.carA}]},
+ opts:['Move as far left as you safely can; if you cannot, slow down or stop and let it pass','Speed up to stay ahead of it','Stop dead in your lane immediately','Ignore it, it is not for you'], ans:0,
+ why:'Do not panic. Check where the emergency vehicle is coming from and give way to it, move as far to the left of the road as you can, and if you cannot move left, slow down or stop and let it drive around you. It is an offence not to give way to an emergency vehicle.',
+ ref:'Drive Safe 4.3.3 Emergency Vehicles, p.93'},
+
+{cat:'EMERGENCY', title:'Broken down on a country road',
+ q:'You break down on a 110 km/h road and want to put out a hazard warning triangle. How far back?',
+ world:{layout:'straight', gravel:true, yourIntent:'park',
+   cars:[{from:'south',d:12,intent:'stopped',label:'',color:C.carC,type:'breakdown',kerbside:true}]},
+ opts:['Up to 200 metres outside a built-up area (up to 50 m inside one)','10 metres is plenty','Up to 50 metres anywhere','Triangles are not used in WA'], ans:0,
+ why:'Activate your hazard lights immediately and get passengers clear of traffic. You may place a hazard warning triangle up to 50 metres away within a built-up area, and up to 200 metres away outside built-up areas or on high-speed roads. Hold it in front of you as you walk out, and behind you as you walk back.',
+ ref:'Drive Safe 4.2.1 Breakdown on the road, p.83'},
+
+{cat:'EMERGENCY', title:'An aggressive driver follows you',
+ q:'A driver has been tailgating and gesturing at you, and is now following you. What do you do?',
+ world:{layout:'straight', mirror:true, houses:true, yourIntent:'straight',
+   cars:[{from:'south',d:-13,intent:'straight',label:'B',color:'#ff4d5e'}]},
+ opts:['Windows up, doors locked, drive to a police station or a public place with people','Pull over and sort it out','Brake hard to make them back off','Drive home so they know where you live'], ans:0,
+ why:'Keep calm and stay in control of your actions, make sure your windows are up and doors locked, and aim to distance yourself. If another vehicle follows you, drive to the nearest police station or a public place where there are people. Record the plate, colour, make and model, and report it to police on 9222 1111.',
+ ref:'Drive Safe 4.5 Aggressive Driving or Behaviour, p.95'},
+
+{cat:'EMERGENCY', title:'After a crash',
+ q:'You have had a crash. When must you report it to the police?',
+ world:{layout:'cross', yourIntent:'straight',
+   cars:[{from:'east',d:6,intent:'stopped',label:'A',color:C.carA}]},
+ opts:['If anyone is injured, damage tops $3,000, or the property owner is not present','Only if someone is taken to hospital','Only if you were at fault','Never — insurance handles it'], ans:0,
+ why:'Stop immediately, help anyone injured if it is safe to do so, and exchange your name, address and number plate. You MUST report the crash to police if any injury has occurred, if there is more than $3,000 damage to vehicles and/or property in total, or if the owner of the damaged property is not present.',
+ ref:'Drive Safe 4.2.12 Post Crash Management, p.88'},
+
+{cat:'EMERGENCY', title:'First aid at a crash',
+ q:'You are first on the scene of a crash. What is the very first step of DRSABCD?',
+ world:{layout:'straight', yourIntent:'straight',
+   cars:[{from:'south',d:14,intent:'stopped',label:'',color:'#e7ecf5',type:'breakdown',kerbside:true}]},
+ opts:['Danger — make sure the area is safe for you, bystanders and the casualty','Compressions straight away','Move the injured person off the road','Call your insurer'], ans:0,
+ why:'DRSABCD starts with Danger: check for danger to yourself first, then bystanders, then the injured person. Position your car to protect the scene, switch on hazard lights, turn off the damaged vehicle’s ignition, stop anyone smoking, and stay away from fallen power lines. Do not move injured people unless they are in danger.',
+ ref:'Drive Safe 4.3 First Aid, pp.89–90'}
+
+];
+
+/* ============================================================
+   TOP-DOWN RENDERER
+   ============================================================ */
+function drawTop(ctx,sc,t,VW,VH){
+  var W=VW||ctx.canvas.width,H=VH||ctx.canvas.height,w=sc.world,G=geom(w);
+  var S=9.0, cx=W/2, cy=H*0.44, HW=G.HW, layout=w.layout||'cross';
+  var T=function(x,z){return [cx+x*S, cy-z*S];};
+  var R=function(x0,z0,x1,z1){var a=T(x0,z1);return [a[0],a[1],(x1-x0)*S,(z1-z0)*S];};
+
+  ctx.clearRect(0,0,W,H);
+  var g=ctx.createLinearGradient(0,0,0,H);
+  g.addColorStop(0,C.grass1);g.addColorStop(1,C.grass2);
+  ctx.fillStyle=g;ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='rgba(255,255,255,.03)';
+  for(var i=0;i<80;i++)ctx.fillRect((i*97)%W,(i*371)%H,7,7);
+
+  ctx.fillStyle=C.road;
+  ctx.fillRect.apply(ctx,R(-HW,-44,HW,(layout==='tee')?HW:44));
+  if(layout==='cross'||layout==='tee'||layout==='roundabout') ctx.fillRect.apply(ctx,R(-44,-HW,44,HW));
+  else if(layout==='tee-left') ctx.fillRect.apply(ctx,R(-44,-HW,0,HW));
+  else if(layout==='tee-right') ctx.fillRect.apply(ctx,R(0,-HW,44,HW));
+
+  var seg=function(x1,z1,x2,z2,col,wd,pat){
+    ctx.beginPath();ctx.setLineDash(pat||[]);ctx.strokeStyle=col;ctx.lineWidth=wd;
+    var a=T(x1,z1),b=T(x2,z2);ctx.moveTo(a[0],a[1]);ctx.lineTo(b[0],b[1]);ctx.stroke();ctx.setLineDash([]);
+  };
+  var centre=w.centre||'broken';
+  var drawCentre=function(a,b){
+    if(centre==='double'){seg(-0.3,a,-0.3,b,C.line,2.5);seg(0.3,a,0.3,b,C.line,2.5);}
+    else if(centre==='single')seg(0,a,0,b,C.line,3);
+    else if(centre==='combo-broken-yours'){seg(0.3,a,0.3,b,C.line,2.5);seg(-0.3,a,-0.3,b,C.line,2.5,[11,11]);}
+    else if(centre==='combo-cont-yours'){seg(-0.3,a,-0.3,b,C.line,2.5);seg(0.3,a,0.3,b,C.line,2.5,[11,11]);}
+    else seg(0,a,0,b,C.line,2.5,[13,13]);
+  };
+  if(layout==='straight'||layout==='railway') drawCentre(-44,44);
+  else{
+    var E0=(layout==='roundabout')?G.RR:HW;
+    drawCentre(-44,-E0);
+    if(layout!=='tee') drawCentre(E0,44);
+    if(layout==='cross'||layout==='tee'||layout==='roundabout'){seg(-44,0,-E0,0,C.line,2.5,[13,13]);seg(E0,0,44,0,C.line,2.5,[13,13]);}
+    if(layout==='tee-left') seg(-44,0,-HW,0,C.line,2.5,[13,13]);
+    if(layout==='tee-right') seg(HW,0,44,0,C.line,2.5,[13,13]);
+  }
+  var EDG=(layout==='roundabout')?G.RR:HW;
+  var vSegs=(layout==='straight'||layout==='railway')?[[-44,44]]:((layout==='tee')?[[-44,-HW]]:[[-44,-EDG],[EDG,44]]);
+  vSegs.forEach(function(vs){
+    seg(-HW+0.4,vs[0],-HW+0.4,vs[1],'#c9d3e8',1.5);
+    seg(HW-0.4,vs[0],HW-0.4,vs[1],'#c9d3e8',1.5);
+    if(G.multi){seg(-3.5,vs[0],-3.5,vs[1],C.line,1.5,[10,10]);seg(3.5,vs[0],3.5,vs[1],C.line,1.5,[10,10]);}
+  });
+  ctx.fillStyle='#5b6478';
+  var kb=0.28;
+  if(layout==='straight'||layout==='railway'){
+    ctx.fillRect.apply(ctx,R(-HW-kb,-44,-HW,44));ctx.fillRect.apply(ctx,R(HW,-44,HW+kb,44));
+  }else{
+    ctx.fillRect.apply(ctx,R(-HW-kb,-44,-HW,-HW));ctx.fillRect.apply(ctx,R(HW,-44,HW+kb,-HW));
+    if(layout!=='tee'){ctx.fillRect.apply(ctx,R(-HW-kb,HW,-HW,44));ctx.fillRect.apply(ctx,R(HW,HW,HW+kb,44));}
+    else ctx.fillRect.apply(ctx,R(-HW-kb,HW,HW+kb,HW+kb));
+    if(layout==='cross'||layout==='tee'||layout==='roundabout'){
+      ctx.fillRect.apply(ctx,R(-44,-HW-kb,-HW,-HW));ctx.fillRect.apply(ctx,R(HW,-HW-kb,44,-HW));
+      ctx.fillRect.apply(ctx,R(-44,HW,-HW,HW+kb));ctx.fillRect.apply(ctx,R(HW,HW,44,HW+kb));
+    }else if(layout==='tee-left'){
+      ctx.fillRect.apply(ctx,R(-44,-HW-kb,-HW,-HW));ctx.fillRect.apply(ctx,R(-44,HW,-HW,HW+kb));
+    }else if(layout==='tee-right'){
+      ctx.fillRect.apply(ctx,R(HW,-HW-kb,44,-HW));ctx.fillRect.apply(ctx,R(HW,HW,44,HW+kb));
+    }
+  }
+  if(w.bikelane){
+    ctx.fillStyle='rgba(74,222,128,.18)';ctx.fillRect.apply(ctx,R(-HW+0.4,-44,-HW+2.2,44));
+    seg(-HW+2.2,-44,-HW+2.2,44,'#6ff0a8',1.5,[8,8]);
+  }
+  if(w.yellowline) seg(-HW+0.3,-44,-HW+0.3,44,C.yellow,3.5);
+
+  if(layout==='roundabout'){
+    var RR=G.multi?11:9;
+    ctx.fillStyle=C.road;ctx.beginPath();ctx.arc(cx,cy,RR*S,0,7);ctx.fill();
+    ctx.fillStyle='#1e4a2c';ctx.beginPath();ctx.arc(cx,cy,(RR-5)*S,0,7);ctx.fill();
+    ctx.strokeStyle='#9fb0d6';ctx.lineWidth=2;ctx.beginPath();ctx.arc(cx,cy,(RR-5)*S,0,7);ctx.stroke();
+    ctx.strokeStyle=C.line;ctx.lineWidth=2;ctx.setLineDash([9,9]);
+    ctx.beginPath();ctx.arc(cx,cy,RR*S,0,7);ctx.stroke();
+    if(G.multi){ctx.beginPath();ctx.arc(cx,cy,(RR-2.5)*S,0,7);ctx.stroke();}
+    ctx.setLineDash([]);
+    ctx.strokeStyle='rgba(28,232,240,.55)';ctx.lineWidth=3;
+    ctx.beginPath();ctx.arc(cx,cy,(RR-3.4)*S,-0.75,0.85);ctx.stroke();
+    var ar=(RR-3.4)*S, ax=cx+ar*Math.cos(0.85), ay=cy+ar*Math.sin(0.85);
+    ctx.fillStyle='rgba(28,232,240,.75)';
+    ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax-11,ay-1);ctx.lineTo(ax-4,ay+11);ctx.fill();
+    ctx.fillStyle='rgba(28,232,240,.85)';ctx.font='bold 9px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('CLOCKWISE',cx,cy+(RR-5)*S+11);
+  }
+
+  if(w.control==='stop'||w.control==='giveway'||w.crossing==='children'){
+    var zl=(layout==='straight'||layout==='railway')?-2:-HW-0.7;
+    ctx.strokeStyle=C.line;ctx.lineWidth=(w.control==='giveway')?3:4;
+    if(w.control==='giveway')ctx.setLineDash([7,7]);
+    var la=T(-HW+0.4,zl),lb=T(-0.2,zl);
+    ctx.beginPath();ctx.moveTo(la[0],la[1]);ctx.lineTo(lb[0],lb[1]);ctx.stroke();ctx.setLineDash([]);
+  }
+  if(w.arrows==='right'){
+    ctx.strokeStyle=C.line;ctx.lineWidth=3;
+    var q0=T(G.YL,-9),q1=T(G.YL,-6),q2=T(G.YL+1.4,-6);
+    ctx.beginPath();ctx.moveTo(q0[0],q0[1]);ctx.lineTo(q1[0],q1[1]);ctx.lineTo(q2[0],q2[1]);ctx.stroke();
+    ctx.fillStyle=C.line;ctx.beginPath();
+    ctx.moveTo(q2[0]+10,q2[1]);ctx.lineTo(q2[0]-2,q2[1]-6);ctx.lineTo(q2[0]-2,q2[1]+6);ctx.fill();
+  }
+  if(w.crossing==='zebra'||w.crossing==='children'){
+    ctx.fillStyle=(w.crossing==='children')?'#ffe14d':C.line;
+    var stp=(2*HW-1)/9;
+    for(var s2=0;s2<9;s2++){var xx=-HW+0.5+s2*stp;ctx.fillRect.apply(ctx,R(xx,-0.5,xx+stp*0.6,4.2));}
+  }
+  if(layout==='railway'){
+    ctx.globalAlpha=.2;ctx.fillStyle='#ffe14d';ctx.fillRect.apply(ctx,R(-HW,-2.4,HW,4.6));ctx.globalAlpha=1;
+    ctx.strokeStyle='rgba(255,225,77,.5)';ctx.lineWidth=1.5;
+    for(var r1=0;r1<8;r1++){var pa=T(-HW,-2.4+r1*0.9),pb=T(HW,-2.4+r1*0.9+1.2);
+      ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pb[0],pb[1]);ctx.stroke();}
+    ctx.fillStyle='#4a3f33';ctx.fillRect.apply(ctx,R(-HW,0.0,HW,2.6));
+    ctx.fillStyle='#7a6852';
+    for(var r2=0;r2<7;r2++)ctx.fillRect.apply(ctx,R(-HW,0.05+r2*0.38,HW,0.05+r2*0.38+0.2));
+    ctx.fillStyle='#dfe6f2';
+    ctx.fillRect.apply(ctx,R(-HW,0.45,HW,0.85));
+    ctx.fillRect.apply(ctx,R(-HW,1.85,HW,2.25));
+  }
+  if(w.keepclear){
+    ctx.strokeStyle=C.line;ctx.lineWidth=2;
+    ctx.strokeRect.apply(ctx,R(-HW+0.5,-3.5,-0.4,3.5));
+    var kp=T((-HW+0.1)/2,0);
+    ctx.fillStyle=C.line;ctx.font='bold 10px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('KEEP',kp[0],kp[1]-6);ctx.fillText('CLEAR',kp[0],kp[1]+6);
+  }
+
+  if(w.gravel){
+    ctx.fillStyle='#6e6046';
+    ctx.fillRect.apply(ctx,R(-HW-2.4,-44,-HW,44));ctx.fillRect.apply(ctx,R(HW,-44,HW+2.4,44));
+  }
+  if(w.flood){
+    ctx.fillStyle='rgba(90,160,210,.45)';ctx.fillRect.apply(ctx,R(-HW-2,-2,HW+2,7));
+    ctx.strokeStyle='rgba(190,230,255,.7)';ctx.lineWidth=2;
+    for(var fw=0;fw<4;fw++){var fa=T(-HW,-1+fw*2),fb=T(HW,-1+fw*2);
+      ctx.beginPath();ctx.moveTo(fa[0],fa[1]);ctx.lineTo(fb[0],fb[1]);ctx.stroke();}
+  }
+  if(w.powerline){
+    var pa=T(-HW-2.6,10),pb=T(HW+1.5,3);
+    ctx.strokeStyle='#8d99b5';ctx.lineWidth=4;
+    ctx.beginPath();ctx.moveTo(pa[0],pa[1]);ctx.lineTo(pa[0]+6,pa[1]+26);ctx.stroke();
+    ctx.strokeStyle=(Math.floor(t*5)%2?'#ffd23f':'#7d8aa8');ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(pa[0]+6,pa[1]+26);ctx.lineTo(pb[0],pb[1]);ctx.stroke();
+  }
+  if(w.animal){
+    var ap=T(w.animal.x===undefined?-1.2:w.animal.x, w.animal.z);
+    ctx.fillStyle='#8a6236';ctx.fillRect(ap[0]-7,ap[1]-9,14,18);
+    ctx.fillStyle='#a87a45';ctx.fillRect(ap[0]-4,ap[1]-14,8,7);
+  }
+  drawScenery(ctx,T,w,G);
+
+  var signAt=function(x,z,kind){
+    var p=T(x,z);ctx.save();ctx.translate(p[0],p[1]);
+    ctx.fillStyle='#7d8aa8';ctx.fillRect(-1.5,-2,3,11);
+    if(kind==='stop'){
+      ctx.fillStyle=C.signRed;ctx.beginPath();
+      for(var k=0;k<8;k++){var a=Math.PI/8+k*Math.PI/4,px=10*Math.cos(a),py=-7+10*Math.sin(a);
+        if(k)ctx.lineTo(px,py);else ctx.moveTo(px,py);}
+      ctx.closePath();ctx.fill();
+      ctx.fillStyle='#fff';ctx.font='bold 7px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText('STOP',0,-7);
+    }else{
+      ctx.fillStyle=C.signWhite;ctx.beginPath();ctx.moveTo(-11,-17);ctx.lineTo(11,-17);ctx.lineTo(0,1);ctx.closePath();ctx.fill();
+      ctx.strokeStyle=C.signRed;ctx.lineWidth=3.5;ctx.stroke();
+      if(kind==='rbt'){ctx.strokeStyle='#111';ctx.lineWidth=2;ctx.beginPath();ctx.arc(0,-10,3.6,0,7);ctx.stroke();}
+      else{ctx.fillStyle='#111';ctx.font='bold 5px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+        ctx.fillText('GIVE',0,-13);ctx.fillText('WAY',0,-8);}
+    }
+    ctx.restore();
+  };
+  if(w.control==='stop') signAt(-HW-1.6,-HW-1.2,'stop');
+  if(w.control==='giveway') signAt(-HW-1.6,-HW-1.2,'giveway');
+  if(layout==='roundabout'){signAt(-HW-1.6,-(G.RR+1.5),'rbt');signAt(HW+1.6,G.RR+1.5,'rbt');}
+
+  var infoLabel=w.schoolzone?'SCH 40':w.roadworks?'WORKS':w.merge?'FORM 1':w.keepleft?'KEEP LT':
+                w.leftOnRed?'L ON RED':w.freeway?'EXIT':w.warn?'WARN':null;
+  if(infoLabel){
+    var ip=T(-HW-1.9,7);ctx.save();ctx.translate(ip[0],ip[1]);
+    ctx.fillStyle='#7d8aa8';ctx.fillRect(-1.5,-2,3,11);
+    if(w.warn){
+      ctx.fillStyle=C.signYellow;ctx.beginPath();
+      ctx.moveTo(0,-19);ctx.lineTo(10,-9);ctx.lineTo(0,1);ctx.lineTo(-10,-9);ctx.closePath();ctx.fill();
+      ctx.strokeStyle='#111';ctx.lineWidth=1.5;ctx.stroke();
+    }else{
+      ctx.fillStyle=w.roadworks?'#ff7a1a':C.signWhite;ctx.fillRect(-13,-17,26,15);
+      ctx.strokeStyle='#111';ctx.lineWidth=1.5;ctx.strokeRect(-13,-17,26,15);
+      ctx.fillStyle='#111';ctx.font='bold 6px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText(infoLabel,0,-9.5);
+    }
+    ctx.restore();
+  }
+  if(w.control==='signals'&&w.signals){
+    drawTopSignal(ctx,T,-HW-1.9,-HW-1.4,w.signals,t);
+    drawTopSignal(ctx,T,HW+1.9,HW+1.4,w.signals,t);
+  }
+  if(layout==='railway'&&w.boom&&w.boom!=='none'){
+    var down=(w.boom==='down'), bp=T(-HW-0.7,-2.8);
+    ctx.save();ctx.translate(bp[0],bp[1]);
+    ctx.fillStyle='#c9d3e8';ctx.fillRect(-4,-4,8,8);
+    ctx.save();ctx.rotate(down?0:-1.15);
+    var BL=(2*HW+0.7)*S;
+    for(var bi=0;bi<6;bi++){ctx.fillStyle=(bi%2)?'#f4f7fd':C.signRed;ctx.fillRect(bi*BL/6,-3,BL/6,6);}
+    ctx.restore();ctx.restore();
+    if(w.lights==='flash'){
+      var on=Math.floor(t*3)%2===0, fq=T(-HW-1.8,-2.8);
+      ctx.fillStyle=on?'#ff2d45':'#4a1620';ctx.beginPath();ctx.arc(fq[0],fq[1]-7,5,0,7);ctx.fill();
+      ctx.fillStyle=on?'#4a1620':'#ff2d45';ctx.beginPath();ctx.arc(fq[0],fq[1]+7,5,0,7);ctx.fill();
+    }
+  }
+
+  (w.cars||[]).forEach(function(c){var p=carPose(c,G);drawTopCar(ctx,T,S,p.x,p.z,p.h,c);});
+  (w.peds||[]).forEach(function(pd){
+    var pos=pedPos(pd,t,G),p=T(pos.x,pos.z);
+    ctx.fillStyle='rgba(0,0,0,.35)';ctx.fillRect(p[0]-3,p[1]-4,10,12);
+    ctx.fillStyle=C.ped;ctx.fillRect(p[0]-5,p[1]-6,10,12);
+    ctx.fillStyle='#e0553f';ctx.fillRect(p[0]-5,p[1]-6,10,5);
+  });
+  if(w.officer){
+    var op=T(2.8,2.8);
+    ctx.fillStyle='#1e64d8';ctx.fillRect(op[0]-6,op[1]-7,12,14);
+    ctx.fillStyle=C.ped;ctx.fillRect(op[0]-4,op[1]-13,8,7);
+    ctx.strokeStyle=C.ped;ctx.lineWidth=3;
+    ctx.beginPath();ctx.moveTo(op[0],op[1]-4);ctx.lineTo(op[0]-16,op[1]-11);ctx.stroke();
+  }
+  if(w.controller){
+    var cp=T(-HW-1.5,6);
+    ctx.fillStyle='#ff7a1a';ctx.fillRect(cp[0]-6,cp[1]-7,12,14);
+    ctx.fillStyle=C.signRed;ctx.beginPath();ctx.arc(cp[0]+14,cp[1]-9,8,0,7);ctx.fill();
+    ctx.fillStyle='#fff';ctx.font='bold 6px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('STOP',cp[0]+14,cp[1]-9);
+  }
+
+  var yz=(layout==='roundabout')?-(G.RR+3.5):((layout==='straight'||layout==='railway')?-8:-9);
+  var yx=(w.yourIntent==='park'||w.yourIntent==='pullout')?-(HW-1.3):G.YL;
+  drawIntentArrow(ctx,T,w,yx,yz);
+  drawTopCar(ctx,T,S,yx,yz,0,{color:C.you,label:'YOU',you:true});
+
+  if(w.hazard&&HAZ.reveal){
+    var hp=T(w.hazard.x,w.hazard.z), pr=1+Math.sin(t*6)*0.12;
+    ctx.strokeStyle='#ffc23d';ctx.lineWidth=3;
+    ctx.beginPath();ctx.arc(hp[0],hp[1],20*pr,0,7);ctx.stroke();
+  }
+  ctx.fillStyle='rgba(233,240,255,.5)';ctx.font='bold 10px monospace';
+  ctx.textAlign='left';ctx.textBaseline='alphabetic';ctx.fillText('N ▲',10,18);
+}
+
+function drawTopCar(ctx,T,S,x,z,h,c){
+  var p=T(x,z), isBike=(c.type==='bike'||c.type==='moto');
+  var L=(c.type==='bus')?11:(c.type==='truck')?9:isBike?1.9:4.4;
+  var Wd=(c.type==='bus'||c.type==='truck')?2.5:isBike?0.8:1.85;
+  ctx.save();ctx.translate(p[0],p[1]);ctx.rotate(h);
+  ctx.fillStyle='rgba(0,0,0,.4)';ctx.fillRect(-Wd*S/2+3,-L*S/2+3,Wd*S,L*S);
+  ctx.fillStyle=c.color||C.carA;ctx.fillRect(-Wd*S/2,-L*S/2,Wd*S,L*S);
+  ctx.strokeStyle=c.you?'#fff':'rgba(0,0,0,.55)';ctx.lineWidth=c.you?3:1.5;
+  ctx.strokeRect(-Wd*S/2,-L*S/2,Wd*S,L*S);
+  if(!isBike){ctx.fillStyle='rgba(10,18,38,.7)';ctx.fillRect(-Wd*S/2+3,-L*S/2+L*S*0.2,Wd*S-6,L*S*0.28);}
+  ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(-Wd*S/2+2,-L*S/2+2,Wd*S-4,3);
+  ctx.restore();
+  if(c.intent&&c.intent!=='stopped'&&!c.you){
+    ctx.save();ctx.translate(p[0],p[1]);ctx.rotate(h);
+    ctx.strokeStyle='rgba(255,255,255,.6)';ctx.lineWidth=2;ctx.setLineDash([5,4]);
+    ctx.beginPath();ctx.moveTo(0,-L*S/2);
+    if(c.intent==='left'){ctx.lineTo(0,-L*S/2-26);ctx.lineTo(-26,-L*S/2-26);}
+    else if(c.intent==='right'){ctx.lineTo(0,-L*S/2-36);ctx.lineTo(30,-L*S/2-36);}
+    else ctx.lineTo(0,-L*S/2-34);
+    ctx.stroke();ctx.setLineDash([]);ctx.restore();
+  }
+  if(c.label){
+    ctx.font='bold 11px monospace';ctx.textAlign='left';ctx.textBaseline='middle';
+    var tw=ctx.measureText(c.label).width+10;
+    var bx=p[0]+(Wd*S/2)+6, by=p[1]-8;
+    ctx.fillStyle='rgba(11,16,32,.82)';ctx.fillRect(bx,by,tw,17);
+    ctx.strokeStyle=c.color;ctx.lineWidth=1.5;ctx.strokeRect(bx,by,tw,17);
+    ctx.fillStyle=c.color;ctx.fillText(c.label,bx+5,by+9);
+  }
+}
+function drawIntentArrow(ctx,T,w,yx,yz){
+  var p=T(yx,yz);
+  ctx.save();ctx.translate(p[0],p[1]);
+  ctx.strokeStyle=C.you;ctx.lineWidth=3;ctx.setLineDash([7,6]);
+  ctx.shadowColor=C.you;ctx.shadowBlur=10;
+  var i=w.yourIntent;
+  ctx.beginPath();ctx.moveTo(0,-22);
+  if(i==='left'){ctx.lineTo(0,-46);ctx.lineTo(-56,-46);}
+  else if(i==='right'){ctx.lineTo(0,-62);ctx.lineTo(60,-62);}
+  else if(i==='uturn'){ctx.lineTo(0,-58);ctx.quadraticCurveTo(30,-86,46,-52);ctx.lineTo(46,-6);}
+  else if(i==='lanechange'){ctx.lineTo(0,-38);ctx.lineTo(32,-58);}
+  else if(i==='park'){ctx.lineTo(0,-30);}
+  else if(i==='pullout'){ctx.lineTo(0,-40);ctx.lineTo(18,-58);}
+  else ctx.lineTo(0,-66);
+  ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;ctx.restore();
+}
+function drawTopSignal(ctx,T,x,z,sig,t){
+  var p=T(x,z);ctx.save();ctx.translate(p[0],p[1]);
+  ctx.fillStyle='#0e1430';ctx.fillRect(-8,-27,16,33);
+  ctx.strokeStyle='#2f1f57';ctx.lineWidth=1.5;ctx.strokeRect(-8,-27,16,33);
+  var st=sig.main, fl=Math.floor(t*3)%2===0;
+  var on=function(k){return st===k||(st==='flash'&&k==='amber'&&fl);};
+  var lamp=function(y,col,lit){ctx.fillStyle=lit?col:'#1b2242';
+    if(lit){ctx.shadowColor=col;ctx.shadowBlur=12;}
+    ctx.beginPath();ctx.arc(0,y,4.2,0,7);ctx.fill();ctx.shadowBlur=0;};
+  lamp(-19,'#ff3348',on('red'));lamp(-9,'#ffb703',on('amber'));lamp(1,'#3ddc84',on('green'));
+  if(sig.arrow){
+    var green=/green$/.test(sig.arrow), left=/^left/.test(sig.arrow);
+    ctx.fillStyle='#0e1430';ctx.fillRect(8,-27,14,15);
+    ctx.strokeStyle='#2f1f57';ctx.strokeRect(8,-27,14,15);
+    var col=green?'#3ddc84':'#ff3348';
+    ctx.fillStyle=col;ctx.shadowColor=col;ctx.shadowBlur=12;ctx.beginPath();
+    if(left){ctx.moveTo(10,-19.5);ctx.lineTo(19,-25);ctx.lineTo(19,-14);}
+    else{ctx.moveTo(20,-19.5);ctx.lineTo(11,-25);ctx.lineTo(11,-14);}
+    ctx.fill();ctx.shadowBlur=0;
+  }
+  ctx.restore();
+}
+function drawScenery(ctx,T,w,G){
+  var put=function(x,z,c,s){var p=T(x,z);ctx.fillStyle=c;ctx.fillRect(p[0]-s/2,p[1]-s/2,s,s);};
+  var near=G.HW+4, straight=(w.layout==='straight'||w.layout==='railway');
+  var trees=[[-16,17],[-21,11],[16,18],[21,12],[-18,-14],[17,-17],[22,-11],[-23,-21],[20,23],[-15,25]];
+  trees.forEach(function(p){
+    if(Math.abs(p[0])<near) return;
+    if(!straight && Math.abs(p[1])<near) return;
+    put(p[0],p[1],'#0f2a19',18);put(p[0],p[1]+0.4,'#20563a',13);put(p[0]-0.2,p[1]+0.7,'#2f7a4f',7);
+  });
+  if(w.houses||w.schoolzone){
+    [[-15,5],[-15,-4],[15,3],[15,-7]].forEach(function(p){
+      if(Math.abs(p[0])<near+3) return;
+      put(p[0],p[1],'#3a4468',26);put(p[0],p[1]+0.9,'#5a6798',19);
+    });
+  }
+  if(w.hydrant){var hp=T(-G.HW-1.0,4);ctx.fillStyle='#ff4d5e';ctx.fillRect(hp[0]-4,hp[1]-5,8,10);}
+}
+
+/* ============================================================
+   FIRST PERSON RENDERER
+   ============================================================ */
+var FP={w:600,h:470,camX:-1.75,camY:3.0,camZ:-11.6,f:200,pitch:0.22,yaw:0,hz:0.4};
+function fpCam(x,y,z){
+  var xc=x-FP.camX, yc=y-FP.camY, zc=z-FP.camZ;
+  var cy=Math.cos(FP.yaw), sy=Math.sin(FP.yaw);
+  var X=xc*cy-zc*sy, Z0=xc*sy+zc*cy;
+  var c=Math.cos(FP.pitch), sn=Math.sin(FP.pitch);
+  return {X:X, Y:yc*c+Z0*sn, Z:-yc*sn+Z0*c};
+}
+function fpProjC(q){var k=FP.f/Math.max(0.35,q.Z);return {x:FP.w/2+q.X*k, y:FP.h/2-q.Y*k, s:k, dz:q.Z};}
+function fpProj(x,y,z){return fpProjC(fpCam(x,y,z));}
+function fpPoly(ctx,pts,fill,stroke){
+  var NEAR=0.7, cam=[], i;
+  for(i=0;i<pts.length;i++) cam.push(fpCam(pts[i][0],pts[i][1],pts[i][2]));
+  var out=[];
+  for(i=0;i<cam.length;i++){
+    var a=cam[i], b=cam[(i+1)%cam.length];
+    var ain=a.Z>NEAR, bin=b.Z>NEAR;
+    if(ain)out.push(a);
+    if(ain!==bin){var k=(NEAR-a.Z)/(b.Z-a.Z);
+      out.push({X:lerp(a.X,b.X,k),Y:lerp(a.Y,b.Y,k),Z:NEAR});}
+  }
+  if(out.length<3)return;
+  ctx.beginPath();
+  for(var j=0;j<out.length;j++){var q=fpProjC(out[j]);
+    if(j)ctx.lineTo(q.x,q.y);else ctx.moveTo(q.x,q.y);}
+  ctx.closePath();
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke();}
+}
+function fpBox(list,cx,cy,cz,sx,sy,sz,top,side,front){
+  var x0=cx-sx/2,x1=cx+sx/2,y0=cy,y1=cy+sy,z0=cz-sz/2,z1=cz+sz/2;
+  list.push({z:cz,draw:function(ctx){
+    fpPoly(ctx,[[x0,y0,z1],[x1,y0,z1],[x1,y1,z1],[x0,y1,z1]],shade(front,0.75),'#0006');
+    fpPoly(ctx,[[x0,y0,z0],[x0,y0,z1],[x0,y1,z1],[x0,y1,z0]],side,'#0006');
+    fpPoly(ctx,[[x1,y0,z0],[x1,y0,z1],[x1,y1,z1],[x1,y1,z0]],side,'#0006');
+    fpPoly(ctx,[[x0,y1,z0],[x1,y1,z0],[x1,y1,z1],[x0,y1,z1]],top,'#0006');
+    fpPoly(ctx,[[x0,y0,z0],[x1,y0,z0],[x1,y1,z0],[x0,y1,z0]],front,'#0006');
+  }});
+}
+
+function drawFP(ctx,sc,t,VW,VH){
+  var W=VW||ctx.canvas.width,H=VH||ctx.canvas.height,w=sc.world,G=geom(w);
+  FP.w=W;FP.h=H;
+  var layout=w.layout||'cross', HW=G.HW;
+  FP.camX=(w.yourIntent==='park'||w.yourIntent==='pullout')?-(HW-1.3):G.YL;
+  FP.camZ=((layout==='roundabout')?-(G.RR+3.5):((layout==='straight'||layout==='railway')?-8:-9))-2.6;
+  FP.yaw=0;
+  var look=0;
+  (w.cars||[]).concat(w.peds?[]:[]).forEach(function(c){
+    var q=carPose(c,G), ang=Math.atan2(q.x-FP.camX, Math.max(2,q.z-FP.camZ));
+    if(Math.abs(ang)>Math.abs(look)) look=ang;
+  });
+  (w.peds||[]).forEach(function(pd){
+    var q=pedPos(pd,t,G), ang=Math.atan2(q.x-FP.camX, Math.max(2,q.z-FP.camZ));
+    if(Math.abs(ang)>Math.abs(look)) look=ang;
+  });
+  if(Math.abs(look)>0.42&&!w.hazard) FP.yaw=clamp(look*0.62,-0.46,0.46);
+  FP.hz=0.5-(FP.f*Math.tan(FP.pitch))/H;
+  var night=!!w.night;
+
+  ctx.clearRect(0,0,W,H);
+  var sky=ctx.createLinearGradient(0,0,0,H*FP.hz);
+  if(night){sky.addColorStop(0,'#05081c');sky.addColorStop(1,'#1a1f4a');}
+  else if(w.rain){sky.addColorStop(0,'#39415e');sky.addColorStop(1,'#7c86a6');}
+  else{sky.addColorStop(0,C.sky1);sky.addColorStop(.6,C.sky2);sky.addColorStop(1,C.sky3);}
+  ctx.fillStyle=sky;ctx.fillRect(0,0,W,H*FP.hz+1);
+  if(!night&&!w.rain){ctx.fillStyle='rgba(255,220,150,.45)';ctx.beginPath();ctx.arc(W*0.74,H*FP.hz-44,26,0,7);ctx.fill();}
+  if(night){ctx.fillStyle='#fff';
+    for(var st1=0;st1<45;st1++){ctx.globalAlpha=.18+((st1*37)%10)/18;ctx.fillRect((st1*83)%W,(st1*29)%(H*FP.hz-16),2,2);}
+    ctx.globalAlpha=1;}
+  var gg=ctx.createLinearGradient(0,H*FP.hz,0,H);
+  gg.addColorStop(0,night?'#0d2415':C.grass1);gg.addColorStop(1,night?'#12331f':C.grass2);
+  ctx.fillStyle=gg;ctx.fillRect(0,H*FP.hz,W,H-H*FP.hz);
+
+  var FAR=95, road=night?'#23283a':C.road;
+  var vEnd=(layout==='tee')?HW:FAR;
+  fpPoly(ctx,[[-HW,0,-40],[HW,0,-40],[HW,0,vEnd],[-HW,0,vEnd]],road);
+  if(layout==='cross'||layout==='tee'||layout==='roundabout')
+    fpPoly(ctx,[[-50,0.01,-HW],[50,0.01,-HW],[50,0.01,HW],[-50,0.01,HW]],road);
+  else if(layout==='tee-left')
+    fpPoly(ctx,[[-50,0.01,-HW],[0,0.01,-HW],[0,0.01,HW],[-50,0.01,HW]],road);
+  else if(layout==='tee-right')
+    fpPoly(ctx,[[0,0.01,-HW],[50,0.01,-HW],[50,0.01,HW],[0,0.01,HW]],road);
+
+  var kerbQ=function(x0,z0,x1,z1){fpPoly(ctx,[[x0,0.015,z0],[x1,0.015,z0],[x1,0.015,z1],[x0,0.015,z1]],'#5b6478');};
+  var KB=0.28;
+  if(layout==='straight'||layout==='railway'){
+    kerbQ(-HW-KB,-40,-HW,FAR);kerbQ(HW,-40,HW+KB,FAR);
+  }else{
+    kerbQ(-HW-KB,-40,-HW,-HW);kerbQ(HW,-40,HW+KB,-HW);
+    if(layout!=='tee'){kerbQ(-HW-KB,HW,-HW,FAR);kerbQ(HW,HW,HW+KB,FAR);}
+    else kerbQ(-HW-KB,HW,HW+KB,HW+KB);
+    if(layout==='cross'||layout==='tee'||layout==='roundabout'){
+      kerbQ(-50,-HW-KB,-HW,-HW);kerbQ(HW,-HW-KB,50,-HW);
+      kerbQ(-50,HW,-HW,HW+KB);kerbQ(HW,HW,50,HW+KB);
+    }else if(layout==='tee-left'){kerbQ(-50,-HW-KB,-HW,-HW);kerbQ(-50,HW,-HW,HW+KB);}
+    else if(layout==='tee-right'){kerbQ(HW,-HW-KB,50,-HW);kerbQ(HW,HW,50,HW+KB);}
+  }
+  var strip=function(x,z0,z1,col,hw){fpPoly(ctx,[[x-hw,0.03,z0],[x+hw,0.03,z0],[x+hw,0.03,z1],[x-hw,0.03,z1]],col);};
+  var dashRun=function(x,a,b,col,hw){for(var z=a;z<b;z+=7)strip(x,z,Math.min(z+3.6,b),col,hw);};
+  var centre=w.centre||'broken';
+  var EDG=(layout==='roundabout')?G.RR:HW;
+  var segs=(layout==='straight'||layout==='railway')?[[-40,FAR]]:((layout==='tee')?[[-40,-HW]]:[[-40,-EDG],[EDG,FAR]]);
+  segs.forEach(function(sg){
+    var a=sg[0],b=sg[1];
+    if(centre==='double'){strip(-0.3,a,b,C.line,0.09);strip(0.3,a,b,C.line,0.09);}
+    else if(centre==='single')strip(0,a,b,C.line,0.1);
+    else if(centre==='combo-broken-yours'){strip(0.3,a,b,C.line,0.09);dashRun(-0.3,a,b,C.line,0.09);}
+    else if(centre==='combo-cont-yours'){strip(-0.3,a,b,C.line,0.09);dashRun(0.3,a,b,C.line,0.09);}
+    else dashRun(0,a,b,C.line,0.09);
+    strip(-HW+0.4,a,b,'#c9d3e8',0.07);strip(HW-0.4,a,b,'#c9d3e8',0.07);
+    if(G.multi){dashRun(-3.5,a,b,C.line,0.07);dashRun(3.5,a,b,C.line,0.07);}
+  });
+  if(w.bikelane){
+    fpPoly(ctx,[[-HW+0.4,0.02,-40],[-HW+2.2,0.02,-40],[-HW+2.2,0.02,FAR],[-HW+0.4,0.02,FAR]],'rgba(74,222,128,.22)');
+    dashRun(-HW+2.2,-40,FAR,'#6ff0a8',0.07);
+  }
+  if(w.yellowline) strip(-HW+0.3,-40,FAR,C.yellow,0.11);
+  if(w.gravel){
+    fpPoly(ctx,[[-HW-2.4,0.005,-40],[-HW,0.005,-40],[-HW,0.005,FAR],[-HW-2.4,0.005,FAR]],'#6e6046');
+    fpPoly(ctx,[[HW,0.005,-40],[HW+2.4,0.005,-40],[HW+2.4,0.005,FAR],[HW,0.005,FAR]],'#6e6046');
+  }
+  if(w.flood){
+    fpPoly(ctx,[[-HW-2,0.07,-2],[HW+2,0.07,-2],[HW+2,0.07,7],[-HW-2,0.07,7]],'rgba(90,160,210,.5)');
+    for(var fw=0;fw<4;fw++){var fz=-1+fw*2;
+      fpPoly(ctx,[[-HW-2,0.08,fz],[HW+2,0.08,fz],[HW+2,0.08,fz+0.18],[-HW-2,0.08,fz+0.18]],'rgba(200,235,255,.55)');}
+  }
+  if(w.control==='stop'||w.control==='giveway'||w.crossing==='children'){
+    var zl=(layout==='straight'||layout==='railway')?-2:-HW-0.7;
+    if(w.control==='giveway'){for(var gx=-HW+0.4;gx<-0.2;gx+=1.1)
+      fpPoly(ctx,[[gx,0.04,zl],[gx+0.6,0.04,zl],[gx+0.6,0.04,zl+0.35],[gx,0.04,zl+0.35]],C.line);}
+    else fpPoly(ctx,[[-HW+0.4,0.04,zl],[-0.2,0.04,zl],[-0.2,0.04,zl+0.45],[-HW+0.4,0.04,zl+0.45]],C.line);
+  }
+  if(w.arrows==='right'){
+    fpPoly(ctx,[[G.YL-0.16,0.05,-9],[G.YL+0.16,0.05,-9],[G.YL+0.16,0.05,-6.2],[G.YL-0.16,0.05,-6.2]],C.line);
+    fpPoly(ctx,[[G.YL,0.05,-6.55],[G.YL+1.3,0.05,-6.55],[G.YL+1.3,0.05,-6.2],[G.YL,0.05,-6.2]],C.line);
+    fpPoly(ctx,[[G.YL+1.2,0.05,-6.95],[G.YL+1.9,0.05,-6.38],[G.YL+1.2,0.05,-5.8]],C.line);
+  }
+  if(w.keepclear){
+    fpPoly(ctx,[[-HW+0.5,0.04,-3.5],[-0.4,0.04,-3.5],[-0.4,0.04,3.5],[-HW+0.5,0.04,3.5]],'rgba(255,255,255,.09)');
+    [[-3.5,-3.2],[3.2,3.5]].forEach(function(r){
+      fpPoly(ctx,[[-HW+0.5,0.05,r[0]],[-0.4,0.05,r[0]],[-0.4,0.05,r[1]],[-HW+0.5,0.05,r[1]]],C.line);});
+  }
+  if(w.crossing==='zebra'||w.crossing==='children'){
+    var col=(w.crossing==='children')?'#ffe14d':C.line, step=(2*HW-1)/9;
+    for(var ci=0;ci<9;ci++){var xx=-HW+0.5+ci*step;
+      fpPoly(ctx,[[xx,0.05,-0.5],[xx+step*0.6,0.05,-0.5],[xx+step*0.6,0.05,4.2],[xx,0.05,4.2]],col);}
+  }
+  if(layout==='railway'){
+    fpPoly(ctx,[[-HW,0.04,-2.4],[HW,0.04,-2.4],[HW,0.04,4.6],[-HW,0.04,4.6]],'rgba(255,225,77,.16)');
+    for(var hi=0;hi<8;hi++){var zz=-2.4+hi*0.9;
+      fpPoly(ctx,[[-HW,0.05,zz],[HW,0.05,zz+0.12],[HW,0.05,zz+1.3],[-HW,0.05,zz+1.18]],'rgba(255,225,77,.4)');}
+    fpPoly(ctx,[[-HW,0.055,0],[HW,0.055,0],[HW,0.055,2.6],[-HW,0.055,2.6]],'#4a3f33');
+    for(var sl=0;sl<7;sl++){var sz0=0.05+sl*0.38;
+      fpPoly(ctx,[[-HW,0.06,sz0],[HW,0.06,sz0],[HW,0.06,sz0+0.2],[-HW,0.06,sz0+0.2]],'#7a6852');}
+    [[0.45,0.85],[1.85,2.25]].forEach(function(r){
+      fpPoly(ctx,[[-HW,0.09,r[0]],[HW,0.09,r[0]],[HW,0.09,r[1]],[-HW,0.09,r[1]]],'#dfe6f2');});
+  }
+  if(layout==='roundabout'){
+    var RR=G.multi?11:9, pA=[], pB=[];
+    for(var ri=0;ri<30;ri++){var ang=ri/30*Math.PI*2;
+      pA.push([Math.cos(ang)*RR,0.02,Math.sin(ang)*RR]);
+      pB.push([Math.cos(ang)*(RR-5),0.05,Math.sin(ang)*(RR-5)]);}
+    fpPoly(ctx,pA,road);fpPoly(ctx,pB,'#1e4a2c','#9fb0d6');
+    for(var rj=0;rj<30;rj+=2){var a1=rj/30*Math.PI*2,a2=(rj+1)/30*Math.PI*2;
+      fpPoly(ctx,[[Math.cos(a1)*(RR-0.15),0.06,Math.sin(a1)*(RR-0.15)],
+                  [Math.cos(a2)*(RR-0.15),0.06,Math.sin(a2)*(RR-0.15)],
+                  [Math.cos(a2)*(RR+0.15),0.06,Math.sin(a2)*(RR+0.15)],
+                  [Math.cos(a1)*(RR+0.15),0.06,Math.sin(a1)*(RR+0.15)]],C.line);}
+  }
+
+  var objs=[];
+  if(layout==='roundabout'){
+    fpBox(objs,-1.6,0,1.6,1.0,1.3,1.0,'#2f7a4f','#1c4d31','#256040');
+    fpBox(objs,1.4,0,-1.0,0.9,1.0,0.9,'#2f7a4f','#1c4d31','#256040');
+  }
+  [[-14,22],[-19,36],[14,28],[19,44],[-16,-8],[15,-12],[-21,54],[17,60]].forEach(function(p){
+    if(Math.abs(p[0])<HW+3)return;
+    if(layout!=='straight'&&layout!=='railway'&&Math.abs(p[1])<HW+4)return;
+    fpBox(objs,p[0],0,p[1],0.5,2.2,0.5,'#3a2b1c','#2a1f14','#332618');
+    fpBox(objs,p[0],2.0,p[1],3.2,3.4,3.2,'#2f7a4f','#1c4d31','#256040');
+  });
+  if(w.houses||w.schoolzone){
+    [[-16,16],[-16,32],[16,20],[16,38]].forEach(function(p){
+      fpBox(objs,p[0],0,p[1],7,4.5,7,'#5a6798','#39456f','#48548a');
+      fpBox(objs,p[0],4.5,p[1],7.6,1.4,7.6,'#7a4a5e','#5c3547','#6b3f52');
+    });
+  }
+  if(w.hydrant) fpBox(objs,-HW-1.0,0,4,0.35,0.8,0.35,'#ff8a94','#c93a48','#ff4d5e');
+  if(w.animal){
+    var ax=(w.animal.x===undefined?-1.2:w.animal.x), az=w.animal.z;
+    fpBox(objs,ax,0.3,az,0.55,0.95,1.0,'#a87a45','#6d4d29','#8a6236');
+    fpBox(objs,ax,1.25,az-0.25,0.4,0.5,0.4,'#b98a52','#79552e','#996b3c');
+    fpBox(objs,ax,0.15,az+0.7,0.22,0.22,1.0,'#8a6236','#5d4225','#74532e');
+  }
+  if(w.worker){
+    fpBox(objs,-HW-1.4,0,6,0.5,0.9,0.35,'#2b3140','#1d2230','#242a37');
+    fpBox(objs,-HW-1.4,0.9,6,0.6,0.62,0.4,'#ff7a1a','#c25a10','#e06a15');
+    fpBox(objs,-HW-1.4,1.52,6,0.32,0.34,0.32,'#ffe9a8','#c9b47d','#dfc78e');
+  }
+  if(w.powerline){
+    fpBox(objs,-HW-2.6,0,14,0.42,5.6,0.42,'#6b5a45','#4a3f33','#5b4c3c');
+    objs.push({z:9,draw:function(ctx){
+      var a=fpProj(-HW-2.4,4.4,14), b=fpProj(HW+1.2,0.25,3);
+      ctx.strokeStyle=(Math.floor(t*5)%2)?'#ffd23f':'#8d99b5';
+      ctx.lineWidth=Math.max(2,a.s*0.06);
+      ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.quadraticCurveTo((a.x+b.x)/2,(a.y+b.y)/2+40,b.x,b.y);ctx.stroke();
+      if(Math.floor(t*5)%2){ctx.fillStyle='#fff3b0';ctx.shadowColor='#ffd23f';ctx.shadowBlur=24;
+        ctx.beginPath();ctx.arc(b.x,b.y,Math.max(4,b.s*0.09),0,7);ctx.fill();ctx.shadowBlur=0;}
+    }});
+  }
+
+  var sign=function(x,z,kind,text){objs.push({z:z,draw:function(ctx){
+    if(fpCam(x,2.4,z).Z<1.2) return;
+    fpPoly(ctx,[[x-0.06,0,z],[x+0.06,0,z],[x+0.06,2.1,z],[x-0.06,2.1,z]],'#7d8aa8');
+    var p;
+    if(kind==='stop'){
+      var r=0.45, pts=[];
+      for(var k=0;k<8;k++){var a=Math.PI/8+k*Math.PI/4;pts.push([x+r*Math.cos(a),2.55+r*Math.sin(a),z]);}
+      fpPoly(ctx,pts,C.signRed,'#fff');
+      p=fpProj(x,2.55,z);ctx.fillStyle='#fff';
+      ctx.font='bold '+Math.max(6,Math.round(p.s*0.3))+'px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('STOP',p.x,p.y);
+    }else if(kind==='giveway'||kind==='rbt'){
+      fpPoly(ctx,[[x-0.62,2.98,z],[x+0.62,2.98,z],[x,1.95,z]],C.signRed);
+      fpPoly(ctx,[[x-0.45,2.84,z],[x+0.45,2.84,z],[x,2.1,z]],C.signWhite);
+      p=fpProj(x,2.6,z);ctx.textAlign='center';ctx.textBaseline='middle';
+      if(kind==='rbt'){ctx.strokeStyle='#111';ctx.lineWidth=Math.max(1.5,p.s*0.035);
+        ctx.beginPath();ctx.arc(p.x,p.y-p.s*0.02,p.s*0.12,0.5,5.3);ctx.stroke();}
+      else{ctx.fillStyle='#111';ctx.font='bold '+Math.max(5,Math.round(p.s*0.13))+'px monospace';
+        ctx.fillText('GIVE',p.x,p.y-p.s*0.075);ctx.fillText('WAY',p.x,p.y+p.s*0.065);}
+    }else if(kind==='school'){
+      fpPoly(ctx,[[x-0.5,1.9,z],[x+0.5,1.9,z],[x+0.5,3.1,z],[x-0.5,3.1,z]],C.signWhite,'#222');
+      p=fpProj(x,2.5,z);
+      ctx.strokeStyle='#d32338';ctx.lineWidth=Math.max(2,p.s*0.07);
+      ctx.beginPath();ctx.arc(p.x,p.y,p.s*0.32,0,7);ctx.stroke();
+      ctx.fillStyle='#111';ctx.font='bold '+Math.max(7,Math.round(p.s*0.36))+'px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,p.x,p.y);
+      fpPoly(ctx,[[x-0.9,3.1,z],[x+0.9,3.1,z],[x+0.9,3.85,z],[x-0.9,3.85,z]],'#ffb703','#222');
+      var q=fpProj(x,3.48,z);ctx.fillStyle='#111';
+      ctx.font='bold '+Math.max(5,Math.round(q.s*0.16))+'px monospace';ctx.fillText('SCHOOL ZONE',q.x,q.y);
+    }else if(kind==='warn'){
+      fpPoly(ctx,[[x-0.68,2.5,z],[x,3.18,z],[x+0.68,2.5,z],[x,1.82,z]],C.signYellow,'#111');
+      p=fpProj(x,2.5,z);ctx.strokeStyle='#111';ctx.lineWidth=Math.max(2,p.s*0.055);
+      ctx.beginPath();ctx.moveTo(p.x-p.s*0.13,p.y+p.s*0.17);
+      ctx.quadraticCurveTo(p.x+p.s*0.19,p.y,p.x-p.s*0.05,p.y-p.s*0.17);ctx.stroke();
+    }else if(kind==='rw'){
+      fpPoly(ctx,[[x-0.85,2.0,z],[x+0.85,2.0,z],[x+0.85,3.2,z],[x-0.85,3.2,z]],'#ff7a1a','#111');
+      p=fpProj(x,2.6,z);ctx.fillStyle='#111';
+      ctx.font='bold '+Math.max(5,Math.round(p.s*0.16))+'px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      ctx.fillText('ROAD',p.x,p.y-p.s*0.1);ctx.fillText('WORK',p.x,p.y+p.s*0.1);
+    }else if(kind==='rail'){
+      fpPoly(ctx,[[x-0.07,0,z],[x+0.07,0,z],[x+0.07,3.0,z],[x-0.07,3.0,z]],'#7d8aa8');
+      p=fpProj(x,3.3,z);ctx.fillStyle='#f4f7fd';
+      ctx.save();ctx.translate(p.x,p.y);ctx.rotate(Math.PI/4);
+      ctx.fillRect(-p.s*0.55,-p.s*0.09,p.s*1.1,p.s*0.18);
+      ctx.fillRect(-p.s*0.09,-p.s*0.55,p.s*0.18,p.s*1.1);ctx.restore();
+    }else{
+      var lines=text.split('|'), hh=0.36*lines.length+0.25;
+      fpPoly(ctx,[[x-1.3,2.1,z],[x+1.3,2.1,z],[x+1.3,2.1+hh,z],[x-1.3,2.1+hh,z]],C.signWhite,'#222');
+      p=fpProj(x,2.1+hh/2,z);ctx.fillStyle='#111';
+      ctx.font='bold '+Math.max(5,Math.round(p.s*0.13))+'px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';
+      lines.forEach(function(ln,li){ctx.fillText(ln,p.x,p.y+(li-(lines.length-1)/2)*p.s*0.16);});
+    }
+  }});};
+  if(w.control==='stop') sign(-HW-1.5,-HW-1.1,'stop');
+  if(w.control==='giveway') sign(-HW-1.5,-HW-1.1,'giveway');
+  if(layout==='roundabout'){sign(-HW-1.5,-(G.RR+1.5),'rbt');sign(HW+1.5,G.RR+1.5,'rbt');}
+  if(w.schoolzone) sign(-HW-1.5,12,'school','40');
+  if(w.warn) sign(-HW-1.5,16,'warn');
+  if(w.roadworks) sign(-HW-1.5,14,'rw');
+  if(w.merge) sign(-HW-1.5,15,'text','FORM|ONE LANE');
+  if(w.keepleft) sign(-HW-1.5,18,'text','KEEP LEFT|UNLESS|OVERTAKING');
+  if(w.leftOnRed) sign(-HW-1.5,-HW-2.6,'text','LEFT TURN|ON RED|AFTER STOPPING');
+  if(w.freeway) sign(HW+2.0,22,'text','EXIT|400 m');
+  if(w.crossing==='children'&&w.flags) sign(HW+1.5,3,'text','CHILDREN|CROSSING');
+  if(layout==='railway') sign(-HW-1.7,-2.9,'rail');
+
+  if(w.control==='signals'&&w.signals){
+    var fl=Math.floor(t*3)%2===0;
+    var sgl=function(x,z){objs.push({z:z,draw:function(ctx){
+      if(fpCam(x,4,z).Z<1.2) return;
+      fpPoly(ctx,[[x-0.07,0,z],[x+0.07,0,z],[x+0.07,3.4,z],[x-0.07,3.4,z]],'#7d8aa8');
+      fpPoly(ctx,[[x-0.34,3.4,z],[x+0.34,3.4,z],[x+0.34,4.78,z],[x-0.34,4.78,z]],'#131a2e','#2f1f57');
+      var st=w.signals.main;
+      var lit=function(k){return st===k||(st==='flash'&&k==='amber'&&fl);};
+      [['red',4.46,'#ff3348'],['amber',4.09,'#ffb703'],['green',3.72,'#3ddc84']].forEach(function(L){
+        var p=fpProj(x,L[1],z);
+        ctx.fillStyle=lit(L[0])?L[2]:'#1b2242';
+        if(lit(L[0])){ctx.shadowColor=L[2];ctx.shadowBlur=18;}
+        ctx.beginPath();ctx.arc(p.x,p.y,Math.max(2,p.s*0.135),0,7);ctx.fill();ctx.shadowBlur=0;
+      });
+      if(w.signals.arrow){
+        var isL=/^left/.test(w.signals.arrow), green=/green$/.test(w.signals.arrow);
+        fpPoly(ctx,[[x+0.38,3.4,z],[x+1.02,3.4,z],[x+1.02,4.06,z],[x+0.38,4.06,z]],'#131a2e','#2f1f57');
+        var p2=fpProj(x+0.7,3.73,z), col2=green?'#3ddc84':'#ff3348';
+        ctx.fillStyle=col2;ctx.shadowColor=col2;ctx.shadowBlur=16;
+        var rr=Math.max(3,p2.s*0.15);ctx.beginPath();
+        if(isL){ctx.moveTo(p2.x-rr,p2.y);ctx.lineTo(p2.x+rr*0.35,p2.y-rr);ctx.lineTo(p2.x+rr*0.35,p2.y+rr);}
+        else{ctx.moveTo(p2.x+rr,p2.y);ctx.lineTo(p2.x-rr*0.35,p2.y-rr);ctx.lineTo(p2.x-rr*0.35,p2.y+rr);}
+        ctx.fill();ctx.shadowBlur=0;
+      }
+    }});};
+    sgl(-HW-1.3,-HW-0.9); sgl(HW+1.3,HW+0.9);
+  }
+  if(layout==='railway'&&w.boom&&w.boom!=='none'){
+    var down=(w.boom==='down');
+    objs.push({z:-2.9,draw:function(ctx){
+      fpPoly(ctx,[[-HW-1.12,0,-2.9],[-HW-0.86,0,-2.9],[-HW-0.86,1.7,-2.9],[-HW-1.12,1.7,-2.9]],'#c9d3e8');
+      if(down){for(var bi=0;bi<6;bi++){
+        var a=-HW-0.9+bi*(2*HW+0.9)/6, b=a+(2*HW+0.9)/6;
+        fpPoly(ctx,[[a,1.14,-2.9],[b,1.14,-2.9],[b,1.38,-2.9],[a,1.38,-2.9]],(bi%2)?'#f4f7fd':C.signRed);}}
+      else fpPoly(ctx,[[-HW-1.14,1.2,-2.9],[-HW-0.86,1.2,-2.9],[-HW-0.86,4.4,-2.9],[-HW-1.14,4.4,-2.9]],C.signRed);
+      if(w.lights==='flash'){
+        var on=Math.floor(t*3)%2===0;
+        [[-HW-1.65,on],[-HW-0.35,!on]].forEach(function(L){
+          var p=fpProj(L[0],2.5,-2.9);
+          ctx.fillStyle=L[1]?'#ff2d45':'#4a1620';
+          if(L[1]){ctx.shadowColor='#ff2d45';ctx.shadowBlur=20;}
+          ctx.beginPath();ctx.arc(p.x,p.y,Math.max(3,p.s*0.15),0,7);ctx.fill();ctx.shadowBlur=0;});
+      }
+    }});
+  }
+
+  (w.cars||[]).forEach(function(c){
+    var p=carPose(c,G), isBike=(c.type==='bike'||c.type==='moto');
+    var len=(c.type==='bus')?11:(c.type==='truck')?9:isBike?1.9:4.4;
+    var wid=(c.type==='bus'||c.type==='truck')?2.5:isBike?0.75:1.85;
+    var hgt=(c.type==='bus')?3.2:(c.type==='truck')?3.5:isBike?1.15:1.5;
+    var along=(c.from==='east'||c.from==='west');
+    var sx=along?len:wid, sz=along?wid:len, base=c.color||C.carA;
+    fpBox(objs,p.x,0.26,p.z,sx,hgt*0.55,sz,shade(base,1.06),shade(base,0.7),shade(base,0.9));
+    if(!isBike) fpBox(objs,p.x,0.26+hgt*0.55,p.z,sx*0.78,hgt*0.5,sz*0.6,shade(base,0.96),'#131c36','#1a2544');
+    else fpBox(objs,p.x,0.26+hgt*0.55,p.z,0.45,0.8,0.35,'#e0553f','#a63c2c','#c14735');
+    fpBox(objs,p.x,0,p.z,sx*1.02,0.28,sz*0.98,'#12161f','#0b0e15','#0f131c');
+    if(c.type==='breakdown') objs.push({z:p.z-0.015,draw:function(ctx){
+      if(Math.floor(t*2.5)%2===0)return;
+      [-1,1].forEach(function(sd){
+        var q=fpProj(p.x+sd*wid*0.42,0.9,p.z-len*0.45);
+        ctx.fillStyle='#ffb703';ctx.shadowColor='#ffb703';ctx.shadowBlur=18;
+        ctx.beginPath();ctx.arc(q.x,q.y,Math.max(3,q.s*0.09),0,7);ctx.fill();ctx.shadowBlur=0;});
+    }});
+    if(c.type==='police') objs.push({z:p.z-0.01,draw:function(ctx){
+      var on=Math.floor(t*4)%2===0, q=fpProj(p.x,0.26+hgt*1.06,p.z);
+      ctx.fillStyle=on?'#4da6ff':'#ff3348';ctx.shadowColor=ctx.fillStyle;ctx.shadowBlur=22;
+      ctx.beginPath();ctx.arc(q.x,q.y,Math.max(3,q.s*0.12),0,7);ctx.fill();ctx.shadowBlur=0;}});
+    if(c.label) objs.push({z:p.z-0.02,draw:function(ctx){
+      var q=fpProj(p.x,hgt+1.1,p.z);if(q.dz<2)return;
+      var fs=clamp(q.s*0.12,8,18);
+      ctx.font='bold '+fs+'px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+      var tw=ctx.measureText(c.label).width+10;
+      ctx.fillStyle='rgba(11,16,32,.82)';ctx.fillRect(q.x-tw/2,q.y-fs*0.8,tw,fs*1.6);
+      ctx.strokeStyle=base;ctx.lineWidth=1.5;ctx.strokeRect(q.x-tw/2,q.y-fs*0.8,tw,fs*1.6);
+      ctx.fillStyle=base;ctx.fillText(c.label,q.x,q.y);}});
+  });
+  (w.peds||[]).forEach(function(pd){
+    var pos=pedPos(pd,t,G);
+    fpBox(objs,pos.x,0,pos.z,0.45,0.85,0.3,'#2b6cb0','#1e4d80','#245c99');
+    fpBox(objs,pos.x,0.85,pos.z,0.52,0.55,0.35,'#e0553f','#a63c2c','#c14735');
+    fpBox(objs,pos.x,1.4,pos.z,0.3,0.32,0.3,C.ped,'#c9b47d','#dfc78e');
+  });
+  if(w.officer){
+    fpBox(objs,2.8,0,2.8,0.5,0.9,0.35,'#12305e','#0c2246','#0f2a52');
+    fpBox(objs,2.8,0.9,2.8,0.62,0.6,0.4,'#1e64d8','#154aa3','#1a57bd');
+    fpBox(objs,2.8,1.5,2.8,0.32,0.34,0.32,C.ped,'#c9b47d','#dfc78e');
+    fpBox(objs,2.15,1.36,2.8,0.95,0.14,0.14,C.ped,'#c9b47d','#dfc78e');
+  }
+  if(w.controller){
+    fpBox(objs,-HW-1.3,0,6,0.5,1.55,0.35,'#ff7a1a','#c25a10','#e06a15');
+    fpBox(objs,-HW-1.3,1.55,6,0.32,0.34,0.32,C.ped,'#c9b47d','#dfc78e');
+    objs.push({z:6.01,draw:function(ctx){
+      var p=fpProj(-HW-0.65,1.98,6);
+      ctx.fillStyle=C.signRed;ctx.beginPath();ctx.arc(p.x,p.y,Math.max(6,p.s*0.3),0,7);ctx.fill();
+      ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.stroke();
+      ctx.fillStyle='#fff';ctx.font='bold '+Math.max(6,Math.round(p.s*0.19))+'px monospace';
+      ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText('STOP',p.x,p.y);}});
+  }
+
+  objs.sort(function(a,b){return b.z-a.z;});
+  objs.forEach(function(o){o.draw(ctx);});
+
+  if(w.fog){
+    var fg=ctx.createLinearGradient(0,H*FP.hz-60,0,H*0.86);
+    fg.addColorStop(0,'rgba(198,206,216,.94)');
+    fg.addColorStop(.45,'rgba(190,199,211,.66)');
+    fg.addColorStop(1,'rgba(180,190,205,.12)');
+    ctx.fillStyle=fg;ctx.fillRect(0,0,W,H*0.88);
+  }
+  if(w.glare){
+    var sx0=W*0.52, sy0=H*FP.hz-18;
+    var gl=ctx.createRadialGradient(sx0,sy0,0,sx0,sy0,W*0.62);
+    gl.addColorStop(0,'rgba(255,246,214,.95)');
+    gl.addColorStop(.22,'rgba(255,214,140,.55)');
+    gl.addColorStop(1,'rgba(255,200,120,0)');
+    ctx.fillStyle=gl;ctx.fillRect(0,0,W,H);
+  }
+  if(w.rain){
+    ctx.strokeStyle='rgba(190,215,255,.35)';ctx.lineWidth=1;
+    for(var ri2=0;ri2<130;ri2++){var rx=(ri2*137+t*420)%W, ry=(ri2*89+t*950)%H;
+      ctx.beginPath();ctx.moveTo(rx,ry);ctx.lineTo(rx-3,ry+12);ctx.stroke();}
+  }
+
+  // hazard target ring
+  if(w.hazard){
+    var hq=fpProj(w.hazard.x,w.hazard.y||1.0,w.hazard.z);
+    var hr=Math.max(24,(w.hazard.r||1.6)*hq.s);
+    if(ctx.canvas.id==='fp') FP.hit={x:hq.x,y:hq.y,r:hr};
+    if(HAZ.reveal&&hq.dz>1){
+      var pul=1+Math.sin(t*6)*0.10;
+      ctx.strokeStyle=HAZ.ok?'#4ade80':'#ffc23d';ctx.lineWidth=5;
+      ctx.shadowColor=ctx.strokeStyle;ctx.shadowBlur=18;
+      ctx.beginPath();ctx.arc(hq.x,hq.y,hr*pul,0,7);ctx.stroke();ctx.shadowBlur=0;
+      ctx.font='800 15px monospace';ctx.textAlign='center';ctx.textBaseline='alphabetic';
+      var lb=w.hazard.label||'HAZARD', lw=ctx.measureText(lb).width+16;
+      ctx.fillStyle=HAZ.ok?'#4ade80':'#ffc23d';
+      ctx.fillRect(hq.x-lw/2,hq.y-hr*pul-26,lw,21);
+      ctx.fillStyle='#0b0714';ctx.fillText(lb,hq.x,hq.y-hr*pul-11);
+    }
+  }
+  if(HAZ.miss&&ctx.canvas.id==='fp'){
+    ctx.strokeStyle='#ff4d5e';ctx.lineWidth=5;
+    var mx0=HAZ.miss.x,my0=HAZ.miss.y;
+    ctx.beginPath();ctx.moveTo(mx0-14,my0-14);ctx.lineTo(mx0+14,my0+14);
+    ctx.moveTo(mx0+14,my0-14);ctx.lineTo(mx0-14,my0+14);ctx.stroke();
+  }
+  // rear-view mirror
+  if(w.mirror){
+    var mw=W*0.30,mh=W*0.082,mx=W/2-mw/2,my=W*0.018;
+    ctx.fillStyle='#0a0f1e';ctx.fillRect(mx-4,my-4,mw+8,mh+8);
+    ctx.strokeStyle='#2f1f57';ctx.lineWidth=3;ctx.strokeRect(mx-4,my-4,mw+8,mh+8);
+    ctx.save();ctx.beginPath();ctx.rect(mx,my,mw,mh);ctx.clip();
+    var mg=ctx.createLinearGradient(0,my,0,my+mh);
+    mg.addColorStop(0,night?'#0a1030':'#2b3a63');mg.addColorStop(.42,night?'#131b3d':'#5c6a92');
+    mg.addColorStop(.44,'#242a3a');mg.addColorStop(1,'#171c28');
+    ctx.fillStyle=mg;ctx.fillRect(mx,my,mw,mh);
+    (w.cars||[]).forEach(function(c){
+      var q=carPose(c,G), dd=FP.camZ-q.z;
+      if(dd<=1.5||dd>60)return;
+      var k=Math.min(1,7/dd), cw2=mw*0.42*k, ch2=mh*0.5*k;
+      var cxm=mx+mw/2-(q.x-FP.camX)*(mw*0.10/Math.max(2,dd))*3;
+      var cym=my+mh*0.44+ (mh*0.34)*k;
+      ctx.fillStyle=c.color||C.carA;ctx.fillRect(cxm-cw2/2,cym-ch2,cw2,ch2);
+      ctx.fillStyle='rgba(10,18,38,.7)';ctx.fillRect(cxm-cw2*0.36,cym-ch2*0.88,cw2*0.72,ch2*0.42);
+      ctx.fillStyle='#ffeaa0';
+      ctx.fillRect(cxm-cw2*0.44,cym-ch2*0.24,cw2*0.16,ch2*0.18);
+      ctx.fillRect(cxm+cw2*0.28,cym-ch2*0.24,cw2*0.16,ch2*0.18);
+    });
+    ctx.restore();
+    ctx.font='800 11px monospace';ctx.fillStyle='#a99fd6';ctx.textAlign='center';
+    ctx.fillText('REAR VIEW',W/2,my+mh+18);ctx.textAlign='left';
+  }
+  var dashY=H*0.79, dx=-FP.yaw*FP.f;
+  ctx.fillStyle='#0a0f1e';
+  ctx.beginPath();ctx.moveTo(-200,H);ctx.lineTo(-200,dashY+16);
+  ctx.lineTo(dx,dashY+16);
+  ctx.quadraticCurveTo(dx+W*0.5,dashY-28,dx+W,dashY+16);
+  ctx.lineTo(W+200,dashY+16);ctx.lineTo(W+200,H);ctx.closePath();ctx.fill();
+  ctx.strokeStyle='#1d2848';ctx.lineWidth=3;ctx.stroke();
+  ctx.strokeStyle='#243055';ctx.lineWidth=12;
+  ctx.beginPath();ctx.arc(dx+W*0.30,H+22,56,Math.PI,0);ctx.stroke();
+  ctx.strokeStyle='#3a4a80';ctx.lineWidth=4;
+  ctx.beginPath();ctx.moveTo(dx+W*0.30-56,H+22);ctx.lineTo(dx+W*0.30+56,H+22);ctx.stroke();
+  ctx.fillStyle='rgba(28,232,240,.12)';ctx.fillRect(0,dashY+20,W,3);
+  ctx.fillStyle=C.you;ctx.font='bold 11px monospace';ctx.textAlign='left';ctx.textBaseline='alphabetic';
+  var dirMap={straight:'GOING STRAIGHT',left:'TURNING LEFT',right:'TURNING RIGHT',uturn:'FULL TURN / U-TURN',
+    lanechange:'CHANGING LANES',park:'PARKING',pullout:'PULLING OUT'};
+  ctx.fillText('▸ '+(dirMap[w.yourIntent]||'DRIVING'),14,H-16);
+  if(FP.yaw!==0){
+    ctx.fillStyle='#ffc23d';ctx.textAlign='center';
+    ctx.fillText((FP.yaw>0?'LOOKING RIGHT ▸':'◂ LOOKING LEFT'),W/2,H-16);
+  }
+  if(['left','right','uturn','lanechange','pullout'].indexOf(w.yourIntent)>=0){
+    var onB=Math.floor(t*2.5)%2===0, leftB=(w.yourIntent==='left'||w.yourIntent==='pullout');
+    ctx.fillStyle=onB?'#3ddc84':'#16321f';
+    var bx=leftB?W-78:W-40;
+    ctx.beginPath();
+    if(leftB){ctx.moveTo(bx-11,H-20);ctx.lineTo(bx+4,H-29);ctx.lineTo(bx+4,H-11);}
+    else{ctx.moveTo(bx+11,H-20);ctx.lineTo(bx-4,H-29);ctx.lineTo(bx-4,H-11);}
+    ctx.fill();
+  }
+  if(w.lplate){
+    ctx.fillStyle='#ffe14d';ctx.fillRect(W-54,dashY+32,32,32);
+    ctx.fillStyle='#111';ctx.font='bold 23px monospace';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('L',W-38,dashY+49);
+  }
+  var vg=ctx.createRadialGradient(W/2,H/2,H*0.25,W/2,H/2,H*0.85);
+  vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,.5)');
+  ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+}
+
+/* ============================================================
+   GAME SHELL
+   ============================================================ */
+var state={i:0,score:0,asked:0,streak:0,best:0,eyes:0,eyesT:0,answered:false,cat:'ALL',pool:[],order:[],oi:0};
+var tdc=$('td').getContext('2d'), fpc=$('fp').getContext('2d');
+var CATS=['ALL','DEFENSIVE','EMERGENCY','GIVE WAY','ROUNDABOUT','LIGHTS','SIGNS & LINES','SHARING','SPEED','RAILWAY','PARKING','OVERTAKING'];
+
+function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function buildCats(){
+  $('cats').innerHTML='';
+  CATS.forEach(function(c){
+    var b=document.createElement('button');
+    b.className='cat'+(c===state.cat?' on':'');
+    b.textContent=(c==='ALL')?'★ EVERYTHING':c;
+    b.onclick=function(){state.cat=c;buildCats();buildPool();nextScenario();};
+    $('cats').appendChild(b);
+  });
+}
+function buildPool(){
+  state.pool=[];
+  for(var i=0;i<SCEN.length;i++) if(state.cat==='ALL'||SCEN[i].cat===state.cat) state.pool.push(i);
+  state.order=shuffle(state.pool.slice());state.oi=0;
+}
+function nextScenario(){
+  if(state.oi>=state.order.length){state.order=shuffle(state.pool.slice());state.oi=0;}
+  state.i=state.order[state.oi++];state.answered=false;render();
+}
+function setHazardUI(){
+  var sc=SCEN[state.i], has=!!(sc.world&&sc.world.hazard);
+  var bar=$('hazbar'), fpc2=$('fp');
+  if(has&&!HAZ.done){
+    bar.className='haz on';
+    $('hazhead').innerHTML='&#128065; STEP 1 — SPOT THE HAZARD';
+    $('hazmsg').textContent="Look at the driver's view and click the thing that could hurt you."+
+      (HAZ.misses?'  Not there — try again ('+(2-HAZ.misses)+' left).':'');
+    $('hazSkip').style.display='';
+    $('opts').style.display='none';
+    fpc2.className='aim';
+  }else if(has){
+    bar.className='haz on '+(HAZ.ok?'hit':'shown');
+    $('hazhead').innerHTML=HAZ.ok?'&#10004; GOOD EYES':'&#128065; HERE IT IS';
+    $('hazmsg').textContent=(HAZ.ok?'You spotted the ':'The hazard is the ')+
+      (sc.world.hazard.label||'hazard').toLowerCase()+'. Now — what should you do about it?';
+    $('hazSkip').style.display='none';
+    $('opts').style.display='';
+    fpc2.className='';
+  }else{
+    bar.className='haz';
+    $('opts').style.display='';
+    fpc2.className='';
+  }
+}
+function revealHazard(ok){
+  if(HAZ.done)return;
+  HAZ.done=true;HAZ.ok=!!ok;HAZ.reveal=true;HAZ.miss=null;
+  state.eyesT++; if(ok&&HAZ.misses===0) state.eyes++;
+  updateHud();setHazardUI();
+}
+$('hazSkip').onclick=function(){revealHazard(false);};
+$('fp').addEventListener('click',function(e){
+  var sc=SCEN[state.i];
+  if(!sc||!sc.world.hazard||HAZ.done||!FP.hit)return;
+  var r=this.getBoundingClientRect();
+  var cxp=(e.clientX-r.left)*this.width/r.width;
+  var cyp=(e.clientY-r.top)*this.height/r.height;
+  var d=Math.hypot(cxp-FP.hit.x,cyp-FP.hit.y);
+  if(d<=FP.hit.r*1.15){revealHazard(true);}
+  else{
+    HAZ.misses++;HAZ.miss={x:cxp,y:cyp};
+    setTimeout(function(){HAZ.miss=null;},900);
+    if(HAZ.misses>=2){setTimeout(function(){revealHazard(false);},350);}
+    setHazardUI();
+  }
+});
+
+function render(){
+  var sc=SCEN[state.i];
+  HAZ={reveal:false,ok:false,miss:null,done:false,misses:0};
+  $('cattag').textContent=sc.cat+' · '+sc.title;
+  $('question').textContent=sc.q;
+  $('tdlabel').textContent=(sc.world.layout||'cross').toUpperCase();
+  if(!sc._shuf){var idx=[];for(var i=0;i<sc.opts.length;i++)idx.push(i);sc._shuf=shuffle(idx);}
+  var box=$('opts');box.innerHTML='';
+  sc._shuf.forEach(function(oi,n){
+    var b=document.createElement('button');
+    b.className='opt';
+    b.innerHTML='<span class="k">'+'ABCD'[n]+'</span><span>'+sc.opts[oi]+'</span>';
+    b.onclick=function(){answer(oi);};
+    box.appendChild(b);
+  });
+  $('fb').className='fb';
+  setHazardUI();
+  if(typeof updateExport==='function') updateExport();
+}
+function answer(oi){
+  if(state.answered)return;
+  state.answered=true;
+  var sc=SCEN[state.i], right=(oi===sc.ans);
+  state.asked++;
+  if(right){state.score++;state.streak++;state.best=Math.max(state.best,state.streak);}else state.streak=0;
+  var kids=$('opts').children;
+  for(var n=0;n<kids.length;n++){
+    var id=sc._shuf[n];kids[n].disabled=true;
+    if(id===sc.ans)kids[n].className='opt right';
+    else if(id===oi)kids[n].className='opt wrong';
+  }
+  if(sc.world.hazard&&!HAZ.done) revealHazard(false);
+  else if(sc.world.hazard) HAZ.reveal=true;
+  var fb=$('fb');
+  fb.className='fb show '+(right?'good':'bad');
+  var cheers=['NICE ONE!','SPOT ON!','TOO EASY!','LEGEND!','GOT IT!'];
+  var oops=['NOT QUITE','HAVE ANOTHER LOOK','CLOSE ONE','TRICKY, HEY?'];
+  $('fbhead').textContent=right
+    ? '✔ '+cheers[Math.floor(Math.random()*cheers.length)]+(state.streak>2?'   ×'+state.streak+' STREAK':'')
+    : '✘ '+oops[Math.floor(Math.random()*oops.length)];
+  $('fbtext').textContent=(right?'':'The correct answer is “'+sc.opts[sc.ans]+'”. ')+sc.why;
+  $('fbref').textContent='📖 '+sc.ref;
+  updateHud();
+}
+function updateHud(){
+  $('score').textContent=state.score;$('asked').textContent=state.asked;
+  $('streak').textContent=state.streak;$('best').textContent=state.best;
+  $('eyes').textContent=state.eyes;$('eyesT').textContent=state.eyesT;
+}
+$('next').onclick=nextScenario;
+$('skip').onclick=nextScenario;
+$('reset').onclick=function(){state.score=0;state.asked=0;state.streak=0;state.best=0;state.eyes=0;state.eyesT=0;updateHud();};
+document.addEventListener('keydown',function(e){
+  var k=(e.key||'').toUpperCase();
+  if('ABCD'.indexOf(k)>=0&&k.length===1){var b=$('opts').children['ABCD'.indexOf(k)];if(b&&!b.disabled)b.click();}
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();nextScenario();}
+});
+
+var t0=(typeof performance!=='undefined')?performance.now():0;
+function loop(now){
+  var t=(now-t0)/1000, sc=SCEN[state.i];
+  if(sc){drawTop(tdc,sc,t);drawFP(fpc,sc,t);}
+  requestAnimationFrame(loop);
+}
+window.__SCEN=SCEN;
+window.__go=function(i){state.i=i;state.answered=false;render();};
+window.__frame=function(t){var sc=SCEN[state.i];drawTop(tdc,sc,t);drawFP(fpc,sc,t);};
+
+/* ============================================================
+   INSTAGRAM EXPORT — 1080x1350 cards + reel clip
+   ============================================================ */
+var IG={W:1080,H:1350,M:48};
+var offFP=document.createElement('canvas');offFP.width=1200;offFP.height=940;
+var offTD=document.createElement('canvas');offTD.width=1200;offTD.height=940;
+var card=document.createElement('canvas');card.width=IG.W;card.height=IG.H;
+
+function renderScenes(sc,t,showHaz){
+  var keep=HAZ.reveal; if(showHaz!==undefined) HAZ.reveal=showHaz;
+  var a=offFP.getContext('2d');a.setTransform(2,0,0,2,0,0);drawFP(a,sc,t,600,470);a.setTransform(1,0,0,1,0,0);
+  var b=offTD.getContext('2d');b.setTransform(2,0,0,2,0,0);drawTop(b,sc,t,600,470);b.setTransform(1,0,0,1,0,0);
+  HAZ.reveal=keep;
+}
+function rr(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+  ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+  ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+  ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+function wrap(ctx,text,maxW){
+  var words=String(text).split(' '),lines=[],line='';
+  for(var i=0;i<words.length;i++){
+    var tst=line?line+' '+words[i]:words[i];
+    if(ctx.measureText(tst).width>maxW&&line){lines.push(line);line=words[i];}else line=tst;
+  }
+  if(line)lines.push(line);
+  return lines;
+}
+/* Export cards use the Estus type stack: Poppins for copy, Bungee for the
+   display lines (wordmark, kicker, chips, CTA bar). */
+var MONO='Poppins,system-ui,ui-sans-serif,"DejaVu Sans",sans-serif';
+var DSP='Bungee,'+MONO;
+
+function cardBg(ctx){
+  var g=ctx.createLinearGradient(0,0,IG.W,IG.H);
+  g.addColorStop(0,'#150e2a');g.addColorStop(.5,'#0b0714');g.addColorStop(1,'#2a0b3a');
+  ctx.fillStyle=g;ctx.fillRect(0,0,IG.W,IG.H);
+  var r1=ctx.createRadialGradient(180,60,0,180,60,720);
+  r1.addColorStop(0,'rgba(28,232,240,.16)');r1.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=r1;ctx.fillRect(0,0,IG.W,IG.H);
+  var r2=ctx.createRadialGradient(1000,1300,0,1000,1300,760);
+  r2.addColorStop(0,'rgba(255,46,154,.16)');r2.addColorStop(1,'rgba(0,0,0,0)');
+  ctx.fillStyle=r2;ctx.fillRect(0,0,IG.W,IG.H);
+  ctx.fillStyle='rgba(255,255,255,.035)';
+  for(var y=0;y<IG.H;y+=5)ctx.fillRect(0,y,IG.W,1.6);
+}
+function cardHeader(ctx,sc,kicker,kickCol){
+  var M=IG.M;
+  ctx.textBaseline='alphabetic';ctx.textAlign='left';
+  ctx.font='400 34px '+DSP;
+  ctx.fillStyle=C.you;ctx.fillText('GIVE',M,72);
+  var wgap=ctx.measureText('GIVE ').width;
+  ctx.fillStyle='#ff2e9a';ctx.fillText('WAY!',M+wgap,72);
+  ctx.font='600 15px '+MONO;ctx.fillStyle='#a99fd6';
+  ctx.fillText('WA ROAD RULES \u00B7 ESTUS HEALTH',M,98);
+  // category chip
+  ctx.font='400 18px '+DSP;
+  var lab=sc.cat, cw=ctx.measureText(lab).width+30;
+  rr(ctx,IG.W-M-cw,50,cw,38,10);ctx.fillStyle='#1ce8f0';ctx.fill();
+  ctx.fillStyle='#07121a';ctx.textAlign='center';ctx.fillText(lab,IG.W-M-cw/2,76);
+  ctx.textAlign='left';
+  ctx.font='400 46px '+DSP;ctx.fillStyle=kickCol||'#ffffff';
+  ctx.fillText(kicker,M,150);
+}
+function drawScene(ctx,x,y,w,h,withInset){
+  ctx.save();rr(ctx,x,y,w,h,20);ctx.clip();
+  // crop the driver's view around the horizon so short boxes are not all sky
+  var srcH=Math.min(470,600*(h/w));
+  var sy=clamp(250-srcH*0.44,0,470-srcH);
+  ctx.imageSmoothingEnabled=true;
+  ctx.drawImage(offFP,0,sy*2,1200,srcH*2,x,y,w,h);
+  ctx.restore();
+  rr(ctx,x,y,w,h,20);ctx.strokeStyle='#2f1f57';ctx.lineWidth=5;ctx.stroke();
+  if(withInset){
+    var iw=286,ih=238,ix=x+20,iy=y+h-ih-20;
+    ctx.save();rr(ctx,ix,iy,iw,ih,12);ctx.clip();
+    ctx.fillStyle='#0b0714';ctx.fillRect(ix,iy,iw,ih);
+    ctx.drawImage(offTD,200,150,800,666,ix,iy,iw,ih);
+    ctx.restore();
+    rr(ctx,ix,iy,iw,ih,12);ctx.strokeStyle='#1ce8f0';ctx.lineWidth=4;ctx.stroke();
+    ctx.font='400 14px '+DSP;ctx.textAlign='left';
+    var tw=ctx.measureText('TOP DOWN').width+16;
+    ctx.fillStyle='#1ce8f0';ctx.fillRect(ix,iy,tw,24);
+    ctx.fillStyle='#07121a';ctx.fillText('TOP DOWN',ix+8,iy+17);
+  }
+}
+function ctaBar(ctx,y,text,col,bg){
+  var M=IG.M;
+  rr(ctx,M,y,IG.W-M*2,66,16);ctx.fillStyle=bg;ctx.fill();
+  ctx.strokeStyle=col;ctx.lineWidth=3;ctx.stroke();
+  ctx.font='400 25px '+DSP;ctx.fillStyle=col;ctx.textAlign='center';
+  ctx.fillText(text,IG.W/2,y+43);ctx.textAlign='left';
+}
+function drawQuestionCard(ctx,sc,cta){
+  var M=IG.M;
+  cardBg(ctx);
+  cardHeader(ctx,sc,'WHAT SHOULD YOU DO?','#ffffff');
+  drawScene(ctx,M,168,IG.W-M*2,672,true);
+  if(sc.world.hazard){
+    ctx.font='400 20px '+DSP;
+    var hb='\u{1F441} CAN YOU SPOT THE HAZARD?', bw=ctx.measureText(hb).width+28;
+    rr(ctx,IG.W-M-bw-16,188,bw,44,10);ctx.fillStyle='rgba(255,194,61,.92)';ctx.fill();
+    ctx.fillStyle='#2a1c00';ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText(hb,IG.W-M-16-bw/2,210);ctx.textAlign='left';ctx.textBaseline='alphabetic';
+  }
+  // question
+  ctx.font='800 34px '+MONO;ctx.fillStyle='#ece4ff';
+  var qs=wrap(ctx,sc.q,IG.W-M*2).slice(0,3);
+  qs.forEach(function(l,i){ctx.fillText(l,M,890+i*42);});
+  // options
+  var top=890+qs.length*42+16, bot=1256;
+  var rowH=Math.min(60,(bot-top-3*11)/4);
+  var oy=top+Math.max(0,(bot-top-(rowH*4+33))/2);
+  ctx.textBaseline='middle';
+  sc._shuf.forEach(function(oi,n){
+    var y=oy+n*(rowH+11);
+    rr(ctx,M,y,IG.W-M*2,rowH,12);ctx.fillStyle='rgba(21,14,42,.92)';ctx.fill();
+    ctx.strokeStyle='#241645';ctx.lineWidth=3;ctx.stroke();
+    rr(ctx,M+12,y+(rowH-38)/2,38,38,9);ctx.fillStyle='#241645';ctx.fill();
+    ctx.font='400 19px '+DSP;ctx.fillStyle='#ece4ff';ctx.textAlign='center';
+    ctx.fillText('ABCD'[n],M+31,y+rowH/2+1);
+    ctx.textAlign='left';ctx.font='700 22px '+MONO;
+    var txt=sc.opts[oi];
+    if(ctx.measureText(txt).width>IG.W-M*2-80) txt=wrap(ctx,txt,IG.W-M*2-80)[0]+'…';
+    ctx.fillText(txt,M+64,y+rowH/2+1);
+  });
+  ctx.textBaseline='alphabetic';
+  ctaBar(ctx,1272,cta||'→ SWIPE FOR THE ANSWER','#1ce8f0','rgba(28,232,240,.10)');
+}
+function drawAnswerCard(ctx,sc){
+  var M=IG.M;
+  cardBg(ctx);
+  cardHeader(ctx,sc,'THE ANSWER','#4ade80');
+  drawScene(ctx,M,168,IG.W-M*2,420,true);
+  var y=624;
+  ctx.font='400 20px '+DSP;ctx.fillStyle='#4ade80';ctx.fillText('CORRECT',M,y);
+  y+=14;
+  ctx.font='800 30px '+MONO;
+  var al=wrap(ctx,sc.opts[sc.ans],IG.W-M*2-40).slice(0,3);
+  var ah=al.length*40+34;
+  rr(ctx,M,y,IG.W-M*2,ah,14);ctx.fillStyle='rgba(74,222,128,.14)';ctx.fill();
+  ctx.strokeStyle='#4ade80';ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle='#d7ffe6';
+  al.forEach(function(l,i){ctx.fillText(l,M+20,y+42+i*40);});
+  y+=ah+40;
+  ctx.font='400 20px '+DSP;ctx.fillStyle='#ff2e9a';ctx.fillText('WHY',M,y);y+=36;
+  ctx.font='500 25px '+MONO;ctx.fillStyle='#c9bdf0';
+  var wl=wrap(ctx,sc.why,IG.W-M*2).slice(0,7);
+  wl.forEach(function(l,i){ctx.fillText(l,M,y+i*35);});
+  y+=wl.length*35+30;
+  var wrongs=sc.opts.filter(function(o,i){return i!==sc.ans;}).slice(0,3);
+  var room=1224-y-30;
+  if(room>110){
+    ctx.font='400 20px '+DSP;ctx.fillStyle='#ff4d5e';ctx.fillText('NOT THIS',M,y);y+=16;
+    var rh=Math.min(50,(room-16-2*9)/3);
+    ctx.textBaseline='middle';
+    wrongs.forEach(function(o,i){
+      var ry=y+i*(rh+9);
+      rr(ctx,M,ry,IG.W-M*2,rh,10);ctx.fillStyle='rgba(255,77,94,.09)';ctx.fill();
+      ctx.strokeStyle='rgba(255,77,94,.45)';ctx.lineWidth=2;ctx.stroke();
+      ctx.font='800 22px '+MONO;ctx.fillStyle='#ff4d5e';ctx.textAlign='center';
+      ctx.fillText('\u2715',M+26,ry+rh/2+1);
+      ctx.textAlign='left';ctx.font='500 21px '+MONO;ctx.fillStyle='#b3a7dd';
+      var tx=o;
+      if(ctx.measureText(tx).width>IG.W-M*2-80) tx=wrap(ctx,tx,IG.W-M*2-80)[0]+'\u2026';
+      ctx.fillText(tx,M+52,ry+rh/2+1);
+    });
+    ctx.textBaseline='alphabetic';
+  }
+  ctx.font='700 19px '+MONO;ctx.fillStyle='#a99fd6';
+  ctx.fillText('\u2014 '+sc.ref,M,1250);
+  ctaBar(ctx,1272,'PLAY FREE \u00B7 ESTUSHEALTH.COM/GIVEWAY','#ff2e9a','rgba(255,46,154,.10)');
+}
+
+/* ---------- caption ---------- */
+var TAGS='#roadrules #wadriving #perth #westernaustralia #learnerdriver #lplates #pplates #drivingtest #drivesafe #givewayrules #australianroads #roadsafety #occupationaltherapy #neuroaffirming #estushealth';
+function buildCaption(sc){
+  var lines=[];
+  lines.push('🚦 '+sc.cat+' — '+sc.title.toUpperCase());
+  lines.push('');
+  lines.push(sc.q);
+  lines.push('');
+  sc._shuf.forEach(function(oi,n){lines.push('ABCD'[n]+') '+sc.opts[oi]);});
+  lines.push('');
+  lines.push('👇 Drop your answer in the comments, then swipe for the rule.');
+  lines.push('');
+  lines.push('Answer: '+sc.opts[sc.ans]);
+  lines.push(sc.why);
+  lines.push('');
+  lines.push('🎮 Play the whole arcade free at estushealth.com/giveway — 112 scenarios, built by an OT.');
+  lines.push('');
+  lines.push('📖 Source: '+sc.ref+' (Drive Safe, WA Dept of Transport and Major Infrastructure).');
+  lines.push('This is a study aid, not legal advice — always check the current handbook.');
+  lines.push('');
+  lines.push(TAGS);
+  return lines.join('\n');
+}
+
+/* ---------- download helpers ---------- */
+function slug(sc){return (sc.cat+'-'+sc.title).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,48);}
+function dl(blob,name){
+  var u=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=u;a.download=name;document.body.appendChild(a);a.click();
+  setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(u);},2000);
+}
+function cardBlob(cb){card.toBlob(function(b){cb(b);},'image/png');}
+function status(msg){$('expStatus').textContent=msg;}
+
+function exportImages(kind){
+  var sc=SCEN[state.i],ctx=card.getContext('2d');
+  renderScenes(sc,1.35);
+  if(kind==='teaser'){
+    drawQuestionCard(ctx,sc,sc.world.hazard?'👇 SPOT IT? COMMENT YOUR ANSWER':'👇 COMMENT YOUR ANSWER');
+    cardBlob(function(b){dl(b,'giveway-'+slug(sc)+'-teaser.png');status('Teaser image downloaded.');});
+  }else{
+    drawQuestionCard(ctx,sc,'→ SWIPE FOR THE ANSWER');
+    cardBlob(function(b){
+      dl(b,'giveway-'+slug(sc)+'-1-question.png');
+      setTimeout(function(){
+        renderScenes(sc,1.35,true);
+        drawAnswerCard(ctx,sc);
+        cardBlob(function(b2){dl(b2,'giveway-'+slug(sc)+'-2-answer.png');status('Carousel: 2 slides downloaded.');});
+      },700);
+    });
+  }
+}
+
+/* ---------- reel ---------- */
+var recording=false;
+function exportReel(){
+  if(recording)return;
+  if(typeof MediaRecorder==='undefined'){status('Your browser cannot record video — use the image exports instead.');return;}
+  var types=['video/mp4;codecs=avc1.42E01E','video/mp4;codecs=avc1','video/mp4',
+             'video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'];
+  var mime=null;
+  for(var i=0;i<types.length;i++){if(MediaRecorder.isTypeSupported(types[i])){mime=types[i];break;}}
+  if(!mime){status('Your browser cannot record video — use the image exports instead.');return;}
+  var isMp4=mime.indexOf('mp4')>=0, ext=isMp4?'mp4':'webm', sureH264=mime.indexOf('avc1')>=0;
+  var sc=SCEN[state.i],ctx=card.getContext('2d');
+  var stream=card.captureStream(30);
+  var rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:9000000});
+  var chunks=[];
+  rec.ondataavailable=function(e){if(e.data.size)chunks.push(e.data);};
+  rec.onstop=function(){
+    recording=false;
+    document.querySelector('.export').classList.remove('busy');
+    dl(new Blob(chunks,{type:isMp4?'video/mp4':'video/webm'}),'giveway-'+slug(sc)+'-reel.'+ext);
+    status(sureH264
+      ? 'Reel clip downloaded — 9 s H.264 MP4, 1080×1350. Post it straight to Reels or Stories.'
+      : isMp4
+      ? 'Reel clip downloaded — 9 s MP4, 1080×1350. If Instagram refuses it, this browser encoded VP9 inside the MP4: re-export from Safari or Chrome, or run it through any converter.'
+      : 'Reel clip downloaded — 9 s WebM (this browser cannot record MP4). Instagram needs MP4: re-export from Chrome or Safari, or run it through any converter.');
+    updateExport();
+  };
+  recording=true;
+  document.querySelector('.export').classList.add('busy');
+  var DUR=9000, REVEAL=5400, t0=null;
+  rec.start();
+  function frame(now){
+    if(t0===null)t0=now;
+    var el=now-t0, tt=el/1000;
+    renderScenes(sc,tt);
+    if(el<REVEAL){
+      var left=Math.ceil((REVEAL-el)/1000);
+      drawQuestionCard(ctx,sc,'ANSWER IN '+left+'…');
+      // progress bar
+      ctx.fillStyle='rgba(28,232,240,.25)';ctx.fillRect(0,IG.H-8,IG.W,8);
+      ctx.fillStyle='#1ce8f0';ctx.fillRect(0,IG.H-8,IG.W*(el/REVEAL),8);
+    }else{
+      renderScenes(sc,tt,true);
+      drawAnswerCard(ctx,sc);
+      var pop=Math.min(1,(el-REVEAL)/260);
+      ctx.globalAlpha=(1-pop)*0.5;ctx.fillStyle='#4ade80';ctx.fillRect(0,0,IG.W,IG.H);ctx.globalAlpha=1;
+    }
+    status('Recording reel… '+Math.min(9,(el/1000)).toFixed(1)+' s / 9 s');
+    if(el<DUR) requestAnimationFrame(frame); else rec.stop();
+  }
+  requestAnimationFrame(frame);
+}
+
+/* ---------- preview + wiring ---------- */
+function updateExport(){
+  var sc=SCEN[state.i];
+  if(!sc||recording)return;
+  $('capText').value=buildCaption(sc);
+  renderScenes(sc,1.35);
+  drawQuestionCard(card.getContext('2d'),sc,'→ SWIPE FOR THE ANSWER');
+  var pv=$('preview').getContext('2d');
+  pv.clearRect(0,0,324,405);
+  pv.drawImage(card,0,0,324,405);
+}
+$('expTeaser').onclick=function(){status('Rendering…');setTimeout(function(){exportImages('teaser');},20);};
+$('expCarousel').onclick=function(){status('Rendering…');setTimeout(function(){exportImages('carousel');},20);};
+$('expReel').onclick=exportReel;
+$('copyCap').onclick=function(){
+  var ta=$('capText');ta.select();ta.setSelectionRange(0,99999);
+  var done=function(){status('Caption copied to clipboard.');};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(ta.value).then(done,function(){document.execCommand('copy');done();});}
+  else{document.execCommand('copy');done();}
+};
+window.__card=card;
+window.__renderCard=function(kind){
+  var sc=SCEN[state.i],ctx=card.getContext('2d');
+  renderScenes(sc,1.35);
+  if(kind==='answer'){renderScenes(sc,1.35,true);drawAnswerCard(ctx,sc);}
+  else drawQuestionCard(ctx,sc,'→ SWIPE FOR THE ANSWER');
+};
+
+/* The Instagram studio panel is a content-team tool, not a player feature:
+   it stays hidden unless the URL carries ?studio. */
+if(/[?&]studio(=|&|$)/.test(location.search)) $('studio').classList.add('on');
+
+buildCats();buildPool();nextScenario();updateHud();updateExport();requestAnimationFrame(loop);
+
+/* Canvas ignores webfonts that have not loaded yet, so redraw the export
+   preview once Bungee and Poppins are ready. */
+if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){updateExport();});}
+</script>
+</body>
+</html>
