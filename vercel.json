@@ -1,6 +1,20 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "buildCommand": "npm run build",
+
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": true },
+    { "source": "/learn", "destination": "/resources", "permanent": true },
+    { "source": "/learn/:slug", "destination": "/resources/:slug", "permanent": true },
+    { "source": "/about/team", "destination": "/team", "permanent": true },
+    { "source": "/about/approach", "destination": "/team", "permanent": true },
+    { "source": "/for-referrers", "destination": "/contact", "permanent": true },
+    { "source": "/quiz/learner-driver-style", "destination": "/resources/learner-driver-quiz", "permanent": true },
+    { "source": "/resources/events", "destination": "/events", "permanent": true },
+    { "source": "/services/sleep-program", "destination": "/services/occupational-therapy", "permanent": true },
+    { "source": "/services", "destination": "/services/occupational-therapy", "permanent": true }
+  ],
+
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

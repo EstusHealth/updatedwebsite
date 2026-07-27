@@ -3,7 +3,8 @@
 > Neuroaffirming occupational therapy practice in Perth, Western Australia, with telehealth across Australia. A small team of neurodivergent clinicians (Liam Fagan, Nam Lang, Nik Peshwani) working with autistic adults and teens, PDA profiles, ADHD, late-diagnosed adults, and complex health (EDS, POTS, chronic fatigue, hypermobility). NDIS and private clients welcome.
 
 Important notes:
-- This is a JavaScript-rendered React site; the sitemap at https://www.estushealth.com/sitemap.xml lists every indexable page.
+- Every page is prerendered to static HTML at build time, so the full content is in the initial response and no JavaScript is required to read it.
+- The sitemap at https://www.estushealth.com/sitemap.xml lists every indexable page.
 - Contact: hello@estushealth.com
 
 ## Services
@@ -17,7 +18,9 @@ Important notes:
 
 - [Meet the Team](https://www.estushealth.com/team): The clinicians behind Estus Health.
 - [Contact & Referrals](https://www.estushealth.com/contact): Referral form, discovery-call bookings, and contact details.
-- [Events & Webinars](https://www.estushealth.com/events): Upcoming and recorded events, including the Gaming-Informed Therapy webinar.
+- [Events & Webinars](https://www.estushealth.com/events): Hub for live events and the permanent archive of past recordings.
+- [Gaming-Informed Therapy Webinar](https://www.estushealth.com/events/gaming-informed-therapy): Full recording, chapter markers, and resources on using gaming as a clinical medium.
+- [Boundary Setting Webinar](https://www.estushealth.com/events/boundary-setting): Full recording and resources on setting boundaries as a neurodivergent adult.
 
 ## Free Resources
 
@@ -26,7 +29,7 @@ Important notes:
 - [Late Autism Diagnosis](https://www.estushealth.com/resources/late-autism-diagnosis): Guide for late-diagnosed autistic adults.
 - [Executive Function & Complex Health](https://www.estushealth.com/resources/executive-function-complex-health): Executive function with chronic illness.
 - [EDS & HSD](https://www.estushealth.com/resources/eds-hsd): Ehlers-Danlos syndromes and hypermobility spectrum disorders.
-- [CommCard](https://www.estushealth.com/resources/commcard): Free communication-card web app.
+- [CommCard](https://www.estushealth.com/resources/commcard): About the free communication-card web app. The app itself runs at https://www.estushealth.com/commcard/ — tap-to-speak phrase cards for when words are hard, no login and no data stored.
 - [The Shared Lexicon](https://www.estushealth.com/resources/lexicon): Shared vocabulary for neurodivergent experiences.
 - [Open Loops](https://www.estushealth.com/resources/open-loops): Tool for managing unfinished tasks and mental load.
 - [Second Brain](https://www.estushealth.com/resources/second-brain): External memory systems for ADHD and autistic brains.
@@ -43,3 +46,4 @@ Important notes:
 - [EDS/HSD Management Style Quiz](https://www.estushealth.com/resources/eds-hsd-quiz)
 - [Learner Driver Style Quiz](https://www.estushealth.com/resources/learner-driver-quiz)
 - [Sensory Profile Quiz](https://www.estushealth.com/resources/sensory-profile)
+- [Boundary Style Quiz](https://www.estushealth.com/resources/boundary-style-quiz)

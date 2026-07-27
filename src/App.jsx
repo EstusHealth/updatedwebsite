@@ -91,7 +91,11 @@ export default function App() {
         <Route path="/resources/sensory-profile" element={<SensoryProfileQuiz />} />
         <Route path="/resources/boundary-style-quiz" element={<BoundaryStyleQuiz />} />
 
-        {/* Legacy redirects: keep old indexed URLs alive. */}
+        {/* Legacy redirects: keep old indexed URLs alive. These only fire for
+            in-app navigation, where no HTTP request is made. A crawler or a
+            cold visit hitting these paths directly is served a real 308 by the
+            `redirects` block in vercel.json, which runs before the SPA
+            rewrite. Keep the two lists in sync. */}
         <Route path="/quiz/learner-driver-style" element={<Navigate to="/resources/learner-driver-quiz" replace />} />
         <Route path="/resources/events" element={<Navigate to="/events" replace />} />
         <Route path="/learn" element={<Navigate to="/resources" replace />} />
