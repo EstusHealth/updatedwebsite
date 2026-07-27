@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useCallback } from 'react'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, Btn, CTABand, ReferralButton } from '../../components/Bits'
 
 /* The Shared Lexicon: a family-friendly, neuroaffirming glossary across five
@@ -206,6 +206,11 @@ export default function Lexicon() {
         title="The Shared Lexicon | Estus Health"
         description="A free, family-friendly, neuroaffirming glossary of the words we use across occupational therapy, neurodivergence, LGBTQIA+, gaming, and Gen Z slang. Search it, expand it, and find shared language."
         path="/resources/lexicon"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'The Shared Lexicon', path: '/resources/lexicon' },
+        ])}
       />
 
       <PageHero eyebrow="Interactive Tool" title="The Shared" accent="Lexicon"

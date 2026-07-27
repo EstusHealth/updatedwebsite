@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo } from 'react'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, videoObject } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
@@ -468,6 +468,14 @@ export default function BoundarySettingWebinar() {
         description="A free, interactive companion to Liam Fagan and Nic Voican's boundary-setting webinar. Find your boundary style, map your strongest domains, tell a boundary from a rule, and get copy-ready scripts and troubleshooting."
         path={WEBINAR.path}
         type="video.other"
+        schema={[
+          videoObject(WEBINAR),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Events & Webinars', path: '/events' },
+            { name: WEBINAR.title, path: WEBINAR.path },
+          ]),
+        ].filter(Boolean)}
       />
 
       <style>{BW_CSS}</style>

@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn } from '../../components/Bits'
 
 export default function EdsHsd() {
@@ -9,6 +9,11 @@ export default function EdsHsd() {
         description="Ehlers-Danlos Syndromes and Hypermobility Spectrum Disorder: what they are, how they overlap with neurodivergence, and what OT support actually looks like."
         path="/resources/eds-hsd"
         type="article"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'EDS & Hypermobility', path: '/resources/eds-hsd' },
+        ])}
       />
 
       <PageHero

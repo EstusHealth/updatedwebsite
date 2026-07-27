@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Heart, HeartHandshake, Eye, Scale, Shield, RefreshCw, Lock, Target, Compass } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 /* Standalone "What is your boundary style?" quiz. It maps you onto the porous
@@ -315,7 +315,7 @@ export default function BoundaryStyleQuiz() {
       <SEO
         title="Boundary Style Quiz | Estus Health"
         description="Are your boundaries porous, healthy or rigid? Answer nine quick questions to find your boundary-setting style and get practical, neuroaffirming next steps."
-        path="/resources/boundary-style-quiz"
+        path="/resources/boundary-style-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Boundary Style Quiz', path: '/resources/boundary-style-quiz' }])}
       />
       {screen !== "results" && (
         <>

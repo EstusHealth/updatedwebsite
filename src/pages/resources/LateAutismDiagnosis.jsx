@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 export default function LateAutismDiagnosis() {
@@ -9,6 +9,11 @@ export default function LateAutismDiagnosis() {
         description="Why autism gets missed in adults, what the late-diagnosis experience is actually like, and how to move forward with self-understanding."
         path="/resources/late-autism-diagnosis"
         type="article"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Late Autism Diagnosis', path: '/resources/late-autism-diagnosis' },
+        ])}
       />
 
       <PageHero

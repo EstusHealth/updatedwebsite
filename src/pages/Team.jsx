@@ -1,4 +1,4 @@
-import SEO from '../components/SEO'
+import SEO, { breadcrumb, ORG_ID } from '../components/SEO'
 import { PageHero, CTABand, Btn } from '../components/Bits'
 import { Confetti } from '../components/Decor'
 import { PODCASTS } from '../lib/site'
@@ -94,6 +94,23 @@ export default function Team() {
         title="Meet the Team | Estus Health"
         description="Three neurodivergent occupational therapists in Perth. We don't fix people, we fix the environment. Neuroaffirming, strengths-based OT for autistic adults, PDA profiles, and complex health."
         path="/team"
+        schema={[
+          ...BIOS.map((b) => ({
+            '@type': 'Person',
+            name: b.name,
+            // `role` is a display string joining several titles with "·".
+            jobTitle: b.role.split('·').map((t) => t.trim()),
+            image: `https://www.estushealth.com${b.img}`,
+            description: b.opening,
+            knowsAbout: b.works,
+            worksFor: { '@id': ORG_ID },
+            url: `https://www.estushealth.com/team#${b.id}`,
+          })),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Meet the Team', path: '/team' },
+          ]),
+        ]}
       />
       <PageHero
         eyebrow="Our Philosophy"

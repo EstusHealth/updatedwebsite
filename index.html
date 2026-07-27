@@ -21,12 +21,15 @@
   <meta data-rh="true" property="og:locale" content="en_AU" />
   <meta data-rh="true" name="twitter:card" content="summary_large_image" />
 
-  <!-- Organization schema, readable without JS. The Home page re-injects the
-       same entity via Helmet for JS-rendering crawlers. -->
+  <!-- The business entity, declared once and readable without JS. Per-page
+       JSON-LD (via the `schema` prop on src/components/SEO.jsx) points back at
+       this node by @id rather than restating it. Keep the @id in sync with
+       ORG_ID in that file. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "MedicalBusiness",
+    "@id": "https://www.estushealth.com/#organization",
     "name": "Estus Health",
     "description": "Neuroaffirming occupational therapy for autistic adults, teens, and PDA profiles. Gaming-informed therapy, executive function support, NDIS and private clients.",
     "url": "https://www.estushealth.com/",

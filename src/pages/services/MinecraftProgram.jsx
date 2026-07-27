@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, service } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 const CHIPS = ['PvP disabled', 'Whitelisted access', 'Infrastructure focus', 'Two servers available']
@@ -46,6 +46,17 @@ export default function MinecraftProgram() {
         title="Minecraft Program | Estus Health"
         description="Clinician-facilitated Minecraft servers for neurodivergent young people. Java and Bedrock, whitelisted, PvP off. Executive function and collaboration through shared building."
         path="/services/minecraft-program"
+        schema={[
+          service({
+            name: 'Minecraft Program',
+            description: 'Clinician-facilitated, whitelisted Minecraft servers (Java and Bedrock, PvP disabled) where neurodivergent young people practise executive function, collaboration, and communication through shared building projects.',
+            path: '/services/minecraft-program',
+          }),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Minecraft Program', path: '/services/minecraft-program' },
+          ]),
+        ]}
       />
       <PageHero eyebrow="Services" title="Minecraft Program" badge="April 2026: New modpack, new Bedrock server"
         sub2="A space to build, connect, and just be yourself."

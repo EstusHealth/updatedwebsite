@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, service } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 const WHO = [
@@ -25,6 +25,17 @@ export default function OccupationalTherapy() {
         title="Occupational Therapy | Estus Health"
         description="Neuroaffirming occupational therapy in Perth and telehealth Australia-wide. Executive function, sensory regulation, daily living, and work support that works with your brain."
         path="/services/occupational-therapy"
+        schema={[
+          service({
+            name: 'Occupational Therapy',
+            description: 'Neuroaffirming occupational therapy for autistic adults and teens, PDA profiles, and ADHD. Executive function, sensory regulation, daily living skills, and work or study support.',
+            path: '/services/occupational-therapy',
+          }),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Occupational Therapy', path: '/services/occupational-therapy' },
+          ]),
+        ]}
       />
       <PageHero eyebrow="Services" title="Occupational Therapy" sub2="Functional support that respects who you are"
         sub="Occupational therapy is about helping people do the things they need and want to do in their daily lives. For neurodivergent people, that means therapy that works with your brain, not against it.">

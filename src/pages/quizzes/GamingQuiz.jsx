@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Gamepad2, Shield, Heart, Brain, Target, Compass, Eye, Zap, Clock, RefreshCw, Lightbulb, AlertTriangle, Activity, Battery } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 const ARCHETYPES = {
@@ -401,7 +401,7 @@ export default function GamingQuiz() {
 
   return (
     <>
-      <SEO title="Gaming & Wellbeing Quiz | Estus Health" description="Explore the relationship between your gaming habits and your mental health, focus, and emotional regulation." path="/resources/gaming-quiz" />
+      <SEO title="Gaming & Wellbeing Quiz | Estus Health" description="Explore the relationship between your gaming habits and your mental health, focus, and emotional regulation." path="/resources/gaming-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Gaming & Wellbeing Quiz', path: '/resources/gaming-quiz' }])} />
       {screen !== "results" && (
         <>
           <style>{`

@@ -1,4 +1,4 @@
-import SEO from '../components/SEO'
+import SEO, { breadcrumb } from '../components/SEO'
 import { PageHero, Btn, ReferralButton, BookingButtonPair } from '../components/Bits'
 import { REFERRAL_FORM, EMAIL } from '../lib/site'
 
@@ -29,6 +29,10 @@ export default function Contact() {
         title="Contact Us | Estus Health"
         description="Get in touch with Estus Health. Self-referrals welcome, no GP referral needed. Neuroaffirming OT in Perth and telehealth Australia-wide. We respond within 24 hours."
         path="/contact"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Contact & Referrals', path: '/contact' },
+        ])}
       />
       <PageHero
         eyebrow="Get in Touch"
