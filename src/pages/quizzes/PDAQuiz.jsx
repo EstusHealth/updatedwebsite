@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Shield, Compass, Eye, Brain, Heart, Lightbulb, RefreshCw, Lock, HeartHandshake, Scale, Zap, Target } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 const ARCHETYPES = {
@@ -401,7 +401,7 @@ export default function PDAQuiz() {
 
   return (
     <>
-      <SEO title="PDA Profile Quiz | Estus Health" description="Discover your PDA archetype and get personalised strategies for navigating demands." path="/resources/pda-quiz" />
+      <SEO title="PDA Profile Quiz | Estus Health" description="Discover your PDA archetype and get personalised strategies for navigating demands." path="/resources/pda-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'PDA Profile Quiz', path: '/resources/pda-quiz' }])} />
       {screen !== "results" && (
         <>
           <style>{`

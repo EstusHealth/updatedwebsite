@@ -1,5 +1,5 @@
 import { useState, useMemo, useCallback } from 'react'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, Btn } from '../../components/Bits'
 import { EMAIL } from '../../lib/site'
 
@@ -180,6 +180,11 @@ export default function OpenLoops() {
         title="Open Loops | Estus Health"
         description="A free, private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them. Nothing is saved or sent."
         path="/resources/open-loops"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Open Loops', path: '/resources/open-loops' },
+        ])}
       />
       <PageHero eyebrow="Journaling Tool" title="Open Loops"
         sub="Your brain is holding too many windows open. Let's get them onto one screen." decor={false} />

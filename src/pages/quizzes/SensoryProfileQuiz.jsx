@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { track } from '@vercel/analytics';
-import SEO from '../../components/SEO';
+import SEO, { breadcrumb } from '../../components/SEO';
 import SensoryProfileReport from '../../components/SensoryProfileReport';
 import { computeProfile, bandLabel, profileContent } from '../../lib/sensoryProfile';
 import quiz from '../../data/sensoryProfile.json';
@@ -726,7 +726,7 @@ export default function SensoryProfileQuiz() {
       <SEO
         title={`${quiz.meta.title} | Estus Health`}
         description="A free, private, neuroaffirming sensory self-discovery tool for kids, teens, and adults. Map your sensory strengths and patterns in about 7 minutes and download a beautiful PDF report to keep."
-        path="/resources/sensory-profile"
+        path="/resources/sensory-profile" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Sensory Profile Quiz', path: '/resources/sensory-profile' }])}
       />
       <style>{STYLES}</style>
 

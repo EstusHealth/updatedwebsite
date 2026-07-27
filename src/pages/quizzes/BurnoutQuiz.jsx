@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Flame, Eye, Shield, Zap, Brain, Heart, RefreshCw, Compass, Target, AlertTriangle, Lightbulb, Sprout } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 const ARCHETYPES = {
@@ -349,7 +349,7 @@ export default function BurnoutQuiz() {
 
   return (
     <>
-      <SEO title="Autistic Burnout Quiz | Estus Health" description="Assess where you are on the burnout spectrum and get a clearer picture of what your nervous system needs right now." path="/resources/burnout-quiz" />
+      <SEO title="Autistic Burnout Quiz | Estus Health" description="Assess where you are on the burnout spectrum and get a clearer picture of what your nervous system needs right now." path="/resources/burnout-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Autistic Burnout Quiz', path: '/resources/burnout-quiz' }])} />
       {screen !== "results" && (
         <>
           <style>{`

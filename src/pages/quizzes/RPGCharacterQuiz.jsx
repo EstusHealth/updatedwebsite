@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Shield, Sword, BookOpen, Music, Heart, Eye, Brain, Target, Compass, Lightbulb, Users, Zap, Scale, RefreshCw } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 const ARCHETYPES = {
@@ -401,7 +401,7 @@ export default function RPGCharacterQuiz() {
 
   return (
     <>
-      <SEO title="RPG Character Build Quiz | Estus Health" description="Build your neurodivergent character sheet. Find out your stat distribution, class archetype, and innate abilities." path="/resources/rpg-character-quiz" />
+      <SEO title="RPG Character Build Quiz | Estus Health" description="Build your neurodivergent character sheet. Find out your stat distribution, class archetype, and innate abilities." path="/resources/rpg-character-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'RPG Character Build Quiz', path: '/resources/rpg-character-quiz' }])} />
       {screen !== "results" && (
         <>
           <style>{`

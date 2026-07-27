@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { Link } from 'react-router-dom'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
@@ -60,6 +60,10 @@ export default function ResourcesHub() {
         title="Free Resources | Estus Health"
         description="Free interactive quizzes and in-depth guides on PDA, autism, sleep, executive function, burnout, and gaming. Know your brain. Build your life."
         path="/resources"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+        ])}
       />
       <PageHero eyebrow="Learn & Explore" title="Know your brain." accent="Build your life."
         sub2="Understanding your neurotype is the first step toward support that actually sticks."

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Zap, Battery, Target, Compass, Lightbulb, Brain, Clock, RefreshCw, Layers, Flame, Waves, Activity } from "lucide-react";
 import QuizResults from "../../components/QuizResults";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 import { REFERRAL_FORM } from "../../lib/site";
 
 const ARCHETYPES = {
@@ -401,7 +401,7 @@ export default function EnergyQuiz() {
 
   return (
     <>
-      <SEO title="Energy & Executive Function Quiz | Estus Health" description="Map your energy patterns and executive function profile to understand when and why tasks feel impossible, and what actually helps." path="/resources/energy-quiz" />
+      <SEO title="Energy & Executive Function Quiz | Estus Health" description="Map your energy patterns and executive function profile to understand when and why tasks feel impossible, and what actually helps." path="/resources/energy-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Energy Quiz', path: '/resources/energy-quiz' }])} />
       {screen !== "results" && (
         <>
           <style>{`

@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, Btn } from '../../components/Bits'
 
 /* Second Brain Setup: a guided Discord second-brain setup. Ported from the
@@ -79,6 +79,11 @@ export default function SecondBrain() {
         title="Build a Second Brain in Discord | Estus Health"
         description="A free, step-by-step guide to building a private second brain in Discord, so your actual brain can stop holding it all. Neuroaffirming, forgiving, no streaks."
         path="/resources/second-brain"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Second Brain', path: '/resources/second-brain' },
+        ])}
       />
       <PageHero eyebrow="Free Guide" title="Build a Second Brain in Discord"
         sub="A private place to put everything down, so your actual brain can stop holding it all." decor={false} />

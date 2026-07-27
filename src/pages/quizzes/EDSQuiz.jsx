@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SEO from "../../components/SEO";
+import SEO, { breadcrumb } from "../../components/SEO";
 
 // ── Archetypes ──
 const archetypes = {
@@ -317,7 +317,7 @@ export default function EDSQuiz() {
 
   return (
     <>
-      <SEO title="EDS/HSD Management Style Quiz | Estus Health" description="Discover how you naturally manage hypermobility, fatigue, and pain. Four archetypes, practical tips, and strategies that actually fit a neurodivergent brain." path="/resources/eds-hsd-quiz" />
+      <SEO title="EDS/HSD Management Style Quiz | Estus Health" description="Discover how you naturally manage hypermobility, fatigue, and pain. Four archetypes, practical tips, and strategies that actually fit a neurodivergent brain." path="/resources/eds-hsd-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'EDS/HSD Management Style Quiz', path: '/resources/eds-hsd-quiz' }])} />
       <div
       style={{
         fontFamily: 'var(--f-body)',

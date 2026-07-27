@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { track } from '@vercel/analytics';
-import SEO from '../../components/SEO';
+import SEO, { breadcrumb } from '../../components/SEO';
 import ShareSection from '../../components/ShareSection';
 import quizData from '../../data/learnerDriverQuiz.json';
 import resultsData from '../../data/learnerDriverResults.json';
@@ -351,7 +351,7 @@ export default function LearnerDriverQuiz() {
       <SEO
         title={`${meta.title} | Estus Health`}
         description="A fun, neuroaffirming quiz for learner drivers. Three quick sections reveal your driver type, your Road Radar and focus, and your sensory style, plus tips to grow."
-        path="/resources/learner-driver-quiz"
+        path="/resources/learner-driver-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Learner Driver Style Quiz', path: '/resources/learner-driver-quiz' }])}
       />
       <style>{STYLES}</style>
 
