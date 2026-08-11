@@ -92,7 +92,7 @@ export default function Team() {
     <>
       <SEO
         title="Meet the Team | Estus Health"
-        description="Three neurodivergent occupational therapists in Perth. We don't fix people, we fix the environment. Neuroaffirming, strengths-based OT for autistic adults, PDA profiles, and complex health."
+        description="A small team of neurodivergent occupational therapists in Perth. We don't fix people, we fix the environment. Neuroaffirming, strengths-based OT for autistic adults, PDA profiles, and complex health."
         path="/team"
       />
       <PageHero
@@ -137,11 +137,33 @@ export default function Team() {
           <span className="eyebrow">The Crew</span>
           <h2 className="sec-head" id="bios-title" style={{ marginTop: 16 }}>Three OTs. Three very different brains.</h2>
           <p className="lead" style={{ marginTop: 14 }}>
-            All three of us are qualified occupational therapists. What's different is who we are as people, and that's what actually determines whether we're the right fit for you.
+            All three of our clinicians are qualified occupational therapists. What's different is who we are as people, and that's what actually determines whether we're the right fit for you.
           </p>
           <div style={{ display: 'grid', gap: 24, marginTop: 36 }}>
             {BIOS.map((b) => <Bio key={b.id} b={b} />)}
           </div>
+        </div>
+      </section>
+
+      {/* Non-clinical staff. Kept visually distinct from the clinician bios on
+          purpose, so the line between clinical and non-clinical stays obvious. */}
+      <section className="tint-section" id="operations">
+        <div className="wrap wrap--narrow">
+          <span className="eyebrow eyebrow--mauve">Operations</span>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>Not everyone here is a clinician.</h2>
+          <article className="card card--static" id="jamie" style={{ marginTop: 24 }}>
+            <h3 style={{ fontSize: '1.4rem', color: 'var(--heading)', textTransform: 'uppercase', margin: '0 0 4px' }}>Jamie</h3>
+            <p className="role" style={{ margin: 0 }}>Accounts &amp; Admin · Live Sessions facilitator</p>
+            <p style={{ color: 'var(--text)', fontWeight: 600, margin: '14px 0 0' }}>
+              Jamie keeps the invoicing and admin running, which is the only reason the rest of us get to do clinical work.
+            </p>
+            <p style={{ color: 'var(--text-soft)', margin: '10px 0 0' }}>
+              He also competes in Fortnite at a top 250 Oceania level while studying at university, and he runs our free weekly Live Sessions on Discord. Jamie is not a clinician and doesn't give therapeutic advice.
+            </p>
+            <p style={{ marginTop: 18, marginBottom: 0 }}>
+              <Btn to="/services/live-sessions" variant="btn--ghost">See the Live Sessions ▸</Btn>
+            </p>
+          </article>
         </div>
       </section>
 

@@ -28,6 +28,7 @@ export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
   { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
   { to: '/services/minecraft-program', label: 'Minecraft Program' },
+  { to: '/services/live-sessions', label: 'Live Sessions' },
   { to: '/services/assessments-reports', label: 'Assessments & Reports' },
 ]
 

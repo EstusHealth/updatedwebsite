@@ -10,6 +10,7 @@ import Contact from './pages/Contact'
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
 import GamingInformedTherapy from './pages/services/GamingInformedTherapy'
 import MinecraftProgram from './pages/services/MinecraftProgram'
+import LiveSessions from './pages/services/LiveSessions'
 import AssessmentsReports from './pages/services/AssessmentsReports'
 
 import ResourcesHub from './pages/resources/ResourcesHub'
@@ -66,6 +67,7 @@ export default function App() {
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />
         <Route path="/services/minecraft-program" element={<MinecraftProgram />} />
+        <Route path="/services/live-sessions" element={<LiveSessions />} />
         <Route path="/services/assessments-reports" element={<AssessmentsReports />} />
 
         <Route path="/resources" element={<ResourcesHub />} />
