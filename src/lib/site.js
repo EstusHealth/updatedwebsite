@@ -21,6 +21,19 @@ export const COMMCARD_EXTERNAL = 'https://commcard.estushealth.com'
 // Append ?studio to unlock the team-only Instagram export panel.
 export const GIVEWAY_APP = '/giveway/'
 
+// Current intake capacity. One source of truth for the notice shown on the
+// home page, the contact / referral page, and the team profiles, so the three
+// never drift apart. Update here when intake reopens.
+export const CAPACITY = {
+  badge: 'Capacity update',
+  heading: 'Term 3 and school holiday intake has closed.',
+  body: 'We are not taking new Term 3 or school holiday bookings. We will open a limited intake for Term 4 ongoing therapy through September and October. Spaces are limited, so register your interest now and we will be in touch as soon as a place opens.',
+  short: 'Term 3 and school holiday intake has closed. A limited Term 4 intake opens through September and October, and spaces are limited.',
+  cta: 'Register your interest',
+  // Shown on the team profiles for clinicians who are not taking new bookings.
+  clinicianStatus: 'Term 4 waitlist only · limited spaces',
+}
+
 // Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
 export const BOOKING = [
   { name: 'Nik', label: 'Over 16s', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },

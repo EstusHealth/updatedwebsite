@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
-import { Btn, CTABand, ReferralButton } from '../components/Bits'
+import { Btn, CapacityNotice, CTABand, ReferralButton } from '../components/Bits'
 import { Confetti, SynthwaveSun, Squiggle, Ticker } from '../components/Decor'
 import { EMAIL, INSTAGRAM, INSTAGRAM_EMBED } from '../lib/site'
 
@@ -59,6 +59,13 @@ export default function Home() {
       </section>
 
       <Ticker items={TICKER} />
+
+      {/* CAPACITY */}
+      <section style={{ paddingBottom: 0 }} aria-label="Intake capacity">
+        <div className="wrap wrap--narrow">
+          <CapacityNotice style={{ margin: 0 }} />
+        </div>
+      </section>
 
       {/* TEAM TEASER */}
       <section aria-labelledby="team-title">
@@ -120,10 +127,11 @@ export default function Home() {
       <section className="tint-section" aria-labelledby="practical-title">
         <div className="wrap">
           <span className="eyebrow eyebrow--mauve" id="practical-title">The Practical Stuff</span>
-          <div className="kv">
+          <div className="kv kv--4">
             <article className="card"><div className="k">Hours</div><div className="v">Mon – Sat</div><div className="s">8am to 7pm AWST</div></article>
             <article className="card"><div className="k">Location</div><div className="v">Perth, WA</div><div className="s">Telehealth Australia-wide</div></article>
             <article className="card"><div className="k">Referrals</div><div className="v">Not needed</div><div className="s">Self-refer, parent-refer, or clinician-refer</div></article>
+            <article className="card"><div className="k">Intake</div><div className="v">Term 4 only</div><div className="s">Term 3 and school holiday bookings are closed. Limited Term 4 spaces.</div></article>
           </div>
         </div>
       </section>

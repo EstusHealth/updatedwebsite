@@ -258,6 +258,15 @@ section { position: relative; padding: 84px 0; }
   background: var(--surface); box-shadow: var(--shadow);
   padding: 22px 24px; margin: 24px 0;
 }
+/* Intake capacity notice: a callout that needs to be read, not skimmed. */
+.callout--notice { border-left: 10px solid var(--mauve); }
+.capacity-head {
+  font-family: var(--f-head); font-size: clamp(1.15rem, 2.8vw, 1.5rem);
+  line-height: 1.15; letter-spacing: -.5px; text-transform: uppercase;
+  color: var(--heading); margin: 12px 0 8px;
+}
+.capacity-body { color: var(--text-soft); margin: 0; }
+
 .pullquote {
   font-family: var(--f-head); font-size: clamp(1.3rem, 3vw, 1.8rem);
   color: var(--heading); line-height: 1.2; letter-spacing: -.5px;
@@ -505,6 +514,8 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
   border-top: 3px solid var(--line); border-bottom: 3px solid var(--line);
 }
 .kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 36px; }
+/* Four-up variant, for rows that carry an extra fact (e.g. intake status). */
+.kv--4 { grid-template-columns: repeat(4, 1fr); }
 .kv .k { font-family: var(--f-display); font-size: .78rem; text-transform: uppercase; color: var(--teal); letter-spacing: .5px; }
 .kv .v { font-family: var(--f-head); font-size: 1.35rem; color: var(--heading); margin: 8px 0 4px; text-transform: uppercase; }
 .kv .s { font-size: .92rem; color: var(--text-soft); }
@@ -619,13 +630,13 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
   .photo-card { transform: rotate(1deg); max-width: 440px; }
   .team { grid-template-columns: 1fr 1fr; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
-  .grid-4 { grid-template-columns: 1fr 1fr; }
+  .grid-4, .kv--4 { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 680px) {
   .links, .nav-cta { display: none; }
   .burger { display: block; }
   section { padding: 60px 0; }
-  .team, .numgrid, .kv, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .team, .numgrid, .kv, .kv--4, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }
   .cta-box { padding: 36px 22px; }
   .sun { display: none !important; }

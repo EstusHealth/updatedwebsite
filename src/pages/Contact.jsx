@@ -1,6 +1,6 @@
 import SEO from '../components/SEO'
-import { PageHero, Btn, ReferralButton, BookingButtonPair } from '../components/Bits'
-import { REFERRAL_FORM, EMAIL } from '../lib/site'
+import { PageHero, Btn, CapacityNotice, ReferralButton, BookingButtonPair } from '../components/Bits'
+import { CAPACITY, REFERRAL_FORM, EMAIL } from '../lib/site'
 
 const STEPS = [
   { h: 'Submit a referral', p: 'Use the self-referral form if you\'re referring yourself or a family member. If you\'re a GP, support coordinator, or another professional, you can use the same form on behalf of your client. Just fill in the "About the client" section with their details.' },
@@ -16,6 +16,7 @@ const INCLUDE = [
 ]
 
 const FAQ = [
+  { q: 'Are you taking new clients right now?', a: 'Term 3 and school holiday intake has closed, so we are not booking new clients into those periods. We will open a limited intake for Term 4 ongoing therapy through September and October. Spaces are limited. Send your referral now and we will contact you as soon as a place opens.' },
   { q: 'Do I need a GP referral?', a: 'No. Self-referrals are welcome for all of our services. You can refer yourself or a family member directly using the self-referral form, no GP letter needed.' },
   { q: 'How quickly will someone get back to me?', a: 'We aim to respond to all enquiries within 24 hours. Our therapists are available Monday to Saturday, 8am to 7pm.' },
   { q: 'What funding types do you accept?', a: 'We accept private, self-managed NDIS, and plan-managed NDIS clients across all of our services.' },
@@ -41,6 +42,8 @@ export default function Contact() {
       {/* Self-referral callout + process */}
       <section style={{ paddingTop: 0 }}>
         <div className="wrap wrap--narrow">
+          <CapacityNotice compact style={{ marginTop: 0 }} />
+
           <div className="callout">
             <span className="badge">Good news</span>
             <h2 className="sec-head" style={{ fontSize: 'clamp(1.5rem,4vw,2.2rem)', margin: '14px 0 10px' }}>Self-referrals are welcome.</h2>
@@ -103,6 +106,7 @@ export default function Contact() {
                 <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Location</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Perth Metro & Telehealth Australia-wide</dd></div>
                 <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Response time</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Within 24 hours</dd></div>
                 <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Therapist availability</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Monday to Saturday, 8am to 7pm</dd></div>
+                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Intake status</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>{CAPACITY.short}</dd></div>
               </dl>
             </div>
           </aside>

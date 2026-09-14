@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Confetti, SynthwaveSun } from './Decor'
-import { BOOKING, REFERRAL_FORM } from '../lib/site'
+import { BOOKING, CAPACITY, REFERRAL_FORM } from '../lib/site'
 
 /* ==========================================================================
    Small shared building blocks used across content pages.
@@ -72,6 +72,24 @@ export function BookingButtonPair() {
           {b.label} · Book with {b.name}
         </Btn>
       ))}
+    </div>
+  )
+}
+
+// Current intake capacity. Shown on the home page, the contact / referral
+// page, and the team page. Copy lives in lib/site.js so all three stay in sync.
+// `compact` drops the CTA for spots that already sit next to a referral button.
+export function CapacityNotice({ compact, style }) {
+  return (
+    <div className="callout callout--notice" role="status" style={style}>
+      <span className="badge badge--mauve">{CAPACITY.badge}</span>
+      <h2 className="capacity-head">{CAPACITY.heading}</h2>
+      <p className="capacity-body">{CAPACITY.body}</p>
+      {!compact && (
+        <p style={{ margin: '16px 0 0' }}>
+          <Btn href={REFERRAL_FORM} variant="btn--alt">{CAPACITY.cta} ▸</Btn>
+        </p>
+      )}
     </div>
   )
 }

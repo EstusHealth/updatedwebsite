@@ -1,7 +1,7 @@
 import SEO from '../components/SEO'
-import { PageHero, CTABand, Btn } from '../components/Bits'
+import { PageHero, CapacityNotice, CTABand, Btn } from '../components/Bits'
 import { Confetti } from '../components/Decor'
-import { PODCASTS } from '../lib/site'
+import { CAPACITY, PODCASTS } from '../lib/site'
 
 const PRINCIPLES = [
   { h: 'Lived Experience Matters', p: 'Several members of our team are neurodivergent ourselves. We understand this work from the inside: the struggles, the strengths, and what actually helps.' },
@@ -31,7 +31,7 @@ const BIOS = [
   {
     id: 'nam', name: 'Nam Lang', img: '/team-nam.jpg', archetype: 'Storyteller',
     role: 'Occupational Therapist · Clinical Lead, Gaming & Anime-Informed Therapy',
-    status: 'Accepting new clients', statusClosed: false,
+    status: CAPACITY.clinicianStatus, statusClosed: true,
     opening: "Nam meets people through the story they're already inside of: anime, a game, a build. He works from there.",
     approach: "Specialises in autistic youth and young adults through the things they already care about. Anime, gaming, and storytelling aren't rewards in his sessions, they're the medium. Interests are windows into how someone thinks, what they value, and where they feel most themselves.",
     interests: 'Uses anime storylines as therapeutic tools. Keen sportsperson: football, gym, always training for something. PC and Xbox gamer (Minecraft, Roblox, Sea of Thieves, Repo), always open to co-op. Currently building a PC with a wood-grain CPU cooler. Speaks multiple languages, and brings a multicultural lens to his clinical work.',
@@ -41,7 +41,7 @@ const BIOS = [
   {
     id: 'nik', name: 'Nik Peshwani', img: '/team-nik.jpg', archetype: 'Experimenter',
     role: 'Occupational Therapist · Clinical Lead, Executive Function',
-    status: 'Accepting new clients', statusClosed: false,
+    status: CAPACITY.clinicianStatus, statusClosed: true,
     opening: "Nik tests it on himself before he'll ever suggest it to you, and he'll tell you straight when something isn't working.",
     approach: "Turned down a place in medical school, realising he wanted to improve quality of life, not just treat illness. Brings a gaming-informed, identity-respecting lens, particularly for high-masking people who've spent years being told they're fine. Leads with curiosity instead of labels.",
     interests: 'Currently deep into The Finals. Plays Minecraft, Dead by Daylight, and Rocket League ("badly," by his own admission, but his clients love teaching him). Catan is his all-time favourite board game. Big into fitness, macros, nutrition, and supplements. A lifelong learner who experiments on himself before recommending anything to clients. Speaks Hindi, Gujarati, English, and Sindhi.',
@@ -139,6 +139,7 @@ export default function Team() {
           <p className="lead" style={{ marginTop: 14 }}>
             All three of our clinicians are qualified occupational therapists. What's different is who we are as people, and that's what actually determines whether we're the right fit for you.
           </p>
+          <CapacityNotice style={{ marginTop: 28 }} />
           <div style={{ display: 'grid', gap: 24, marginTop: 36 }}>
             {BIOS.map((b) => <Bio key={b.id} b={b} />)}
           </div>
