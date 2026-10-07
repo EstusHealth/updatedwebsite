@@ -23,15 +23,15 @@ export const GIVEWAY_APP = '/giveway/'
 
 // Current intake capacity. One source of truth for the notice shown on the
 // home page, the contact / referral page, and the team profiles, so the three
-// never drift apart. Update here when intake reopens.
+// never drift apart. Update here when intake changes.
 export const CAPACITY = {
-  badge: 'Capacity update',
-  heading: 'Term 3 and school holiday intake has closed.',
-  body: 'We are not taking new Term 3 or school holiday bookings. We will open a limited intake for Term 4 ongoing therapy through September and October. Spaces are limited, so register your interest now and we will be in touch as soon as a place opens.',
-  short: 'Term 3 and school holiday intake has closed. A limited Term 4 intake opens through September and October, and spaces are limited.',
-  cta: 'Register your interest',
-  // Shown on the team profiles for clinicians who are not taking new bookings.
-  clinicianStatus: 'Term 4 waitlist only · limited spaces',
+  badge: 'Term 4 places open',
+  heading: 'Limited Term 4 places are now available.',
+  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so send your referral now and we will be in touch to get you booked.',
+  short: 'Limited Term 4 places are now available. Spaces are offered in the order referrals come in.',
+  cta: 'Make a referral',
+  // Shown on the team profiles for clinicians with Term 4 places.
+  clinicianStatus: 'Limited Term 4 places available',
 }
 
 // Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).

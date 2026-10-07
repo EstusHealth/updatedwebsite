@@ -131,7 +131,7 @@ export default function Home() {
             <article className="card"><div className="k">Hours</div><div className="v">Mon – Sat</div><div className="s">8am to 7pm AWST</div></article>
             <article className="card"><div className="k">Location</div><div className="v">Perth, WA</div><div className="s">Telehealth Australia-wide</div></article>
             <article className="card"><div className="k">Referrals</div><div className="v">Not needed</div><div className="s">Self-refer, parent-refer, or clinician-refer</div></article>
-            <article className="card"><div className="k">Intake</div><div className="v">Term 4 only</div><div className="s">Term 3 and school holiday bookings are closed. Limited Term 4 spaces.</div></article>
+            <article className="card"><div className="k">Intake</div><div className="v">Term 4 open</div><div className="s">Limited places now available for Term 4 ongoing therapy.</div></article>
           </div>
         </div>
       </section>
