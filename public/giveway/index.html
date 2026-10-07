@@ -426,7 +426,8 @@ var SCEN = [
 {cat:'GIVE WAY', title:'Keep the intersection clear',
  q:'Your light is green, but traffic is queued right across the far side of the intersection. What do you do?',
  world:{layout:'cross', control:'signals', signals:{main:'green'}, yourIntent:'straight',
-   cars:[{from:'south',d:7,intent:'stopped',label:'Q',color:C.carC},{from:'east',d:8,intent:'straight',label:'A',color:C.carA}]},
+   cars:[{from:'south',d:6.4,intent:'stopped',label:'Q',color:C.carC},{from:'south',d:11.6,intent:'stopped',label:'',color:C.carB},
+         {from:'south',d:16.8,intent:'stopped',label:'',color:C.carC},{from:'east',d:8,intent:'straight',label:'A',color:C.carA}]},
  opts:['Stop before the intersection so you do not block it','Enter anyway — the light is green','Enter and beep until the queue moves','Enter halfway and wait there'], ans:0,
  why:'Do not enter an intersection when a queue of traffic prevents you from fully exiting the other side. Stop before you enter, so vehicles like Car A can still cross the road.',
  ref:'Drive Safe 3.13.4 Keep intersections clear, p.70'},
@@ -1495,8 +1496,24 @@ function drawTopCar(ctx,T,S,x,z,h,c){
   ctx.fillStyle=c.color||C.carA;ctx.fillRect(-Wd*S/2,-L*S/2,Wd*S,L*S);
   ctx.strokeStyle=c.you?'#fff':'rgba(0,0,0,.55)';ctx.lineWidth=c.you?3:1.5;
   ctx.strokeRect(-Wd*S/2,-L*S/2,Wd*S,L*S);
-  if(!isBike){ctx.fillStyle='rgba(10,18,38,.7)';ctx.fillRect(-Wd*S/2+3,-L*S/2+L*S*0.2,Wd*S-6,L*S*0.28);}
-  ctx.fillStyle='rgba(255,255,255,.9)';ctx.fillRect(-Wd*S/2+2,-L*S/2+2,Wd*S-4,3);
+  // Facing is drawn on every car (stopped cars get no intent arrow): a dark
+  // bumper with yellow headlights at the front, red tail lights at the back,
+  // a windscreen behind the bonnet and a chevron on the roof pointing forward.
+  var fx=-Wd*S/2, fw=Wd*S, top=-L*S/2, bot=L*S/2;
+  if(!isBike){
+    ctx.fillStyle='rgba(10,18,38,.8)';
+    ctx.fillRect(fx+3,top+L*S*0.2,fw-6,L*S*0.2);
+    ctx.fillRect(fx+4,bot-L*S*0.17,fw-8,L*S*0.08);
+    ctx.fillStyle='#0b1020';ctx.fillRect(fx+1,top+1,fw-2,4);ctx.fillRect(fx+1,bot-5,fw-2,4);
+    ctx.fillStyle='#ffe066';ctx.fillRect(fx+2,top+1,5,4);ctx.fillRect(fx+fw-7,top+1,5,4);
+    ctx.fillStyle='#ff2d45';ctx.fillRect(fx+2,bot-5,5,4);ctx.fillRect(fx+fw-7,bot-5,5,4);
+    var cy0=top+L*S*0.52;
+    ctx.fillStyle='rgba(10,18,38,.6)';ctx.beginPath();
+    ctx.moveTo(0,cy0-5);ctx.lineTo(5,cy0+2);ctx.lineTo(-5,cy0+2);ctx.closePath();ctx.fill();
+  }else{
+    ctx.fillStyle='#ffe066';ctx.fillRect(-2,top,4,3);
+    ctx.fillStyle='#ff2d45';ctx.fillRect(-2,bot-3,4,3);
+  }
   ctx.restore();
   if(c.intent&&c.intent!=='stopped'&&!c.you){
     ctx.save();ctx.translate(p[0],p[1]);ctx.rotate(h);
