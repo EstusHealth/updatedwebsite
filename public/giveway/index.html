@@ -326,7 +326,11 @@ function carPose(c,G){
     var a=c.ring*Math.PI/180, Rr=G.RR-2.5;
     return {x:Rr*Math.cos(a), z:Rr*Math.sin(a), h:Math.PI-a};
   }
-  if(c.from==='north') return {x:G.OPP, z:d, h:Math.PI};
+  // Keep left: northbound traffic uses x<0, southbound x>0, westbound z<0,
+  // eastbound z>0. wrongWay puts an oncoming car in YOUR lane (head-on);
+  // overtaking puts a northbound car in the oncoming lane, passing you.
+  if(c.from==='north') return {x:c.wrongWay?G.YL:G.OPP, z:d, h:Math.PI};
+  if(c.overtaking) return {x:G.OPP, z:d, h:0};
   if(c.from==='east')  return {x:d, z:-1.75, h:-Math.PI/2};
   if(c.from==='west')  return {x:-d, z:1.75, h:Math.PI/2};
   var x=G.YL;
@@ -628,7 +632,7 @@ var SCEN = [
 {cat:'SIGNS & LINES', title:'Merging — FORM ONE LANE',
  q:'A FORM ONE LANE sign. Car A is beside you and slightly AHEAD of your car. Who gives way?',
  world:{layout:'straight', multiLane:true, merge:true, yourIntent:'straight',
-   cars:[{from:'south',d:-8,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
+   cars:[{from:'south',d:-5.5,intent:'straight',label:'A',color:C.carA,rightLane:true}]},
  opts:['You give way to Car A — part of it is ahead of you','Car A gives way, you are on its left','Whoever indicates first goes','Both stop and wave each other on'], ans:0,
  why:'When two lanes merge into one lane you must give way to another vehicle if any portion of it is ahead of your vehicle. You should also indicate that you are merging, and take turns if there are long lines of traffic.',
  ref:'Drive Safe 3.9 Road Markings, p.57'},
@@ -891,7 +895,7 @@ var SCEN = [
 {cat:'OVERTAKING', title:'Being overtaken',
  q:'Another vehicle is overtaking you on a country road. What should you do?',
  world:{layout:'straight', yourIntent:'straight',
-   cars:[{from:'north',d:2,intent:'straight',label:'A',color:C.carA}]},
+   cars:[{from:'south',d:-4,overtaking:true,intent:'straight',label:'A',color:C.carA}]},
  opts:['Move left to give them clearance and do not speed up','Speed up so it is over sooner','Hold your exact position and speed','Move right to block them'], ans:0,
  why:'You should move to the left to allow plenty of clearance for the overtaking vehicle. You must NOT increase your speed until they have completely passed you, and you must not drive in a way that prevents a vehicle from overtaking or passing you.',
  ref:'Drive Safe 3.16.4 What to do when you are being overtaken, p.74'},
@@ -1170,7 +1174,7 @@ var SCEN = [
 {cat:'EMERGENCY', title:'Head-on coming at you',
  q:'A vehicle is on the wrong side of the road coming straight at you. What do you do?',
  world:{layout:'straight', centre:'single', gravel:true, yourIntent:'straight',
-   cars:[{from:'south',d:18,intent:'straight',label:'A',color:C.carA,rightLane:false}]},
+   cars:[{from:'north',d:18,wrongWay:true,intent:'straight',label:'A',color:C.carA}]},
  opts:['Brake firmly without skidding, flash and horn, give them all the room you can, look for an escape','Hold your lane and hope they move','Swerve to the right into their lane','Close your eyes and brake'], ans:0,
  why:'Brake firmly without skidding while flashing your lights and sounding your horn, give the oncoming vehicle all the room you can, look for an avenue of escape, and prepare for further evasive action — including pulling off the road if necessary.',
  ref:'Drive Safe 4.2.5 Possible head-on collision, p.85'},
@@ -1513,20 +1517,69 @@ function drawTopCar(ctx,T,S,x,z,h,c){
   }
 }
 function drawIntentArrow(ctx,T,w,yx,yz){
-  var p=T(yx,yz);
-  ctx.save();ctx.translate(p[0],p[1]);
-  ctx.strokeStyle=C.you;ctx.lineWidth=3;ctx.setLineDash([7,6]);
-  ctx.shadowColor=C.you;ctx.shadowBlur=10;
-  var i=w.yourIntent;
-  ctx.beginPath();ctx.moveTo(0,-22);
-  if(i==='left'){ctx.lineTo(0,-46);ctx.lineTo(-56,-46);}
-  else if(i==='right'){ctx.lineTo(0,-62);ctx.lineTo(60,-62);}
-  else if(i==='uturn'){ctx.lineTo(0,-58);ctx.quadraticCurveTo(30,-86,46,-52);ctx.lineTo(46,-6);}
-  else if(i==='lanechange'){ctx.lineTo(0,-38);ctx.lineTo(32,-58);}
-  else if(i==='park'){ctx.lineTo(0,-30);}
-  else if(i==='pullout'){ctx.lineTo(0,-40);ctx.lineTo(18,-58);}
-  else ctx.lineTo(0,-66);
-  ctx.stroke();ctx.setLineDash([]);ctx.shadowBlur=0;ctx.restore();
+  // Paths are built in world metres so every turn finishes in the correct
+  // lane for driving on the LEFT: westbound z<0, eastbound z>0, southbound x>0.
+  var G=geom(w), HW=G.HW, layout=w.layout||'cross', i=w.yourIntent;
+  var pts=[], z0=yz+2.6, L=1.75;
+  var go=function(x,z){pts.push([x,z]);};
+  var curve=function(cx,cz,ex,ez){
+    var a=pts[pts.length-1];
+    for(var k=1;k<=10;k++){var u=k/10,v=1-u;
+      go(v*v*a[0]+2*u*v*cx+u*u*ex, v*v*a[1]+2*u*v*cz+u*u*ez);}
+  };
+  go(yx,z0);
+  if(layout==='roundabout'){
+    // Clockwise around the island. Left lane uses the outer ring, right lane the inner.
+    var inner=G.multi&&w.youLane==='right', r=G.multi?(inner?7.25:9.75):6.5;
+    var ex=G.multi?(inner?L:5.25):L;
+    var exitAng={left:Math.atan2(-ex,-Math.sqrt(r*r-ex*ex)),
+                 straight:Math.atan2(Math.sqrt(r*r-ex*ex),-ex),
+                 right:Math.atan2(ex,Math.sqrt(r*r-ex*ex)),
+                 uturn:Math.atan2(-Math.sqrt(r*r-ex*ex),ex)}[i]||0;
+    var a0=Math.atan2(-Math.sqrt(r*r-yx*yx),yx), a1=exitAng;
+    while(a1>=a0) a1-=Math.PI*2;
+    go(yx,-Math.sqrt(r*r-yx*yx));
+    for(var k=1;k<=24;k++){var a=a0+(a1-a0)*k/24; go(r*Math.cos(a),r*Math.sin(a));}
+    var far=G.RR+5;
+    if(i==='left') go(-far,-ex);
+    else if(i==='right') go(far,ex);
+    else if(i==='uturn') go(ex,-far);
+    else go(-ex,far);
+  }else if(i==='left'&&layout==='straight'){
+    // Freeway exit: drift left into the exit lane.
+    go(yx,z0+4);go(-HW-1.5,z0+11);
+  }else if(i==='left'){
+    go(yx,-HW);curve(yx,-L,-HW,-L);go(-HW-6,-L);
+  }else if(i==='right'){
+    go(yx,-0.6);curve(yx,L,HW*0.5,L);go(HW+6,L);
+  }else if(i==='uturn'){
+    go(yx,-0.8);
+    for(var k2=1;k2<=12;k2++){var b=Math.PI-Math.PI*k2/12;
+      go(L*Math.cos(b),-0.8+L*Math.sin(b));}
+    go(L,yz+1);
+  }else if(i==='lanechange'){
+    go(yx,z0+2);go(yx+3.5,z0+6);
+  }else if(i==='pullout'){
+    go(yx,z0+2);go(G.YL,z0+7);
+  }else if(i==='park'){
+    go(yx,z0+1.8);
+  }else go(yx,z0+5);
+
+  ctx.save();
+  ctx.strokeStyle=C.you;ctx.fillStyle=C.you;ctx.lineWidth=3;ctx.setLineDash([7,6]);
+  ctx.shadowColor=C.you;ctx.shadowBlur=10;ctx.lineJoin='round';
+  ctx.beginPath();
+  pts.forEach(function(q,n){var s2=T(q[0],q[1]);if(n)ctx.lineTo(s2[0],s2[1]);else ctx.moveTo(s2[0],s2[1]);});
+  ctx.stroke();ctx.setLineDash([]);
+  if(i!=='park'&&pts.length>1){
+    var e=T(pts[pts.length-1][0],pts[pts.length-1][1]), f=T(pts[pts.length-2][0],pts[pts.length-2][1]);
+    var ang=Math.atan2(e[1]-f[1],e[0]-f[0]);
+    ctx.beginPath();ctx.moveTo(e[0]+Math.cos(ang)*6,e[1]+Math.sin(ang)*6);
+    ctx.lineTo(e[0]+Math.cos(ang+2.5)*8,e[1]+Math.sin(ang+2.5)*8);
+    ctx.lineTo(e[0]+Math.cos(ang-2.5)*8,e[1]+Math.sin(ang-2.5)*8);
+    ctx.closePath();ctx.fill();
+  }
+  ctx.shadowBlur=0;ctx.restore();
 }
 function drawTopSignal(ctx,T,x,z,sig,t){
   var p=T(x,z);ctx.save();ctx.translate(p[0],p[1]);
@@ -1684,6 +1737,10 @@ function drawFP(ctx,sc,t,VW,VH){
     strip(-HW+0.4,a,b,'#c9d3e8',0.07);strip(HW-0.4,a,b,'#c9d3e8',0.07);
     if(G.multi){dashRun(-3.5,a,b,C.line,0.07);dashRun(3.5,a,b,C.line,0.07);}
   });
+  // Centre line on the side roads too, so you can see which side cross traffic keeps to.
+  var xDash=function(a,b){for(var x=a;x<b;x+=7)fpPoly(ctx,[[x,0.03,-0.09],[Math.min(x+3.6,b),0.03,-0.09],[Math.min(x+3.6,b),0.03,0.09],[x,0.03,0.09]],C.line);};
+  if(layout==='cross'||layout==='tee'||layout==='roundabout'||layout==='tee-left') xDash(-50,-EDG);
+  if(layout==='cross'||layout==='tee'||layout==='roundabout'||layout==='tee-right') xDash(EDG,50);
   if(w.bikelane){
     fpPoly(ctx,[[-HW+0.4,0.02,-40],[-HW+2.2,0.02,-40],[-HW+2.2,0.02,FAR],[-HW+0.4,0.02,FAR]],'rgba(74,222,128,.22)');
     dashRun(-HW+2.2,-40,FAR,'#6ff0a8',0.07);
@@ -1847,7 +1904,7 @@ function drawFP(ctx,sc,t,VW,VH){
   if(w.merge) sign(-HW-1.5,15,'text','FORM|ONE LANE');
   if(w.keepleft) sign(-HW-1.5,18,'text','KEEP LEFT|UNLESS|OVERTAKING');
   if(w.leftOnRed) sign(-HW-1.5,-HW-2.6,'text','LEFT TURN|ON RED|AFTER STOPPING');
-  if(w.freeway) sign(HW+2.0,22,'text','EXIT|400 m');
+  if(w.freeway) sign(-HW-2.0,22,'text','EXIT|400 m');
   if(w.crossing==='children'&&w.flags) sign(HW+1.5,3,'text','CHILDREN|CROSSING');
   if(layout==='railway') sign(-HW-1.7,-2.9,'rail');
 
@@ -1908,6 +1965,21 @@ function drawFP(ctx,sc,t,VW,VH){
     if(!isBike) fpBox(objs,p.x,0.26+hgt*0.55,p.z,sx*0.78,hgt*0.5,sz*0.6,shade(base,0.96),'#131c36','#1a2544');
     else fpBox(objs,p.x,0.26+hgt*0.55,p.z,0.45,0.8,0.35,'#e0553f','#a63c2c','#c14735');
     fpBox(objs,p.x,0,p.z,sx*1.02,0.28,sz*0.98,'#12161f','#0b0e15','#0f131c');
+    // Headlights on the front, tail lights on the back, drawn on whichever end
+    // faces the camera, so you can tell oncoming traffic from traffic ahead.
+    if(!isBike){
+      var hx=Math.sin(p.h), hz=Math.cos(p.h);
+      [[1,'#fff4c2'],[-1,'#ff2d45']].forEach(function(E){
+        var ex=p.x+hx*E[0]*(len/2+0.03), ez=p.z+hz*E[0]*(len/2+0.03);
+        if(hx*E[0]*(FP.camX-ex)+hz*E[0]*(FP.camZ-ez)<=0) return;
+        [-1,1].forEach(function(sd){
+          var a=sd*wid*0.22, b=sd*wid*0.44, y0=0.26+hgt*0.3, y1=0.26+hgt*0.46;
+          objs.push({z:p.z-0.012,draw:function(ctx){
+            fpPoly(ctx,[[ex+hz*a,y0,ez-hx*a],[ex+hz*b,y0,ez-hx*b],[ex+hz*b,y1,ez-hx*b],[ex+hz*a,y1,ez-hx*a]],E[1]);
+          }});
+        });
+      });
+    }
     if(c.type==='breakdown') objs.push({z:p.z-0.015,draw:function(ctx){
       if(Math.floor(t*2.5)%2===0)return;
       [-1,1].forEach(function(sd){
