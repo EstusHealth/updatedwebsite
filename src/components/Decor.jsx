@@ -69,11 +69,11 @@ export function Squiggle() {
 }
 
 // Seamless scrolling ticker band. Pass an array of label strings.
-export function Ticker({ items }) {
+export function Ticker({ items, sep = '◆' }) {
   const run = (
     <>
       {items.map((t, i) => (
-        <span key={i}>{t} <b>◆</b></span>
+        <span key={i}>{t} <b>{sep}</b></span>
       ))}
     </>
   )

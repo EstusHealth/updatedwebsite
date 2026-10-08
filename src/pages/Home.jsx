@@ -2,9 +2,19 @@ import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
 import { Btn, CapacityNotice, CTABand, ReferralButton } from '../components/Bits'
 import { Confetti, SynthwaveSun, Squiggle, Ticker } from '../components/Decor'
-import { EMAIL, INSTAGRAM, INSTAGRAM_EMBED } from '../lib/site'
+import { HarvestMoon, Pumpkin, Spooky } from '../components/Spooky'
+import { EMAIL, INSTAGRAM, INSTAGRAM_EMBED, isHalloween } from '../lib/site'
 
 const TICKER = ['PDA profiles', 'Late diagnosis', 'Executive function', 'Gaming-informed', 'ADHD', 'NDIS welcome', 'Telehealth AU-wide']
+const TICKER_HALLOWEEN = ['Happy Halloween', 'PDA profiles', 'Comfy costumes count', 'ADHD', 'Opting out is valid', 'Late diagnosis', 'NDIS welcome', 'Telehealth AU-wide']
+
+// Halloween, your way. Shown on the home page during the Halloween skin.
+const HALLOWEEN_TIPS = [
+  { h: 'Comfort first costumes', p: 'Soft fabric, no scratchy tags, no mask if masks feel bad. Wear it around the house a few days early. A hoodie with ears counts.' },
+  { h: 'A route with an end', p: 'Pick the street and the number of houses before you leave. Knowing where it stops makes it easier to start. Heading home early is still a win.' },
+  { h: 'Doorstep scripts', p: 'Say "trick or treat", hold up a card, or just hold out the bag. All three work.', link: { to: '/resources/commcard', label: 'CommCard can do the talking ▸' } },
+  { h: 'Opting out counts', p: 'Lights off and a movie works. So does a bowl of lollies at the gate. Skipping it completely is a valid choice too.' },
+]
 
 // Home team teaser. Hooks marked [DRAFT] in CONTENT-HANDOVER.md (working copy,
 // pending Liam's sign-off).
@@ -20,8 +30,9 @@ const WHO = [
 ]
 
 export default function Home() {
+  const spooky = isHalloween()
   return (
-    <>
+    <div className={spooky ? 'halloween' : undefined}>
       <SEO
         title="Estus Health | Neuroaffirming Occupational Therapy Perth"
         description="A small team of neurodivergent occupational therapists in Perth, with telehealth Australia-wide. Working with autistic adults, PDA profiles, ADHD, and complex health."
@@ -32,15 +43,28 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" aria-labelledby="hero-title">
-        <Confetti kind="ring" color="var(--teal)" size={54} anim="float" style={{ top: 40, right: '8%' }} r="0deg" />
-        <Confetti kind="dot" color="var(--mauve)" size={26} anim="float2" style={{ top: 150, right: '2%' }} />
-        <Confetti kind="tri" color="var(--line)" size={30} anim="float" r="12deg" style={{ bottom: 60, left: '44%' }} />
-        <Confetti kind="star" color="var(--mauve)" size={46} anim="spin" style={{ top: 12, left: '48%' }} />
-        <Confetti kind="sq" color="var(--teal)" size={24} anim="float2" style={{ bottom: 20, left: '2%' }} />
-        <SynthwaveSun />
+        {spooky ? (
+          <>
+            <Spooky kind="web" size={150} style={{ top: 0, left: 0 }} />
+            <Spooky kind="spider" size={30} drop={70} style={{ top: 0, left: '36%' }} />
+            <Spooky kind="bat" size={56} anim="flutter" style={{ top: 30, left: '47%' }} />
+            <Spooky kind="ghost" size={40} anim="float2" style={{ bottom: 40, left: '44%' }} />
+            <Spooky kind="pumpkin" size={44} anim="float" style={{ bottom: 18, left: '2%' }} />
+            <HarvestMoon />
+          </>
+        ) : (
+          <>
+            <Confetti kind="ring" color="var(--teal)" size={54} anim="float" style={{ top: 40, right: '8%' }} r="0deg" />
+            <Confetti kind="dot" color="var(--mauve)" size={26} anim="float2" style={{ top: 150, right: '2%' }} />
+            <Confetti kind="tri" color="var(--line)" size={30} anim="float" r="12deg" style={{ bottom: 60, left: '44%' }} />
+            <Confetti kind="star" color="var(--mauve)" size={46} anim="spin" style={{ top: 12, left: '48%' }} />
+            <Confetti kind="sq" color="var(--teal)" size={24} anim="float2" style={{ bottom: 20, left: '2%' }} />
+            <SynthwaveSun />
+          </>
+        )}
         <div className="wrap hero-grid">
           <div>
-            <span className="eyebrow">◆ Neuroaffirming OT · Perth + Telehealth ◆</span>
+            <span className="eyebrow">{spooky ? '◆ Spooky season · Perth + Telehealth ◆' : '◆ Neuroaffirming OT · Perth + Telehealth ◆'}</span>
             <h1 id="hero-title">Estus <span className="accent">Health</span></h1>
             <Squiggle />
             <p className="sub">A small team of neurodivergent clinicians who build sessions around how your brain actually works.</p>
@@ -53,12 +77,14 @@ export default function Home() {
             <div className="photo-card">
               <img src="/team-photo.jpeg" alt="The Estus Health team, Liam, Nam, and Nik" width="600" height="600" loading="eager" />
               <span className="photo-tag">Liam · Nam · Nik</span>
+              {spooky && <span className="spooky-sticker" aria-hidden="true">Happy<br />Halloween</span>}
             </div>
+            {spooky && <div className="photo-pumpkin" aria-hidden="true"><Pumpkin size={92} /></div>}
           </div>
         </div>
       </section>
 
-      <Ticker items={TICKER} />
+      {spooky ? <Ticker items={TICKER_HALLOWEEN} sep="🎃" /> : <Ticker items={TICKER} />}
 
       {/* CAPACITY */}
       <section style={{ paddingBottom: 0 }} aria-label="Intake capacity">
@@ -66,6 +92,32 @@ export default function Home() {
           <CapacityNotice style={{ margin: 0 }} />
         </div>
       </section>
+
+      {/* HALLOWEEN, YOUR WAY */}
+      {spooky && (
+        <section aria-labelledby="halloween-title">
+          <Spooky kind="bat" size={44} anim="flutter" style={{ top: 50, right: '6%' }} />
+          <Spooky kind="ghost" size={34} anim="float" style={{ bottom: 40, left: '3%' }} />
+          <div className="wrap">
+            <span className="eyebrow eyebrow--teal">Halloween, your way</span>
+            <h2 className="sec-head" id="halloween-title" style={{ marginTop: 16 }}>Noise, costumes,<br />strangers, sugar.</h2>
+            <p className="lead" style={{ marginTop: 14 }}>Halloween asks a lot of a brain. Here is how to do it on your terms, or not at all.</p>
+            <div className="grid grid-4 spooky-tips" style={{ marginTop: 36 }}>
+              {HALLOWEEN_TIPS.map((t) => (
+                <article className="card" key={t.h}>
+                  <h3>{t.h}</h3>
+                  <p>{t.p}</p>
+                  {t.link && <Link className="profile-link" to={t.link.to}>{t.link.label}</Link>}
+                </article>
+              ))}
+            </div>
+            <div className="callout spooky-note" style={{ marginTop: 40 }}>
+              <h3>Handing out lollies?</h3>
+              <p>Some kids will not speak, look at you, or take one the expected way. Let them. That is the whole job.</p>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* TEAM TEASER */}
       <section aria-labelledby="team-title">
@@ -165,6 +217,6 @@ export default function Home() {
         buttons={<ReferralButton big>Open Referral Form ▸</ReferralButton>}
         note={<>Or email us directly at <a href={`mailto:${EMAIL}`}>{EMAIL}</a></>}
       />
-    </>
+    </div>
   )
 }

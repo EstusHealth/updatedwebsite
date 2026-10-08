@@ -34,6 +34,19 @@ export const CAPACITY = {
   clinicianStatus: 'Limited Term 4 places available',
 }
 
+// Halloween skin for the home page. Switches itself on for all of October,
+// Perth time, every year. Preview it any time with ?halloween=1, or hide it
+// with ?halloween=0.
+export function isHalloween(now = new Date()) {
+  if (typeof window !== 'undefined') {
+    const q = new URLSearchParams(window.location.search).get('halloween')
+    if (q === '1') return true
+    if (q === '0') return false
+  }
+  const month = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Perth', month: 'numeric' }).format(now)
+  return month === '10'
+}
+
 // Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
 export const BOOKING = [
   { name: 'Nik', label: 'Over 16s', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },

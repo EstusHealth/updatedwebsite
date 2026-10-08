@@ -751,3 +751,136 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
   .game-grid { grid-template-columns: 1fr; }
   .facet__label { flex-basis: 100%; }
 }
+
+/* ==========================================================================
+   17 · HALLOWEEN
+   Seasonal skin for the home page, on through October (isHalloween in
+   lib/site.js). Re-points the brand tokens to pumpkin orange and witch
+   purple inside .halloween only, so the nav, footer and every other page
+   stay on brand. Decorations live in components/Spooky.jsx.
+   ========================================================================== */
+.halloween {
+  --teal:  #c2560a;
+  --mauve: #6b2fa8;
+  --navy:  #24123a;
+  --heading:    #3b1f5e;
+  --line:       #24123a;
+  --shadow-col: #24123a;
+  --band-bg:    #24123a;
+  --eyebrow-bg: #24123a;
+  --ghost:  #f3eefc;
+  --ghost-edge: #24123a;
+  --bat:    #24123a;
+  --spider: #24123a;
+  --web:    rgba(36, 18, 58, .28);
+  --shadow:       8px 8px 0 var(--shadow-col);
+  --shadow-teal:  8px 8px 0 var(--teal);
+  --shadow-mauve: 8px 8px 0 var(--mauve);
+}
+html[data-theme="neon"] .halloween {
+  --teal:  #ff8a1f;
+  --mauve: #b46bff;
+  --navy:  #2a1446;
+  --heading:    #ffffff;
+  --line:       #ff8a1f;
+  --shadow-col: #b46bff;
+  --band-bg:    #0d0618;
+  --eyebrow-bg: #b46bff;
+  --ghost:  #efe8ff;
+  --ghost-edge: transparent;
+  --bat:    #05020b;
+  --spider: #d9c8ff;
+  --web:    rgba(217, 200, 255, .3);
+}
+
+/* Hero glow: harvest moon over a purple sky. */
+html[data-theme="neon-light"] .halloween .hero {
+  background:
+    radial-gradient(120% 90% at 50% -20%, rgba(255, 138, 31, .18), transparent 62%),
+    radial-gradient(85% 60% at 82% 0%,    rgba(107, 47, 168, .16), transparent 55%);
+}
+html[data-theme="neon-light"] .halloween .hero h1 .accent {
+  background: linear-gradient(100deg, #e2650c, #c2560a 40%, #6b2fa8);
+  -webkit-background-clip: text; background-clip: text;
+}
+html[data-theme="neon"] .halloween .hero {
+  background:
+    radial-gradient(120% 85% at 50% -15%, rgba(180, 107, 255, .26), transparent 60%),
+    radial-gradient(90% 60% at 82% 0%,   rgba(255, 138, 31, .2), transparent 55%);
+}
+html[data-theme="neon"] .halloween .hero h1         { color: #fff4e8; text-shadow: 0 0 10px rgba(255, 138, 31, .9), 0 0 30px rgba(255, 138, 31, .5); }
+html[data-theme="neon"] .halloween .hero h1 .accent { color: #c99bff; text-shadow: 0 0 10px rgba(180, 107, 255, .95), 0 0 32px rgba(180, 107, 255, .6); }
+html[data-theme="neon"] .halloween .eyebrow         { box-shadow: 3px 3px 0 var(--teal), 0 0 14px rgba(180, 107, 255, .7); }
+html[data-theme="neon"] .halloween .sec-head        { text-shadow: 0 0 16px rgba(255, 138, 31, .4); }
+html[data-theme="neon"] .halloween .band .sec-head  { text-shadow: 0 0 16px rgba(180, 107, 255, .45); }
+html[data-theme="neon"] .halloween .btn             { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 18px rgba(255, 138, 31, .55); }
+html[data-theme="neon"] .halloween .btn--alt        { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 18px rgba(180, 107, 255, .6); }
+html[data-theme="neon"] .halloween .btn--ghost      { box-shadow: 4px 4px 0 rgba(0, 0, 0, .5), 0 0 14px rgba(255, 138, 31, .4); }
+html[data-theme="neon"] .halloween .card            { box-shadow: var(--shadow), 0 0 22px rgba(255, 138, 31, .18); }
+html[data-theme="neon"] .halloween .team .card:nth-child(1) { box-shadow: 8px 8px 0 var(--teal),  0 0 24px rgba(255, 138, 31, .3); }
+html[data-theme="neon"] .halloween .team .card:nth-child(2) { box-shadow: 8px 8px 0 var(--mauve), 0 0 24px rgba(180, 107, 255, .3); }
+html[data-theme="neon"] .halloween .photo-card      { box-shadow: 12px 12px 0 var(--mauve), 0 0 30px rgba(255, 138, 31, .4); }
+html[data-theme="neon"] .halloween .cta-box         { box-shadow: 12px 12px 0 rgba(0, 0, 0, .5), 0 0 34px rgba(255, 138, 31, .3); }
+html[data-theme="neon"] .halloween .under           { filter: drop-shadow(0 0 5px rgba(255, 138, 31, .7)) drop-shadow(0 0 5px rgba(180, 107, 255, .5)); }
+html[data-theme] .halloween .under path:nth-of-type(1) { stroke: var(--teal); }
+html[data-theme] .halloween .under path:nth-of-type(2) { stroke: var(--mauve); }
+
+/* Harvest moon (replaces the synthwave sun). */
+.moon {
+  position: absolute; right: 3%; top: 96px;
+  width: min(360px, 40vw); z-index: 0; pointer-events: none;
+}
+.moon svg { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 26px rgba(255, 138, 31, .45)); }
+.moon-bat { position: absolute; line-height: 0; }
+.moon-bat--1 { top: 22%; left: 18%; }
+.moon-bat--2 { top: 12%; left: 62%; }
+.moon-bat--3 { top: 40%; left: 74%; }
+.moon .bat path { fill: var(--bat); }
+
+/* Decorations */
+.spooky { line-height: 0; }
+.spooky--web { opacity: .9; }
+.spider-drop { display: flex; flex-direction: column; align-items: center; }
+.spider-drop .thread { width: 1.5px; height: var(--drop); background: var(--web); }
+.spooky--ghost svg { filter: drop-shadow(0 0 10px rgba(239, 232, 255, .35)); }
+
+/* Photo card: sticker and a pumpkin on the corner. */
+.halloween .hero-grid > div:last-child { position: relative; }
+.spooky-sticker {
+  position: absolute; top: 16px; right: 14px; z-index: 3;
+  font-family: var(--f-display); font-size: .78rem; line-height: 1.15; text-align: center; text-transform: uppercase;
+  background: var(--teal); color: #fff;
+  padding: 9px 14px; border: 3px solid var(--navy); border-radius: 12px;
+  box-shadow: 4px 4px 0 var(--mauve);
+  transform: rotate(6deg);
+}
+html[data-theme="neon"] .spooky-sticker { color: #1a0a02; }
+.photo-pumpkin { position: absolute; right: -22px; bottom: -34px; z-index: 4; line-height: 0; filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .35)); }
+html[data-theme="neon"] .photo-pumpkin { filter: drop-shadow(0 0 18px rgba(255, 138, 31, .65)); }
+
+/* Halloween, your way */
+.spooky-tips .card { display: flex; flex-direction: column; gap: 8px; }
+.spooky-tips h3 { font-size: 1.1rem; color: var(--heading); text-transform: uppercase; }
+.spooky-tips p { margin: 0; font-size: .95rem; color: var(--text-soft); flex: 1; }
+.spooky-note { border-left: 10px solid var(--teal); }
+.spooky-note h3 { font-size: 1.1rem; color: var(--heading); text-transform: uppercase; margin: 0 0 6px; }
+.spooky-note p { margin: 0; color: var(--text-soft); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .flutter { animation: flutter 3.2s ease-in-out infinite alternate; }
+  .flutter .bat, .moon-bat .bat { animation: flap .45s ease-in-out infinite alternate; transform-origin: 50% 40%; }
+  .moon-bat--1 { animation: drift 9s ease-in-out infinite alternate; }
+  .moon-bat--2 { animation: drift 7s ease-in-out infinite alternate-reverse; }
+  .moon-bat--3 { animation: drift 11s ease-in-out infinite alternate; }
+  .spider-drop { animation: dangle 4s ease-in-out infinite alternate; }
+}
+@keyframes flap    { from { transform: scaleY(1); } to { transform: scaleY(.55); } }
+@keyframes flutter { from { transform: translate(0, 0); } to { transform: translate(-24px, -14px); } }
+@keyframes drift   { from { transform: translate(0, 0); } to { transform: translate(14px, -10px); } }
+@keyframes dangle  { from { transform: translateY(0); } to { transform: translateY(18px); } }
+
+@media (max-width: 680px) {
+  .moon { display: none; }
+  .photo-pumpkin { right: -6px; bottom: -28px; }
+  .photo-pumpkin svg { width: 70px; height: 70px; }
+}
