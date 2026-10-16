@@ -107,6 +107,9 @@ async function main() {
     return
   }
   const page = await browser.newPage()
+  // Keep build-time snapshots out of Google Analytics: without this every
+  // deploy would record a fake pageview per route from localhost.
+  await page.route(/googletagmanager\.com|google-analytics\.com/, (route) => route.abort())
 
   const failures = []
   for (const path of routes) {
