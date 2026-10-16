@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import SEO, { breadcrumb, service } from '../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../components/Bits'
+import { PageHero, CTABand, Btn } from '../components/Bits'
 import { Confetti } from '../components/Decor'
-import { GIVEWAY_APP } from '../lib/site'
+import { DRIVING_WAITLIST, GIVEWAY_APP } from '../lib/site'
 
 /* ==========================================================================
    Driving On The Spectrum: Estus Health's driving occupational therapy
@@ -47,7 +47,7 @@ const WHO = [
 ]
 
 const STEPS = [
-  ['Send a referral', 'Self-referrals are welcome, and so are referrals from family, GPs, specialists and support coordinators. Tell us which assessment you need, or ask us if you are not sure.'],
+  ['Join the waitlist', 'Fill in the waitlist form for yourself or someone you support. Families, GPs, specialists and support coordinators can fill it in too. Tell us which assessment you need, or that you are not sure.'],
   ['Do the assessment', 'We meet you in Perth or Esperance. Medical fitness to drive includes an on-road drive with a driving instructor. Potential to drive is off-road.'],
   ['Get your report', 'We talk you through the results, then send a written report with recommendations and next steps.'],
 ]
@@ -86,7 +86,7 @@ export default function DrivingOnTheSpectrum() {
       <PageHero eyebrow="Driving On The Spectrum" title="Driving is an occupation." accent="Train it like one."
         sub2="Driving occupational therapy across Perth and Esperance, WA."
         sub="Medical fitness to drive assessments for people who already drive, and potential to drive assessments for people getting ready to learn. Neuroaffirming, practical, and built around how you actually take in the road.">
-        <ReferralButton big>Make a Referral</ReferralButton>
+        <Btn href={DRIVING_WAITLIST} big>Join the Waitlist ▸</Btn>
         <Btn to="/driving-on-the-spectrum#free-tools" variant="btn--alt" big>Free driving tools</Btn>
       </PageHero>
 
@@ -129,7 +129,7 @@ export default function DrivingOnTheSpectrum() {
       <section>
         <div className="wrap">
           <span className="eyebrow">How it works</span>
-          <h2 className="sec-head" style={{ marginTop: 16 }}>Referral to report.</h2>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>Waitlist to report.</h2>
           <div className="numgrid">
             {STEPS.map(([h, p], i) => (
               <article className="card" key={h}><div className="num" aria-hidden="true">{i + 1}</div><h3>{h}</h3><p>{p}</p></article>
@@ -202,8 +202,8 @@ export default function DrivingOnTheSpectrum() {
 
       <CTABand
         title="Ready to talk about driving?"
-        body="Send a referral and tell us which assessment you are after. If you are not sure which one fits, say so and we will work it out with you."
-        buttons={<><ReferralButton big /><Btn to="/contact" variant="btn--alt" big>Contact Us</Btn></>}
+        body="Join the waitlist and tell us which assessment you are after. If you are not sure which one fits, say so and we will work it out with you. We will be in touch as places open."
+        buttons={<><Btn href={DRIVING_WAITLIST} big>Join the Waitlist ▸</Btn><Btn to="/contact" variant="btn--alt" big>Contact Us</Btn></>}
       />
     </>
   )

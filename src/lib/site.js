@@ -63,6 +63,10 @@ export const SERVICES = [
 // separate from the Services dropdown.
 export const DRIVING = { to: '/driving-on-the-spectrum', label: 'Driving On The Spectrum' }
 
+// Driving On The Spectrum (DOTS) waitlist (Pracsuite). Every "Join the
+// waitlist" button on the driving page points here.
+export const DRIVING_WAITLIST = 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA'
+
 // Study On The Spectrum register-interest form. Paste the form URL here when
 // it exists; until then the page shows an email fallback instead of a form.
 export const STUDY_FORM = null
