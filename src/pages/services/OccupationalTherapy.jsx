@@ -1,5 +1,5 @@
 import SEO, { breadcrumb, service } from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, Related } from '../../components/Bits'
 
 const WHO = [
   'Autistic adults and teens seeking neuroaffirming support',
@@ -84,6 +84,11 @@ export default function OccupationalTherapy() {
           </div>
         </div>
       </section>
+
+      <Related items={[
+        { to: '/services/assessments-reports', kind: 'Service', label: 'Assessments & Reports' },
+        { to: '/driving-on-the-spectrum', kind: 'Service', label: 'Driving On The Spectrum' },
+      ]} />
 
       <CTABand
         title="Ready to get started?"

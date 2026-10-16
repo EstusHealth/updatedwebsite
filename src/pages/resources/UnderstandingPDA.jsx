@@ -1,5 +1,5 @@
 import SEO, { breadcrumb } from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, Related } from '../../components/Bits'
 
 export default function UnderstandingPDA() {
   return (
@@ -173,6 +173,11 @@ export default function UnderstandingPDA() {
           </div>
         </div>
       </section>
+
+      <Related items={[
+        { to: '/resources/pda-quiz', kind: 'Quiz', label: 'PDA Profile Quiz' },
+        { to: '/services/occupational-therapy', kind: 'Service', label: 'Occupational Therapy' },
+      ]} />
 
       <CTABand
         title="Looking for PDA-Informed Support?"

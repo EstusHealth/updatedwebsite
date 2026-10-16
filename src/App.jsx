@@ -9,9 +9,9 @@ import Contact from './pages/Contact'
 
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
 import GamingInformedTherapy from './pages/services/GamingInformedTherapy'
-import MinecraftProgram from './pages/services/MinecraftProgram'
-import LiveSessions from './pages/services/LiveSessions'
 import AssessmentsReports from './pages/services/AssessmentsReports'
+import StudyOnTheSpectrum from './pages/services/StudyOnTheSpectrum'
+import DrivingOnTheSpectrum from './pages/DrivingOnTheSpectrum'
 
 import ResourcesHub from './pages/resources/ResourcesHub'
 import UnderstandingPDA from './pages/resources/UnderstandingPDA'
@@ -23,7 +23,6 @@ import OpenLoops from './pages/resources/OpenLoops'
 import Lexicon from './pages/resources/Lexicon'
 import SecondBrain from './pages/resources/SecondBrain'
 import Events from './pages/resources/Events'
-import DrivingOT from './pages/resources/DrivingOT'
 
 // The webinar hub (video + filterable library + rich data) is large and not a
 // primary entry page, so it is code-split into its own chunk.
@@ -67,9 +66,9 @@ export default function App() {
 
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />
-        <Route path="/services/minecraft-program" element={<MinecraftProgram />} />
-        <Route path="/services/live-sessions" element={<LiveSessions />} />
         <Route path="/services/assessments-reports" element={<AssessmentsReports />} />
+        <Route path="/services/study-on-the-spectrum" element={<StudyOnTheSpectrum />} />
+        <Route path="/driving-on-the-spectrum" element={<DrivingOnTheSpectrum />} />
 
         <Route path="/resources" element={<ResourcesHub />} />
         <Route path="/resources/understanding-pda" element={<UnderstandingPDA />} />
@@ -80,7 +79,6 @@ export default function App() {
         <Route path="/resources/open-loops" element={<OpenLoops />} />
         <Route path="/resources/lexicon" element={<Lexicon />} />
         <Route path="/resources/second-brain" element={<SecondBrain />} />
-        <Route path="/resources/driving-ot" element={<DrivingOT />} />
 
         <Route path="/resources/pda-quiz" element={<PDAQuiz />} />
         <Route path="/resources/chronotype-quiz" element={<ChronotypeQuiz />} />
@@ -107,6 +105,9 @@ export default function App() {
         <Route path="/for-referrers" element={<Navigate to="/contact" replace />} />
         <Route path="/services/sleep-program" element={<Navigate to="/services" replace />} />
         <Route path="/services" element={<Navigate to="/services/occupational-therapy" replace />} />
+        <Route path="/services/minecraft-program" element={<Navigate to="/services/gaming-informed-therapy" replace />} />
+        <Route path="/services/live-sessions" element={<Navigate to="/services/study-on-the-spectrum" replace />} />
+        <Route path="/resources/driving-ot" element={<Navigate to="/driving-on-the-spectrum" replace />} />
 
         <Route path="*" element={<NotFound />} />
       </Routes>

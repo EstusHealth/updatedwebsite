@@ -16,7 +16,6 @@ export const PODCASTS = {
   otAndYap: { name: 'OT and Yap', host: 'Nik', url: 'https://open.spotify.com/show/0inAJS350wpidn8xLcPY9m' },
 }
 export const COMMCARD_APP = '/commcard/' // bundled standalone PWA in public/commcard
-export const COMMCARD_EXTERNAL = 'https://commcard.estushealth.com'
 // GIVE WAY! road rules arcade: bundled standalone page in public/giveway.
 // Append ?studio to unlock the team-only Instagram export panel.
 export const GIVEWAY_APP = '/giveway/'
@@ -47,7 +46,7 @@ export function isHalloween(now = new Date()) {
   return month === '10'
 }
 
-// Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
+// Discovery-call booking (BookingButtonPair on the Contact page).
 export const BOOKING = [
   { name: 'Nik', label: 'Over 16s', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },
   { name: 'Nam', label: 'Under 16s', url: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9' },
@@ -55,30 +54,40 @@ export const BOOKING = [
 
 export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
-  { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
-  { to: '/services/minecraft-program', label: 'Minecraft Program' },
-  { to: '/services/live-sessions', label: 'Live Sessions' },
   { to: '/services/assessments-reports', label: 'Assessments & Reports' },
+  { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
+  { to: '/services/study-on-the-spectrum', label: 'Study On The Spectrum (2027)' },
 ]
 
-// Free Resources nav dropdown: the hub plus its category sections (anchors on
-// the /resources page, handled by ScrollToTop).
+// Driving On The Spectrum: the driving OT business. Its own top-level nav item,
+// separate from the Services dropdown.
+export const DRIVING = { to: '/driving-on-the-spectrum', label: 'Driving On The Spectrum' }
+
+// Study On The Spectrum register-interest form. Paste the form URL here when
+// it exists; until then the page shows an email fallback instead of a form.
+export const STUDY_FORM = null
+
+export const NAV_ABOUT = [
+  { to: '/team', label: 'Meet the Team' },
+  { to: '/contact', label: 'Contact & Referrals' },
+]
+
+// Free Resources topics. Each `id` is a section anchor on the /resources page
+// (scrolled to by ScrollToTop), so the nav, footer and hub share one list.
+export const RESOURCE_TOPICS = [
+  { id: 'pda', label: 'PDA' },
+  { id: 'late-diagnosis', label: 'Late Diagnosis & Burnout' },
+  { id: 'executive-function', label: 'Executive Function & Energy' },
+  { id: 'eds', label: 'EDS & Hypermobility' },
+  { id: 'communication', label: 'Communication' },
+  { id: 'boundaries', label: 'Boundaries' },
+  { id: 'gaming', label: 'Gaming' },
+  { id: 'driving', label: 'Driving' },
+]
+
 export const NAV_RESOURCES = [
   { to: '/resources', label: 'All Free Resources' },
-  { to: '/resources#quizzes', label: 'Quizzes' },
-  { to: '/resources#guides', label: 'Guides' },
-  { to: '/resources#tools', label: 'Tools' },
-  { to: '/resources#driving-ot', label: 'Driving OT' },
-]
-
-export const FOOTER_RESOURCES = [
-  { to: '/resources', label: 'All Free Resources' },
-  { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
-  { to: '/resources/understanding-pda', label: 'Understanding PDA' },
-  { to: '/resources/commcard', label: 'CommCard' },
-  { to: '/resources/driving-ot', label: 'Driving OT' },
-  { to: '/resources/lexicon', label: 'The Shared Lexicon' },
-  { to: '/resources/open-loops', label: 'Open Loops' },
+  ...RESOURCE_TOPICS.map((t) => ({ to: `/resources#${t.id}`, label: t.label })),
 ]
 
 // Instagram profile. INSTAGRAM_EMBED is the unofficial profile-embed endpoint

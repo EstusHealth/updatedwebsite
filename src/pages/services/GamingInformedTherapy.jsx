@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SEO, { breadcrumb, service } from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, PlayIcon, Related } from '../../components/Bits'
 import { webinarBySlug, ytThumb } from '../../lib/webinars'
 
 const WORKSHOP = webinarBySlug('gaming-informed-therapy')
@@ -138,6 +138,11 @@ export default function GamingInformedTherapy() {
           </ul>
         </div>
       </section>
+
+      <Related items={[
+        { to: '/resources/gaming-quiz', kind: 'Quiz', label: 'Gaming & Wellbeing Quiz' },
+        { to: '/resources/rpg-character-quiz', kind: 'Quiz', label: 'RPG Character Build Quiz' },
+      ]} />
 
       <CTABand
         title="Interested in gaming-informed therapy?"

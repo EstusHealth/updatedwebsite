@@ -299,7 +299,7 @@ section { position: relative; padding: 84px 0; }
 .links { display: flex; align-items: center; gap: 26px; margin: 0; padding: 0; list-style: none; }
 .links > li { position: relative; }
 .links a, .links button.menu-btn {
-  font-family: var(--f-body); font-weight: 600; font-size: .95rem;
+  font-family: var(--f-body); font-weight: 600; font-size: .95rem; white-space: nowrap;
   color: var(--text); background: none; border: none; cursor: pointer; padding: 0;
   display: inline-flex; align-items: center; gap: 6px;
 }
@@ -546,7 +546,7 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
    ========================================================================== */
 .foot { background: var(--foot-bg); color: #d6ddf5; border-top: 3px solid var(--navy); }
 .foot .wrap { padding-top: 56px; padding-bottom: 34px; }
-.foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 32px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; }
 .foot .brand { color: #fff; margin-bottom: 12px; }
 .foot .brand .mark { background: var(--teal); }
 .foot h2 {
@@ -632,9 +632,13 @@ html[data-theme="neon"] .numgrid .card:nth-child(3n+2) .num { color: #0b0714; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
   .grid-4, .kv--4 { grid-template-columns: 1fr 1fr; }
 }
-@media (max-width: 680px) {
+/* The primary nav needs ~1200px on one line (five items, two buttons); below
+   that it switches to the burger drawer rather than wrapping labels. */
+@media (max-width: 1240px) {
   .links, .nav-cta { display: none; }
   .burger { display: block; }
+}
+@media (max-width: 680px) {
   section { padding: 60px 0; }
   .team, .numgrid, .kv, .kv--4, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr; }

@@ -1,11 +1,11 @@
 import SEO, { breadcrumb } from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, Related } from '../../components/Bits'
 
 export default function ExecutiveFunction() {
   return (
     <>
       <SEO
-        title="Executive Function & Chronic Illness | Estus Health"
+        title="Executive Function & Complex Health | Estus Health"
         description="Managing POTS, hEDS, MCAS, ME/CFS, or chronic pain alongside neurodivergence? Here's why executive function takes the hit."
         path="/resources/executive-function-complex-health"
         type="article"
@@ -18,7 +18,7 @@ export default function ExecutiveFunction() {
 
       <PageHero
         eyebrow="Learn · Executive Function · Chronic Illness"
-        title="Executive Function & Chronic Illness"
+        title="Executive Function & Complex Health"
         sub2="Managing life with POTS, hEDS, MCAS, ME/CFS and neurodivergence"
       />
 
@@ -248,6 +248,13 @@ export default function ExecutiveFunction() {
           </div>
         </div>
       </section>
+
+      <Related items={[
+        { to: '/resources/energy-quiz', kind: 'Quiz', label: 'Energy & Executive Function Quiz' },
+        { to: '/resources/chronotype-quiz', kind: 'Quiz', label: 'Chronotype Quiz' },
+        { to: '/resources/open-loops', kind: 'Tool', label: 'Open Loops' },
+        { to: '/resources/second-brain', kind: 'Guide', label: 'Second Brain Setup' },
+      ]} />
 
       <CTABand
         title="Need Support With Executive Function?"
