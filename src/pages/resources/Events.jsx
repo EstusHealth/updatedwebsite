@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, PlayIcon } from '../../components/Bits'
 import { PODCASTS } from '../../lib/site'
 import { WEBINARS, ytThumb } from '../../lib/webinars'
@@ -14,6 +14,10 @@ export default function Events() {
         title="Events & Media | Estus Health"
         description="Live events, a growing archive of recordings, our podcasts (Performance Lab: Protocols and OT and Yap), and the weekly Journal Club on Instagram."
         path="/events"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Events & Webinars', path: '/events' },
+        ])}
       />
       <PageHero eyebrow="Events & Media" title="Come along," accent="or catch up."
         sub="Live events, a permanent archive of recordings, our podcasts, and the weekly Journal Club. Everything in one place, so nothing disappears after the live date." />

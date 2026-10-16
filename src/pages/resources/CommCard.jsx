@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn } from '../../components/Bits'
 import { COMMCARD_APP, EMAIL } from '../../lib/site'
 
@@ -37,6 +37,11 @@ export default function CommCard() {
         title="CommCard | Words When You Have None"
         description="A free communication tool for moments when speaking is hard. Ready-made phrases and custom cards. No signup, no data collected. A tool by Estus Health."
         path="/resources/commcard"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'CommCard', path: '/resources/commcard' },
+        ])}
       />
       <PageHero eyebrow="Augmented Communication App" title="Words When You Have None" sub2="A free communication tool for moments when speaking is hard."
         sub="CommCard gives you ready-made phrases and custom cards you can show on screen or speak aloud. No signup. No data collected. Works on any device with a browser.">

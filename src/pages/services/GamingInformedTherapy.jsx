@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, service } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
 import { webinarBySlug, ytThumb } from '../../lib/webinars'
 
@@ -36,6 +36,17 @@ export default function GamingInformedTherapy() {
         title="Gaming-Informed Therapy | Estus Health"
         description="Gaming-informed occupational therapy for neurodivergent people in Perth and telehealth Australia-wide. We use games as a genuine therapeutic tool, not a reward."
         path="/services/gaming-informed-therapy"
+        schema={[
+          service({
+            name: 'Gaming-Informed Therapy',
+            description: 'Occupational therapy that uses games as a genuine clinical medium for autistic, ADHD, and PDA-profile clients — building connection, problem-solving, emotional regulation, and social skills in context.',
+            path: '/services/gaming-informed-therapy',
+          }),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Gaming-Informed Therapy', path: '/services/gaming-informed-therapy' },
+          ]),
+        ]}
       />
       <PageHero eyebrow="Services" title="Gaming-Informed Therapy" sub2="Therapy through a channel that actually works"
         sub="For many neurodivergent people, gaming isn't just a hobby. It's a space where they feel competent, connected, and regulated. We meet people there, using games as a genuine therapeutic tool rather than treating them as something to overcome.">

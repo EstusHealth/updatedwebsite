@@ -19,7 +19,7 @@ import {
   Heart,
 } from 'lucide-react';
 import QuizResults from '../../components/QuizResults';
-import SEO from '../../components/SEO';
+import SEO, { breadcrumb } from '../../components/SEO';
 import { REFERRAL_FORM } from '../../lib/site';
 
 // ─── Quiz questions ──────────────────────────────────────────────────────────
@@ -418,7 +418,7 @@ export default function ChronotypeQuiz() {
 
   return (
     <>
-      <SEO title="Chronotype Quiz | Estus Health" description="Find out whether you're a Lion, Bear, Wolf, or Dolphin sleeper, and learn how to align your schedule to your biology." path="/resources/chronotype-quiz" />
+      <SEO title="Chronotype Quiz | Estus Health" description="Find out whether you're a Lion, Bear, Wolf, or Dolphin sleeper, and learn how to align your schedule to your biology." path="/resources/chronotype-quiz" schema={breadcrumb([{ name: 'Home', path: '/' }, { name: 'Free Resources', path: '/resources' }, { name: 'Chronotype Quiz', path: '/resources/chronotype-quiz' }])} />
       {phase !== 'results' && (
         <>
           <style>{`

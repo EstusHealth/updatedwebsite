@@ -12,6 +12,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { preview } from 'vite'
 import { chromium } from 'playwright-core'
+import { NO_PRERENDER } from '../src/lib/routes.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
@@ -20,11 +21,17 @@ const PORT = 4180
 
 // Routes come from the built sitemap so this stays in sync with one source of
 // truth. Strip the canonical origin down to path-only.
+//
+// The sitemap also lists the standalone apps under public/ (/commcard/,
+// /giveway/), which are hand-written static HTML with no React #root. The
+// readiness gate in snapshot() waits for #root to have children, so those
+// would time out, land in `failures`, and fail the build. They are already
+// static, so there is nothing to prerender: skip them.
 async function readRoutes() {
   const xml = await readFile(join(DIST, 'sitemap.xml'), 'utf8')
   const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
     .map((m) => m[1].replace(ORIGIN, '') || '/')
-  return [...new Set(paths)]
+  return [...new Set(paths)].filter((p) => !NO_PRERENDER.has(p))
 }
 
 // Resolve a Chromium to drive, in priority order:

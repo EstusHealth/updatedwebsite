@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 export default function ExecutiveFunction() {
@@ -9,6 +9,11 @@ export default function ExecutiveFunction() {
         description="Managing POTS, hEDS, MCAS, ME/CFS, or chronic pain alongside neurodivergence? Here's why executive function takes the hit."
         path="/resources/executive-function-complex-health"
         type="article"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Executive Function & Complex Health', path: '/resources/executive-function-complex-health' },
+        ])}
       />
 
       <PageHero

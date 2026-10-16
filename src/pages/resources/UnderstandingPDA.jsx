@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 export default function UnderstandingPDA() {
@@ -9,6 +9,11 @@ export default function UnderstandingPDA() {
         description="Pathological Demand Avoidance explained: what it is, how it shows up across different ages, and why traditional approaches often backfire."
         path="/resources/understanding-pda"
         type="article"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Understanding PDA', path: '/resources/understanding-pda' },
+        ])}
       />
 
       <PageHero

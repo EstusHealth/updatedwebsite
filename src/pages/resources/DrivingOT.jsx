@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
 import { GIVEWAY_APP } from '../../lib/site'
@@ -38,6 +38,11 @@ export default function DrivingOT() {
         title="Driving OT | Free Driving Resources | Estus Health"
         description="Driving is one of the most complex everyday occupations there is. Free WA road rules arcade, learner driver quiz, and neuroaffirming driving resources from Estus Health."
         path="/resources/driving-ot"
+        schema={breadcrumb([
+          { name: 'Home', path: '/' },
+          { name: 'Free Resources', path: '/resources' },
+          { name: 'Driving OT', path: '/resources/driving-ot' },
+        ])}
       />
       <PageHero eyebrow="Driving OT" title="Driving is an occupation." accent="Train it like one."
         sub2="Free driving resources, built by occupational therapists in Perth."

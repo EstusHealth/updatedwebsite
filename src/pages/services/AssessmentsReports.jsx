@@ -1,4 +1,4 @@
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, service } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
 
 const OFFER = [
@@ -29,6 +29,17 @@ export default function AssessmentsReports() {
         title="Assessments & Reports | Estus Health"
         description="Functional capacity assessments, NDIS reports, and OT documentation from neuroaffirming occupational therapists in Perth. Clear, practical, and actionable."
         path="/services/assessments-reports"
+        schema={[
+          service({
+            name: 'Assessments & Reports',
+            description: 'Functional capacity assessments, NDIS reports, OT progress reports, and home and environment assessments, written with a low-demand process and practical recommendations.',
+            path: '/services/assessments-reports',
+          }),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Assessments & Reports', path: '/services/assessments-reports' },
+          ]),
+        ]}
       />
       <PageHero eyebrow="Services" title="Assessments & Reports" sub2="Documentation that translates into action"
         sub="Whether you need a functional capacity assessment, NDIS report, or documentation for another purpose, we create clear, practical reports that capture the full picture and translate into meaningful recommendations.">

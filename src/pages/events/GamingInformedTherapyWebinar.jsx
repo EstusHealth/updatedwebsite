@@ -1,6 +1,6 @@
 import { useState, useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import SEO from '../../components/SEO'
+import SEO, { breadcrumb, videoObject } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
 import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
@@ -300,6 +300,14 @@ export default function GamingInformedTherapyWebinar() {
         description="Watch occupational therapist Liam Fagan's full workshop on gaming-informed therapy. Chapter markers, a filterable library of therapist-tested co-op games, and the frameworks behind the play."
         path={WEBINAR.path}
         type="video.other"
+        schema={[
+          videoObject(WEBINAR),
+          breadcrumb([
+            { name: 'Home', path: '/' },
+            { name: 'Events & Webinars', path: '/events' },
+            { name: WEBINAR.title, path: WEBINAR.path },
+          ]),
+        ].filter(Boolean)}
       />
 
       <PageHero
