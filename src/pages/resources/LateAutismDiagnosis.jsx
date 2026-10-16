@@ -1,5 +1,5 @@
 import SEO, { breadcrumb } from '../../components/SEO'
-import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
+import { PageHero, CTABand, Btn, ReferralButton, Related } from '../../components/Bits'
 
 export default function LateAutismDiagnosis() {
   return (
@@ -189,6 +189,12 @@ export default function LateAutismDiagnosis() {
           </div>
         </div>
       </section>
+
+      <Related items={[
+        { to: '/resources/burnout-quiz', kind: 'Quiz', label: 'Autistic Burnout Quiz' },
+        { to: '/resources/sensory-profile', kind: 'Quiz', label: 'The Estus Sensory Profile' },
+        { to: '/services/assessments-reports', kind: 'Service', label: 'Assessments & Reports' },
+      ]} />
 
       <CTABand
         title="Navigating Late Diagnosis?"

@@ -12,7 +12,10 @@
     { "source": "/quiz/learner-driver-style", "destination": "/resources/learner-driver-quiz", "permanent": true },
     { "source": "/resources/events", "destination": "/events", "permanent": true },
     { "source": "/services/sleep-program", "destination": "/services/occupational-therapy", "permanent": true },
-    { "source": "/services", "destination": "/services/occupational-therapy", "permanent": true }
+    { "source": "/services", "destination": "/services/occupational-therapy", "permanent": true },
+    { "source": "/services/minecraft-program", "destination": "/services/gaming-informed-therapy", "permanent": true },
+    { "source": "/services/live-sessions", "destination": "/services/occupational-therapy", "permanent": true },
+    { "source": "/resources/driving-ot", "destination": "/driving-on-the-spectrum", "permanent": true }
   ],
 
   "rewrites": [

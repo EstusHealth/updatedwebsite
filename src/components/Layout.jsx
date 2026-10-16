@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Instagram, Facebook, Linkedin, Youtube, Sun, Moon } from 'lucide-react'
-import { SERVICES, NAV_RESOURCES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { SERVICES, DRIVING, NAV_ABOUT, NAV_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
 import { WEBINARS } from '../lib/webinars'
 
 const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
@@ -13,9 +13,9 @@ const NAV_EVENTS = [
 ]
 
 /* ==========================================================================
-   Nav route map per revision brief section 5:
-   Services (dropdown) / Team / Free Resources, then Client Portal (separate,
-   external) + Get Started (primary CTA). "About" and "For Referrers" removed.
+   Nav route map (October 2026 restructure):
+   Services / Driving On The Spectrum / About / Free Resources / Events & Media,
+   then Client Portal (separate, external) + Get Started (primary CTA).
    ========================================================================== */
 
 function ThemeSwitch() {
@@ -43,31 +43,50 @@ function ThemeSwitch() {
   )
 }
 
+// Header dropdowns, in display order. Driving On The Spectrum sits between
+// Services and About as a plain link (see DRIVING in lib/site.js).
+const MENUS = {
+  services: { label: 'Services', items: SERVICES },
+  about: { label: 'About', items: NAV_ABOUT },
+  resources: { label: 'Free Resources', items: NAV_RESOURCES },
+  events: { label: 'Events & Media', items: NAV_EVENTS },
+}
+
+function Menu({ id, open, onToggle }) {
+  const { label, items } = MENUS[id]
+  return (
+    <li className={`has-menu${open ? ' open' : ''}`}>
+      <button className="menu-btn" aria-expanded={open} aria-controls={`${id}-menu`} onClick={onToggle}>
+        {label} <span className="chev" aria-hidden="true">▾</span>
+      </button>
+      <ul className="menu" id={`${id}-menu`}>
+        {items.map((m) => <li key={m.to}><Link to={m.to}>{m.label}</Link></li>)}
+      </ul>
+    </li>
+  )
+}
+
 function Nav() {
   const [drawer, setDrawer] = useState(false)
-  const [servicesOpen, setServicesOpen] = useState(false)
-  const [resourcesOpen, setResourcesOpen] = useState(false)
-  const [eventsOpen, setEventsOpen] = useState(false)
-  const servicesRef = useRef(null)
-  const resourcesRef = useRef(null)
-  const eventsRef = useRef(null)
+  const [openMenu, setOpenMenu] = useState(null)
+  const linksRef = useRef(null)
   const { pathname, hash } = useLocation()
 
   // Close menus on navigation (hash included, so anchor links close the menu).
-  useEffect(() => { setDrawer(false); setServicesOpen(false); setResourcesOpen(false); setEventsOpen(false) }, [pathname, hash])
+  useEffect(() => { setDrawer(false); setOpenMenu(null) }, [pathname, hash])
 
   // Close dropdowns on outside click / Escape.
   useEffect(() => {
-    const onClick = (e) => {
-      if (servicesRef.current && !servicesRef.current.contains(e.target)) setServicesOpen(false)
-      if (resourcesRef.current && !resourcesRef.current.contains(e.target)) setResourcesOpen(false)
-      if (eventsRef.current && !eventsRef.current.contains(e.target)) setEventsOpen(false)
-    }
-    const onKey = (e) => { if (e.key === 'Escape') { setServicesOpen(false); setResourcesOpen(false); setEventsOpen(false) } }
+    const onClick = (e) => { if (linksRef.current && !linksRef.current.contains(e.target)) setOpenMenu(null) }
+    const onKey = (e) => { if (e.key === 'Escape') setOpenMenu(null) }
     document.addEventListener('click', onClick)
     document.addEventListener('keydown', onKey)
     return () => { document.removeEventListener('click', onClick); document.removeEventListener('keydown', onKey) }
   }, [])
+
+  const menu = (id) => (
+    <Menu id={id} open={openMenu === id} onToggle={() => setOpenMenu((m) => (m === id ? null : id))} />
+  )
 
   return (
     <header className="nav">
@@ -77,41 +96,12 @@ function Nav() {
         </Link>
 
         <nav aria-label="Primary">
-          <ul className="links">
-            <li className={`has-menu${servicesOpen ? ' open' : ''}`} ref={servicesRef}>
-              <button className="menu-btn" aria-expanded={servicesOpen} aria-controls="services-menu"
-                onClick={() => setServicesOpen((v) => !v)}>
-                Services <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="services-menu">
-                {SERVICES.map((s) => (
-                  <li key={s.to}><Link to={s.to}>{s.label}</Link></li>
-                ))}
-              </ul>
-            </li>
-            <li><Link to="/team">Team</Link></li>
-            <li className={`has-menu${resourcesOpen ? ' open' : ''}`} ref={resourcesRef}>
-              <button className="menu-btn" aria-expanded={resourcesOpen} aria-controls="resources-menu"
-                onClick={() => setResourcesOpen((v) => !v)}>
-                Free Resources <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="resources-menu">
-                {NAV_RESOURCES.map((r) => (
-                  <li key={r.to}><Link to={r.to}>{r.label}</Link></li>
-                ))}
-              </ul>
-            </li>
-            <li className={`has-menu${eventsOpen ? ' open' : ''}`} ref={eventsRef}>
-              <button className="menu-btn" aria-expanded={eventsOpen} aria-controls="events-menu"
-                onClick={() => setEventsOpen((v) => !v)}>
-                Events & Media <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="events-menu">
-                {NAV_EVENTS.map((e) => (
-                  <li key={e.to}><Link to={e.to}>{e.label}</Link></li>
-                ))}
-              </ul>
-            </li>
+          <ul className="links" ref={linksRef}>
+            {menu('services')}
+            <li><Link to={DRIVING.to}>{DRIVING.label}</Link></li>
+            {menu('about')}
+            {menu('resources')}
+            {menu('events')}
           </ul>
         </nav>
 
@@ -129,7 +119,9 @@ function Nav() {
       <nav className={`mnav wrap${drawer ? ' open' : ''}`} id="mnav" aria-label="Mobile">
         <p className="group">Services</p>
         {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}</Link>)}
-        <Link to="/team">Team</Link>
+        <Link to={DRIVING.to}>{DRIVING.label}</Link>
+        <p className="group">About</p>
+        {NAV_ABOUT.map((a) => <Link key={a.to} className="sub" to={a.to}>{a.label}</Link>)}
         <p className="group">Free Resources</p>
         {NAV_RESOURCES.map((r) => <Link key={r.to} className="sub" to={r.to}>{r.label}</Link>)}
         <p className="group">Events & Media</p>
@@ -141,8 +133,16 @@ function Nav() {
   )
 }
 
+// The footer mirrors the header's structure, so every column is the same list
+// the matching menu uses.
 function Footer() {
   const year = new Date().getFullYear()
+  const col = (label, items) => (
+    <nav aria-label={label}>
+      <h2>{label}</h2>
+      <ul>{items.map((i) => <li key={i.to}><Link to={i.to}>{i.label}</Link></li>)}</ul>
+    </nav>
+  )
   return (
     <footer className="foot">
       <div className="wrap">
@@ -163,14 +163,9 @@ function Footer() {
               })}
             </ul>
           </div>
-          <nav aria-label="Services">
-            <h2>Services</h2>
-            <ul>{SERVICES.map((s) => <li key={s.to}><Link to={s.to}>{s.label}</Link></li>)}</ul>
-          </nav>
-          <nav aria-label="Free resources">
-            <h2>Free Resources</h2>
-            <ul>{FOOTER_RESOURCES.map((r) => <li key={r.to}><Link to={r.to}>{r.label}</Link></li>)}</ul>
-          </nav>
+          {col('Services', [...SERVICES, DRIVING])}
+          {col('About', [...NAV_ABOUT, { to: '/events', label: 'Events & Media' }])}
+          {col('Free Resources', NAV_RESOURCES)}
           <nav aria-label="Contact">
             <h2>Contact</h2>
             <ul>

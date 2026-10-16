@@ -34,9 +34,8 @@ export const ROUTES = [
   // Services
   { path: '/services/occupational-therapy', label: 'Occupational Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
-  { path: '/services/minecraft-program', label: 'Minecraft Program', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
-  { path: '/services/live-sessions', label: 'Live Sessions', group: 'Services', priority: 0.8, lastmod: '2026-08-11' },
   { path: '/services/assessments-reports', label: 'Assessments & Reports', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
+  { path: '/driving-on-the-spectrum', label: 'Driving On The Spectrum', group: 'Services', priority: 0.9, lastmod: '2026-10-16' },
 
   // Events
   { path: '/events', label: 'Events & Webinars', group: 'Events', priority: 0.7, lastmod: '2026-07-12' },
@@ -53,7 +52,6 @@ export const ROUTES = [
   { path: '/resources/lexicon', label: 'The Shared Lexicon', group: 'Free Resources', priority: 0.6, lastmod: '2026-07-12' },
   { path: '/resources/open-loops', label: 'Open Loops', group: 'Free Resources', priority: 0.6, lastmod: '2026-07-12' },
   { path: '/resources/second-brain', label: 'Second Brain', group: 'Free Resources', priority: 0.6, lastmod: '2026-07-12' },
-  { path: '/resources/driving-ot', label: 'Driving OT', group: 'Free Resources', priority: 0.6, lastmod: '2026-07-25' },
 
   // Quizzes
   { path: '/resources/pda-quiz', label: 'PDA Profile Quiz', group: 'Quizzes', priority: 0.6, lastmod: '2026-07-12' },
@@ -67,8 +65,9 @@ export const ROUTES = [
   { path: '/resources/sensory-profile', label: 'Sensory Profile Quiz', group: 'Quizzes', priority: 0.6, lastmod: '2026-07-12' },
   { path: '/resources/boundary-style-quiz', label: 'Boundary Style Quiz', group: 'Quizzes', priority: 0.7, lastmod: '2026-07-18' },
 
-  // Standalone apps: plain static HTML in public/, not React routes.
-  { path: '/commcard/', label: 'CommCard App', group: 'Apps', priority: 0.6, lastmod: '2026-07-02', prerender: false },
+  // Standalone apps: plain static HTML in public/, not React routes. The
+  // CommCard app (/commcard/) is deliberately left out: /resources/commcard is
+  // its indexable landing page, and the app's canonical points there.
   { path: '/giveway/', label: 'Give Way! WA Road Rules Arcade', group: 'Apps', priority: 0.6, lastmod: '2026-07-25', prerender: false },
 ]
 

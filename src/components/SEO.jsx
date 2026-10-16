@@ -25,8 +25,13 @@ export function breadcrumb(items) {
   }
 }
 
-/* One of the four things we offer, tied back to the practice as provider. */
-export function service({ name, description, path }) {
+/* One of the things we offer, tied back to the practice as provider. Most
+   services run in person in Perth plus telehealth; in-person-only services
+   (driving) pass their own `cities` and `channel`. */
+export function service({
+  name, description, path,
+  cities = ['Perth'], channel = 'In person (Perth) and telehealth Australia-wide', telehealth = true,
+}) {
   return {
     '@type': 'Service',
     name,
@@ -35,12 +40,12 @@ export function service({ name, description, path }) {
     url: `${SITE}${path}`,
     provider: { '@id': ORG_ID },
     areaServed: [
-      { '@type': 'City', name: 'Perth' },
-      { '@type': 'Country', name: 'Australia' },
+      ...cities.map((c) => ({ '@type': 'City', name: c })),
+      ...(telehealth ? [{ '@type': 'Country', name: 'Australia' }] : []),
     ],
     availableChannel: {
       '@type': 'ServiceChannel',
-      name: 'In person (Perth) and telehealth Australia-wide',
+      name: channel,
       serviceUrl: `${SITE}/contact`,
     },
   }

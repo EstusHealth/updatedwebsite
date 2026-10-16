@@ -24,6 +24,15 @@ const TEASERS = [
   { name: 'Nik Peshwani', hook: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
 ]
 
+// What we do: the four live services, each linked from the page body (not just
+// the menu).
+const OFFERS = [
+  { to: '/services/occupational-therapy', name: 'Occupational Therapy', desc: 'Executive function, sensory regulation, daily living, and work or study support that works with your brain. In person in Perth or by telehealth.' },
+  { to: '/services/assessments-reports', name: 'Assessments & Reports', desc: 'Functional capacity and OT assessments, including the reports NDIS reviews ask for.' },
+  { to: '/services/gaming-informed-therapy', name: 'Gaming-Informed Therapy', desc: 'Games as a real therapeutic medium, not a reward. Skills practised in the worlds you already care about.' },
+  { to: '/driving-on-the-spectrum', name: 'Driving On The Spectrum', desc: 'Medical fitness to drive and potential to drive assessments, in person across Perth and Esperance.' },
+]
+
 const WHO = [
   'Autistic adults & teens', 'PDA profiles', 'ADHD', 'Late-diagnosed adults', 'Executive function',
   'Chronic health & fatigue', 'EDS · POTS · fibro', 'Sensory differences', 'Hypermobility & pain', 'Kids & school routines',
@@ -143,6 +152,23 @@ export default function Home() {
 
           <div className="team-foot">
             <Btn to="/team" variant="btn--ghost">Meet the team ▸</Btn>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT WE DO */}
+      <section className="tint-section" aria-labelledby="offers-title">
+        <div className="wrap">
+          <span className="eyebrow">What we do</span>
+          <h2 className="sec-head" id="offers-title" style={{ marginTop: 16 }}>Ways we can work together.</h2>
+          <div className="grid grid-2" style={{ marginTop: 32 }}>
+            {OFFERS.map((o) => (
+              <Link className="card" to={o.to} key={o.to} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.1rem' }}>{o.name}</h3>
+                <p style={{ color: 'var(--text-soft)', margin: 0, flex: 1 }}>{o.desc}</p>
+                <span className="profile-link">Learn more ▸</span>
+              </Link>
+            ))}
           </div>
         </div>
       </section>

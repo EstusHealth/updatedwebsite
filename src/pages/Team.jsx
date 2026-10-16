@@ -35,7 +35,7 @@ const BIOS = [
     opening: "Nam meets people through the story they're already inside of: anime, a game, a build. He works from there.",
     approach: "Specialises in autistic youth and young adults through the things they already care about. Anime, gaming, and storytelling aren't rewards in his sessions, they're the medium. Interests are windows into how someone thinks, what they value, and where they feel most themselves.",
     interests: 'Uses anime storylines as therapeutic tools. Keen sportsperson: football, gym, always training for something. PC and Xbox gamer (Minecraft, Roblox, Sea of Thieves, Repo), always open to co-op. Currently building a PC with a wood-grain CPU cooler. Speaks multiple languages, and brings a multicultural lens to his clinical work.',
-    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft Program', 'Paediatrics'],
+    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Paediatrics'],
     podcast: null,
   },
   {
@@ -171,15 +171,12 @@ export default function Team() {
           <h2 className="sec-head" style={{ marginTop: 16 }}>Not everyone here is a clinician.</h2>
           <article className="card card--static" id="jamie" style={{ marginTop: 24 }}>
             <h3 style={{ fontSize: '1.4rem', color: 'var(--heading)', textTransform: 'uppercase', margin: '0 0 4px' }}>Jamie</h3>
-            <p className="role" style={{ margin: 0 }}>Accounts &amp; Admin · Live Sessions facilitator</p>
+            <p className="role" style={{ margin: 0 }}>Accounts &amp; Admin</p>
             <p style={{ color: 'var(--text)', fontWeight: 600, margin: '14px 0 0' }}>
               Jamie keeps the invoicing and admin running, which is the only reason the rest of us get to do clinical work.
             </p>
             <p style={{ color: 'var(--text-soft)', margin: '10px 0 0' }}>
-              He also competes in Fortnite at a top 250 Oceania level while studying at university, and he runs our free weekly Live Sessions on Discord. Jamie is not a clinician and doesn't give therapeutic advice.
-            </p>
-            <p style={{ marginTop: 18, marginBottom: 0 }}>
-              <Btn to="/services/live-sessions" variant="btn--ghost">See the Live Sessions ▸</Btn>
+              He also competes in Fortnite at a top 250 Oceania level while studying at university. Jamie is not a clinician and doesn't give therapeutic advice.
             </p>
           </article>
         </div>

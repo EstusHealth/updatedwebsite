@@ -63,7 +63,7 @@ export function CTABand({ title, body, buttons, note }) {
   )
 }
 
-// Discovery-call booking pair (Contact + Minecraft). Two clinicians.
+// Discovery-call booking pair (Contact page). Two clinicians.
 export function BookingButtonPair() {
   return (
     <div className="hero-cta">
@@ -105,5 +105,25 @@ export function PlayIcon({ size = 26 }) {
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ marginLeft: 3 }}>
       <path d="M8 5v14l11-7z" />
     </svg>
+  )
+}
+
+// "Keep going" links at the foot of a guide or service page, pointing to the
+// quizzes, tools and services on the same topic. items: [{ to, kind, label }].
+export function Related({ title = 'Keep going', items }) {
+  return (
+    <section style={{ paddingTop: 0 }} aria-label={title}>
+      <div className="wrap">
+        <span className="eyebrow">{title}</span>
+        <div className={`grid ${items.length % 2 === 0 ? 'grid-2' : 'grid-3'}`} style={{ marginTop: 24 }}>
+          {items.map((i) => (
+            <Link className="card" to={i.to} key={i.to} style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <span className="badge badge--ghost" style={{ alignSelf: 'flex-start' }}>{i.kind}</span>
+              <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1rem', margin: 0 }}>{i.label} ▸</h3>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }
