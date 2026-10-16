@@ -1,0 +1,67 @@
+{
+  "types": {
+    "CRUISE": {
+      "emoji": "🌊", "name": "The Calm Cruiser", "tagline": "Cool, collected, and clued-in.",
+      "blurb": "You bring a steady, regulated presence to the wheel. You notice what matters without overthinking it, and you rarely rattle. That calm is genuinely underrated — it's the platform great driving is built on.",
+      "superpowers": ["Even temperament under pressure", "Good awareness without overthinking", "Adaptable and easy to teach"],
+      "tips": ["Don't let 'calm' drift into 'passive' — practise decisive gap acceptance and confident merging.", "Keep stretching yourself into busier roads and new routes so calm becomes capable.", "Name what you're seeing out loud with your supervisor to sharpen your hazard commentary."]
+    },
+    "SCOUT": {
+      "emoji": "🦅", "name": "The Sharp Scout", "tagline": "You see it coming before it happens.",
+      "blurb": "You've got natural hazard radar — always scanning, thinking two moves ahead, reading the road like a story. This anticipation is exactly what keeps drivers (and everyone around them) safe.",
+      "superpowers": ["Anticipation and forward planning", "Strong defensive habits", "Sustained focus on the task"],
+      "tips": ["Trust your judgment and keep momentum — over-caution can frustrate the traffic behind you.", "Keep your scanning relaxed, not tense; smooth eyes, smooth drive.", "Practise committing to safe gaps so you read AND act with confidence."]
+    },
+    "PLAN": {
+      "emoji": "🗺️", "name": "The Master Planner", "tagline": "Prepared for anything — because you planned for it.",
+      "blurb": "Mirrors set, route rehearsed, checklist run. You bring order to the cockpit and rarely get caught out. Your organisation and memory for procedure are a real asset to your learning.",
+      "superpowers": ["Organised set-up and routines", "Great memory for procedure and rules", "Reliable, consistent habits"],
+      "tips": ["Build flexibility for when the plan breaks — practise calm improvising on detours and surprises.", "Rehearse 'what if' scenarios so the unexpected feels familiar.", "Let a little spontaneity in on quiet roads to grow your confidence in dynamic situations."]
+    },
+    "SPARK": {
+      "emoji": "⚡", "name": "The Quick Spark", "tagline": "Fast, confident, full of energy.",
+      "blurb": "Quick reactions, easy confidence, and you genuinely enjoy being behind the wheel. That energy is a gift — the trick is aiming it. Channel it well and you'll be smooth, sharp and safe.",
+      "superpowers": ["Fast reflexes and confidence", "Adaptable and calm in chaos", "Comfortable making decisions"],
+      "tips": ["Ease off the pace and widen your following gaps — give your quick reactions room to work.", "Stay sharp on the boring stretches, where it's easiest to switch off.", "Slow your decisions down a beat at intersections; fast isn't always first."]
+    },
+    "SENSOR": {
+      "emoji": "🎧", "name": "The Deep Sensor", "tagline": "You feel the road on a different level.",
+      "blurb": "You're tuned in to every sound, light and movement — deeply aware of your environment and often picking up subtle cues other drivers miss. That sensitivity is a strength; the goal is managing the volume so it works for you, not against you.",
+      "superpowers": ["High environmental awareness", "Notices subtle cues others miss", "Thoughtful and empathetic on the road"],
+      "tips": ["Dial down cabin load while you learn — less music, fewer passengers, one thing at a time.", "Sort glare early: good polarised sunglasses and easing into dusk/night driving.", "Build up to busy environments gradually, with planned breaks to reset."]
+    },
+    "ROOKIE": {
+      "emoji": "🌱", "name": "The Rising Rookie", "tagline": "Everyone starts here — and you're doing it right.",
+      "blurb": "You're honest about what you're still learning, and that self-awareness is exactly what makes a good driver. Every confident driver on the road was once right where you are. Keen beats perfect, every time.",
+      "superpowers": ["Willingness and a growth mindset", "Honest self-awareness", "Open to coaching and feedback"],
+      "tips": ["Hours behind the wheel are your best friend — steady, low-pressure practice beats cramming.", "Build up in calm settings (quiet streets, car parks) before adding complexity.", "Celebrate small wins; each drive is a rep that compounds."]
+    }
+  },
+  "sectionBands": {
+    "dd": {
+      "label": "Road Radar",
+      "Road-Ready": "Sharp hazard awareness and defensive instincts — you read the road well.",
+      "Getting There": "Solid instincts that are still sharpening — keep building that radar.",
+      "Keen Beginner": "Early days for your hazard radar — exactly what practice is for."
+    },
+    "ef": {
+      "label": "Brain Behind the Wheel",
+      "Sharp & Steady": "Strong planning, focus and self-checking — your cockpit runs in order.",
+      "Building Focus": "Your focus and organisation are coming together nicely.",
+      "Keen Beginner": "Still building your driving routines and attention — totally normal."
+    }
+  },
+  "sensoryStyles": {
+    "Seeker": { "label": "Sensory Seeker", "note": "You like stimulation and energy — great engagement, just watch understimulation on dull roads and the urge for speed." },
+    "Sensitive": { "label": "Sensory-Sensitive", "note": "You feel sights, sounds and motion strongly — a real awareness strength; manage overload in busy conditions." },
+    "Steady": { "label": "Steady Sensor", "note": "You're comfortable and adaptable with the sensory side of driving — a nice balance to build on." },
+    "LowKey": { "label": "Low-Key Sensor", "note": "Not much fazes you sensory-wise — just make sure you're actively noticing signals, sounds and body cues." }
+  },
+  "cta": {
+    "headline": "Curious how your style plays out on the road?",
+    "body": "Estus Health's occupational therapists run friendly, no-judgment driving assessments for learner drivers — including neurodivergent learners. We turn insights like these into a practical plan.",
+    "buttonLabel": "Talk to Estus about a driving assessment",
+    "buttonHref": "/contact"
+  },
+  "disclaimer": "This quiz is a bit of fun and a conversation starter — not a clinical assessment, diagnosis, or a measure of whether you're safe or legal to drive. Everyone's different, and real driving readiness is best explored with a qualified occupational therapist or driving instructor."
+}

@@ -1,0 +1,13 @@
+{
+  "name": "Estus Health",
+  "short_name": "Estus Health",
+  "description": "Neuroaffirming, gaming-informed occupational therapy in Perth and via telehealth Australia-wide.",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ],
+  "theme_color": "#0b0714",
+  "background_color": "#0b0714",
+  "display": "standalone",
+  "start_url": "/"
+}
