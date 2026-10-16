@@ -47,7 +47,7 @@ const TOPICS = {
       { kind: 'Tool', name: 'Open Loops', to: '/resources/open-loops', desc: 'A private journaling tool for the unfinished threads your brain keeps running. Park them, give them a tiny next step, or close them.' },
       { kind: 'Guide', name: 'Second Brain Setup', to: '/resources/second-brain', desc: 'Build a private second brain in Discord, so your actual brain can stop holding it all. A step-by-step setup you already have the app for.' },
     ],
-    related: { to: '/services/study-on-the-spectrum', label: 'Study On The Spectrum (2027)' },
+    related: { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
   },
   eds: {
     head: 'When your body is part of the picture.',

@@ -35,7 +35,6 @@ export const ROUTES = [
   { path: '/services/occupational-therapy', label: 'Occupational Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/assessments-reports', label: 'Assessments & Reports', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
-  { path: '/services/study-on-the-spectrum', label: 'Study On The Spectrum (launching 2027)', group: 'Services', priority: 0.7, lastmod: '2026-10-16' },
   { path: '/driving-on-the-spectrum', label: 'Driving On The Spectrum', group: 'Services', priority: 0.9, lastmod: '2026-10-16' },
 
   // Events

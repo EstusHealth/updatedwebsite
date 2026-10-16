@@ -25,7 +25,7 @@ const TEASERS = [
 ]
 
 // What we do: the four live services, each linked from the page body (not just
-// the menu). Study On The Spectrum gets a one-line mention until it launches.
+// the menu).
 const OFFERS = [
   { to: '/services/occupational-therapy', name: 'Occupational Therapy', desc: 'Executive function, sensory regulation, daily living, and work or study support that works with your brain. In person in Perth or by telehealth.' },
   { to: '/services/assessments-reports', name: 'Assessments & Reports', desc: 'Functional capacity and OT assessments, including the reports NDIS reviews ask for.' },
@@ -170,9 +170,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <p style={{ marginTop: 24, color: 'var(--text-soft)' }}>
-            Coming in 2027: <Link to="/services/study-on-the-spectrum" style={{ fontWeight: 600 }}>Study On The Spectrum</Link>, done-with-you study support for neurodivergent students.
-          </p>
         </div>
       </section>
 

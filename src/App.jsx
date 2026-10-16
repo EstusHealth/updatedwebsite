@@ -10,7 +10,6 @@ import Contact from './pages/Contact'
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
 import GamingInformedTherapy from './pages/services/GamingInformedTherapy'
 import AssessmentsReports from './pages/services/AssessmentsReports'
-import StudyOnTheSpectrum from './pages/services/StudyOnTheSpectrum'
 import DrivingOnTheSpectrum from './pages/DrivingOnTheSpectrum'
 
 import ResourcesHub from './pages/resources/ResourcesHub'
@@ -67,7 +66,6 @@ export default function App() {
         <Route path="/services/occupational-therapy" element={<OccupationalTherapy />} />
         <Route path="/services/gaming-informed-therapy" element={<GamingInformedTherapy />} />
         <Route path="/services/assessments-reports" element={<AssessmentsReports />} />
-        <Route path="/services/study-on-the-spectrum" element={<StudyOnTheSpectrum />} />
         <Route path="/driving-on-the-spectrum" element={<DrivingOnTheSpectrum />} />
 
         <Route path="/resources" element={<ResourcesHub />} />
@@ -106,7 +104,7 @@ export default function App() {
         <Route path="/services/sleep-program" element={<Navigate to="/services" replace />} />
         <Route path="/services" element={<Navigate to="/services/occupational-therapy" replace />} />
         <Route path="/services/minecraft-program" element={<Navigate to="/services/gaming-informed-therapy" replace />} />
-        <Route path="/services/live-sessions" element={<Navigate to="/services/study-on-the-spectrum" replace />} />
+        <Route path="/services/live-sessions" element={<Navigate to="/services/occupational-therapy" replace />} />
         <Route path="/resources/driving-ot" element={<Navigate to="/driving-on-the-spectrum" replace />} />
 
         <Route path="*" element={<NotFound />} />

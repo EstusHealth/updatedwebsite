@@ -56,7 +56,6 @@ export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
   { to: '/services/assessments-reports', label: 'Assessments & Reports' },
   { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
-  { to: '/services/study-on-the-spectrum', label: 'Study On The Spectrum (2027)' },
 ]
 
 // Driving On The Spectrum: the driving OT business. Its own top-level nav item,
@@ -67,8 +66,8 @@ export const DRIVING = { to: '/driving-on-the-spectrum', label: 'Driving On The 
 // waitlist" button on the driving page points here.
 export const DRIVING_WAITLIST = 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA'
 
-// Study On The Spectrum waitlist (Pracsuite). Embedded on the study page, with
-// a button to open it in a new tab. Set to null to fall back to email.
+// Study On The Spectrum waitlist (Pracsuite). Used by the study page, which is
+// on hold and not routed yet (see pages/services/StudyOnTheSpectrum.jsx).
 export const STUDY_FORM = 'https://questot.forms.pracsuite.com/t/YlpDvV2UYnN7kn3BtxaxgHRa'
 
 export const NAV_ABOUT = [

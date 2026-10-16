@@ -7,8 +7,9 @@ import { DRIVING_WAITLIST, GIVEWAY_APP } from '../lib/site'
 /* ==========================================================================
    Driving On The Spectrum: Estus Health's driving occupational therapy
    service, in person across Perth and Esperance, WA. Two assessments (medical
-   fitness to drive, potential to drive), followed by the free driving tools
-   that used to live at /resources/driving-ot (now a 308 to this page).
+   fitness to drive, potential to drive), what the on-road assessment covers,
+   the learner driver pathway, then the free driving tools that used to live
+   at /resources/driving-ot (now a 308 to this page).
    ========================================================================== */
 
 const AREAS = ['Perth', 'Esperance']
@@ -28,13 +29,13 @@ const SERVICES = [
   {
     id: 'potential-to-drive',
     name: 'Potential to drive',
-    for: 'For learners, or people thinking about learning, who want to know whether they are ready and what support will help. Common for autistic and ADHD learners and people with a disability that affects learning to drive.',
+    for: 'For learners, or people about to start, who want to know whether they can learn to drive and what support it will take. Common for autistic and ADHD learners and people with an intellectual, learning or physical disability.',
     steps: [
-      'An off-road assessment of the skills driving draws on: attention, planning, processing speed, visual perception, sensory load, regulation under pressure, and road knowledge.',
-      'A conversation about goals: why you want to drive, what has got in the way so far, and what a realistic path looks like.',
-      'A written report with a learning plan, strategies for your driving instructor and supervising driver, and when to start lessons.',
+      'A pre-drive assessment, off-road: your goals and driving history, hearing and communication, vision, physical abilities, and screening of the thinking skills driving draws on, including attention, planning, visual perception and road rules.',
+      'Once you have your learner\'s permit, an on-road assessment in a dual-control car, with a driving instructor in the passenger seat and the OT observing. It starts on quiet streets, builds up only when you are ready, and doubles as your first driving lesson.',
+      'A written report with a learning plan: how many specialised lessons we recommend, strategies for your instructor and supervising driver, and when to check your progress on the road again.',
     ],
-    outcome: 'You leave with a clear answer on readiness and a plan, whether that is booking lessons now or building specific skills first.',
+    outcome: 'You leave knowing whether you have the potential to learn to drive, and exactly what support will get you there.',
   },
 ]
 
@@ -48,8 +49,29 @@ const WHO = [
 
 const STEPS = [
   ['Join the waitlist', 'Fill in the waitlist form for yourself or someone you support. Families, GPs, specialists and support coordinators can fill it in too. Tell us which assessment you need, or that you are not sure.'],
-  ['Do the assessment', 'We meet you in Perth or Esperance. Medical fitness to drive includes an on-road drive with a driving instructor. Potential to drive is off-road.'],
+  ['Do the assessment', 'We meet you in Perth or Esperance. Both assessments include time on the road in a dual-control car with a driving instructor. For learners, that happens once you have your learner\'s permit.'],
   ['Get your report', 'We talk you through the results, then send a written report with recommendations and next steps.'],
+]
+
+// What the on-road assessment looks at, for both assessments.
+const ON_ROAD = [
+  ['Physical control', 'Setting up the seat and mirrors, the pedals, steering, and indicators, and using the controls without taking your attention off the road.'],
+  ['Vehicle positioning', 'Lane position, turns, roundabouts, changing lanes and merging, and parking and other manoeuvres.'],
+  ['Speed control', 'Keeping to the limit through school zones and changing speed zones, and adjusting your speed to the traffic and conditions.'],
+  ['Observation', 'Scanning near and far, mirrors and blind spots, signs and signals, and staying on task when something distracting happens.'],
+  ['Planning and judgement', 'Following directions, choosing safe gaps, working out right of way at intersections, and responding to hazards like pedestrians.'],
+  ['How you learn', 'How you take in instructions and feedback, and what happens to your driving as the load goes up. For a learner, this matters more than polish.'],
+]
+
+// The learner driver pathway, start to licence. Potential to drive covers
+// stages 2 and 4; the OT stays involved through stage 6.
+const PATHWAY = [
+  ['Medical clearance', 'You need to be at least 16. Your doctor completes a medical certificate clearing you for a driving assessment. The pre-drive assessment can come first if it helps that conversation.'],
+  ['Pre-drive assessment', 'The off-road part of potential to drive. We can also do passenger activities with you and help you prepare for the learner\'s theory test.'],
+  ['Learner\'s permit', 'You sit the theory test with the Department of Transport and get your learner\'s permit.'],
+  ['On-road assessment', 'Your first lesson, with the OT and a driving instructor in a dual-control car. The instructor starts teaching you, with any aids, modifications or learning strategies you need.'],
+  ['Lessons and practice', 'Lessons with an instructor experienced with neurodivergent learners, with progress checks on the road along the way. When you are ready, family can supervise practice to build your hours.'],
+  ['Ready for your licence', 'An on-road re-assessment checks you are ready for your driving test. Your doctor completes a final medical certificate, with licence conditions if needed, and you go for your licence.'],
 ]
 
 const WHY = [
@@ -108,6 +130,51 @@ export default function DrivingOnTheSpectrum() {
                 </ul>
                 <p style={{ margin: 0, fontWeight: 600 }}>{s.outcome}</p>
               </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* On the road */}
+      <section id="on-road" className="jump-target tint-section">
+        <div className="wrap">
+          <span className="eyebrow eyebrow--mauve">On the road</span>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>What we look at on the road.</h2>
+          <p className="lead" style={{ marginTop: 14 }}>
+            The on-road assessment shows how you actually drive in traffic, not just what you know. A driving
+            instructor sits in the passenger seat with a dual brake and gives the directions, so the car stays safe
+            while the OT watches how you handle real roads. It starts somewhere quiet and moves to busier traffic
+            only when you are ready.
+          </p>
+          <div className="grid grid-3" style={{ marginTop: 32 }}>
+            {ON_ROAD.map(([h, p]) => (
+              <article className="card card--static" key={h}>
+                <h3 style={cardHead}>{h}</h3>
+                <p style={{ color: 'var(--text-soft)', margin: 0 }}>{p}</p>
+              </article>
+            ))}
+          </div>
+          <div className="callout" style={{ marginTop: 32 }}>
+            <p style={{ margin: 0 }}>
+              <strong>Being new is expected.</strong> For a learner, the on-road assessment is not a test you pass or
+              fail. It shows what you can already do, what needs teaching, and how you learn best, so your lessons
+              start in the right place.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Learner driver pathway */}
+      <section id="learner-pathway" className="jump-target">
+        <div className="wrap">
+          <span className="eyebrow">For learners</span>
+          <h2 className="sec-head" style={{ marginTop: 16 }}>From learner to licence.</h2>
+          <p className="lead" style={{ marginTop: 14 }}>
+            Potential to drive is the start of a longer road. Here is the usual path, and where we fit in.
+          </p>
+          <div className="numgrid">
+            {PATHWAY.map(([h, p], i) => (
+              <article className="card" key={h}><div className="num" aria-hidden="true">{i + 1}</div><h3>{h}</h3><p>{p}</p></article>
             ))}
           </div>
         </div>

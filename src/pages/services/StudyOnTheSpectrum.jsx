@@ -4,6 +4,10 @@ import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../componen
 import { EMAIL, STUDY_FORM } from '../../lib/site'
 
 /* ==========================================================================
+   ON HOLD (October 2026): this page is not routed, linked or in the sitemap.
+   To launch it, add its <Route> in App.jsx, an entry in lib/routes.js and
+   public/llms.txt, and a SERVICES entry in lib/site.js.
+
    Study On The Spectrum: done-with-you study support, launching 2027.
    A pre-launch landing page. Three things are placeholders waiting on
    content, and each is a single edit:
