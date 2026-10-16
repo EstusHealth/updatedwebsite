@@ -67,9 +67,9 @@ export const DRIVING = { to: '/driving-on-the-spectrum', label: 'Driving On The 
 // waitlist" button on the driving page points here.
 export const DRIVING_WAITLIST = 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA'
 
-// Study On The Spectrum register-interest form. Paste the form URL here when
-// it exists; until then the page shows an email fallback instead of a form.
-export const STUDY_FORM = null
+// Study On The Spectrum waitlist (Pracsuite). Embedded on the study page, with
+// a button to open it in a new tab. Set to null to fall back to email.
+export const STUDY_FORM = 'https://questot.forms.pracsuite.com/t/YlpDvV2UYnN7kn3BtxaxgHRa'
 
 export const NAV_ABOUT = [
   { to: '/team', label: 'Meet the Team' },

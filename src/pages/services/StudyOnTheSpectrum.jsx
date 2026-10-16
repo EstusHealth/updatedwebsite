@@ -7,8 +7,8 @@ import { EMAIL, STUDY_FORM } from '../../lib/site'
    Study On The Spectrum: done-with-you study support, launching 2027.
    A pre-launch landing page. Three things are placeholders waiting on
    content, and each is a single edit:
-     - STUDY_FORM in lib/site.js: the register-interest form URL. While null,
-       the register section shows an email fallback instead of the form.
+     - STUDY_FORM in lib/site.js: the waitlist form URL. If set to null, the
+       waitlist section shows an email fallback instead of the form.
      - VIDEOS: set `youtubeId` on an entry to swap its placeholder for the video.
      - GUIDES: set `to` on an entry to turn its placeholder into a link.
    No Service schema yet: the service is not bookable until launch.
@@ -79,23 +79,25 @@ function VideoSlot({ title, youtubeId }) {
   )
 }
 
-function RegisterInterest() {
+function Waitlist() {
   if (STUDY_FORM) {
+    // The button comes first so the form is reachable even if the embed is
+    // blocked or slow to load.
     return (
       <>
+        <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 24 }}>
+          <Btn href={STUDY_FORM} big>Join the waitlist ▸</Btn>
+        </div>
         <iframe
           src={STUDY_FORM}
-          title="Study On The Spectrum: register your interest"
+          title="Study On The Spectrum waitlist form"
           loading="lazy"
           style={{ display: 'block', width: '100%', minHeight: 720, border: 0, borderRadius: 12, background: 'var(--surface)', marginTop: 24 }}
         />
-        <p style={{ color: 'var(--text-soft)', marginTop: 12 }}>
-          Form not loading? <a href={STUDY_FORM} target="_blank" rel="noopener">Open it in a new tab</a>.
-        </p>
       </>
     )
   }
-  const subject = encodeURIComponent('Study On The Spectrum: register interest')
+  const subject = encodeURIComponent('Study On The Spectrum: waitlist')
   return (
     <div className="callout" style={{ marginTop: 24 }}>
       <span style={soon}>Form coming soon</span>
@@ -105,7 +107,7 @@ function RegisterInterest() {
       </p>
       <p style={{ margin: '12px 0 0', fontWeight: 600 }}>{EMAIL}</p>
       <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginTop: 16 }}>
-        <Btn href={`mailto:${EMAIL}?subject=${subject}`}>Email to register ▸</Btn>
+        <Btn href={`mailto:${EMAIL}?subject=${subject}`}>Email to join the waitlist ▸</Btn>
       </div>
     </div>
   )
@@ -116,7 +118,7 @@ export default function StudyOnTheSpectrum() {
     <>
       <SEO
         title="Study On The Spectrum | Study Support Launching 2027 | Estus Health"
-        description="Done-with-you study support for autistic, ADHD and neurodivergent students, from Estus Health's occupational therapists. Launching 2027. Register your interest."
+        description="Done-with-you study support for autistic, ADHD and neurodivergent students, from Estus Health's occupational therapists. Launching 2027. Join the waitlist."
         path="/services/study-on-the-spectrum"
         schema={breadcrumb([
           { name: 'Home', path: '/' },
@@ -125,8 +127,8 @@ export default function StudyOnTheSpectrum() {
       />
       <PageHero eyebrow="Study On The Spectrum" badge="Launching 2027" title="Study, done" accent="with you."
         sub2="Done-with-you study support for neurodivergent students."
-        sub="Study On The Spectrum is a new program from Estus Health's occupational therapists. We are building it now and opening places in 2027. Register your interest and you will be first to hear when it opens.">
-        <Btn to="/services/study-on-the-spectrum#register" big>Register your interest ▸</Btn>
+        sub="Study On The Spectrum is a new program from Estus Health's occupational therapists. We are building it now and opening places in 2027. Join the waitlist and you will be first to hear when it opens.">
+        <Btn to="/services/study-on-the-spectrum#register" big>Join the waitlist ▸</Btn>
       </PageHero>
 
       <section style={{ paddingTop: 0 }}>
@@ -186,13 +188,13 @@ export default function StudyOnTheSpectrum() {
 
       <section id="register" className="jump-target">
         <div className="wrap wrap--narrow">
-          <span className="eyebrow">Register your interest</span>
+          <span className="eyebrow">Join the waitlist</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Be first to hear when places open.</h2>
           <p className="lead" style={{ marginTop: 14 }}>
-            Registering is free and does not commit you to anything. We will get in touch before launch with
-            dates, format and fees.
+            Joining the waitlist is free and does not commit you to anything. We will get in touch before
+            launch with dates, format and fees.
           </p>
-          <RegisterInterest />
+          <Waitlist />
         </div>
       </section>
 
