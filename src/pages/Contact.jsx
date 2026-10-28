@@ -15,7 +15,7 @@ const FUNDING = [
 ]
 
 const FAQ = [
-  { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes, and we email and text you a booking link as soon as you submit.' },
+  { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes, and we email you a booking link as soon as you submit.' },
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
   { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
@@ -29,7 +29,7 @@ const FAQ = [
 ]
 
 // The first step for every new client: the PracSuite referral form. On
-// submit, an email and SMS sequence sends the /book-your-call link.
+// submit, an email sequence sends the /book-your-call link.
 function StartReferral() {
   return (
     <div className="book" id="start">
@@ -50,7 +50,7 @@ function StartReferral() {
         <a className="btn go" href={REFERRAL_FORM} target="_blank" rel="noopener">Start the referral form <span aria-hidden="true">▸</span></a>
         <div className="panel" style={{ background: 'var(--mist)', borderColor: 'var(--mist)' }}>
           <div className="pb" style={{ padding: '12px 14px' }}>
-            <b>Then check your email and texts.</b> Your link to book the free call arrives as soon as you submit.
+            <b>Then check your email.</b> Your link to book the free call arrives as soon as you submit.
           </div>
         </div>
         <span className="small">Forms hard? Email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a> and we'll fill it in with you.</span>
@@ -215,7 +215,7 @@ export default function Contact() {
           <div className="split">
             <div className="l">
               <h2 id="final-title">Ready when you are.</h2>
-              <p>About 5 minutes for the form. Then we email and text you a link to book your free call.</p>
+              <p>About 5 minutes for the form. Then we email you a link to book your free call.</p>
             </div>
             <div className="r">
               <Btn href={REFERRAL_FORM} big>Start the referral form</Btn>

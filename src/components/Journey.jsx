@@ -5,7 +5,7 @@
 */
 export const JOURNEY = [
   { tone: 'c-navy', top: 'top-navy', when: 'About 5 minutes', h: 'Send the referral form', p: "Who it's for, how you'll fund it, and what you'd like to change." },
-  { tone: 'c-blue', top: 'top-blue', when: 'Straight away', h: 'Get your booking link', p: 'We email and text it to you as soon as you submit. Check your spam if it is not there in 10 minutes.' },
+  { tone: 'c-blue', top: 'top-blue', when: 'Straight away', h: 'Get your booking link', p: 'We email it to you as soon as you submit. Check your spam if it is not there in 10 minutes.' },
   { tone: 'c-teal', top: 'top-teal', when: 'When it suits you', h: 'Book your free call', p: 'Pick a time with Nik (16 and over) or Nam (under 16). Google emails you a confirmation.' },
   { tone: 'c-plum', top: 'top-plum', when: 'Free, 15 minutes', h: 'Talk, then decide', p: 'Video or phone, camera optional. If you want to go ahead, we book your first session.' },
 ]
