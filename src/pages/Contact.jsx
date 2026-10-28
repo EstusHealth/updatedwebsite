@@ -1,6 +1,7 @@
 import SEO, { breadcrumb } from '../components/SEO'
 import { Btn } from '../components/Bits'
-import { FactStrip, SecIntro, Crew, Steps } from './Home'
+import { FactStrip, SecIntro, Crew } from './Home'
+import Journey from '../components/Journey'
 import { REFERRAL_FORM, EMAIL, DRIVING_WAITLIST } from '../lib/site'
 
 const RATE = '$193.99'
@@ -33,15 +34,26 @@ function StartReferral() {
   return (
     <div className="book" id="start">
       <div className="book-head">
-        <span className="t">Get started</span>
+        <span className="t">Step 1: the referral form</span>
         <span className="label">About 5 minutes</span>
       </div>
-      <div className="book-body" style={{ gap: 0, paddingTop: 8, paddingBottom: 22 }}>
-        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-navy" style={{ fontSize: '1.8rem', width: 34 }}>1</span><span><b>Fill in the referral form.</b> A little about you, or the person you support, and what you'd like to change.</span></div>
-        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-blue" style={{ fontSize: '1.8rem', width: 34 }}>2</span><span><b>Check your email and texts.</b> As soon as you submit, we send you a link to pick a time with Nik or Nam.</span></div>
-        <div className="panel-row" style={{ padding: '14px 0', marginBottom: 18 }}><span className="step-n c-plum" style={{ fontSize: '1.8rem', width: 34 }}>3</span><span><b>Talk for 15 minutes.</b> The OT has read your form, so the call is about you, not paperwork.</span></div>
+      <div className="book-body">
+        <span className="label" style={{ color: 'var(--text-soft)' }}>What we'll ask</span>
+        <ul style={{ margin: 0, padding: 0, listStyle: 'none' }}>
+          {['Who the referral is for, and how to reach you', 'Funding: NDIS self-managed, plan-managed or private', "What's going on, and what you'd like to change", 'How you like to communicate'].map((t) => (
+            <li key={t} className="dots" style={{ borderBottomStyle: 'solid', borderBottomColor: 'var(--hair)', alignItems: 'flex-start' }}>
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" strokeWidth="3" strokeLinecap="square" style={{ flex: 'none', marginTop: 4 }}><path d="M4 12l5 5L20 6" /></svg>
+              <span>{t}</span>
+            </li>
+          ))}
+        </ul>
         <a className="btn go" href={REFERRAL_FORM} target="_blank" rel="noopener">Start the referral form <span aria-hidden="true">▸</span></a>
-        <span className="small" style={{ marginTop: 14 }}>Filling in forms hard? Email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a> and we'll do it with you.</span>
+        <div className="panel" style={{ background: 'var(--mist)', borderColor: 'var(--mist)' }}>
+          <div className="pb" style={{ padding: '12px 14px' }}>
+            <b>Then check your email and texts.</b> Your link to book the free call arrives as soon as you submit.
+          </div>
+        </div>
+        <span className="small">Forms hard? Email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a> and we'll fill it in with you.</span>
       </div>
     </div>
   )
@@ -80,6 +92,10 @@ export default function Contact() {
         </div>
       </section>
 
+      <section aria-label="The whole process" style={{ paddingTop: 8, paddingBottom: 56 }}>
+        <div className="wrap"><Journey current={1} /></div>
+      </section>
+
       <FactStrip third={{ b: 'Telehealth, Australia-wide', s: 'Driving OT in Perth, coming soon' }} />
 
       {/* LANES */}
@@ -106,14 +122,6 @@ export default function Contact() {
               <span className="cell-link c-plum">Join the waitlist ▸</span>
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS */}
-      <section aria-labelledby="how-title" style={{ paddingBottom: 24 }}>
-        <div className="wrap">
-          <SecIntro eyebrow="No surprises" title="How it works" id="how-title" />
-          <Steps />
         </div>
       </section>
 

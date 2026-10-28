@@ -747,3 +747,20 @@ a.card:hover { background: var(--mist); }
    (play badges and loading rings).
    ========================================================================== */
 #root *:not(.play-badge):not(.ldq-calc__ring):not(.esp-calc__ring) { border-radius: 0 !important; }
+
+/* ==========================================================================
+   18 · JOURNEY (new-client steps with a "You are here" marker)
+   ========================================================================== */
+.journey-steps { list-style: none; margin: 0; padding: 0; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+.journey-steps > li { gap: 8px; }
+.journey-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.journey-h { font-size: 1.25rem; line-height: 1.2; }
+.journey-chip {
+  font-family: var(--f-label); font-weight: 700; font-size: .78rem; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 9px; border: 1.5px solid var(--black); white-space: nowrap;
+}
+.chip-done { background: var(--teal-brand); color: var(--black); border-color: var(--teal-brand); }
+.chip-now  { background: var(--black); color: #fff; }
+.chip-next { background: transparent; color: var(--text-soft); border-color: var(--hair); }
+.journey-steps > li.is-now { background: var(--mist); box-shadow: inset 0 0 0 3px var(--black); }
+.journey-steps > li.is-done .cell-body, .journey-steps > li.is-done .journey-h { color: var(--text-soft); }
