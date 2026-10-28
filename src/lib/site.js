@@ -44,7 +44,7 @@ export const BOOKING = [
 // own URLs but are out of the menus (site map v2, October 2026).
 export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
-  { to: '/services/small-hinges', label: 'Small Hinges Programs' },
+  { to: '/services/small-hinges', label: 'Small Hinges' },
   { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
   { to: '/resources/driving-ot', label: 'Driving OT', soon: true },
 ]

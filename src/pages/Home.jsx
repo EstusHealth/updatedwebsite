@@ -11,7 +11,7 @@ const AUDIENCES = [
 
 const SERVICE_CARDS = [
   { to: '/services/occupational-therapy', top: 'var(--navy)', tag: 'Telehealth · ongoing', tone: 'c-navy', h: 'Ongoing OT', p: 'Regular sessions on routines, energy, sensory needs and getting things started.', link: 'Find out more' },
-  { to: '/services/small-hinges', top: 'var(--blue)', tag: '6 sessions or less', tone: 'c-blue', h: 'Small Hinges programs', p: 'Short, focused work on one thing: sleep, mornings, energy or switching off after work.', link: 'See the programs' },
+  { to: '/services/small-hinges', top: 'var(--blue)', tag: '1 to 6 sessions', tone: 'c-blue', h: 'Small Hinges', p: 'One session per hinge: sleep, mornings, energy, mental load, transitions or switching off. Pick the ones you want.', link: 'Pick your hinges' },
   { to: '/services/gaming-informed-therapy', top: 'var(--teal-brand)', tag: 'Gaming-informed', tone: 'c-teal', h: 'Therapy through games', p: 'Minecraft and other games as a way in, plus our moderated community server.', link: 'Find out more' },
   { href: DRIVING_WAITLIST, top: 'var(--plum-brand)', tag: 'In person, Perth', tone: 'c-plum', soon: true, h: 'Driving OT', p: 'Learner drivers and fitness to drive. Opening soon.', link: 'Join the waitlist' },
 ]
