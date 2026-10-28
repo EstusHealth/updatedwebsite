@@ -26,7 +26,7 @@ const STEPS = [
 export const TEAM = [
   { name: 'Nik Peshwani', who: 'Teens 16+ and adults', tone: 'c-blue', blurb: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
   { name: 'Nam Lang', who: 'Kids under 16', tone: 'c-plum', blurb: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
-  { name: 'Liam Fagan', who: 'Founder · Driving OT', tone: 'c-navy', blurb: "Systems-and-structure energy. If it can be tracked or turned into a system, Liam's tried it on himself first.", img: '/team-liam.jpg' },
+  { name: 'Liam Fagan', who: 'Founder · Clinical supervisor', tone: 'c-navy', blurb: "Systems-and-structure energy. If it can be tracked or turned into a system, Liam's tried it on himself first.", img: '/team-liam.jpg' },
 ]
 
 export function FactStrip({ third = { b: 'Telehealth, Australia-wide', s: 'From home, camera optional' } }) {
