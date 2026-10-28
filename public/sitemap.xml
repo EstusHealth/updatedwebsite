@@ -3,7 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://www.estushealth.com/</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <priority>1.0</priority>
   </url>
   <url>
@@ -13,12 +13,22 @@
   </url>
   <url>
     <loc>https://www.estushealth.com/contact</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-10-28</lastmod>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.estushealth.com/what-to-expect</loc>
+    <lastmod>2026-10-28</lastmod>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://www.estushealth.com/services/occupational-therapy</loc>
     <lastmod>2026-07-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.estushealth.com/services/small-hinges</loc>
+    <lastmod>2026-10-28</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

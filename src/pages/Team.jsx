@@ -1,6 +1,5 @@
 import SEO, { breadcrumb, ORG_ID } from '../components/SEO'
 import { PageHero, CapacityNotice, CTABand, Btn } from '../components/Bits'
-import { Confetti } from '../components/Decor'
 import { CAPACITY, PODCASTS } from '../lib/site'
 
 const PRINCIPLES = [
@@ -149,7 +148,6 @@ export default function Team() {
 
       {/* BIOS */}
       <section id="bios" aria-labelledby="bios-title">
-        <Confetti kind="star" color="var(--teal)" size={40} anim="spin" style={{ top: 30, right: '5%' }} />
         <div className="wrap wrap--narrow">
           <span className="eyebrow">The Crew</span>
           <h2 className="sec-head" id="bios-title" style={{ marginTop: 16 }}>Three OTs. Three very different brains.</h2>

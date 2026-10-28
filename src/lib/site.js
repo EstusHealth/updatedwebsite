@@ -27,56 +27,68 @@ export const GIVEWAY_APP = '/giveway/'
 export const CAPACITY = {
   badge: 'Term 4 places open',
   heading: 'Limited Term 4 places are now available.',
-  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so send your referral now and we will be in touch to get you booked.',
+  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so book a free call now and we will find you a start date.',
   short: 'Limited Term 4 places are now available. Spaces are offered in the order referrals come in.',
-  cta: 'Make a referral',
+  cta: 'Book a free call',
   // Shown on the team profiles for clinicians with Term 4 places.
   clinicianStatus: 'Limited Term 4 places available',
 }
 
-// Halloween skin for the home page. Switches itself on for all of October,
-// Perth time, every year. Preview it any time with ?halloween=1, or hide it
-// with ?halloween=0.
-export function isHalloween(now = new Date()) {
-  if (typeof window !== 'undefined') {
-    const q = new URLSearchParams(window.location.search).get('halloween')
-    if (q === '1') return true
-    if (q === '0') return false
-  }
-  const month = new Intl.DateTimeFormat('en-AU', { timeZone: 'Australia/Perth', month: 'numeric' }).format(now)
-  return month === '10'
-}
-
 // Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
 export const BOOKING = [
-  { name: 'Nik', label: 'Over 16s', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },
-  { name: 'Nam', label: 'Under 16s', url: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9' },
+  { name: 'Nik', label: '16 and over', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },
+  { name: 'Nam', label: 'Under 16', url: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9' },
 ]
 
+// Services menu. Assessments & Reports and Live Sessions stay live at their
+// own URLs but are out of the menus (site map v2, October 2026).
 export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
+  { to: '/services/small-hinges', label: 'Small Hinges Programs' },
   { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
   { to: '/services/minecraft-program', label: 'Minecraft Program' },
-  { to: '/services/live-sessions', label: 'Live Sessions' },
-  { to: '/services/assessments-reports', label: 'Assessments & Reports' },
+  { to: '/resources/driving-ot', label: 'Driving OT', soon: true },
 ]
 
-// Free Resources nav dropdown: the hub plus its category sections (anchors on
-// the /resources page, handled by ScrollToTop).
+// The new primary call to action: the free 15 minute welcome call lives on
+// the referrals page, which keeps the /contact address.
+export const BOOK_PATH = '/contact'
+export const WHAT_TO_EXPECT = '/what-to-expect'
+export const DRIVING_WAITLIST = 'mailto:hello@estushealth.com?subject=Driving%20OT%20waitlist'
+
+// Who takes the free call, by lane. Photos live in public/.
+export const CLINICIANS = {
+  over: {
+    key: 'over', label: '16 and over', first: 'Nik', full: 'Nik Peshwani', tag: 'Teens 16+ and adults',
+    line: 'Experimenter energy. Tries it on himself before he suggests it to you.',
+    img: '/team-nik.jpg', href: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8', cta: 'Pick a time with Nik', tone: 'c-blue',
+  },
+  under: {
+    key: 'under', label: 'Under 16', first: 'Nam', full: 'Nam Lang', tag: 'Kids under 16 and families',
+    line: 'Storyteller energy. Meets your child through the game or story they already love.',
+    img: '/team-nam.jpg', href: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9', cta: 'Pick a time with Nam', tone: 'c-plum',
+  },
+  drive: {
+    key: 'drive', label: 'Driving (soon)', first: 'Liam', full: 'Liam Fagan', tag: 'Driving OT · coming soon',
+    line: 'In-person driving assessments in Perth are coming soon. Join the waitlist and we will tell you when bookings open.',
+    img: '/team-liam.jpg', href: 'mailto:hello@estushealth.com?subject=Driving%20OT%20waitlist', cta: 'Join the driving waitlist', tone: 'c-plum',
+  },
+}
+
+// Free Resources menu: the hub, then its topic sections (anchors on the
+// /resources page, handled by ScrollToTop).
 export const NAV_RESOURCES = [
-  { to: '/resources', label: 'All Free Resources' },
+  { to: '/resources', label: 'All free resources' },
   { to: '/resources#quizzes', label: 'Quizzes' },
   { to: '/resources#guides', label: 'Guides' },
   { to: '/resources#tools', label: 'Tools' },
-  { to: '/resources#driving-ot', label: 'Driving OT' },
 ]
 
 export const FOOTER_RESOURCES = [
-  { to: '/resources', label: 'All Free Resources' },
-  { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
+  { to: '/resources', label: 'All free resources' },
   { to: '/resources/understanding-pda', label: 'Understanding PDA' },
+  { to: '/resources/pda-quiz', label: 'PDA Profile Quiz' },
   { to: '/resources/commcard', label: 'CommCard' },
-  { to: '/resources/driving-ot', label: 'Driving OT' },
   { to: '/resources/lexicon', label: 'The Shared Lexicon' },
   { to: '/resources/open-loops', label: 'Open Loops' },
 ]

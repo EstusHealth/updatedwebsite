@@ -1,45 +1,44 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Instagram, Facebook, Linkedin, Youtube, Sun, Moon } from 'lucide-react'
-import { SERVICES, NAV_RESOURCES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Instagram, Facebook, Linkedin, Youtube } from 'lucide-react'
+import { SERVICES, NAV_RESOURCES, FOOTER_RESOURCES, SOCIALS, CLIENT_PORTAL, EMAIL, BOOK_PATH } from '../lib/site'
 import { WEBINARS } from '../lib/webinars'
 
 const SOCIAL_ICONS = { instagram: Instagram, facebook: Facebook, linkedin: Linkedin, youtube: Youtube }
 
-// Events & Media nav: the hub, then a direct link to each webinar's own page.
+// Events & Media menu: the hub, then a direct link to each webinar's own page.
 const NAV_EVENTS = [
-  { to: '/events', label: 'All Events & Media' },
+  { to: '/events', label: 'All events & media' },
   ...WEBINARS.map((w) => ({ to: w.path, label: w.title })),
 ]
 
 /* ==========================================================================
-   Nav route map per revision brief section 5:
-   Services (dropdown) / Team / Free Resources, then Client Portal (separate,
-   external) + Get Started (primary CTA). "About" and "For Referrers" removed.
+   Site map v2 (October 2026):
+   Services / Free resources / Events & media / Team, then Book a free call.
+   Client portal moves to the footer and the mobile menu.
    ========================================================================== */
 
-function ThemeSwitch() {
-  const [theme, setTheme] = useState(() =>
-    (typeof document !== 'undefined' && document.documentElement.getAttribute('data-theme')) || 'neon-light'
-  )
-  const apply = (t) => {
-    const valid = t === 'neon' || t === 'neon-light' ? t : 'neon-light'
-    document.documentElement.setAttribute('data-theme', valid)
-    try { localStorage.setItem('estus-theme', valid) } catch (e) { /* non-fatal */ }
-    setTheme(valid)
-  }
+export function Wordmark() {
   return (
-    <div className="mode-switch" role="group" aria-label="Colour mode">
-      <span className="lbl" aria-hidden="true">Mode</span>
-      <button className="mode-opt" aria-pressed={theme === 'neon-light'}
-        title="Light mode" onClick={() => apply('neon-light')}>
-        <Sun size={15} aria-hidden="true" /> Light
+    <span className="brand-in" style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+      <span className="stripe" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+      <span className="word"><b>ESTUS</b> HEALTH</span>
+    </span>
+  )
+}
+
+function Dropdown({ id, label, items, open, setOpen, innerRef }) {
+  return (
+    <li className={`has-menu${open ? ' open' : ''}`} ref={innerRef}>
+      <button className="menu-btn" aria-expanded={open} aria-controls={id} onClick={() => setOpen((v) => !v)}>
+        {label} <span className="chev" aria-hidden="true">▾</span>
       </button>
-      <button className="mode-opt" aria-pressed={theme === 'neon'}
-        title="Dark mode" onClick={() => apply('neon')}>
-        <Moon size={15} aria-hidden="true" /> Dark
-      </button>
-    </div>
+      <ul className="menu" id={id}>
+        {items.map((s) => (
+          <li key={s.to}><Link to={s.to}>{s.label}{s.soon ? ' (coming soon)' : ''}</Link></li>
+        ))}
+      </ul>
+    </li>
   )
 }
 
@@ -53,10 +52,8 @@ function Nav() {
   const eventsRef = useRef(null)
   const { pathname, hash } = useLocation()
 
-  // Close menus on navigation (hash included, so anchor links close the menu).
   useEffect(() => { setDrawer(false); setServicesOpen(false); setResourcesOpen(false); setEventsOpen(false) }, [pathname, hash])
 
-  // Close dropdowns on outside click / Escape.
   useEffect(() => {
     const onClick = (e) => {
       if (servicesRef.current && !servicesRef.current.contains(e.target)) setServicesOpen(false)
@@ -72,52 +69,19 @@ function Nav() {
   return (
     <header className="nav">
       <div className="wrap nav-in">
-        <Link className="brand" to="/" aria-label="Estus Health home">
-          <span className="mark" aria-hidden="true">E</span> Estus Health
-        </Link>
+        <Link className="brand" to="/" aria-label="Estus Health home"><Wordmark /></Link>
 
         <nav aria-label="Primary">
           <ul className="links">
-            <li className={`has-menu${servicesOpen ? ' open' : ''}`} ref={servicesRef}>
-              <button className="menu-btn" aria-expanded={servicesOpen} aria-controls="services-menu"
-                onClick={() => setServicesOpen((v) => !v)}>
-                Services <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="services-menu">
-                {SERVICES.map((s) => (
-                  <li key={s.to}><Link to={s.to}>{s.label}</Link></li>
-                ))}
-              </ul>
-            </li>
-            <li><Link to="/team">Team</Link></li>
-            <li className={`has-menu${resourcesOpen ? ' open' : ''}`} ref={resourcesRef}>
-              <button className="menu-btn" aria-expanded={resourcesOpen} aria-controls="resources-menu"
-                onClick={() => setResourcesOpen((v) => !v)}>
-                Free Resources <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="resources-menu">
-                {NAV_RESOURCES.map((r) => (
-                  <li key={r.to}><Link to={r.to}>{r.label}</Link></li>
-                ))}
-              </ul>
-            </li>
-            <li className={`has-menu${eventsOpen ? ' open' : ''}`} ref={eventsRef}>
-              <button className="menu-btn" aria-expanded={eventsOpen} aria-controls="events-menu"
-                onClick={() => setEventsOpen((v) => !v)}>
-                Events & Media <span className="chev" aria-hidden="true">▾</span>
-              </button>
-              <ul className="menu" id="events-menu">
-                {NAV_EVENTS.map((e) => (
-                  <li key={e.to}><Link to={e.to}>{e.label}</Link></li>
-                ))}
-              </ul>
-            </li>
+            <Dropdown id="services-menu" label="Services" items={SERVICES} open={servicesOpen} setOpen={setServicesOpen} innerRef={servicesRef} />
+            <Dropdown id="resources-menu" label="Free resources" items={NAV_RESOURCES} open={resourcesOpen} setOpen={setResourcesOpen} innerRef={resourcesRef} />
+            <Dropdown id="events-menu" label="Events & media" items={NAV_EVENTS} open={eventsOpen} setOpen={setEventsOpen} innerRef={eventsRef} />
+            <li><NavLink to="/team">Team</NavLink></li>
           </ul>
         </nav>
 
         <div className="nav-cta">
-          <a className="btn btn--ghost" href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal</a>
-          <Link className="btn" to="/contact">Get Started</Link>
+          <Link className="btn btn--teal" to={BOOK_PATH}>Book a free call</Link>
         </div>
 
         <button className="burger" aria-label="Menu" aria-expanded={drawer} aria-controls="mnav"
@@ -128,14 +92,15 @@ function Nav() {
 
       <nav className={`mnav wrap${drawer ? ' open' : ''}`} id="mnav" aria-label="Mobile">
         <p className="group">Services</p>
-        {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}</Link>)}
-        <Link to="/team">Team</Link>
-        <p className="group">Free Resources</p>
+        {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}{s.soon ? ' (coming soon)' : ''}</Link>)}
+        <p className="group">Free resources</p>
         {NAV_RESOURCES.map((r) => <Link key={r.to} className="sub" to={r.to}>{r.label}</Link>)}
-        <p className="group">Events & Media</p>
+        <p className="group">Events & media</p>
         {NAV_EVENTS.map((e) => <Link key={e.to} className="sub" to={e.to}>{e.label}</Link>)}
-        <a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal ↗</a>
-        <Link to="/contact"><strong>Get Started</strong></Link>
+        <p className="group">Estus</p>
+        <Link className="sub" to="/team">Team</Link>
+        <a className="sub" href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a>
+        <Link className="btn btn--teal" to={BOOK_PATH}>Book a free call</Link>
       </nav>
     </header>
   )
@@ -148,8 +113,8 @@ function Footer() {
       <div className="wrap">
         <div className="foot-grid">
           <div>
-            <div className="brand"><span className="mark" aria-hidden="true">E</span> Estus Health</div>
-            <p className="blurb">Neuroaffirming occupational therapy across Perth and via telehealth Australia-wide.</p>
+            <div className="brand"><Wordmark /></div>
+            <p className="blurb">Neuroaffirming occupational therapy. Perth, and telehealth Australia-wide.</p>
             <ul className="foot-social" aria-label="Social media">
               {SOCIALS.map((s) => {
                 const Icon = SOCIAL_ICONS[s.icon]
@@ -168,23 +133,28 @@ function Footer() {
             <ul>{SERVICES.map((s) => <li key={s.to}><Link to={s.to}>{s.label}</Link></li>)}</ul>
           </nav>
           <nav aria-label="Free resources">
-            <h2>Free Resources</h2>
+            <h2>Free resources</h2>
             <ul>{FOOTER_RESOURCES.map((r) => <li key={r.to}><Link to={r.to}>{r.label}</Link></li>)}</ul>
           </nav>
+          <nav aria-label="Events and media">
+            <h2>Events & media</h2>
+            <ul>{NAV_EVENTS.map((e) => <li key={e.to}><Link to={e.to}>{e.label}</Link></li>)}</ul>
+          </nav>
           <nav aria-label="Contact">
-            <h2>Contact</h2>
+            <h2>Estus</h2>
             <ul>
-              <li>Perth, Western Australia</li>
-              <li>Telehealth Australia-wide</li>
-              <li>Mon – Sat, 8am – 7pm</li>
-              <li><Link to="/contact">Make a referral →</Link></li>
+              <li><Link to="/team">Meet the team</Link></li>
+              <li><Link to={BOOK_PATH}>Book a free call</Link></li>
+              <li><Link to={`${BOOK_PATH}#pros`}>For professionals</Link></li>
+              <li><a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a></li>
+              <li>Mon to Sat, 8am to 7pm AWST</li>
               <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
             </ul>
           </nav>
         </div>
         <div className="foot-bottom">
           <span>© {year} Estus Health. All rights reserved.</span>
-          <a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client Portal ↗</a>
+          <span>Perth, Western Australia · Telehealth Australia-wide</span>
         </div>
       </div>
     </footer>
@@ -198,7 +168,6 @@ export default function Layout({ children }) {
       <Nav />
       <main id="main">{children}</main>
       <Footer />
-      <ThemeSwitch />
     </>
   )
 }

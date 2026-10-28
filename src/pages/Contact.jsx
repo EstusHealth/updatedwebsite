@@ -1,119 +1,237 @@
+import { useState } from 'react'
 import SEO, { breadcrumb } from '../components/SEO'
-import { PageHero, Btn, CapacityNotice, ReferralButton, BookingButtonPair } from '../components/Bits'
-import { CAPACITY, REFERRAL_FORM, EMAIL } from '../lib/site'
+import { Btn } from '../components/Bits'
+import { FactStrip, SecIntro, Crew, Steps } from './Home'
+import { CLINICIANS, REFERRAL_FORM, EMAIL, DRIVING_WAITLIST } from '../lib/site'
 
-const STEPS = [
-  { h: 'Submit a referral', p: 'Use the self-referral form if you\'re referring yourself or a family member. If you\'re a GP, support coordinator, or another professional, you can use the same form on behalf of your client. Just fill in the "About the client" section with their details.' },
-  { h: 'We review and make contact', p: "We'll review the referral and get in touch within 24 hours to discuss next steps, confirm suitability, and arrange an initial appointment." },
-  { h: 'We keep you in the loop', p: "If you're a referring professional, we'll keep you updated on progress (with the client's consent) and send through any reports once the assessment or therapy is complete." },
-]
+const RATE = '$193.99'
 
-const INCLUDE = [
-  "Client's name and contact details (or yours, if referring yourself).",
-  'What service you\'re enquiring about: NDIS Access Request Support, Functional Capacity Assessment, or Occupational Therapy.',
-  'Funding type: private, self-managed NDIS, or plan-managed NDIS.',
-  "A brief description of the client's needs. Even a few sentences helps us prepare.",
+const FUNDING = [
+  { label: 'NDIS self-managed', yes: true },
+  { label: 'NDIS plan-managed', yes: true },
+  { label: 'Private, pay as you go', yes: true },
+  { label: 'NDIS agency-managed', yes: false },
+  { label: 'Medicare plans', yes: false },
 ]
 
 const FAQ = [
-  { q: 'Are you taking new clients right now?', a: 'Yes, in limited numbers. We have opened a small number of places for Term 4 ongoing therapy. Spaces are offered in the order referrals come in, so send your referral now and we will contact you to get you booked.' },
-  { q: 'Do I need a GP referral?', a: 'No. Self-referrals are welcome for all of our services. You can refer yourself or a family member directly using the self-referral form, no GP letter needed.' },
-  { q: 'How quickly will someone get back to me?', a: 'We aim to respond to all enquiries within 24 hours. Our therapists are available Monday to Saturday, 8am to 7pm.' },
-  { q: 'What funding types do you accept?', a: 'We accept private, self-managed NDIS, and plan-managed NDIS clients across all of our services.' },
-  { q: "What if I'm not sure which service I need?", a: "That's completely fine. Just get in touch and we'll help you work out the right fit. The contact form is the quickest way to start that conversation." },
+  { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
+  { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
+  { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
+  { q: 'Who will I see?', a: 'Nik works with teens 16+ and adults. Nam works with kids under 16 and their families. Driving assessments with Liam are coming soon.' },
+  { q: 'What happens on the welcome call?', a: '15 minutes. We ask what is going on and what you would like to change, explain how we work and our fees, and answer your questions. Then you decide.' },
+  { q: 'Do I need my camera on?', a: 'No. Camera off is fine, for the call and for sessions.' },
+  { q: 'Phone calls are hard for me. Can we do this another way?', a: 'Yes. Book anyway and say so in the notes, or email us. We can use text, email or chat, and we will stick to it.' },
+  { q: 'Do you work with PDA profiles?', a: 'Yes. We keep demands low, offer choices and adjust how sessions run so they feel safe.' },
+  { q: 'Is it all telehealth?', a: 'Most therapy is by telehealth, Australia-wide. Driving assessments are coming soon and will be in person in Perth.' },
+  { q: 'What if we are not the right fit?', a: 'We will say so honestly and help you find someone who is.' },
 ]
+
+const LANES = ['over', 'under', 'drive']
+
+function Booking() {
+  const [lane, setLane] = useState('over')
+  const who = CLINICIANS[lane]
+  const external = /^https?:/.test(who.href)
+  return (
+    <div className="book" id="book">
+      <div className="book-head">
+        <span className="t">Book your free call</span>
+        <span className="label">15 minutes · free</span>
+      </div>
+      <div className="book-body">
+        <span className="label" id="lane-label">Who is the call for?</span>
+        <div className="seg" role="group" aria-labelledby="lane-label">
+          {LANES.map((k) => (
+            <button key={k} type="button" aria-pressed={k === lane} onClick={() => setLane(k)}>{CLINICIANS[k].label}</button>
+          ))}
+        </div>
+        <div className="who" aria-live="polite">
+          <img src={who.img} alt={`Portrait of ${who.full}`} width="132" height="150" />
+          <div className="txt">
+            <span className={`label ${who.tone}`}>{who.tag}</span>
+            <span className="nm">You'll talk to {who.first}</span>
+            <span className="ln">{who.line}</span>
+          </div>
+        </div>
+        <a className={`btn go${lane === 'drive' ? ' btn--alt' : ''}`} href={who.href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
+          {who.cta} <span aria-hidden="true">▸</span>
+        </a>
+        <span className="small">Phone calls hard? Book anyway and say so in the notes. We can do it by chat or text instead.</span>
+      </div>
+    </div>
+  )
+}
 
 export default function Contact() {
   return (
     <>
       <SEO
-        title="Contact Us | Estus Health"
-        description="Get in touch with Estus Health. Self-referrals welcome, no GP referral needed. Neuroaffirming OT in Perth and telehealth Australia-wide. We respond within 24 hours."
+        title="Book a Free Call | Estus Health Referrals"
+        description="Book a free 15 minute call with the OT you would work with. Self-referrals welcome, no GP referral needed. Neuroaffirming OT in Perth and telehealth Australia-wide."
         path="/contact"
         schema={breadcrumb([
           { name: 'Home', path: '/' },
-          { name: 'Contact & Referrals', path: '/contact' },
+          { name: 'Book a free call', path: '/contact' },
         ])}
       />
-      <PageHero
-        eyebrow="Get in Touch"
-        title="Contact Us"
-        sub2="Have a question, or ready to get started? We're here to help."
-      >
-        <ReferralButton big>Open Contact Form ▸</ReferralButton>
-      </PageHero>
 
-      {/* Self-referral callout + process */}
-      <section style={{ paddingTop: 0 }}>
-        <div className="wrap wrap--narrow">
-          <CapacityNotice compact style={{ marginTop: 0 }} />
-
-          <div className="callout">
-            <span className="badge">Good news</span>
-            <h2 className="sec-head" style={{ fontSize: 'clamp(1.5rem,4vw,2.2rem)', margin: '14px 0 10px' }}>Self-referrals are welcome.</h2>
-            <p style={{ color: 'var(--text-soft)', margin: 0 }}>You don't need a GP or another professional to get started. If you'd like to refer yourself or a family member, use the self-referral form. No referral letter required.</p>
-            <p style={{ marginTop: 16 }}><Btn href={REFERRAL_FORM} variant="btn--alt">Open the self-referral form ▸</Btn></p>
+      {/* HERO + BOOKING */}
+      <section className="hero" aria-labelledby="page-title">
+        <div className="wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 48, alignItems: 'flex-start' }}>
+          <div style={{ flex: '1 1 440px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
+            <span className="eyebrow">Referrals · Perth + telehealth Australia-wide</span>
+            <h1 id="page-title" style={{ margin: 0 }}>Start with a free 15 minute call.</h1>
+            <p className="sub" style={{ margin: 0 }}>You talk to the OT you'd actually work with. Then you decide.</p>
+            <div className="panel">
+              <div className="ph label">What the free call looks like</div>
+              <div className="panel-row"><span className="step-n c-navy" style={{ fontSize: '1.4rem', width: 30 }}>01</span><span><b>15 minutes</b>, by video or phone</span></div>
+              <div className="panel-row"><span className="step-n c-blue" style={{ fontSize: '1.4rem', width: 30 }}>02</span><span><b>Camera off</b> is fine</span></div>
+              <div className="panel-row"><span className="step-n c-plum" style={{ fontSize: '1.4rem', width: 30 }}>03</span><span><b>No pressure</b> to book anything after</span></div>
+            </div>
+            <a href="#form" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>Prefer writing? Send a referral form instead</a>
           </div>
+          <div style={{ flex: '1 1 420px', minWidth: 0, maxWidth: 560 }}>
+            <Booking />
+          </div>
+        </div>
+      </section>
 
-          <h2 className="sec-head" style={{ fontSize: 'clamp(1.5rem,4vw,2.2rem)', marginTop: 44 }}>The referral process.</h2>
-          <div className="numgrid" style={{ marginTop: 28 }}>
-            {STEPS.map((s, i) => (
-              <article className="card" key={s.h}><div className="num" aria-hidden="true">{i + 1}</div><h3>{s.h}</h3><p>{s.p}</p></article>
+      <FactStrip third={{ b: 'Telehealth, Australia-wide', s: 'Driving OT in Perth, coming soon' }} />
+
+      {/* LANES */}
+      <section aria-labelledby="lanes-title" style={{ paddingBottom: 24 }}>
+        <div className="wrap">
+          <SecIntro eyebrow="Pick your path" title="Who's getting in touch?" id="lanes-title" />
+          <div className="ruled">
+            <a href="#book" className="top-navy">
+              <span className="label c-navy">01 · Most people</span>
+              <span className="cell-title">Me or my family</span>
+              <span className="cell-body">Book the free call. We'll work out the right fit together.</span>
+              <span className="cell-link c-navy">Book a call ▸</span>
+            </a>
+            <a href="#pros" className="top-blue">
+              <span className="label c-blue">02 · Professionals</span>
+              <span className="cell-title">GP, psych or coordinator</span>
+              <span className="cell-body">How to refer, what to include and what you get back.</span>
+              <span className="cell-link c-blue">How to refer ▸</span>
+            </a>
+            <a href={DRIVING_WAITLIST} className="top-plum">
+              <span className="label c-plum">03 · In person, Perth<span className="soon">Coming soon</span></span>
+              <span className="cell-title">Driving assessment</span>
+              <span className="cell-body">Learner drivers and fitness to drive. Opening soon. Get on the waitlist now.</span>
+              <span className="cell-link c-plum">Join the waitlist ▸</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS */}
+      <section aria-labelledby="how-title" style={{ paddingBottom: 24 }}>
+        <div className="wrap">
+          <SecIntro eyebrow="No surprises" title="How it works" id="how-title" />
+          <Steps />
+        </div>
+      </section>
+
+      {/* TEAM */}
+      <section aria-labelledby="team-title" style={{ paddingBottom: 24 }}>
+        <div className="wrap">
+          <SecIntro eyebrow="Real people, not a call centre" title="Meet the team" id="team-title" />
+          <Crew />
+        </div>
+      </section>
+
+      {/* FEES + FUNDING */}
+      <section id="fees" className="jump-target" aria-labelledby="fees-title">
+        <div className="wrap">
+          <SecIntro eyebrow="Straight answers" title="Fees and funding" id="fees-title" />
+          <div className="grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
+            <div className="panel">
+              <div className="ph label">Fees</div>
+              <div className="pb">
+                <div className="dots"><span>Welcome call</span><span className="fill"></span><span className="price c-teal">FREE</span></div>
+                <div className="dots"><span>Occupational therapy, per hour</span><span className="fill"></span><span className="price">{RATE}</span></div>
+                <div className="dots"><span>Driving assessment</span><span className="fill"></span><span className="price c-plum" style={{ fontSize: '1.1rem' }}>COMING SOON</span></div>
+                <p className="small" style={{ margin: '12px 0 0' }}>In line with the NDIS price guide. Private clients pay the same rate.</p>
+              </div>
+            </div>
+            <div className="panel">
+              <div className="ph label">Funding we accept</div>
+              <div className="pb" style={{ paddingTop: 6, paddingBottom: 6 }}>
+                {FUNDING.map((f) => (
+                  <div key={f.label} className="dots" style={{ borderBottomStyle: 'solid', borderBottomColor: 'var(--hair)' }}>
+                    {f.yes
+                      ? <svg role="img" aria-label="Accepted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" strokeWidth="3" strokeLinecap="square"><path d="M4 12l5 5L20 6" /></svg>
+                      : <svg role="img" aria-label="Not accepted" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--mauve)" strokeWidth="3" strokeLinecap="square"><path d="M6 6l12 12M18 6L6 18" /></svg>}
+                    <span>{f.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PROFESSIONALS */}
+      <section id="pros" className="tint-section jump-target" aria-labelledby="pros-title">
+        <div className="wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 40 }}>
+          <div style={{ flex: '1 1 380px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <span className="eyebrow c-navy">For GPs, psychologists and support coordinators</span>
+            <h2 className="sec-head" id="pros-title">Referring a client</h2>
+            <p style={{ margin: 0, fontSize: '1.1rem' }}>Send it however suits your practice. A letter is fine. We take it from there and keep you in the loop.</p>
+            <div className="hero-cta" style={{ marginTop: 0 }}>
+              <Btn href={REFERRAL_FORM}>Refer online ▸</Btn>
+              <Btn href={`mailto:${EMAIL}?subject=Referral`} variant="btn--ghost">Email a referral</Btn>
+            </div>
+            <p style={{ margin: 0 }}><b>Email</b> <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a></p>
+          </div>
+          <div style={{ flex: '1 1 380px', minWidth: 0, display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: 16, alignContent: 'start' }}>
+            <div className="card">
+              <h3 style={{ fontSize: '1.25rem', textTransform: 'uppercase', marginBottom: 8 }}>Please include</h3>
+              <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <li>Client name and contact</li><li>Reason for referral</li><li>Funding: private or NDIS</li><li>Relevant reports, if any</li>
+              </ul>
+            </div>
+            <div className="card">
+              <h3 style={{ fontSize: '1.25rem', textTransform: 'uppercase', marginBottom: 8 }}>What you get back</h3>
+              <ul style={{ margin: 0, paddingLeft: 20, display: 'flex', flexDirection: 'column', gap: 4 }}>
+                <li>Receipt confirmed in 1 business day</li><li>Updates, with client consent</li><li>Reports once assessment or therapy is done</li><li>A direct line to the treating OT</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="jump-target" aria-labelledby="faq-title">
+        <div className="wrap" style={{ maxWidth: 900 }}>
+          <SecIntro eyebrow="Questions people ask us" title="FAQ" id="faq-title" />
+          <div className="faq">
+            {FAQ.map((f) => (
+              <details key={f.q}>
+                <summary>{f.q}<span className="plus" aria-hidden="true">+</span></summary>
+                <div className="ans">{f.a}</div>
+              </details>
             ))}
           </div>
-
-          <div className="callout" style={{ marginTop: 40 }}>
-            <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.1rem', marginBottom: 10 }}>What to include in your referral</h3>
-            <ul style={{ color: 'var(--text-soft)', paddingLeft: '1.2em', margin: 0 }}>
-              {INCLUDE.map((t) => <li key={t} style={{ marginBottom: 6 }}>{t}</li>)}
-            </ul>
-            <p style={{ marginTop: 14, marginBottom: 0 }}><span className="badge badge--mauve">Accepting private, self-managed, and plan-managed NDIS clients</span></p>
-          </div>
         </div>
       </section>
 
-      {/* Discovery call */}
-      <section className="tint-section">
-        <div className="wrap wrap--narrow" style={{ textAlign: 'center' }}>
-          <span className="eyebrow eyebrow--mauve">No pressure</span>
-          <h2 className="sec-head" style={{ marginTop: 16 }}>Not ready for a full referral? Start with a conversation.</h2>
-          <p className="lead" style={{ margin: '14px auto 0' }}>Book a free 15-minute discovery call to ask questions, check the fit, and figure out next steps. No obligation.</p>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}><BookingButtonPair /></div>
-        </div>
-      </section>
-
-      {/* Send a message + sidebar */}
-      <section>
-        <div className="wrap two-col">
-          <div>
-            <span className="eyebrow">Say hello</span>
-            <h2 className="sec-head" style={{ marginTop: 16 }}>Send us a message.</h2>
-            <p className="lead" style={{ marginTop: 14 }}>Use the contact form to ask a question or let us know you're interested. If you're ready to refer yourself or a family member, the self-referral form gives us everything we need to get started quickly.</p>
-            <p style={{ marginTop: 22 }}><ReferralButton big>Open Contact Form ▸</ReferralButton></p>
-
-            <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', marginTop: 48, marginBottom: 18 }}>Common questions</h3>
-            <div style={{ display: 'grid', gap: 12 }}>
-              {FAQ.map((f) => (
-                <details className="card card--static" key={f.q} style={{ padding: '16px 20px' }}>
-                  <summary style={{ cursor: 'pointer', fontWeight: 700, color: 'var(--heading)' }}>{f.q}</summary>
-                  <p style={{ color: 'var(--text-soft)', margin: '10px 0 0' }}>{f.a}</p>
-                </details>
-              ))}
+      {/* BACKUP FORM */}
+      <section id="form" className="jump-target" aria-labelledby="form-title" style={{ paddingTop: 8, paddingBottom: 80 }}>
+        <div className="wrap">
+          <div style={{ border: '2px solid var(--black)', background: 'var(--surface)', display: 'flex', flexWrap: 'wrap' }}>
+            <div style={{ flex: '1 1 420px', minWidth: 0, padding: 32, display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <span className="eyebrow">Not ready to talk?</span>
+              <h2 className="sec-head" id="form-title" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 2.3rem)' }}>Send a referral form instead</h2>
+              <p style={{ margin: 0, color: 'var(--text-soft)', maxWidth: '46ch' }}>About 5 minutes. We reply within one business day and help you book from there.</p>
+            </div>
+            <div style={{ flex: '1 1 300px', minWidth: 0, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 14, background: 'var(--black)' }}>
+              <Btn href={REFERRAL_FORM} variant="btn--ghost">Open the referral form</Btn>
+              <a href="#book" style={{ color: 'var(--on-dark-accent)', fontWeight: 600, textAlign: 'center' }}>Or book the free call ▸</a>
             </div>
           </div>
-
-          <aside>
-            <div className="card card--static">
-              <h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1rem', marginBottom: 16 }}>Other ways to reach us</h3>
-              <dl style={{ margin: 0, display: 'grid', gap: 14 }}>
-                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Email</dt><dd style={{ margin: '2px 0 0' }}><a href={`mailto:${EMAIL}`} style={{ color: 'var(--mauve)', fontWeight: 700 }}>{EMAIL}</a></dd></div>
-                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Location</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Perth Metro & Telehealth Australia-wide</dd></div>
-                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Response time</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Within 24 hours</dd></div>
-                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Therapist availability</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>Monday to Saturday, 8am to 7pm</dd></div>
-                <div><dt className="k" style={{ fontFamily: 'var(--f-display)', fontSize: '.7rem', textTransform: 'uppercase', color: 'var(--teal)' }}>Intake status</dt><dd style={{ margin: '2px 0 0', color: 'var(--text-soft)' }}>{CAPACITY.short}</dd></div>
-              </dl>
-            </div>
-          </aside>
         </div>
       </section>
     </>

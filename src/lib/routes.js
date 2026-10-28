@@ -27,12 +27,14 @@
 
 export const ROUTES = [
   // Main
-  { path: '/', label: 'Home', group: 'Main', priority: 1.0, lastmod: '2026-07-12' },
+  { path: '/', label: 'Home', group: 'Main', priority: 1.0, lastmod: '2026-10-28' },
   { path: '/team', label: 'Meet the Team', group: 'Main', priority: 0.8, lastmod: '2026-07-12' },
-  { path: '/contact', label: 'Contact & Referrals', group: 'Main', priority: 0.9, lastmod: '2026-07-12' },
+  { path: '/contact', label: 'Book a Free Call & Referrals', group: 'Main', priority: 0.9, lastmod: '2026-10-28' },
+  { path: '/what-to-expect', label: 'What to Expect on Your Free Call', group: 'Main', priority: 0.5, lastmod: '2026-10-28' },
 
   // Services
   { path: '/services/occupational-therapy', label: 'Occupational Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
+  { path: '/services/small-hinges', label: 'Small Hinges Programs', group: 'Services', priority: 0.8, lastmod: '2026-10-28' },
   { path: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/minecraft-program', label: 'Minecraft Program', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/live-sessions', label: 'Live Sessions', group: 'Services', priority: 0.8, lastmod: '2026-08-11' },

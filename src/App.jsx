@@ -6,12 +6,14 @@ import ScrollToTop from './components/ScrollToTop'
 import Home from './pages/Home'
 import Team from './pages/Team'
 import Contact from './pages/Contact'
+import WhatToExpect from './pages/WhatToExpect'
 
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
 import GamingInformedTherapy from './pages/services/GamingInformedTherapy'
 import MinecraftProgram from './pages/services/MinecraftProgram'
 import LiveSessions from './pages/services/LiveSessions'
 import AssessmentsReports from './pages/services/AssessmentsReports'
+import SmallHinges from './pages/services/SmallHinges'
 
 import ResourcesHub from './pages/resources/ResourcesHub'
 import UnderstandingPDA from './pages/resources/UnderstandingPDA'
@@ -61,6 +63,7 @@ export default function App() {
         <Route path="/home" element={<Navigate to="/" replace />} />
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/what-to-expect" element={<WhatToExpect />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/gaming-informed-therapy" element={<GamingInformedTherapyWebinar />} />
         <Route path="/events/boundary-setting" element={<BoundarySettingWebinar />} />
@@ -70,6 +73,7 @@ export default function App() {
         <Route path="/services/minecraft-program" element={<MinecraftProgram />} />
         <Route path="/services/live-sessions" element={<LiveSessions />} />
         <Route path="/services/assessments-reports" element={<AssessmentsReports />} />
+        <Route path="/services/small-hinges" element={<SmallHinges />} />
 
         <Route path="/resources" element={<ResourcesHub />} />
         <Route path="/resources/understanding-pda" element={<UnderstandingPDA />} />

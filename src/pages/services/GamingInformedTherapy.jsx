@@ -39,7 +39,7 @@ export default function GamingInformedTherapy() {
         schema={[
           service({
             name: 'Gaming-Informed Therapy',
-            description: 'Occupational therapy that uses games as a genuine clinical medium for autistic, ADHD, and PDA-profile clients — building connection, problem-solving, emotional regulation, and social skills in context.',
+            description: 'Occupational therapy that uses games as a genuine clinical medium for autistic, ADHD, and PDA-profile clients, building connection, problem-solving, emotional regulation, and social skills in context.',
             path: '/services/gaming-informed-therapy',
           }),
           breadcrumb([

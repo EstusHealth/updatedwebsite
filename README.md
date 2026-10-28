@@ -3,7 +3,7 @@
 Neuroaffirming, gaming-informed occupational therapy. Perth, WA and telehealth
 Australia-wide.
 
-Vite + React single-page app on the neon / neon-light design system.
+Vite + React single-page app on the Estus brand system (2026 rebrand): flat, black-ruled, Oswald and Barlow, one light theme.
 
 ## Develop
 
@@ -22,12 +22,12 @@ routing; static files (including the CommCard PWA) are served directly.
 
 ## Layout
 
-- `src/styles/tokens.css` — the whole design system. Two themes swap via the
-  `data-theme` attribute on `<html>`. Pages reference semantic tokens only, no
-  hardcoded colours or fonts.
-- `src/components/` — Layout (nav/footer/theme switch), SEO, shared bits, decor,
+- `src/styles/tokens.css`: the whole design system. One light theme. Older
+  token names are kept so every page re-skins from this file. Pages reference
+  semantic tokens only.
+- `src/components/` : Layout (nav/footer/theme switch), SEO, shared bits, decor,
   and the quiz result/share components.
-- `src/pages/` — one file per route. `src/App.jsx` wires every path, including
+- `src/pages/` : one file per route. `src/App.jsx` wires every path, including
   legacy redirects.
-- `public/commcard/` — the CommCard PWA, served standalone at `/commcard/`.
+- `public/commcard/` : the CommCard PWA, served standalone at `/commcard/`.
   Edit it here; it is deployed as static files.

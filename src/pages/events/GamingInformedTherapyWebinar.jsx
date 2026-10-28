@@ -2,7 +2,6 @@ import { useState, useRef, useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import SEO, { breadcrumb, videoObject } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
-import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
 import { webinarBySlug } from '../../lib/webinars'
 import { PODCASTS } from '../../lib/site'
@@ -363,7 +362,6 @@ export default function GamingInformedTherapyWebinar() {
 
       {/* Rapport */}
       <section id="rapport" className="jump-target">
-        <Confetti kind="star" color="var(--teal)" size={36} anim="spin" style={{ top: 12, right: '5%' }} />
         <div className="wrap wrap--narrow">
           <span className="eyebrow">Rapport toolkit</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Rapport is the whole game.</h2>

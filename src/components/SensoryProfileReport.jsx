@@ -2,13 +2,13 @@ import { createPortal } from 'react-dom';
 import { profileContent, bandLabel } from '../lib/sensoryProfile';
 
 /* ==========================================================================
-   ESTUS SENSORY PROFILE — printable report ("Estus report style")
+   ESTUS SENSORY PROFILE, printable report ("Estus report style")
 
    A print-only A4 document rendered into <body> via a portal. It is hidden on
    screen (display:none) and revealed only inside @media print, where the live
-   app (#root) is hidden. The visual language is the NEW Estus clinical brand —
+   app (#root) is hidden. The visual language is the Estus clinical brand,
    Oswald / Barlow, the four-band colour bar, warm-white paper, black footer
-   band — deliberately distinct from the site's neon system.
+   band, which the whole site now uses.
 
    "Download PDF" simply calls window.print(); the browser's Save-as-PDF turns
    this into a shareable, keepable document. Nothing is sent anywhere.

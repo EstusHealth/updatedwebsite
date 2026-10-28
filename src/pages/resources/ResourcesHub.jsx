@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
-import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
 import { COMMCARD_APP, GIVEWAY_APP } from '../../lib/site'
 
@@ -77,7 +76,6 @@ export default function ResourcesHub() {
 
       {/* Quizzes */}
       <section id="quizzes" className="jump-target" style={{ paddingTop: 0 }}>
-        <Confetti kind="star" color="var(--teal)" size={38} anim="spin" style={{ top: 10, right: '5%' }} />
         <div className="wrap">
           <span className="eyebrow">Quizzes</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Find your type.</h2>
@@ -138,7 +136,6 @@ export default function ResourcesHub() {
 
       {/* Driving OT */}
       <section id="driving-ot" className="jump-target tint-section">
-        <Confetti kind="ring" color="var(--mauve)" size={40} anim="float" style={{ top: 30, left: '4%' }} />
         <div className="wrap">
           <span className="eyebrow eyebrow--mauve">Driving OT</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Learn the road.</h2>

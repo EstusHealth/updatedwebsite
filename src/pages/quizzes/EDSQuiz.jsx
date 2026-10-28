@@ -765,7 +765,7 @@ export default function EDSQuiz() {
           {/* Next resource CTA */}
           <div
             style={{
-              background: 'linear-gradient(135deg, var(--teal) 0%, var(--navy) 100%)',
+              background: 'var(--black)',
               borderRadius: "12px",
               padding: "2.5rem 2rem",
               textAlign: "center",
