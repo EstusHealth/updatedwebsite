@@ -1,5 +1,7 @@
 # Estus Health
 
+> **Current snapshot: end of October 2026 (28 October).** Estus rebrand and site map v2. See PR #14. Previous snapshot: 16 October 2026 (tag `snapshot-2026-10-16`).
+
 Neuroaffirming, gaming-informed occupational therapy. Perth, WA and telehealth
 Australia-wide.
 

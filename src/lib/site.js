@@ -50,7 +50,8 @@ export const BOOK_PATH = '/contact'
 export const BOOKING_PAGE = '/book-your-call'
 export const CTA_LABEL = 'Get started'
 export const WHAT_TO_EXPECT = '/what-to-expect'
-export const DRIVING_WAITLIST = 'mailto:hello@estushealth.com?subject=Driving%20OT%20waitlist'
+// Driving On The Spectrum waitlist (PracSuite form).
+export const DRIVING_WAITLIST = 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA'
 
 // Who takes the free call, by lane. Photos live in public/.
 export const CLINICIANS = {
@@ -67,7 +68,7 @@ export const CLINICIANS = {
   drive: {
     key: 'drive', label: 'Driving (soon)', first: 'Liam', full: 'Liam Fagan', tag: 'Driving OT · coming soon',
     line: 'In-person driving assessments in Perth are coming soon. Join the waitlist and we will tell you when bookings open.',
-    img: '/team-liam.jpg', href: 'mailto:hello@estushealth.com?subject=Driving%20OT%20waitlist', cta: 'Join the driving waitlist', tone: 'c-plum',
+    img: '/team-liam.jpg', href: 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA', cta: 'Join the driving waitlist', tone: 'c-plum',
   },
 }
 
