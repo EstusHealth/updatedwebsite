@@ -4,8 +4,8 @@ import SEO from '../components/SEO'
 import { CLINICIANS, EMAIL, WHAT_TO_EXPECT } from '../lib/site'
 
 /*
-  Unlisted. Reached from the PracSuite referral form's confirmation message
-  only, so people send a referral before they book with Nik or Nam. Not in
+  Unlisted. Reached from the referral form's confirmation message and the
+  email and SMS sequence sent after it, so people send a referral before they book with Nik or Nam. Not in
   the menus, the sitemap or llms.txt, and marked noindex. Anyone with the
   link can still open it: this keeps the calendars off the public site, it
   is not a lock.

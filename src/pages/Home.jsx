@@ -18,7 +18,7 @@ const SERVICE_CARDS = [
 
 const STEPS = [
   { n: 1, tone: 'c-navy', h: 'Send a referral form', p: 'About 5 minutes. A little about you, or the person you support, and your goals.' },
-  { n: 2, tone: 'c-blue', h: 'Book your call', p: 'As soon as you submit, you get a link to book with Nik or Nam.' },
+  { n: 2, tone: 'c-blue', h: 'Book your call', p: 'We email and text you a link to book with Nik or Nam.' },
   { n: 3, tone: 'c-teal', h: '15 minute call', p: 'Your goals, fees, funding and fit. Ask anything.' },
   { n: 4, tone: 'c-plum', h: 'First session', p: 'Sign the service agreement online, then we start.' },
 ]

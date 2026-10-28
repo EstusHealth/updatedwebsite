@@ -14,7 +14,7 @@ const FUNDING = [
 ]
 
 const FAQ = [
-  { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes and you can book straight after.' },
+  { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes, and we email and text you a booking link as soon as you submit.' },
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
   { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
@@ -27,8 +27,8 @@ const FAQ = [
   { q: 'What if we are not the right fit?', a: 'We will say so honestly and help you find someone who is.' },
 ]
 
-// The first step for every new client: the PracSuite referral form. Its
-// confirmation message links to /book-your-call (Nik and Nam's calendars).
+// The first step for every new client: the PracSuite referral form. On
+// submit, an email and SMS sequence sends the /book-your-call link.
 function StartReferral() {
   return (
     <div className="book" id="start">
@@ -38,7 +38,7 @@ function StartReferral() {
       </div>
       <div className="book-body" style={{ gap: 0, paddingTop: 8, paddingBottom: 22 }}>
         <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-navy" style={{ fontSize: '1.8rem', width: 34 }}>1</span><span><b>Fill in the referral form.</b> A little about you, or the person you support, and what you'd like to change.</span></div>
-        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-blue" style={{ fontSize: '1.8rem', width: 34 }}>2</span><span><b>Book your call straight away.</b> When you submit, you get a link to pick a time with Nik or Nam.</span></div>
+        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-blue" style={{ fontSize: '1.8rem', width: 34 }}>2</span><span><b>Check your email and texts.</b> As soon as you submit, we send you a link to pick a time with Nik or Nam.</span></div>
         <div className="panel-row" style={{ padding: '14px 0', marginBottom: 18 }}><span className="step-n c-plum" style={{ fontSize: '1.8rem', width: 34 }}>3</span><span><b>Talk for 15 minutes.</b> The OT has read your form, so the call is about you, not paperwork.</span></div>
         <a className="btn go" href={REFERRAL_FORM} target="_blank" rel="noopener">Start the referral form <span aria-hidden="true">▸</span></a>
         <span className="small" style={{ marginTop: 14 }}>Filling in forms hard? Email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a> and we'll do it with you.</span>
@@ -207,7 +207,7 @@ export default function Contact() {
           <div className="split">
             <div className="l">
               <h2 id="final-title">Ready when you are.</h2>
-              <p>About 5 minutes for the form, then you book your free call straight away.</p>
+              <p>About 5 minutes for the form. Then we email and text you a link to book your free call.</p>
             </div>
             <div className="r">
               <Btn href={REFERRAL_FORM} big>Start the referral form</Btn>
