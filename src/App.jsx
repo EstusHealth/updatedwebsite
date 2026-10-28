@@ -7,6 +7,7 @@ import Home from './pages/Home'
 import Team from './pages/Team'
 import Contact from './pages/Contact'
 import WhatToExpect from './pages/WhatToExpect'
+import Clients from './pages/Clients'
 import BookYourCall from './pages/BookYourCall'
 
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
@@ -64,6 +65,7 @@ export default function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/what-to-expect" element={<WhatToExpect />} />
+        <Route path="/clients" element={<Clients />} />
         <Route path="/book-your-call" element={<BookYourCall />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/gaming-informed-therapy" element={<GamingInformedTherapyWebinar />} />

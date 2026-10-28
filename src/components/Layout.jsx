@@ -77,6 +77,7 @@ function Nav() {
             <Dropdown id="resources-menu" label="Free resources" items={NAV_RESOURCES} open={resourcesOpen} setOpen={setResourcesOpen} innerRef={resourcesRef} />
             <Dropdown id="events-menu" label="Events & media" items={NAV_EVENTS} open={eventsOpen} setOpen={setEventsOpen} innerRef={eventsRef} />
             <li><NavLink to="/team">Team</NavLink></li>
+            <li><NavLink to="/clients">Clients</NavLink></li>
           </ul>
         </nav>
 
@@ -99,7 +100,7 @@ function Nav() {
         {NAV_EVENTS.map((e) => <Link key={e.to} className="sub" to={e.to}>{e.label}</Link>)}
         <p className="group">Estus</p>
         <Link className="sub" to="/team">Team</Link>
-        <a className="sub" href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a>
+        <Link className="sub" to="/clients">Current clients: book, move or cancel</Link>
         <Link className="btn btn--teal" to={BOOK_PATH}>Get started</Link>
       </nav>
     </header>
@@ -146,7 +147,7 @@ function Footer() {
               <li><Link to="/team">Meet the team</Link></li>
               <li><Link to={BOOK_PATH}>Get started</Link></li>
               <li><Link to={`${BOOK_PATH}#pros`}>For professionals</Link></li>
-              <li><a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a></li>
+              <li><Link to="/clients">Client portal: book, move or cancel</Link></li>
               <li>Mon to Sat, 8am to 7pm AWST</li>
               <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
             </ul>

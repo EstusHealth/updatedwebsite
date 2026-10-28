@@ -33,6 +33,7 @@ export const ROUTES = [
   // Main
   { path: '/', label: 'Home', group: 'Main', priority: 1.0, lastmod: '2026-10-28' },
   { path: '/team', label: 'Meet the Team', group: 'Main', priority: 0.8, lastmod: '2026-07-12' },
+  { path: '/clients', label: 'Client Portal: Book, Move or Cancel', group: 'Main', priority: 0.6, lastmod: '2026-10-28' },
   { path: '/contact', label: 'Book a Free Call & Referrals', group: 'Main', priority: 0.9, lastmod: '2026-10-28' },
   { path: '/what-to-expect', label: 'What to Expect on Your Free Call', group: 'Main', priority: 0.5, lastmod: '2026-10-28' },
   { path: '/book-your-call', label: 'Book Your Call', group: 'Main', priority: 0.1, lastmod: '2026-10-28', unlisted: true },

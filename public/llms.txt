@@ -18,6 +18,7 @@ Important notes:
 ## About
 
 - [Meet the Team](https://www.estushealth.com/team): The clinicians behind Estus Health.
+- [Client Portal](https://www.estushealth.com/clients): How current clients book, reschedule and cancel their own sessions in the PracSuite client portal.
 - [Book a Free Call & Referrals](https://www.estushealth.com/contact): Book a free 15 minute welcome call, fees and funding, FAQ, and how professionals refer.
 - [What to Expect](https://www.estushealth.com/what-to-expect): What happens on the free 15 minute welcome call.
 - [Events & Webinars](https://www.estushealth.com/events): Hub for live events and the permanent archive of past recordings.
