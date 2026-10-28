@@ -27,18 +27,12 @@ export const GIVEWAY_APP = '/giveway/'
 export const CAPACITY = {
   badge: 'Term 4 places open',
   heading: 'Limited Term 4 places are now available.',
-  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so book a free call now and we will find you a start date.',
+  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so send a referral now and we will find you a start date.',
   short: 'Limited Term 4 places are now available. Spaces are offered in the order referrals come in.',
-  cta: 'Book a free call',
+  cta: 'Get started',
   // Shown on the team profiles for clinicians with Term 4 places.
   clinicianStatus: 'Limited Term 4 places available',
 }
-
-// Discovery-call booking (BookingButtonPair).
-export const BOOKING = [
-  { name: 'Nik', label: '16 and over', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },
-  { name: 'Nam', label: 'Under 16', url: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9' },
-]
 
 // Services menu. Assessments & Reports and Live Sessions stay live at their
 // own URLs but are out of the menus (site map v2, October 2026).
@@ -49,9 +43,12 @@ export const SERVICES = [
   { to: '/resources/driving-ot', label: 'Driving OT', soon: true },
 ]
 
-// The new primary call to action: the free 15 minute welcome call lives on
-// the referrals page, which keeps the /contact address.
+// The primary call to action. /contact is "Get started": people send the
+// referral form first. The PracSuite form's confirmation message links to
+// BOOKING_PAGE, an unlisted, noindex page with Nik and Nam's calendars.
 export const BOOK_PATH = '/contact'
+export const BOOKING_PAGE = '/book-your-call'
+export const CTA_LABEL = 'Get started'
 export const WHAT_TO_EXPECT = '/what-to-expect'
 export const DRIVING_WAITLIST = 'mailto:hello@estushealth.com?subject=Driving%20OT%20waitlist'
 

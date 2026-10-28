@@ -1,8 +1,7 @@
-import { useState } from 'react'
 import SEO, { breadcrumb } from '../components/SEO'
 import { Btn } from '../components/Bits'
 import { FactStrip, SecIntro, Crew, Steps } from './Home'
-import { CLINICIANS, REFERRAL_FORM, EMAIL, DRIVING_WAITLIST } from '../lib/site'
+import { REFERRAL_FORM, EMAIL, DRIVING_WAITLIST } from '../lib/site'
 
 const RATE = '$193.99'
 
@@ -15,49 +14,34 @@ const FUNDING = [
 ]
 
 const FAQ = [
+  { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes and you can book straight after.' },
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
   { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
   { q: 'Who will I see?', a: 'Nik works with teens 16+ and adults. Nam works with kids under 16 and their families. Driving assessments with Liam are coming soon.' },
   { q: 'What happens on the welcome call?', a: '15 minutes. We ask what is going on and what you would like to change, explain how we work and our fees, and answer your questions. Then you decide.' },
   { q: 'Do I need my camera on?', a: 'No. Camera off is fine, for the call and for sessions.' },
-  { q: 'Phone calls are hard for me. Can we do this another way?', a: 'Yes. Book anyway and say so in the notes, or email us. We can use text, email or chat, and we will stick to it.' },
+  { q: 'Phone calls are hard for me. Can we do this another way?', a: 'Yes. Say so in the referral form or the booking notes, or email us. We can use text, email or chat, and we will stick to it.' },
   { q: 'Do you work with PDA profiles?', a: 'Yes. We keep demands low, offer choices and adjust how sessions run so they feel safe.' },
   { q: 'Is it all telehealth?', a: 'Most therapy is by telehealth, Australia-wide. Driving assessments are coming soon and will be in person in Perth.' },
   { q: 'What if we are not the right fit?', a: 'We will say so honestly and help you find someone who is.' },
 ]
 
-const LANES = ['over', 'under', 'drive']
-
-function Booking() {
-  const [lane, setLane] = useState('over')
-  const who = CLINICIANS[lane]
-  const external = /^https?:/.test(who.href)
+// The first step for every new client: the PracSuite referral form. Its
+// confirmation message links to /book-your-call (Nik and Nam's calendars).
+function StartReferral() {
   return (
-    <div className="book" id="book">
+    <div className="book" id="start">
       <div className="book-head">
-        <span className="t">Book your free call</span>
-        <span className="label">15 minutes · free</span>
+        <span className="t">Get started</span>
+        <span className="label">About 5 minutes</span>
       </div>
-      <div className="book-body">
-        <span className="label" id="lane-label">Who is the call for?</span>
-        <div className="seg" role="group" aria-labelledby="lane-label">
-          {LANES.map((k) => (
-            <button key={k} type="button" aria-pressed={k === lane} onClick={() => setLane(k)}>{CLINICIANS[k].label}</button>
-          ))}
-        </div>
-        <div className="who" aria-live="polite">
-          <img src={who.img} alt={`Portrait of ${who.full}`} width="132" height="150" />
-          <div className="txt">
-            <span className={`label ${who.tone}`}>{who.tag}</span>
-            <span className="nm">You'll talk to {who.first}</span>
-            <span className="ln">{who.line}</span>
-          </div>
-        </div>
-        <a className={`btn go${lane === 'drive' ? ' btn--alt' : ''}`} href={who.href} {...(external ? { target: '_blank', rel: 'noopener' } : {})}>
-          {who.cta} <span aria-hidden="true">▸</span>
-        </a>
-        <span className="small">Phone calls hard? Book anyway and say so in the notes. We can do it by chat or text instead.</span>
+      <div className="book-body" style={{ gap: 0, paddingTop: 8, paddingBottom: 22 }}>
+        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-navy" style={{ fontSize: '1.8rem', width: 34 }}>1</span><span><b>Fill in the referral form.</b> A little about you, or the person you support, and what you'd like to change.</span></div>
+        <div className="panel-row" style={{ padding: '14px 0' }}><span className="step-n c-blue" style={{ fontSize: '1.8rem', width: 34 }}>2</span><span><b>Book your call straight away.</b> When you submit, you get a link to pick a time with Nik or Nam.</span></div>
+        <div className="panel-row" style={{ padding: '14px 0', marginBottom: 18 }}><span className="step-n c-plum" style={{ fontSize: '1.8rem', width: 34 }}>3</span><span><b>Talk for 15 minutes.</b> The OT has read your form, so the call is about you, not paperwork.</span></div>
+        <a className="btn go" href={REFERRAL_FORM} target="_blank" rel="noopener">Start the referral form <span aria-hidden="true">▸</span></a>
+        <span className="small" style={{ marginTop: 14 }}>Filling in forms hard? Email <a href={`mailto:${EMAIL}`} style={{ color: 'var(--navy)', fontWeight: 600 }}>{EMAIL}</a> and we'll do it with you.</span>
       </div>
     </div>
   )
@@ -67,12 +51,12 @@ export default function Contact() {
   return (
     <>
       <SEO
-        title="Book a Free Call | Estus Health Referrals"
-        description="Book a free 15 minute call with the OT you would work with. Self-referrals welcome, no GP referral needed. Neuroaffirming OT in Perth and telehealth Australia-wide."
+        title="Get Started & Referrals | Estus Health"
+        description="Send a short referral form, then book a free 15 minute call with the OT you would work with. Self-referrals welcome, no GP referral needed. Neuroaffirming OT in Perth and telehealth Australia-wide."
         path="/contact"
         schema={breadcrumb([
           { name: 'Home', path: '/' },
-          { name: 'Book a free call', path: '/contact' },
+          { name: 'Get started', path: '/contact' },
         ])}
       />
 
@@ -81,18 +65,17 @@ export default function Contact() {
         <div className="wrap" style={{ display: 'flex', flexWrap: 'wrap', gap: 48, alignItems: 'flex-start' }}>
           <div style={{ flex: '1 1 440px', minWidth: 0, display: 'flex', flexDirection: 'column', gap: 20 }}>
             <span className="eyebrow">Referrals · Perth + telehealth Australia-wide</span>
-            <h1 id="page-title" style={{ margin: 0 }}>Start with a free 15 minute call.</h1>
-            <p className="sub" style={{ margin: 0 }}>You talk to the OT you'd actually work with. Then you decide.</p>
+            <h1 id="page-title" style={{ margin: 0 }}>Start with a short referral form.</h1>
+            <p className="sub" style={{ margin: 0 }}>Then book a free 15 minute call with the OT you'd actually work with.</p>
             <div className="panel">
               <div className="ph label">What the free call looks like</div>
               <div className="panel-row"><span className="step-n c-navy" style={{ fontSize: '1.4rem', width: 30 }}>01</span><span><b>15 minutes</b>, by video or phone</span></div>
               <div className="panel-row"><span className="step-n c-blue" style={{ fontSize: '1.4rem', width: 30 }}>02</span><span><b>Camera off</b> is fine</span></div>
               <div className="panel-row"><span className="step-n c-plum" style={{ fontSize: '1.4rem', width: 30 }}>03</span><span><b>No pressure</b> to book anything after</span></div>
             </div>
-            <a href="#form" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>Prefer writing? Send a referral form instead</a>
           </div>
           <div style={{ flex: '1 1 420px', minWidth: 0, maxWidth: 560 }}>
-            <Booking />
+            <StartReferral />
           </div>
         </div>
       </section>
@@ -104,11 +87,11 @@ export default function Contact() {
         <div className="wrap">
           <SecIntro eyebrow="Pick your path" title="Who's getting in touch?" id="lanes-title" />
           <div className="ruled">
-            <a href="#book" className="top-navy">
+            <a href={REFERRAL_FORM} target="_blank" rel="noopener" className="top-navy">
               <span className="label c-navy">01 · Most people</span>
               <span className="cell-title">Me or my family</span>
-              <span className="cell-body">Book the free call. We'll work out the right fit together.</span>
-              <span className="cell-link c-navy">Book a call ▸</span>
+              <span className="cell-body">Send the referral form, then book the free call. We'll work out the right fit together.</span>
+              <span className="cell-link c-navy">Start the form ▸</span>
             </a>
             <a href="#pros" className="top-blue">
               <span className="label c-blue">02 · Professionals</span>
@@ -218,18 +201,17 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* BACKUP FORM */}
-      <section id="form" className="jump-target" aria-labelledby="form-title" style={{ paddingTop: 8, paddingBottom: 80 }}>
+      {/* FINAL */}
+      <section aria-labelledby="final-title" style={{ paddingTop: 8, paddingBottom: 80 }}>
         <div className="wrap">
-          <div style={{ border: '2px solid var(--black)', background: 'var(--surface)', display: 'flex', flexWrap: 'wrap' }}>
-            <div style={{ flex: '1 1 420px', minWidth: 0, padding: 32, display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <span className="eyebrow">Not ready to talk?</span>
-              <h2 className="sec-head" id="form-title" style={{ fontSize: 'clamp(1.8rem, 3.6vw, 2.3rem)' }}>Send a referral form instead</h2>
-              <p style={{ margin: 0, color: 'var(--text-soft)', maxWidth: '46ch' }}>About 5 minutes. We reply within one business day and help you book from there.</p>
+          <div className="split">
+            <div className="l">
+              <h2 id="final-title">Ready when you are.</h2>
+              <p>About 5 minutes for the form, then you book your free call straight away.</p>
             </div>
-            <div style={{ flex: '1 1 300px', minWidth: 0, padding: 32, display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: 14, background: 'var(--black)' }}>
-              <Btn href={REFERRAL_FORM} variant="btn--ghost">Open the referral form</Btn>
-              <a href="#book" style={{ color: 'var(--on-dark-accent)', fontWeight: 600, textAlign: 'center' }}>Or book the free call ▸</a>
+            <div className="r">
+              <Btn href={REFERRAL_FORM} big>Start the referral form</Btn>
+              <a href={`mailto:${EMAIL}`}>Rather email? {EMAIL}</a>
             </div>
           </div>
         </div>

@@ -71,7 +71,7 @@ function Picker() {
             <span className="price">{n} {n === 1 ? 'session' : 'sessions'}</span>
           </div>
           <BookButton big variant="btn--teal" />
-          <span className="small">Not sure which ones? Bring your best guess to the free call and we'll sort the order together.</span>
+          <span className="small">Send a referral form and list your picks in it. Not sure which ones? Bring your best guess to the free call.</span>
         </div>
       </aside>
     </div>
@@ -111,7 +111,7 @@ export default function SmallHinges() {
         <div className="wrap">
           <SecIntro eyebrow="How it runs" title="Short on purpose" id="how-title" />
           <div className="ruled">
-            <div><span className="step-n c-navy" aria-hidden="true">1</span><b style={{ fontSize: '1.2rem' }}>Free call</b><span className="cell-body">Tell us which hinges you picked. We check the fit and the order.</span></div>
+            <div><span className="step-n c-navy" aria-hidden="true">1</span><b style={{ fontSize: '1.2rem' }}>Referral, then a free call</b><span className="cell-body">Send a referral form with your picks, then book a free call. We check the fit and the order.</span></div>
             <div><span className="step-n c-blue" aria-hidden="true">2</span><b style={{ fontSize: '1.2rem' }}>One session per hinge</b><span className="cell-body">Telehealth. Each session tackles one hinge and ends with something you use that week.</span></div>
             <div><span className="step-n c-teal" aria-hidden="true">3</span><b style={{ fontSize: '1.2rem' }}>Stop or add</b><span className="cell-body">After each one, keep going, add another hinge, or stop. Six is the most.</span></div>
             <div><span className="step-n c-plum" aria-hidden="true">4</span><b style={{ fontSize: '1.2rem' }}>A clear finish</b><span className="cell-body">You leave with a plan for each hinge. Ongoing OT is there if you want it.</span></div>
@@ -121,7 +121,7 @@ export default function SmallHinges() {
 
       <CTABand
         title="Got your hinges?"
-        body="Book the free call and bring your picks. 15 minutes, camera optional, no pressure to book."
+        body="Send a short referral form with your picks, then book a free 15 minute call. Camera optional, no pressure."
         buttons={<BookButton big variant="btn--teal" />}
       />
     </>

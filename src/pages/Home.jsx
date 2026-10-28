@@ -17,8 +17,8 @@ const SERVICE_CARDS = [
 ]
 
 const STEPS = [
-  { n: 1, tone: 'c-navy', h: 'Book a time', p: 'Pick a slot that suits. Takes about a minute.' },
-  { n: 2, tone: 'c-blue', h: 'Get a confirmation', p: 'An email with the time, the link and what to expect.' },
+  { n: 1, tone: 'c-navy', h: 'Send a referral form', p: 'About 5 minutes. A little about you, or the person you support, and your goals.' },
+  { n: 2, tone: 'c-blue', h: 'Book your call', p: 'As soon as you submit, you get a link to book with Nik or Nam.' },
   { n: 3, tone: 'c-teal', h: '15 minute call', p: 'Your goals, fees, funding and fit. Ask anything.' },
   { n: 4, tone: 'c-plum', h: 'First session', p: 'Sign the service agreement online, then we start.' },
 ]
@@ -102,9 +102,9 @@ export default function Home() {
               <h1 id="hero-title">Therapy built around how your brain <span className="accent">actually works.</span></h1>
             </div>
             <div style={{ flex: '1 1 320px', minWidth: 0, maxWidth: 420, display: 'flex', flexDirection: 'column', gap: 18 }}>
-              <p className="sub" style={{ margin: 0 }}>A small team of neurodivergent OTs. Start with a free 15 minute call. Camera off is fine.</p>
+              <p className="sub" style={{ margin: 0 }}>A small team of neurodivergent OTs. Send a short referral form, then book a free 15 minute call. Camera off is fine.</p>
               <div className="hero-cta" style={{ marginTop: 0 }}>
-                <Btn to={BOOK_PATH} big>Book a free call</Btn>
+                <Btn to={BOOK_PATH} big>Get started</Btn>
                 <a href="#services" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>See what we do</a>
               </div>
             </div>
@@ -181,11 +181,11 @@ export default function Home() {
         <div className="wrap">
           <div className="split">
             <div className="l">
-              <h2 id="final-title">Start with a free 15 minute call.</h2>
-              <p>Talk to the OT you'd actually work with. Fees, funding and FAQ are all on the booking page.</p>
+              <h2 id="final-title">Start with a short referral form.</h2>
+              <p>Then book a free 15 minute call with the OT you'd actually work with. Fees, funding and FAQ are on the next page.</p>
             </div>
             <div className="r">
-              <Btn to={BOOK_PATH} big>Book a free call</Btn>
+              <Btn to={BOOK_PATH} big>Get started</Btn>
               <Link to={`${BOOK_PATH}#pros`}>I'm a professional referring ▸</Link>
             </div>
           </div>

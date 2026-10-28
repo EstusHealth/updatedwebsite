@@ -12,7 +12,7 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { ROUTES, NO_PRERENDER } from '../src/lib/routes.js'
+import { ROUTES, NO_PRERENDER, LISTED } from '../src/lib/routes.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const ORIGIN = 'https://www.estushealth.com'
@@ -75,7 +75,7 @@ async function main() {
   // 3. llms.txt links every page. It carries hand-written per-link blurbs, so
   //    it is validated rather than generated.
   const llms = await readFile(join(ROOT, 'public/llms.txt'), 'utf8')
-  const unlisted = [...manifest].filter((p) => !llms.includes(`${ORIGIN}${p}`) && !llms.includes(`(${p})`))
+  const unlisted = LISTED.map((r) => r.path).filter((p) => !llms.includes(`${ORIGIN}${p}`) && !llms.includes(`(${p})`))
   if (unlisted.length) problems.push(`public/llms.txt: no link for ${unlisted.join(', ')}`)
 
   if (problems.length) {
@@ -85,7 +85,7 @@ async function main() {
     process.exit(1)
   }
 
-  const urls = ROUTES.map((r) => [
+  const urls = LISTED.map((r) => [
     '  <url>',
     `    <loc>${ORIGIN}${r.path === '/' ? '/' : r.path}</loc>`,
     `    <lastmod>${r.lastmod}</lastmod>`,
@@ -101,7 +101,7 @@ ${urls}
 `
 
   await writeFile(join(ROOT, 'public/sitemap.xml'), xml)
-  console.log(`Wrote public/sitemap.xml — ${ROUTES.length} URLs (${NO_PRERENDER.size} static, not prerendered).`)
+  console.log(`Wrote public/sitemap.xml: ${LISTED.length} URLs (${NO_PRERENDER.size} static, not prerendered).`)
 }
 
 main().catch((err) => {

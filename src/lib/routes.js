@@ -23,6 +23,10 @@
               a sitemap where every URL changed at once carries no signal.
     prerender Set false for pages that are already static HTML and have no
               React #root for the prerenderer to wait on. Omitted means true.
+    unlisted  Set true for pages reached only by a direct link (for example
+              from a form confirmation). Kept out of sitemap.xml, llms.txt
+              and the <noscript> nav, and not prerendered. The page itself
+              should render <SEO noindex />.
 */
 
 export const ROUTES = [
@@ -31,6 +35,7 @@ export const ROUTES = [
   { path: '/team', label: 'Meet the Team', group: 'Main', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/contact', label: 'Book a Free Call & Referrals', group: 'Main', priority: 0.9, lastmod: '2026-10-28' },
   { path: '/what-to-expect', label: 'What to Expect on Your Free Call', group: 'Main', priority: 0.5, lastmod: '2026-10-28' },
+  { path: '/book-your-call', label: 'Book Your Call', group: 'Main', priority: 0.1, lastmod: '2026-10-28', unlisted: true },
 
   // Services
   { path: '/services/occupational-therapy', label: 'Occupational Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
@@ -80,9 +85,11 @@ export const NO_PRERENDER = new Set(
 )
 
 /* Nav groups in declaration order, for the <noscript> fallback nav. */
+export const LISTED = ROUTES.filter((r) => !r.unlisted)
+
 export function routesByGroup() {
   const groups = new Map()
-  for (const r of ROUTES) {
+  for (const r of LISTED) {
     if (!groups.has(r.group)) groups.set(r.group, [])
     groups.get(r.group).push(r)
   }

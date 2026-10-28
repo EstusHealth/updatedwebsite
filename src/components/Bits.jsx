@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BOOKING, CAPACITY, REFERRAL_FORM, BOOK_PATH } from '../lib/site'
+import { CAPACITY, BOOK_PATH } from '../lib/site'
 
 /* ==========================================================================
    Small shared building blocks used across content pages.
@@ -51,19 +51,6 @@ export function CTABand({ title, body, buttons, note }) {
   )
 }
 
-// Discovery-call booking pair. Two clinicians.
-export function BookingButtonPair() {
-  return (
-    <div className="hero-cta">
-      {BOOKING.map((b) => (
-        <Btn key={b.name} href={b.url} variant={b.name === 'Nam' ? 'btn--alt' : ''}>
-          {b.label} · Book with {b.name}
-        </Btn>
-      ))}
-    </div>
-  )
-}
-
 // Current intake capacity. Shown on the home page, the contact / referral
 // page, and the team page. Copy lives in lib/site.js so all three stay in sync.
 // `compact` drops the CTA for spots that already sit next to a referral button.
@@ -84,7 +71,7 @@ export function CapacityNotice({ compact, style }) {
 
 // The primary call to action used all over the site. Since the October 2026
 // rebrand it books the free welcome call; the referral form sits on that page.
-export function ReferralButton({ children = 'Book a free call', big, variant }) {
+export function ReferralButton({ children = 'Get started', big, variant }) {
   return <Btn to={BOOK_PATH} big={big} variant={variant}>{children}</Btn>
 }
 
@@ -97,7 +84,7 @@ export function PlayIcon({ size = 26 }) {
   )
 }
 
-// The site-wide primary action: the free 15 minute welcome call.
-export function BookButton({ children = 'Book a free call', big, variant }) {
+// The site-wide primary action: start a referral (then book the free call).
+export function BookButton({ children = 'Get started', big, variant }) {
   return <Btn to={BOOK_PATH} big={big} variant={variant}>{children}</Btn>
 }

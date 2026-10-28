@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 import SEO from '../components/SEO'
 import { Btn } from '../components/Bits'
 import { SecIntro } from './Home'
-import { CLINICIANS, EMAIL, BOOK_PATH } from '../lib/site'
+import { CLINICIANS, EMAIL, BOOKING_PAGE } from '../lib/site'
 
 /*
   Linked from the booking confirmation, not the menus. Add ?with=nik or
@@ -96,7 +96,7 @@ export default function WhatToExpect() {
             <span style={{ fontFamily: 'var(--f-display)', fontSize: '1.6rem', textTransform: 'uppercase', lineHeight: 1.1 }}>Need to change something?</span>
             <span style={{ color: 'var(--on-dark-soft)' }}>New time, or rather do it by chat? Use the link in your confirmation email, or email us and we'll sort it.</span>
             <Btn href={`mailto:${EMAIL}?subject=Change%20my%20welcome%20call`} variant="btn--teal">Email {EMAIL}</Btn>
-            <a href={BOOK_PATH} style={{ color: 'var(--on-dark-accent)', fontWeight: 600 }}>Back to booking ▸</a>
+            <a href={BOOKING_PAGE} style={{ color: 'var(--on-dark-accent)', fontWeight: 600 }}>Back to booking ▸</a>
           </div>
         </div>
       </section>

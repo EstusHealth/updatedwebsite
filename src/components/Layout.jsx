@@ -14,7 +14,7 @@ const NAV_EVENTS = [
 
 /* ==========================================================================
    Site map v2 (October 2026):
-   Services / Free resources / Events & media / Team, then Book a free call.
+   Services / Free resources / Events & media / Team, then Get started.
    Client portal moves to the footer and the mobile menu.
    ========================================================================== */
 
@@ -81,7 +81,7 @@ function Nav() {
         </nav>
 
         <div className="nav-cta">
-          <Link className="btn btn--teal" to={BOOK_PATH}>Book a free call</Link>
+          <Link className="btn btn--teal" to={BOOK_PATH}>Get started</Link>
         </div>
 
         <button className="burger" aria-label="Menu" aria-expanded={drawer} aria-controls="mnav"
@@ -100,7 +100,7 @@ function Nav() {
         <p className="group">Estus</p>
         <Link className="sub" to="/team">Team</Link>
         <a className="sub" href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a>
-        <Link className="btn btn--teal" to={BOOK_PATH}>Book a free call</Link>
+        <Link className="btn btn--teal" to={BOOK_PATH}>Get started</Link>
       </nav>
     </header>
   )
@@ -144,7 +144,7 @@ function Footer() {
             <h2>Estus</h2>
             <ul>
               <li><Link to="/team">Meet the team</Link></li>
-              <li><Link to={BOOK_PATH}>Book a free call</Link></li>
+              <li><Link to={BOOK_PATH}>Get started</Link></li>
               <li><Link to={`${BOOK_PATH}#pros`}>For professionals</Link></li>
               <li><a href={CLIENT_PORTAL} target="_blank" rel="noopener">Client portal ↗</a></li>
               <li>Mon to Sat, 8am to 7pm AWST</li>
