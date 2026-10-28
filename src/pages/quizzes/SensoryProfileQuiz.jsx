@@ -11,7 +11,7 @@ import quiz from '../../data/sensoryProfile.json';
    A free, neuroaffirming sensory self-discovery tool (kids + teen/adult) with
    a strengths-first on-screen result and a branded, keepable PDF export.
 
-   The quiz UI lives in the site's neon design system; the PDF (see
+   The quiz UI lives in the site's design system; the PDF (see
    SensoryProfileReport) is rendered in the clinical "Estus report style".
    Question bank, scoring, and result copy are all data-driven (src/data).
    ========================================================================== */
@@ -831,7 +831,7 @@ const STYLES = `
 .esp .esp-about__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
 .esp .esp-about__col li { position: relative; padding-left: 22px; font-size: .92rem; color: var(--text-soft); line-height: 1.5; }
 .esp .esp-about__col:first-child li::before { content: "✓"; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
-.esp .esp-about__col--not li::before { content: "—"; position: absolute; left: 0; color: var(--mauve); font-weight: 700; }
+.esp .esp-about__col--not li::before { content: "×"; position: absolute; left: 0; color: var(--mauve); font-weight: 700; }
 .esp .esp-privacy { text-align: center; font-size: .88rem; color: var(--text-soft); max-width: 52ch; margin: 0 auto; line-height: 1.55; }
 .esp .esp-privacy a { color: var(--mauve); font-weight: 700; text-decoration: underline; }
 

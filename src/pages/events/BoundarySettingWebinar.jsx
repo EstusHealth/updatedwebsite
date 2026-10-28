@@ -1,7 +1,6 @@
 import { useState, useRef, useMemo } from 'react'
 import SEO, { breadcrumb, videoObject } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
-import { Confetti } from '../../components/Decor'
 import { JumpNav, StickyJumpNav, useActiveSection, useScrolledPast } from '../../components/JumpNav'
 import { webinarBySlug } from '../../lib/webinars'
 import { PODCASTS } from '../../lib/site'
@@ -539,7 +538,6 @@ export default function BoundarySettingWebinar() {
 
       {/* Sort it */}
       <section id="sort" className="jump-target">
-        <Confetti kind="star" color="var(--teal)" size={36} anim="spin" style={{ top: 12, right: '5%' }} />
         <div className="wrap wrap--narrow">
           <span className="eyebrow">Try it</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Boundary, or look-alike?</h2>
@@ -606,7 +604,6 @@ export default function BoundarySettingWebinar() {
 
       {/* Scripts */}
       <section id="scripts" className="jump-target">
-        <Confetti kind="dot" color="var(--mauve)" size={26} anim="float2" style={{ top: 20, right: '4%' }} />
         <div className="wrap wrap--narrow">
           <span className="eyebrow">Take these with you</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Scripts for setting a boundary.</h2>
@@ -719,7 +716,7 @@ const BW_CSS = `
   .bw-dot:hover { transform: translateY(-1px); }
   .bw-dot.is-on { background: var(--teal); color: var(--btn-text); border-color: var(--teal); }
   .bw-bar { height:10px; border-radius:999px; background: var(--surface-2); border:2px solid var(--line); overflow:hidden; }
-  .bw-bar > i { display:block; height:100%; background: linear-gradient(90deg, var(--teal), var(--mauve)); transition: width .3s ease; }
+  .bw-bar > i { display:block; height:100%; background: var(--teal-brand); transition: width .3s ease; }
   .bw-bar--sm { height:8px; }
 
   .bw-hi { border:3px solid var(--line); border-radius: var(--radius); padding:18px 20px; background: var(--surface); }

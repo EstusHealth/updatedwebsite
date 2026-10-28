@@ -21,7 +21,7 @@ const RESULTS_STYLES = `
 `;
 
 /*
-  Color constants remapped to the neon design tokens.
+  Color constants mapped to the Estus design tokens.
 */
 const C = {
   bg: 'var(--bg)',
@@ -110,7 +110,7 @@ export default function QuizResults({
         style={{
           position: 'relative',
           width: '100%',
-          background: `radial-gradient(ellipse at center, ${C.heroCenter} 0%, ${C.heroEdge} 100%)`,
+          background: C.heroEdge,
           padding: '4rem 1.5rem',
           textAlign: 'center',
           overflow: 'hidden',
@@ -542,7 +542,7 @@ export default function QuizResults({
       {/* ─── CTA + RETAKE ──────────────────────────────────────────── */}
       <section
         style={{
-          background: `linear-gradient(135deg, ${C.heroEdge} 0%, ${C.primary} 100%)`,
+          background: C.heroEdge,
           padding: '3rem 1.5rem',
           textAlign: 'center',
         }}

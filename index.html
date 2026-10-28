@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-AU" data-theme="neon-light">
+<html lang="en-AU">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -67,30 +67,12 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <meta name="theme-color" content="#ffffff" />
-
-  <!-- Theme boot: runs before paint to prevent a theme flash. Shared storage
-       key and values with the design-system mock for continuity. -->
-  <script>
-    (function () {
-      var VALID = ['neon', 'neon-light'];
-      var theme = 'neon-light';
-      try {
-        var saved = localStorage.getItem('estus-theme');
-        if (VALID.indexOf(saved) !== -1) theme = saved;
-      } catch (e) { /* storage unavailable: fall through to default */ }
-      document.documentElement.setAttribute('data-theme', theme);
-    })();
-  </script>
+  <meta name="theme-color" content="#090909" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Bungee&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-
-  <!-- Estus clinical brand fonts. Used by the Sensory Profile PDF report
-       (the "Estus report style"): Oswald wordmark/headings, Barlow body,
-       Barlow Semi Condensed labels. Kept light — only weights the report uses. -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:wght@400;500;600&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet" />
+  <!-- Estus brand fonts: Oswald headings, Barlow body, Barlow Semi Condensed labels. -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div id="root"></div>
@@ -100,7 +82,7 @@
        discoverable without executing the React bundle. -->
   <noscript>
     <main>
-      <h1>Estus Health — Neuroaffirming Occupational Therapy, Perth</h1>
+      <h1>Estus Health: Neuroaffirming Occupational Therapy, Perth</h1>
       <p>A small team of neurodivergent occupational therapists in Perth, with telehealth Australia-wide. We work with autistic adults and teens, PDA profiles, ADHD, late-diagnosed adults, and people with complex health such as EDS, POTS, and chronic fatigue. NDIS and private clients welcome. Contact: hello@estushealth.com</p>
       <p>This site works best with JavaScript enabled.</p>
       <!-- Generated at build time from src/lib/routes.js by the noscript-nav

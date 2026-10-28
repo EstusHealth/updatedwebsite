@@ -743,7 +743,7 @@ const STYLES = `
 .ldq .ldq-list--grow li::before { content:"→"; position:absolute; left:0; top:0; color: var(--mauve); font-weight:700; }
 
 /* CTA */
-.ldq .ldq-cta-band { background: linear-gradient(135deg, var(--teal), var(--mauve)); border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy); padding: 56px 0; }
+.ldq .ldq-cta-band { background: var(--black); border-top: 3px solid var(--navy); border-bottom: 3px solid var(--navy); padding: 56px 0; }
 .ldq .ldq-cta-box { background: var(--surface); border: 4px solid var(--line); border-radius: 26px; box-shadow: 12px 12px 0 var(--shadow-col); padding: 40px 32px; text-align:center; }
 .ldq .ldq-cta-box__head { font-family: var(--f-display); text-transform:uppercase; color: var(--heading); font-size: clamp(1.5rem, 4vw, 2.2rem); letter-spacing:-.5px; margin: 0 0 12px; }
 .ldq .ldq-cta-box__body { color: var(--text-soft); font-size: 1.05rem; line-height:1.6; max-width: 48ch; margin: 0 auto 24px; }

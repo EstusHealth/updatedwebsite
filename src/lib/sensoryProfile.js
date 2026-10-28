@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ESTUS SENSORY PROFILE — scoring & results logic
+   ESTUS SENSORY PROFILE, scoring & results logic
    Deterministic, runtime-AI-free. Turns raw answers into scale means, bands,
    a domain map, strengths, and a personalised summary (see wireframe spec §8).
 
@@ -107,12 +107,12 @@ function pick(entry, voice) {
 function buildSummary(answers, scales, strengths, voice, name) {
   const sentences = [];
 
-  // 1 — open on the strongest strength category present.
+  // 1, open on the strongest strength category present.
   const openerKey = strengths[0] ? strengths[0].key : 'fallback';
   const opener = content.summary.openers[openerKey] || content.summary.openers.fallback;
   sentences.push(pick(opener, voice));
 
-  // 2 — the scale with the highest mean (ties resolved by display order),
+  // 2, the scale with the highest mean (ties resolved by display order),
   //     as long as it isn't the SEEK strength we may have just opened with.
   const ranked = Object.values(scales)
     .filter((s) => s.mean != null)
@@ -125,7 +125,7 @@ function buildSummary(answers, scales, strengths, voice, name) {
     sentences.push(pick(content.summary.scaleLine[topScale.code], voice));
   }
 
-  // 3 — recovery note keyed on the ENERGY band (default to "regular" framing).
+  // 3, recovery note keyed on the ENERGY band (default to "regular" framing).
   const energyBand = scales.ENERGY.band || 'regular';
   sentences.push(pick(content.summary.energyLine[energyBand], voice));
 

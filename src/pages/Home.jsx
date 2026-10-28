@@ -1,222 +1,196 @@
 import { Link } from 'react-router-dom'
 import SEO from '../components/SEO'
-import { Btn, CapacityNotice, CTABand, ReferralButton } from '../components/Bits'
-import { Confetti, SynthwaveSun, Squiggle, Ticker } from '../components/Decor'
-import { HarvestMoon, Pumpkin, Spooky } from '../components/Spooky'
-import { EMAIL, INSTAGRAM, INSTAGRAM_EMBED, isHalloween } from '../lib/site'
+import { Btn } from '../components/Bits'
+import { BOOK_PATH, CAPACITY, DRIVING_WAITLIST } from '../lib/site'
 
-const TICKER = ['PDA profiles', 'Late diagnosis', 'Executive function', 'Gaming-informed', 'ADHD', 'NDIS welcome', 'Telehealth AU-wide']
-const TICKER_HALLOWEEN = ['Happy Halloween', 'PDA profiles', 'Comfy costumes count', 'ADHD', 'Opting out is valid', 'Late diagnosis', 'NDIS welcome', 'Telehealth AU-wide']
-
-// Halloween, your way. Shown on the home page during the Halloween skin.
-const HALLOWEEN_TIPS = [
-  { h: 'Comfort first costumes', p: 'Soft fabric, no scratchy tags, no mask if masks feel bad. Wear it around the house a few days early. A hoodie with ears counts.' },
-  { h: 'A route with an end', p: 'Pick the street and the number of houses before you leave. Knowing where it stops makes it easier to start. Heading home early is still a win.' },
-  { h: 'Doorstep scripts', p: 'Say "trick or treat", hold up a card, or just hold out the bag. All three work.', link: { to: '/resources/commcard', label: 'CommCard can do the talking ▸' } },
-  { h: 'Opting out counts', p: 'Lights off and a movie works. So does a bowl of lollies at the gate. Skipping it completely is a valid choice too.' },
+const AUDIENCES = [
+  { h: 'Adults, often diagnosed late', p: "You've been holding it together for years. Now you want daily life to cost less." },
+  { h: 'Teens and young adults', p: 'School, work, gaming, getting started on things. We meet you where you already are.' },
+  { h: 'Kids and their families', p: 'PDA-friendly, low-demand support, often through the games and stories your child loves.' },
 ]
 
-// Home team teaser. Hooks marked [DRAFT] in CONTENT-HANDOVER.md (working copy,
-// pending Liam's sign-off).
-const TEASERS = [
-  { name: 'Liam Fagan', hook: "Systems-and-structure energy. If it can be tracked or turned into a system, Liam's tried it on himself first.", img: '/team-liam.jpg' },
-  { name: 'Nam Lang', hook: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
-  { name: 'Nik Peshwani', hook: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
+const SERVICE_CARDS = [
+  { to: '/services/occupational-therapy', top: 'var(--navy)', tag: 'Telehealth · ongoing', tone: 'c-navy', h: 'Ongoing OT', p: 'Regular sessions on routines, energy, sensory needs and getting things started.', link: 'Find out more' },
+  { to: '/services/small-hinges', top: 'var(--blue)', tag: '1 to 6 sessions', tone: 'c-blue', h: 'Small Hinges', p: 'One session per hinge: sleep, mornings, energy, mental load, transitions or switching off. Pick the ones you want.', link: 'Pick your hinges' },
+  { to: '/services/gaming-informed-therapy', top: 'var(--teal-brand)', tag: 'Gaming-informed', tone: 'c-teal', h: 'Therapy through games', p: 'Minecraft and other games as a way in, plus our moderated community server.', link: 'Find out more' },
+  { href: DRIVING_WAITLIST, top: 'var(--plum-brand)', tag: 'In person, Perth', tone: 'c-plum', soon: true, h: 'Driving OT', p: 'Learner drivers and fitness to drive. Opening soon.', link: 'Join the waitlist' },
 ]
 
-const WHO = [
-  'Autistic adults & teens', 'PDA profiles', 'ADHD', 'Late-diagnosed adults', 'Executive function',
-  'Chronic health & fatigue', 'EDS · POTS · fibro', 'Sensory differences', 'Hypermobility & pain', 'Kids & school routines',
+const STEPS = [
+  { n: 1, tone: 'c-navy', h: 'Send a referral form', p: 'About 5 minutes. A little about you, or the person you support, and your goals.' },
+  { n: 2, tone: 'c-blue', h: 'Book your call', p: 'We email you a link to book with Nik or Nam.' },
+  { n: 3, tone: 'c-teal', h: '15 minute call', p: 'Your goals, fees, funding and fit. Ask anything.' },
+  { n: 4, tone: 'c-plum', h: 'First session', p: 'Sign the service agreement online, then we start.' },
 ]
+
+export const TEAM = [
+  { name: 'Nik Peshwani', who: 'Teens 16+ and adults', tone: 'c-blue', blurb: 'Experimenter energy. Tries it on himself before he suggests it to you.', img: '/team-nik.jpg' },
+  { name: 'Nam Lang', who: 'Kids under 16', tone: 'c-plum', blurb: 'Storyteller energy. Meets you through the game or story you already love.', img: '/team-nam.jpg' },
+  { name: 'Liam Fagan', who: 'Founder · Clinical supervisor', tone: 'c-navy', blurb: "Systems-and-structure energy. If it can be tracked or turned into a system, Liam's tried it on himself first.", img: '/team-liam.jpg' },
+]
+
+export function FactStrip({ third = { b: 'Telehealth, Australia-wide', s: 'From home, camera optional' } }) {
+  return (
+    <section className="facts" aria-label="Key facts">
+      <div className="facts-grid">
+        <div className="fact"><b>No GP referral needed</b><span>Refer yourself or a family member</span></div>
+        <div className="fact"><b>NDIS + private</b><span>Self-managed, plan-managed or private</span></div>
+        <div className="fact"><b>{third.b}</b><span>{third.s}</span></div>
+        <div className="fact"><b>{CAPACITY.badge}</b><span>Limited places, offered in order</span></div>
+      </div>
+    </section>
+  )
+}
+
+export function SecIntro({ eyebrow, title, id }) {
+  return (
+    <div className="sec-intro">
+      <span className="eyebrow">{eyebrow}</span>
+      <h2 className="sec-head" id={id}>{title}</h2>
+    </div>
+  )
+}
+
+export function Crew() {
+  return (
+    <div className="crew-grid">
+      {TEAM.map((t) => (
+        <article className="crew" key={t.name}>
+          <div className="pic">
+            <img src={t.img} alt={`Portrait of ${t.name}`} width="500" height="525" loading="lazy" />
+            <span className="name">{t.name}</span>
+          </div>
+          <div className="body">
+            <span className={`label ${t.tone}`}>{t.who}</span>
+            <span className="small" style={{ fontSize: '1.02rem' }}>{t.blurb}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  )
+}
+
+export function Steps({ steps = STEPS }) {
+  return (
+    <div className="ruled" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))' }}>
+      {steps.map((s) => (
+        <div key={s.n}>
+          <span className={`step-n ${s.tone}`} aria-hidden="true">{s.n}</span>
+          <b style={{ fontSize: '1.2rem' }}>{s.h}</b>
+          <span className="cell-body">{s.p}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export default function Home() {
-  const spooky = isHalloween()
   return (
-    <div className={spooky ? 'halloween' : undefined}>
+    <>
       <SEO
         title="Estus Health | Neuroaffirming Occupational Therapy Perth"
         description="A small team of neurodivergent occupational therapists in Perth, with telehealth Australia-wide. Working with autistic adults, PDA profiles, ADHD, and complex health."
         path="/"
       />
-      {/* MedicalBusiness JSON-LD lives statically in index.html so crawlers
-          that don't execute JavaScript can read it. */}
 
       {/* HERO */}
-      <section className="hero" aria-labelledby="hero-title">
-        {spooky ? (
-          <>
-            <Spooky kind="web" size={150} style={{ top: 0, left: 0 }} />
-            <Spooky kind="spider" size={30} drop={70} style={{ top: 0, left: '36%' }} />
-            <Spooky kind="bat" size={56} anim="flutter" style={{ top: 30, left: '47%' }} />
-            <Spooky kind="ghost" size={40} anim="float2" style={{ bottom: 40, left: '44%' }} />
-            <Spooky kind="pumpkin" size={44} anim="float" style={{ bottom: 18, left: '2%' }} />
-            <HarvestMoon />
-          </>
-        ) : (
-          <>
-            <Confetti kind="ring" color="var(--teal)" size={54} anim="float" style={{ top: 40, right: '8%' }} r="0deg" />
-            <Confetti kind="dot" color="var(--mauve)" size={26} anim="float2" style={{ top: 150, right: '2%' }} />
-            <Confetti kind="tri" color="var(--line)" size={30} anim="float" r="12deg" style={{ bottom: 60, left: '44%' }} />
-            <Confetti kind="star" color="var(--mauve)" size={46} anim="spin" style={{ top: 12, left: '48%' }} />
-            <Confetti kind="sq" color="var(--teal)" size={24} anim="float2" style={{ bottom: 20, left: '2%' }} />
-            <SynthwaveSun />
-          </>
-        )}
-        <div className="wrap hero-grid">
-          <div>
-            <span className="eyebrow">{spooky ? '◆ Spooky season · Perth + Telehealth ◆' : '◆ Neuroaffirming OT · Perth + Telehealth ◆'}</span>
-            <h1 id="hero-title">Estus <span className="accent">Health</span></h1>
-            <Squiggle />
-            <p className="sub">A small team of neurodivergent clinicians who build sessions around how your brain actually works.</p>
-            <div className="hero-cta">
-              <Btn to="/contact" big>Get Started ▸</Btn>
-              <Btn to="/team" variant="btn--alt" big>Meet the Team</Btn>
+      <section className="hero" aria-labelledby="hero-title" style={{ paddingBottom: 72 }}>
+        <div className="wrap" style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px 48px', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+            <div style={{ flex: '1 1 560px', minWidth: 0 }}>
+              <span className="eyebrow">Neuroaffirming OT · Perth + telehealth Australia-wide</span>
+              <h1 id="hero-title">Therapy built around how your brain <span className="accent">actually works.</span></h1>
+            </div>
+            <div style={{ flex: '1 1 320px', minWidth: 0, maxWidth: 420, display: 'flex', flexDirection: 'column', gap: 18 }}>
+              <p className="sub" style={{ margin: 0 }}>A small team of neurodivergent OTs. Send a short referral form, then book a free 15 minute call. Camera off is fine.</p>
+              <div className="hero-cta" style={{ marginTop: 0 }}>
+                <Btn to={BOOK_PATH} big>Get started</Btn>
+                <a href="#services" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>See what we do</a>
+              </div>
             </div>
           </div>
-          <div>
-            <div className="photo-card">
-              <img src="/team-photo.jpeg" alt="The Estus Health team, Liam, Nam, and Nik" width="600" height="600" loading="eager" />
-              <span className="photo-tag">Liam · Nam · Nik</span>
-              {spooky && <span className="spooky-sticker" aria-hidden="true">Happy<br />Halloween</span>}
-            </div>
-            {spooky && <div className="photo-pumpkin" aria-hidden="true"><Pumpkin size={92} /></div>}
-          </div>
+
+          <figure className="photo-card" style={{ margin: 0 }}>
+            <img src="/team-photo.jpeg" alt="The Estus Health team, Liam, Nam and Nik" width="994" height="454" loading="eager" style={{ aspectRatio: '994 / 454', height: 'auto' }} />
+            <figcaption style={{ background: 'var(--black)', color: '#fff', padding: '12px 20px', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '8px 20px', borderTop: '2px solid var(--black)' }}>
+              <span style={{ fontFamily: 'var(--f-display)', fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '.04em' }}>Liam, Nam and Nik</span>
+              <span className="label" style={{ color: 'var(--on-dark-accent)' }}>The OTs you'll actually talk to</span>
+            </figcaption>
+          </figure>
         </div>
       </section>
 
-      {spooky ? <Ticker items={TICKER_HALLOWEEN} sep="🎃" /> : <Ticker items={TICKER} />}
+      <FactStrip />
 
-      {/* CAPACITY */}
-      <section style={{ paddingBottom: 0 }} aria-label="Intake capacity">
-        <div className="wrap wrap--narrow">
-          <CapacityNotice style={{ margin: 0 }} />
-        </div>
-      </section>
-
-      {/* HALLOWEEN, YOUR WAY */}
-      {spooky && (
-        <section aria-labelledby="halloween-title">
-          <Spooky kind="bat" size={44} anim="flutter" style={{ top: 50, right: '6%' }} />
-          <Spooky kind="ghost" size={34} anim="float" style={{ bottom: 40, left: '3%' }} />
-          <div className="wrap">
-            <span className="eyebrow eyebrow--teal">Halloween, your way</span>
-            <h2 className="sec-head" id="halloween-title" style={{ marginTop: 16 }}>Noise, costumes,<br />strangers, sugar.</h2>
-            <p className="lead" style={{ marginTop: 14 }}>Halloween asks a lot of a brain. Here is how to do it on your terms, or not at all.</p>
-            <div className="grid grid-4 spooky-tips" style={{ marginTop: 36 }}>
-              {HALLOWEEN_TIPS.map((t) => (
-                <article className="card" key={t.h}>
-                  <h3>{t.h}</h3>
-                  <p>{t.p}</p>
-                  {t.link && <Link className="profile-link" to={t.link.to}>{t.link.label}</Link>}
-                </article>
-              ))}
-            </div>
-            <div className="callout spooky-note" style={{ marginTop: 40 }}>
-              <h3>Handing out lollies?</h3>
-              <p>Some kids will not speak, look at you, or take one the expected way. Let them. That is the whole job.</p>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* TEAM TEASER */}
-      <section aria-labelledby="team-title">
-        <Confetti kind="dot" color="var(--teal)" size={20} style={{ top: 40, right: '5%' }} />
-        <Confetti kind="tri" color="var(--mauve)" size={26} style={{ top: 80, left: '2%' }} />
+      {/* WHO */}
+      <section aria-labelledby="who-title" style={{ paddingBottom: 24 }}>
         <div className="wrap">
-          <span className="eyebrow eyebrow--mauve">Your clinicians</span>
-          <h2 className="sec-head" id="team-title" style={{ marginTop: 16 }}>Meet the people,<br />not the service menu.</h2>
-          <p className="lead" style={{ marginTop: 14 }}>Every clinician here chose this work because it matters to them. Most of us have been on the other side of that conversation.</p>
-
-          <div className="team" style={{ marginTop: 40 }}>
-            {TEASERS.map((t) => (
-              <article className="card" key={t.name}>
-                <div className="pic"><img src={t.img} alt={`Portrait of ${t.name}`} width="400" height="400" loading="lazy" /></div>
-                <div className="body">
-                  <h3>{t.name}</h3>
-                  <p>{t.hook}</p>
-                  <Link className="profile-link" to="/team">Meet {t.name.split(' ')[0]} ▸</Link>
-                </div>
-              </article>
+          <SecIntro eyebrow="Who we work with" title="Is this you?" id="who-title" />
+          <div className="ruled">
+            {AUDIENCES.map((a) => (
+              <div key={a.h}>
+                <span className="cell-title">{a.h}</span>
+                <span className="cell-body">{a.p}</span>
+              </div>
             ))}
           </div>
-
-          <div className="team-foot">
-            <Btn to="/team" variant="btn--ghost">Meet the team ▸</Btn>
-          </div>
         </div>
       </section>
 
-      {/* WHO WE HELP */}
-      <section className="band" aria-labelledby="who-title">
-        <Confetti kind="star" color="var(--teal)" size={40} anim="spin" style={{ top: 30, right: '6%' }} />
-        <Confetti kind="ring" color="var(--mauve)" size={40} style={{ bottom: 30, left: '4%' }} />
+      {/* SERVICES */}
+      <section id="services" className="jump-target" aria-labelledby="services-title" style={{ paddingBottom: 24 }}>
         <div className="wrap">
-          <span className="eyebrow eyebrow--teal">Who We Work With</span>
-          <h2 className="sec-head" id="who-title" style={{ marginTop: 16 }}>Brains we build around.</h2>
-          <p className="lead" style={{ marginTop: 14 }}>Honest, specific, and no jargon gatekeeping. If you see yourself here, you are in the right place.</p>
-          <ul className="pills">
-            {WHO.map((w) => <li className="pill" key={w}>{w}</li>)}
-          </ul>
+          <SecIntro eyebrow="Services" title="Ways we can work together" id="services-title" />
+          <div className="svc-grid">
+            {SERVICE_CARDS.map((s) => {
+              const inner = (
+                <>
+                  <span className={`label ${s.tone}`}>{s.tag}{s.soon && <span className="soon">Coming soon</span>}</span>
+                  <span className="cell-title" style={{ fontSize: '1.5rem' }}>{s.h}</span>
+                  <span className="cell-body">{s.p}</span>
+                  <span className={`cell-link ${s.tone}`}>{s.link} ▸</span>
+                </>
+              )
+              return s.to
+                ? <Link key={s.h} to={s.to} className="svc" style={{ borderTopColor: s.top }}>{inner}</Link>
+                : <a key={s.h} href={s.href} className="svc" style={{ borderTopColor: s.top }}>{inner}</a>
+            })}
+          </div>
         </div>
       </section>
 
-      {/* FEES */}
-      <section aria-labelledby="pay-title">
-        <Confetti kind="sq" color="var(--mauve)" size={22} style={{ top: 50, right: '4%' }} />
+      {/* HOW IT WORKS */}
+      <section aria-labelledby="how-title" style={{ paddingBottom: 24 }}>
         <div className="wrap">
-          <span className="eyebrow">How To Pay</span>
-          <h2 className="sec-head" id="pay-title" style={{ marginTop: 16 }}>Three ways in. No gap fees.</h2>
-          <div className="numgrid">
-            <article className="card"><div className="num" aria-hidden="true">1</div><h3>NDIS plan-managed</h3><p>Your plan manager pays us directly. No gap fees, no out-of-pocket surprises.</p></article>
-            <article className="card"><div className="num" aria-hidden="true">2</div><h3>NDIS self-managed</h3><p>You manage your own funding and claim our invoices against your plan.</p></article>
-            <article className="card"><div className="num" aria-hidden="true">3</div><h3>Private</h3><p>Pay per session. No referral needed. No funding body required.</p></article>
-          </div>
+          <SecIntro eyebrow="No surprises" title="How it works" id="how-title" />
+          <Steps />
         </div>
       </section>
 
-      {/* PRACTICAL */}
-      <section className="tint-section" aria-labelledby="practical-title">
+      {/* TEAM */}
+      <section aria-labelledby="team-title">
         <div className="wrap">
-          <span className="eyebrow eyebrow--mauve" id="practical-title">The Practical Stuff</span>
-          <div className="kv kv--4">
-            <article className="card"><div className="k">Hours</div><div className="v">Mon – Sat</div><div className="s">8am to 7pm AWST</div></article>
-            <article className="card"><div className="k">Location</div><div className="v">Perth, WA</div><div className="s">Telehealth Australia-wide</div></article>
-            <article className="card"><div className="k">Referrals</div><div className="v">Not needed</div><div className="s">Self-refer, parent-refer, or clinician-refer</div></article>
-            <article className="card"><div className="k">Intake</div><div className="v">Term 4 open</div><div className="s">Limited places now available for Term 4 ongoing therapy.</div></article>
-          </div>
+          <SecIntro eyebrow="Real people, not a call centre" title="Meet the team" id="team-title" />
+          <Crew />
+          <div className="team-foot"><Btn to="/team" variant="btn--ghost">Full bios ▸</Btn></div>
         </div>
       </section>
 
-      {/* INSTAGRAM */}
-      <section aria-labelledby="ig-title">
-        <Confetti kind="ring" color="var(--teal)" size={38} anim="float" style={{ top: 40, left: '4%' }} />
-        <Confetti kind="dot" color="var(--mauve)" size={22} anim="float2" style={{ bottom: 60, right: '6%' }} />
-        <div className="wrap" style={{ textAlign: 'center' }}>
-          <span className="eyebrow eyebrow--mauve">On Instagram</span>
-          <h2 className="sec-head" id="ig-title" style={{ marginTop: 16 }}>Follow along.</h2>
-          <p className="lead" style={{ margin: '14px auto 0', maxWidth: 560 }}>Latest posts, plus our weekly Journal Club, straight from the clinic.</p>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 32 }}>
-            <iframe
-              src={INSTAGRAM_EMBED}
-              title="Latest Instagram posts from Estus Health"
-              loading="lazy"
-              style={{ width: 'min(540px, 100%)', height: 520, border: '1px solid var(--line)', borderRadius: 16, background: '#fff' }}
-            />
-          </div>
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
-            <Btn href={INSTAGRAM} variant="btn--ghost">Follow @estus_health ↗</Btn>
+      {/* FINAL CTA */}
+      <section aria-labelledby="final-title" style={{ paddingTop: 8, paddingBottom: 80 }}>
+        <div className="wrap">
+          <div className="split">
+            <div className="l">
+              <h2 id="final-title">Start with a short referral form.</h2>
+              <p>Then book a free 15 minute call with the OT you'd actually work with. Fees, funding and FAQ are on the next page.</p>
+            </div>
+            <div className="r">
+              <Btn to={BOOK_PATH} big>Get started</Btn>
+              <Link to={`${BOOK_PATH}#pros`}>I'm a professional referring ▸</Link>
+            </div>
           </div>
         </div>
       </section>
-
-      {/* CTA */}
-      <CTABand
-        title="Send us a referral."
-        body="For yourself, your child, or your client. No GP referral required. Takes about two minutes, and we will be in touch within one business day."
-        buttons={<ReferralButton big>Open Referral Form ▸</ReferralButton>}
-        note={<>Or email us directly at <a href={`mailto:${EMAIL}`}>{EMAIL}</a></>}
-      />
-    </div>
+    </>
   )
 }

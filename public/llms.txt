@@ -10,15 +10,17 @@ Important notes:
 ## Services
 
 - [Occupational Therapy](https://www.estushealth.com/services/occupational-therapy): Neuroaffirming OT for autistic adults, teens, PDA profiles, and ADHD.
-- [Gaming-Informed Therapy](https://www.estushealth.com/services/gaming-informed-therapy): Therapy that uses gaming as a genuine clinical medium.
-- [Minecraft Program](https://www.estushealth.com/services/minecraft-program): Structured Minecraft-based therapy program for kids and teens.
+- [Small Hinges Programs](https://www.estushealth.com/services/small-hinges): Single-session OT hinges (sleep, mornings, energy, mental load, transitions, switching off after work). Clients pick one or several, up to six sessions.
+- [Gaming-Informed Therapy](https://www.estushealth.com/services/gaming-informed-therapy): Therapy that uses gaming as a genuine clinical medium, plus a private, whitelisted, clinician-moderated Minecraft Bedrock server for clients between sessions.
 - [Live Sessions](https://www.estushealth.com/services/live-sessions): Free weekly done-with-you Discord sessions. Performance Gaming (competitive practice, streamed with commentary) and The Daily Grind (body doubling for study, admin and planning).
 - [Assessments & Reports](https://www.estushealth.com/services/assessments-reports): Functional capacity and OT assessments, including NDIS reports.
 
 ## About
 
 - [Meet the Team](https://www.estushealth.com/team): The clinicians behind Estus Health.
-- [Contact & Referrals](https://www.estushealth.com/contact): Referral form, discovery-call bookings, and contact details.
+- [Client Portal](https://www.estushealth.com/clients): How current clients book, reschedule and cancel their own sessions in the PracSuite client portal.
+- [Book a Free Call & Referrals](https://www.estushealth.com/contact): Book a free 15 minute welcome call, fees and funding, FAQ, and how professionals refer.
+- [What to Expect](https://www.estushealth.com/what-to-expect): What happens on the free 15 minute welcome call.
 - [Events & Webinars](https://www.estushealth.com/events): Hub for live events and the permanent archive of past recordings.
 - [Gaming-Informed Therapy Webinar](https://www.estushealth.com/events/gaming-informed-therapy): Full recording, chapter markers, and resources on using gaming as a clinical medium.
 - [Boundary Setting Webinar](https://www.estushealth.com/events/boundary-setting): Full recording and resources on setting boundaries as a neurodivergent adult.
@@ -30,7 +32,7 @@ Important notes:
 - [Late Autism Diagnosis](https://www.estushealth.com/resources/late-autism-diagnosis): Guide for late-diagnosed autistic adults.
 - [Executive Function & Complex Health](https://www.estushealth.com/resources/executive-function-complex-health): Executive function with chronic illness.
 - [EDS & HSD](https://www.estushealth.com/resources/eds-hsd): Ehlers-Danlos syndromes and hypermobility spectrum disorders.
-- [CommCard](https://www.estushealth.com/resources/commcard): About the free communication-card web app. The app itself runs at https://www.estushealth.com/commcard/ — tap-to-speak phrase cards for when words are hard, no login and no data stored.
+- [CommCard](https://www.estushealth.com/resources/commcard): About the free communication-card web app. The app itself runs at https://www.estushealth.com/commcard/: tap-to-speak phrase cards for when words are hard, no login and no data stored.
 - [The Shared Lexicon](https://www.estushealth.com/resources/lexicon): Shared vocabulary for neurodivergent experiences.
 - [Open Loops](https://www.estushealth.com/resources/open-loops): Tool for managing unfinished tasks and mental load.
 - [Second Brain](https://www.estushealth.com/resources/second-brain): External memory systems for ADHD and autistic brains.

@@ -1,6 +1,5 @@
 import SEO, { breadcrumb, ORG_ID } from '../components/SEO'
 import { PageHero, CapacityNotice, CTABand, Btn } from '../components/Bits'
-import { Confetti } from '../components/Decor'
 import { CAPACITY, PODCASTS } from '../lib/site'
 
 const PRINCIPLES = [
@@ -20,12 +19,12 @@ const DONT = [
 const BIOS = [
   {
     id: 'liam', name: 'Liam Fagan', img: '/team-liam.jpg', archetype: 'Systems & structure',
-    role: 'Founder · Clinical Supervisor · Driving assessor',
-    status: 'Limited availability · clinical supervision & driving assessments', statusClosed: true,
+    role: 'Founder · Clinical Supervisor',
+    status: 'Limited availability · clinical supervision', statusClosed: true,
     opening: "The kind of person who gamifies his own laundry. If it can be tracked or turned into a system, Liam's tried it on himself first.",
     approach: 'Came to OT through accounting, finance, and university librarianship before realising he wanted to help people build systems that work for their brains. Sessions are direct, practical, and built around real life, not textbook goals.',
     interests: "Outside the clinic, Liam's interests run to lawn care, storm chasing, spreadsheets and engineering documentaries. He spends his downtime reading nutrition labels. Also holds a top-four world record speedrun in Tony Hawk's Pro Skater, and named the company after the healing item in Dark Souls.",
-    works: ['PDA profiles', 'Gaming-informed therapy', 'Driving OT', 'Executive function', 'Late diagnosis', 'Complex health', 'Autism'],
+    works: ['PDA profiles', 'Gaming-informed therapy', 'Executive function', 'Late diagnosis', 'Complex health', 'Autism'],
     podcast: PODCASTS.performanceLab,
   },
   {
@@ -35,7 +34,7 @@ const BIOS = [
     opening: "Nam meets people through the story they're already inside of: anime, a game, a build. He works from there.",
     approach: "Specialises in autistic youth and young adults through the things they already care about. Anime, gaming, and storytelling aren't rewards in his sessions, they're the medium. Interests are windows into how someone thinks, what they value, and where they feel most themselves.",
     interests: 'Uses anime storylines as therapeutic tools. Keen sportsperson: football, gym, always training for something. PC and Xbox gamer (Minecraft, Roblox, Sea of Thieves, Repo), always open to co-op. Currently building a PC with a wood-grain CPU cooler. Speaks multiple languages, and brings a multicultural lens to his clinical work.',
-    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft Program', 'Paediatrics'],
+    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft server', 'Paediatrics'],
     podcast: null,
   },
   {
@@ -149,7 +148,6 @@ export default function Team() {
 
       {/* BIOS */}
       <section id="bios" aria-labelledby="bios-title">
-        <Confetti kind="star" color="var(--teal)" size={40} anim="spin" style={{ top: 30, right: '5%' }} />
         <div className="wrap wrap--narrow">
           <span className="eyebrow">The Crew</span>
           <h2 className="sec-head" id="bios-title" style={{ marginTop: 16 }}>Three OTs. Three very different brains.</h2>

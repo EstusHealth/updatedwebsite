@@ -1,7 +1,6 @@
 import SEO, { breadcrumb } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton } from '../../components/Bits'
-import { Confetti } from '../../components/Decor'
-import { GIVEWAY_APP } from '../../lib/site'
+import { GIVEWAY_APP, DRIVING_WAITLIST } from '../../lib/site'
 
 /* ==========================================================================
    Driving OT: the free driving resources hub. Scope note for future edits:
@@ -44,16 +43,16 @@ export default function DrivingOT() {
           { name: 'Driving OT', path: '/resources/driving-ot' },
         ])}
       />
-      <PageHero eyebrow="Driving OT" title="Driving is an occupation." accent="Train it like one."
+      <PageHero eyebrow="Driving OT" badge="Driving assessments coming soon" title="Driving is an occupation." accent="Train it like one."
         sub2="Free driving resources, built by occupational therapists in Perth."
         sub="Reading a handbook and reading a road are two different skills. These tools work on the second one: seeing the scene, spotting the hazard, and choosing the safe move before you are doing it at 60km/h.">
         <Btn href={GIVEWAY_APP} big>Play Give Way! ▸</Btn>
         <Btn to="/resources/learner-driver-quiz" variant="btn--alt" big>Learner Driver Quiz</Btn>
+        <Btn href={DRIVING_WAITLIST} variant="btn--ghost" big>Join the waitlist</Btn>
       </PageHero>
 
       {/* The arcade */}
       <section id="give-way" className="jump-target" style={{ paddingTop: 0 }}>
-        <Confetti kind="star" color="var(--teal)" size={38} anim="spin" style={{ top: 10, right: '5%' }} />
         <div className="wrap">
           <span className="eyebrow">The Arcade</span>
           <h2 className="sec-head" style={{ marginTop: 16 }}>Give Way!</h2>

@@ -48,7 +48,7 @@ export function service({ name, description, path }) {
 
 /*
   A recorded workshop. These are archived recordings with no future session, so
-  they are VideoObject rather than Event — an Event with a past date and no
+  they are VideoObject rather than Event, an Event with a past date and no
   upcoming instance would misrepresent them.
 */
 export function videoObject(w) {

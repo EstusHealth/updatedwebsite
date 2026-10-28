@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom'
-import { Confetti, SynthwaveSun } from './Decor'
-import { BOOKING, CAPACITY, REFERRAL_FORM } from '../lib/site'
+import { CAPACITY, BOOK_PATH } from '../lib/site'
 
 /* ==========================================================================
    Small shared building blocks used across content pages.
@@ -22,18 +21,10 @@ export function Btn({ to, href, children, variant = '', big, external, ...rest }
 export function PageHero({ eyebrow, eyebrowClass = '', title, accent, sub, sub2, badge, children, decor = true }) {
   return (
     <section className="hero hero--page" aria-labelledby="page-title">
-      {decor && (
-        <>
-          <SynthwaveSun />
-          <Confetti kind="ring" color="var(--teal)" size={48} anim="float" style={{ top: 34, right: '7%' }} />
-          <Confetti kind="dot" color="var(--mauve)" size={24} anim="float2" style={{ top: 140, right: '2%' }} />
-          <Confetti kind="star" color="var(--mauve)" size={40} anim="spin" style={{ top: 12, left: '46%' }} />
-        </>
-      )}
       <div className="wrap" style={{ position: 'relative', zIndex: 2, maxWidth: 860 }}>
         {eyebrow && <span className={`eyebrow ${eyebrowClass}`}>{eyebrow}</span>}
-        {badge && <div style={{ marginTop: 16 }}><span className="badge badge--mauve">{badge}</span></div>}
-        <h1 id="page-title" style={{ marginTop: 18 }}>
+        {badge && <div style={{ marginTop: 14 }}><span className="badge badge--mauve">{badge}</span></div>}
+        <h1 id="page-title" style={{ marginTop: 14 }}>
           {title}{accent && <> <span className="accent">{accent}</span></>}
         </h1>
         {sub && <p className="sub" style={{ marginTop: 20 }}>{sub}</p>}
@@ -48,9 +39,6 @@ export function PageHero({ eyebrow, eyebrowClass = '', title, accent, sub, sub2,
 export function CTABand({ title, body, buttons, note }) {
   return (
     <section className="cta" aria-labelledby="cta-title">
-      <Confetti kind="tri" color="var(--white)" size={30} anim="float" r="-8deg" style={{ top: 26, left: '8%' }} />
-      <Confetti kind="dot" color="var(--white)" size={28} anim="float2" style={{ bottom: 26, right: '9%' }} />
-      <Confetti kind="star" color="#fff" size={42} anim="spin" style={{ top: 40, right: '16%' }} />
       <div className="wrap">
         <div className="cta-box">
           <h2 id="cta-title">{title}</h2>
@@ -60,19 +48,6 @@ export function CTABand({ title, body, buttons, note }) {
         </div>
       </div>
     </section>
-  )
-}
-
-// Discovery-call booking pair (Contact + Minecraft). Two clinicians.
-export function BookingButtonPair() {
-  return (
-    <div className="hero-cta">
-      {BOOKING.map((b) => (
-        <Btn key={b.name} href={b.url} variant={b.name === 'Nam' ? 'btn--alt' : ''}>
-          {b.label} · Book with {b.name}
-        </Btn>
-      ))}
-    </div>
   )
 }
 
@@ -87,16 +62,17 @@ export function CapacityNotice({ compact, style }) {
       <p className="capacity-body">{CAPACITY.body}</p>
       {!compact && (
         <p style={{ margin: '16px 0 0' }}>
-          <Btn href={REFERRAL_FORM} variant="btn--alt">{CAPACITY.cta} ▸</Btn>
+          <Btn to={BOOK_PATH} variant="btn--alt">{CAPACITY.cta} ▸</Btn>
         </p>
       )}
     </div>
   )
 }
 
-// Convenience: the primary referral button, used all over the site.
-export function ReferralButton({ children = 'Make a Referral', big, variant }) {
-  return <Btn href={REFERRAL_FORM} big={big} variant={variant}>{children}</Btn>
+// The primary call to action used all over the site. Since the October 2026
+// rebrand it books the free welcome call; the referral form sits on that page.
+export function ReferralButton({ children = 'Get started', big, variant }) {
+  return <Btn to={BOOK_PATH} big={big} variant={variant}>{children}</Btn>
 }
 
 // Simple play triangle, used on video thumbnails and "watch" buttons.
@@ -106,4 +82,9 @@ export function PlayIcon({ size = 26 }) {
       <path d="M8 5v14l11-7z" />
     </svg>
   )
+}
+
+// The site-wide primary action: start a referral (then book the free call).
+export function BookButton({ children = 'Get started', big, variant }) {
+  return <Btn to={BOOK_PATH} big={big} variant={variant}>{children}</Btn>
 }
