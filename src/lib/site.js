@@ -34,7 +34,7 @@ export const CAPACITY = {
   clinicianStatus: 'Limited Term 4 places available',
 }
 
-// Discovery-call booking (BookingButtonPair on Contact + Minecraft pages).
+// Discovery-call booking (BookingButtonPair).
 export const BOOKING = [
   { name: 'Nik', label: '16 and over', url: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8' },
   { name: 'Nam', label: 'Under 16', url: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9' },
@@ -46,7 +46,6 @@ export const SERVICES = [
   { to: '/services/occupational-therapy', label: 'Occupational Therapy' },
   { to: '/services/small-hinges', label: 'Small Hinges Programs' },
   { to: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy' },
-  { to: '/services/minecraft-program', label: 'Minecraft Program' },
   { to: '/resources/driving-ot', label: 'Driving OT', soon: true },
 ]
 

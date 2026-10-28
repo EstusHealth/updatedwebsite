@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import SEO, { breadcrumb, service } from '../../components/SEO'
 import { PageHero, CTABand, Btn, ReferralButton, PlayIcon } from '../../components/Bits'
 import { webinarBySlug, ytThumb } from '../../lib/webinars'
+import { SecIntro } from '../Home'
 
 const WORKSHOP = webinarBySlug('gaming-informed-therapy')
 
@@ -20,6 +21,31 @@ const HOW = [
   ['Social Skills in Context', 'Multiplayer games provide natural opportunities to practice communication, cooperation, and conflict resolution. These are skills that can feel artificial when taught through worksheets.'],
 ]
 
+// The Minecraft server, folded in from the old Minecraft Program page.
+// One server now: Bedrock Edition only (October 2026).
+const SERVER_FACTS = [
+  ['Edition', 'Minecraft Bedrock'],
+  ['Plays on', 'PC, Xbox, PlayStation, Switch, iPad, phone'],
+  ['Setup', 'None. Vanilla, no mods'],
+  ['PvP', 'Off'],
+  ['Access', 'Private, whitelisted, clinician-moderated'],
+  ['Cost', 'No separate fee'],
+]
+
+const SERVER_STEPS = [
+  { n: 1, tone: 'c-navy', h: 'Start with an OT session', p: 'Your clinician checks the server is a good fit and sets goals it can support.' },
+  { n: 2, tone: 'c-blue', h: 'Get whitelisted', p: 'We add your gamertag and send the server address, the rules and a short orientation.' },
+  { n: 3, tone: 'c-teal', h: 'Build between sessions', p: 'Log on when you want. Join a group build or start your own.' },
+]
+
+const SERVER_FAQ = [
+  ['Do we need to be Estus clients?', 'Yes. The server is part of gaming-informed therapy with an Estus clinician, not a standalone service.'],
+  ['What do we need to play?', 'Minecraft Bedrock Edition on any supported device: Windows PC, Xbox, PlayStation, Nintendo Switch, iPad, iPhone or Android. Then just enter the server address.'],
+  ['Why is PvP off?', 'The server is about building together. Turning PvP off removes the conflict and anxiety competitive play can bring. It is a deliberate clinical choice.'],
+  ['Is it monitored?', 'Yes. Only approved players can join, clinicians moderate it, and the rules are clear. Anything that breaks them is raised with the player and their family.'],
+  ['How is it funded?', 'It runs as part of your funded OT sessions (NDIS Capacity Building: Improved Daily Living, or private). Server access has no separate fee.'],
+]
+
 const SESSIONS = [
   'Playing Minecraft together while talking through a challenge they\'re facing',
   'Using a story-driven game to explore emotions and perspectives',
@@ -34,7 +60,7 @@ export default function GamingInformedTherapy() {
     <>
       <SEO
         title="Gaming-Informed Therapy | Estus Health"
-        description="Gaming-informed occupational therapy for neurodivergent people in Perth and telehealth Australia-wide. We use games as a genuine therapeutic tool, not a reward."
+        description="Gaming-informed occupational therapy for neurodivergent people in Perth and telehealth Australia-wide. Games as a genuine therapeutic tool, plus a private, clinician-moderated Minecraft Bedrock server for clients."
         path="/services/gaming-informed-therapy"
         schema={[
           service({
@@ -52,6 +78,7 @@ export default function GamingInformedTherapy() {
         sub="For many neurodivergent people, gaming isn't just a hobby. It's a space where they feel competent, connected, and regulated. We meet people there, using games as a genuine therapeutic tool rather than treating them as something to overcome.">
         <ReferralButton big />
         <Btn to={WORKSHOP.path} variant="btn--alt" big>Watch the workshop ▸</Btn>
+        <Btn href="#minecraft" variant="btn--ghost" big>Our Minecraft server</Btn>
       </PageHero>
 
       {/* Featured workshop recording */}
@@ -124,6 +151,49 @@ export default function GamingInformedTherapy() {
           <div className="grid grid-2" style={{ marginTop: 32 }}>
             {HOW.map(([h, p]) => (
               <article className="card" key={h}><h3 style={{ color: 'var(--heading)', textTransform: 'uppercase', fontSize: '1.05rem', marginBottom: 8 }}>{h}</h3><p style={{ color: 'var(--text-soft)', margin: 0 }}>{p}</p></article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Minecraft server (was the Minecraft Program page) */}
+      <section id="minecraft" className="jump-target" aria-labelledby="minecraft-title">
+        <div className="wrap">
+          <SecIntro eyebrow="Between sessions" title="Our Minecraft server" id="minecraft-title" />
+          <div className="two-col">
+            <div className="prose">
+              <p>Clients can join our private Minecraft server between sessions. It is a calm, shared space to build, plan and connect at their own pace, with clinicians in the background rather than running the show.</p>
+              <p>Group builds like railways, towns and shared storage have natural decision points, so planning, negotiating and adapting when things go wrong get practised in a setting people actually want to be in. Your clinician can use what happens on the server as a starting point in sessions.</p>
+              <p>We run one server on Bedrock Edition, so it works on almost any device, with nothing to install beyond the game.</p>
+            </div>
+            <div className="panel">
+              <div className="ph label">The server</div>
+              <div className="pb">
+                {SERVER_FACTS.map(([k, v]) => (
+                  <div className="dots" key={k}><b>{k}</b><span className="fill"></span><span style={{ textAlign: 'right' }}>{v}</span></div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <h3 className="label" style={{ margin: '40px 0 14px', color: 'var(--blue)' }}>How to join</h3>
+          <div className="ruled">
+            {SERVER_STEPS.map((st) => (
+              <div key={st.n}>
+                <span className={`step-n ${st.tone}`} aria-hidden="true">{st.n}</span>
+                <b style={{ fontSize: '1.2rem' }}>{st.h}</b>
+                <span className="cell-body">{st.p}</span>
+              </div>
+            ))}
+          </div>
+
+          <h3 className="label" style={{ margin: '40px 0 4px', color: 'var(--blue)' }}>Server questions</h3>
+          <div className="faq" style={{ maxWidth: 900 }}>
+            {SERVER_FAQ.map(([q, a]) => (
+              <details key={q}>
+                <summary>{q}<span className="plus" aria-hidden="true">+</span></summary>
+                <div className="ans">{a}</div>
+              </details>
             ))}
           </div>
         </div>

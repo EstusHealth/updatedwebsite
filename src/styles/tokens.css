@@ -510,6 +510,7 @@ a.card:hover { background: var(--mist); }
 .ruled {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   border: 2px solid var(--line); background: var(--surface);
+  border-right-width: 1px; border-bottom-width: 1px; /* cells add the other 1px */
 }
 .ruled > * {
   padding: 24px; display: flex; flex-direction: column; gap: 8px;

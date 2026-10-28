@@ -35,8 +35,7 @@ export const ROUTES = [
   // Services
   { path: '/services/occupational-therapy', label: 'Occupational Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
   { path: '/services/small-hinges', label: 'Small Hinges Programs', group: 'Services', priority: 0.8, lastmod: '2026-10-28' },
-  { path: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
-  { path: '/services/minecraft-program', label: 'Minecraft Program', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
+  { path: '/services/gaming-informed-therapy', label: 'Gaming-Informed Therapy', group: 'Services', priority: 0.8, lastmod: '2026-10-28' },
   { path: '/services/live-sessions', label: 'Live Sessions', group: 'Services', priority: 0.8, lastmod: '2026-08-11' },
   { path: '/services/assessments-reports', label: 'Assessments & Reports', group: 'Services', priority: 0.8, lastmod: '2026-07-12' },
 

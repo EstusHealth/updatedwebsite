@@ -51,7 +51,7 @@ export function CTABand({ title, body, buttons, note }) {
   )
 }
 
-// Discovery-call booking pair (Contact + Minecraft). Two clinicians.
+// Discovery-call booking pair. Two clinicians.
 export function BookingButtonPair() {
   return (
     <div className="hero-cta">

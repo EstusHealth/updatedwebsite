@@ -34,7 +34,7 @@ const BIOS = [
     opening: "Nam meets people through the story they're already inside of: anime, a game, a build. He works from there.",
     approach: "Specialises in autistic youth and young adults through the things they already care about. Anime, gaming, and storytelling aren't rewards in his sessions, they're the medium. Interests are windows into how someone thinks, what they value, and where they feel most themselves.",
     interests: 'Uses anime storylines as therapeutic tools. Keen sportsperson: football, gym, always training for something. PC and Xbox gamer (Minecraft, Roblox, Sea of Thieves, Repo), always open to co-op. Currently building a PC with a wood-grain CPU cooler. Speaks multiple languages, and brings a multicultural lens to his clinical work.',
-    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft Program', 'Paediatrics'],
+    works: ['Anime-informed therapy', 'Gaming-informed therapy', 'Youth & young adults', 'Screen & gaming transitions', 'Daily living independence', 'Minecraft server', 'Paediatrics'],
     podcast: null,
   },
   {
