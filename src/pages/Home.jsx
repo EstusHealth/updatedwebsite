@@ -32,7 +32,7 @@ export const TEAM = [
 export function FactStrip({ third = { b: 'Telehealth, Australia-wide', s: 'From home, camera optional' } }) {
   return (
     <section className="facts" aria-label="Key facts">
-      <div className="wrap facts-grid">
+      <div className="facts-grid">
         <div className="fact"><b>No GP referral needed</b><span>Refer yourself or a family member</span></div>
         <div className="fact"><b>NDIS + private</b><span>Self-managed, plan-managed or private</span></div>
         <div className="fact"><b>{third.b}</b><span>{third.s}</span></div>
