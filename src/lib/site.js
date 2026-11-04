@@ -53,16 +53,17 @@ export const WHAT_TO_EXPECT = '/what-to-expect'
 // Driving On The Spectrum waitlist (PracSuite form).
 export const DRIVING_WAITLIST = 'https://questot.forms.pracsuite.com/t/xhbEFdfxJZp0hS47HAOiZNeA'
 
-// Who takes the free call, by lane. Photos live in public/.
+// Who takes the free call. Split by service, not age:
+// assessments go to Nik; ongoing therapy goes to Nik or Nam. Photos live in public/.
 export const CLINICIANS = {
-  over: {
-    key: 'over', label: '16 and over', first: 'Nik', full: 'Nik Peshwani', tag: 'Teens 16+ and adults',
+  nik: {
+    key: 'nik', label: 'Nik', first: 'Nik', full: 'Nik Peshwani', tag: 'Assessments + ongoing therapy',
     line: 'Experimenter energy. Tries it on himself before he suggests it to you.',
     img: '/team-nik.jpg', href: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8', cta: 'Pick a time with Nik', tone: 'c-blue',
   },
-  under: {
-    key: 'under', label: 'Under 16', first: 'Nam', full: 'Nam Lang', tag: 'Kids under 16 and families',
-    line: 'Storyteller energy. Meets your child through the game or story they already love.',
+  nam: {
+    key: 'nam', label: 'Nam', first: 'Nam', full: 'Nam Lang', tag: 'Ongoing therapy',
+    line: 'Storyteller energy. Meets you through the game or story you already love.',
     img: '/team-nam.jpg', href: 'https://calendar.app.google/vGXRQqSbPwSXsY8q9', cta: 'Pick a time with Nam', tone: 'c-plum',
   },
   drive: {

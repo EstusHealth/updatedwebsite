@@ -11,10 +11,18 @@ import { CLINICIANS, EMAIL, WHAT_TO_EXPECT } from '../lib/site'
   link can still open it: this keeps the calendars off the public site, it
   is not a lock.
 */
-const LANES = ['over', 'under']
+// Split by service, not age. Assessments always go to Nik.
+// Ongoing therapy can go to either OT, so the person picks.
+const NEEDS = [
+  { key: 'therapy', label: 'Ongoing therapy', who: ['nik', 'nam'] },
+  { key: 'assess', label: 'An assessment', who: ['nik'] },
+]
 
 export function Booking() {
-  const [lane, setLane] = useState('over')
+  const [need, setNeed] = useState('therapy')
+  const [pick, setPick] = useState('nik')
+  const options = NEEDS.find((n) => n.key === need).who
+  const lane = options.includes(pick) ? pick : options[0]
   const who = CLINICIANS[lane]
   return (
     <div className="book" id="book">
@@ -23,12 +31,24 @@ export function Booking() {
         <span className="label">15 minutes · free</span>
       </div>
       <div className="book-body">
-        <span className="label" id="lane-label">Who is the call for?</span>
-        <div className="seg" role="group" aria-labelledby="lane-label" style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
-          {LANES.map((k) => (
-            <button key={k} type="button" aria-pressed={k === lane} onClick={() => setLane(k)}>{CLINICIANS[k].label}</button>
+        <span className="label" id="need-label">What do you need?</span>
+        <div className="seg" role="group" aria-labelledby="need-label" style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
+          {NEEDS.map((n) => (
+            <button key={n.key} type="button" aria-pressed={n.key === need} onClick={() => setNeed(n.key)}>{n.label}</button>
           ))}
         </div>
+        {options.length > 1 ? (
+          <>
+            <span className="label" id="lane-label">Pick your OT. Either is great, go with whoever suits your times.</span>
+            <div className="seg" role="group" aria-labelledby="lane-label" style={{ gridTemplateColumns: 'repeat(2, minmax(0, 1fr))' }}>
+              {options.map((k) => (
+                <button key={k} type="button" aria-pressed={k === lane} onClick={() => setPick(k)}>{CLINICIANS[k].label}</button>
+              ))}
+            </div>
+          </>
+        ) : (
+          <span className="small">Assessments and reports are with Nik.</span>
+        )}
         <div className="who" aria-live="polite">
           <img src={who.img} alt={`Portrait of ${who.full}`} width="132" height="150" />
           <div className="txt">
@@ -63,7 +83,7 @@ export default function BookYourCall() {
             <p className="sub" style={{ margin: 0 }}>We've got your referral. Book a free 15 minute call with the OT you'd actually work with.</p>
             <div className="panel">
               <div className="ph label">Pick a time in three taps</div>
-              <div className="panel-row"><span className="step-n c-navy" style={{ fontSize: '1.4rem', width: 30 }}>1</span><span><b>Who is the call for?</b> 16 and over goes to Nik, under 16 goes to Nam.</span></div>
+              <div className="panel-row"><span className="step-n c-navy" style={{ fontSize: '1.4rem', width: 30 }}>1</span><span><b>What do you need?</b> An assessment or report goes to Nik. Ongoing therapy goes to Nik or Nam, your pick.</span></div>
               <div className="panel-row"><span className="step-n c-blue" style={{ fontSize: '1.4rem', width: 30 }}>2</span><span><b>Pick a time</b> in their calendar. It opens in a new tab.</span></div>
               <div className="panel-row"><span className="step-n c-teal" style={{ fontSize: '1.4rem', width: 30 }}>3</span><span><b>Check your inbox.</b> Google emails you the time and the video link.</span></div>
             </div>

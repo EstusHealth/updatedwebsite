@@ -8,7 +8,7 @@ import { CLINICIANS, EMAIL, BOOKING_PAGE } from '../lib/site'
   Linked from the booking confirmation, not the menus. Add ?with=nik or
   ?with=nam to the link in each clinician's booking page to show their photo.
 */
-const BY_NAME = { nik: CLINICIANS.over, nam: CLINICIANS.under }
+const BY_NAME = { nik: CLINICIANS.nik, nam: CLINICIANS.nam }
 
 const STEPS = [
   { n: 1, tone: 'c-navy', top: 'top-navy', h: 'Join the link', p: 'Phone or computer. Camera off is fine.' },
@@ -27,7 +27,7 @@ const HANDY = [
 export default function WhatToExpect() {
   const { search } = useLocation()
   const pick = BY_NAME[(new URLSearchParams(search).get('with') || '').toLowerCase()]
-  const people = pick ? [pick] : [CLINICIANS.over, CLINICIANS.under]
+  const people = pick ? [pick] : [CLINICIANS.nik, CLINICIANS.nam]
 
   return (
     <>

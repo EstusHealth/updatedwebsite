@@ -44,7 +44,7 @@ const BIOS = [
     opening: "Nik tests it on himself before he'll ever suggest it to you, and he'll tell you straight when something isn't working.",
     approach: "Turned down a place in medical school, realising he wanted to improve quality of life, not just treat illness. Brings a gaming-informed, identity-respecting lens, particularly for high-masking people who've spent years being told they're fine. Leads with curiosity instead of labels.",
     interests: 'Currently deep into The Finals. Plays Minecraft, Dead by Daylight, and Rocket League ("badly," by his own admission, but his clients love teaching him). Catan is his all-time favourite board game. Big into fitness, macros, nutrition, and supplements. A lifelong learner who experiments on himself before recommending anything to clients. Speaks Hindi, Gujarati, English, and Sindhi.',
-    works: ['Executive function', 'ADHD', 'Adolescents & adults', 'Sleep', 'Sensory profiles', 'Hypermobility & pain', 'Late diagnosis'],
+    works: ['Assessments & reports', 'Executive function', 'ADHD', 'Adolescents & adults', 'Sleep', 'Sensory profiles', 'Hypermobility & pain', 'Late diagnosis'],
     podcast: PODCASTS.otAndYap,
   },
 ]

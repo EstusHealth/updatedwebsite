@@ -19,7 +19,7 @@ const FAQ = [
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
   { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
-  { q: 'Who will I see?', a: 'Nik works with teens 16+ and adults. Nam works with kids under 16 and their families. Driving assessments with Liam are coming soon.' },
+  { q: 'Who will I see?', a: 'It depends on what you need, not your age. Assessments and reports are with Nik. Ongoing therapy is with Nik or Nam, whoever suits your times. Driving assessments with Liam are coming soon.' },
   { q: 'What happens on the welcome call?', a: '15 minutes. We ask what is going on and what you would like to change, explain how we work and our fees, and answer your questions. Then you decide.' },
   { q: 'Do I need my camera on?', a: 'No. Camera off is fine, for the call and for sessions.' },
   { q: 'Phone calls are hard for me. Can we do this another way?', a: 'Yes. Say so in the referral form or the booking notes, or email us. We can use text, email or chat, and we will stick to it.' },
