@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import SEO, { breadcrumb } from '../components/SEO'
 import { Btn } from '../components/Bits'
 import { FactStrip, SecIntro, Crew } from './Home'
@@ -60,34 +59,7 @@ function StartReferral() {
   )
 }
 
-// Meta Pixel (contact page only). Same loader as Meta's snippet, run from an
-// effect so it also fires when someone reaches /contact by in-app navigation.
-// Skipped under automation so the build-time prerender records no pageviews.
-const META_PIXEL_ID = '1480288163972904'
-
-function useMetaPixel() {
-  useEffect(() => {
-    if (typeof window === 'undefined' || navigator.webdriver) return
-    if (!window.fbq) {
-      !function(f,b,e,v,n,t,s)
-      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-      n.queue=[];t=b.createElement(e);t.async=!0;
-      t.src=v;s=b.getElementsByTagName(e)[0];
-      s.parentNode.insertBefore(t,s)}(window, document,'script',
-      'https://connect.facebook.net/en_US/fbevents.js')
-    }
-    if (!window.__estusPixelInit) {
-      window.fbq('init', META_PIXEL_ID)
-      window.__estusPixelInit = true
-    }
-    window.fbq('track', 'PageView')
-  }, [])
-}
-
 export default function Contact() {
-  useMetaPixel()
   return (
     <>
       <SEO

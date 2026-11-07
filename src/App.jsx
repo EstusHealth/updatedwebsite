@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate, useParams } from 'react-router-dom'
 import Layout from './components/Layout'
 import ScrollToTop from './components/ScrollToTop'
+import MetaPixel from './components/MetaPixel'
 
 import Home from './pages/Home'
 import Team from './pages/Team'
@@ -58,6 +59,7 @@ export default function App() {
   return (
     <Layout>
       <ScrollToTop />
+      <MetaPixel />
       <Suspense fallback={<div className="wrap" style={{ padding: '120px 24px', textAlign: 'center', color: 'var(--text-soft)' }}>Loading…</div>}>
       <Routes>
         <Route path="/" element={<Home />} />
