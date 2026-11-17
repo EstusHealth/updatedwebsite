@@ -12,7 +12,8 @@ import { REFERRAL_FORM, BOOKING_PAGE } from '../lib/site'
   Skipped under automation so the build-time prerender records nothing.
 */
 const PIXEL_ID = '1480288163972904'
-const CALENDAR = 'https://calendar.app.google/'
+// Short links (calendar.app.google) and full appointment-schedule links.
+const CALENDARS = ['https://calendar.app.google/', 'https://calendar.google.com/calendar/']
 
 const enabled = () => typeof window !== 'undefined' && !navigator.webdriver
 
@@ -43,7 +44,7 @@ export default function MetaPixel() {
       if (!a) return
       const href = a.href
       if (href.startsWith(REFERRAL_FORM)) window.fbq('track', 'Lead')
-      else if (href.startsWith(CALENDAR)) window.fbq('track', 'Schedule')
+      else if (CALENDARS.some((c) => href.startsWith(c))) window.fbq('track', 'Schedule')
     }
     document.addEventListener('click', onClick, true)
     return () => document.removeEventListener('click', onClick, true)

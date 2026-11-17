@@ -59,7 +59,7 @@ export const CLINICIANS = {
   nik: {
     key: 'nik', label: 'Nik', first: 'Nik', full: 'Nik Peshwani', tag: 'Assessments + ongoing therapy',
     line: 'Experimenter energy. Tries it on himself before he suggests it to you.',
-    img: '/team-nik.jpg', href: 'https://calendar.app.google/iLxEVkhaRCFEhsSC8', cta: 'Pick a time with Nik', tone: 'c-blue',
+    img: '/team-nik.jpg', href: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ1ybJU7segeBzzxCaU-AwvuPHN00dhjU3LSsLuayFjUDfO92PWYqCd5m1XF3teaGlgZFRU31WFh', cta: 'Pick a time with Nik', tone: 'c-blue',
   },
   nam: {
     key: 'nam', label: 'Nam', first: 'Nam', full: 'Nam Lang', tag: 'Ongoing therapy',
