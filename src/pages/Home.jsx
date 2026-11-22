@@ -88,8 +88,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Estus Health | Occupational Therapy for Autism and ADHD | Perth + Telehealth"
-        description="Occupational therapy for autistic and ADHD kids, teens and adults. Daily routines, school, anxiety, sensory needs and social skills. NDIS and private, telehealth Australia-wide from Perth."
+        title="Estus Health | Neuroaffirming Occupational Therapy Perth"
+        description="A small team of neurodivergent occupational therapists in Perth, with telehealth Australia-wide. Working with autistic adults, PDA profiles, ADHD, and complex health."
         path="/"
       />
 
@@ -99,11 +99,11 @@ export default function Home() {
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px 48px', alignItems: 'flex-end', justifyContent: 'space-between' }}>
             <div style={{ flex: '1 1 560px', minWidth: 0 }}>
               <span className="eyebrow">Occupational therapy · NDIS + private · Telehealth Australia-wide</span>
-              <h1 id="hero-title">Occupational therapy for <span className="accent">autism and ADHD.</span></h1>
+              <h1 id="hero-title">Occupational therapy for <span className="accent">kids, teens and adults.</span></h1>
             </div>
             <div style={{ flex: '1 1 320px', minWidth: 0, maxWidth: 440, display: 'flex', flexDirection: 'column', gap: 18 }}>
               <span className="badge badge--mauve" style={{ alignSelf: 'flex-start' }}>{CAPACITY.badge}</span>
-              <p className="sub" style={{ margin: 0 }}>For kids, teens and adults. We help with daily routines, school, anxiety, sensory needs and social skills. Free 15 minute call to start.</p>
+              <p className="sub" style={{ margin: 0 }}>Neuroaffirming help with daily routines, school, anxiety, sensory needs and social skills. Free 15 minute call to start.</p>
               <div className="hero-cta" style={{ marginTop: 0 }}>
                 <Btn to={BOOK_PATH} big>Get started</Btn>
                 <a href="#services" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>See what we do</a>
