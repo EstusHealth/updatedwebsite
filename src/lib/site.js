@@ -25,13 +25,13 @@ export const GIVEWAY_APP = '/giveway/'
 // home page, the contact / referral page, and the team profiles, so the three
 // never drift apart. Update here when intake changes.
 export const CAPACITY = {
-  badge: 'Term 4 places open',
-  heading: 'Limited Term 4 places are now available.',
-  body: 'We have opened a small number of places for Term 4 ongoing therapy. Spaces are limited and are offered in the order referrals come in, so send a referral now and we will find you a start date.',
-  short: 'Limited Term 4 places are now available. Spaces are offered in the order referrals come in.',
+  badge: 'Summer & Term 1 places open',
+  heading: 'Bookings are open for the summer school holidays and Term 1 2027.',
+  body: 'We have opened places for ongoing therapy over the summer school holidays and into Term 1 2027. Spaces are limited and are offered in the order referrals come in, so send a referral now and we will find you a start date.',
+  short: 'Bookings are open for the summer school holidays and Term 1 2027. Spaces are offered in the order referrals come in.',
   cta: 'Get started',
-  // Shown on the team profiles for clinicians with Term 4 places.
-  clinicianStatus: 'Limited Term 4 places available',
+  // Shown on the team profiles for clinicians with summer / Term 1 places.
+  clinicianStatus: 'Summer holiday & Term 1 2027 places available',
 }
 
 // Services menu. Assessments & Reports and Live Sessions stay live at their

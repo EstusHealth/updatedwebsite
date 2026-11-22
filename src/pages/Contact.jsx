@@ -18,7 +18,7 @@ const FAQ = [
   { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes, and we email you a booking link as soon as you submit.' },
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },
-  { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. We have a small number of Term 4 places for ongoing therapy, offered in the order people get in touch. We will give you a start date on the call.' },
+  { q: 'Are you taking new clients?', a: 'Yes, in limited numbers. Bookings are open for ongoing therapy over the summer school holidays and Term 1 2027, offered in the order people get in touch. We will give you a start date on the call.' },
   { q: 'Who will I see?', a: 'It depends on what you need, not your age. Assessments and reports are with Nik. Ongoing therapy is with Nik or Nam, whoever suits your times. Driving assessments with Liam are coming soon.' },
   { q: 'What happens on the welcome call?', a: '15 minutes. We ask what is going on and what you would like to change, explain how we work and our fees, and answer your questions. Then you decide.' },
   { q: 'Do I need my camera on?', a: 'No. Camera off is fine, for the call and for sessions.' },
