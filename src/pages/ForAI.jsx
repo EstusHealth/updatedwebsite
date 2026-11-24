@@ -103,7 +103,7 @@ export default function ForAI() {
 
           <H2 id="who">Who we work with</H2>
           <ul>{WHO.map((w) => <li key={w}>{w}</li>)}</ul>
-          <p>Who you see depends on the service you need, not your age.</p>
+          <p>We see kids, teens and adults. Who you see depends on the service you need, not your age.</p>
 
           <H2 id="services">Services</H2>
           <ul>
