@@ -257,6 +257,22 @@ a.card:hover { background: var(--mist); }
 
 .nav-cta { display: flex; gap: 10px; align-items: center; }
 .nav-cta .btn { min-height: 44px; padding: 8px 16px; font-size: .95rem; box-shadow: none; border-color: var(--teal-brand); }
+/* Outline button on the black masthead: "Client login" for current clients. */
+.btn--outline { background: transparent; color: var(--on-dark); }
+.nav-cta .btn--outline { border-color: var(--on-dark-soft); }
+.nav-cta .btn--outline:hover, .nav-cta .btn--outline[aria-current="page"] { border-color: #fff; color: #fff; }
+/* Buttons with long labels may wrap instead of overflowing on phones. */
+.btn--wrap { white-space: normal; text-align: center; line-height: 1.2; }
+
+/* Phone masthead: "Client login" stays visible next to the menu button. */
+.nav-mobile { display: none; align-items: center; gap: 10px; }
+.nav-client {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  border: 2px solid var(--on-dark-soft); color: var(--on-dark);
+  font-family: var(--f-label); font-weight: 700; font-size: .8rem;
+  letter-spacing: .08em; text-transform: uppercase; white-space: nowrap;
+}
+.nav-client:hover, .nav-client[aria-current="page"] { border-color: #fff; color: #fff; }
 
 .burger {
   display: none;
@@ -271,6 +287,11 @@ a.card:hover { background: var(--mist); }
 .mnav .group { font-family: var(--f-label); font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .16em; color: var(--on-dark-accent); padding: 16px 4px 4px; margin: 0; }
 .mnav .sub { padding-left: 16px; }
 .mnav .btn { display: flex; margin-top: 16px; border-color: var(--teal-brand); }
+/* Mobile menu opens with the two doors: new vs current clients. */
+.mnav-doors { display: flex; flex-direction: column; gap: 12px; padding: 12px 0 8px; }
+.mnav .mnav-doors .btn { margin-top: 0; box-shadow: none; border-bottom: 2px solid; }
+.mnav .mnav-doors .btn--teal { color: var(--black); border-color: var(--teal-brand); }
+.mnav .mnav-doors .btn--ghost { color: var(--black); border-color: var(--surface); }
 
 /* ==========================================================================
    05 · HERO
@@ -470,7 +491,28 @@ a.card:hover { background: var(--mist); }
   text-transform: uppercase; letter-spacing: .16em;
   color: var(--on-dark-accent); margin: 0 0 14px;
 }
-.foot ul:not(.foot-social) { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 9px; font-size: 1rem; }
+.foot ul:not(.foot-social) { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0; font-size: 1rem; }
+/* Full-height tap targets: every footer link is a 44px block, so a link that
+   wraps onto two lines on a phone is still one solid target. */
+.foot ul:not(.foot-social) a { display: flex; align-items: center; min-height: 44px; padding: 6px 0; line-height: 1.3; }
+.foot ul:not(.foot-social) li.plain { padding: 10px 0; line-height: 1.3; }
+
+/* Two doors at the top of the footer: new clients vs current clients. */
+.foot-doors {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  padding-bottom: 36px; margin-bottom: 36px; border-bottom: 1px solid #2B2E35;
+}
+.foot-door {
+  border: 2px solid #3A3F4A; padding: 22px 22px 20px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
+}
+.foot-door h2 { margin: 0; }
+.foot-door p { margin: 0; color: var(--on-dark); font-size: 1.05rem; }
+.foot .foot-door .btn { margin-top: 4px; box-shadow: none; }
+.foot .foot-door .btn--teal { color: var(--black); border-color: var(--teal-brand); }
+.foot .foot-door .btn--ghost { color: var(--black); border-color: var(--surface); }
+.foot .foot-door .btn:hover { text-decoration: none; }
+.foot .door-help { display: inline-flex; align-items: center; min-height: 44px; color: var(--on-dark-soft); text-decoration: underline; text-underline-offset: 3px; }
 .foot a:hover { color: #fff; text-decoration: underline; }
 .foot .blurb { font-size: 1rem; color: var(--on-dark-soft); max-width: 34ch; }
 .foot-social { list-style: none; padding: 0; margin: 20px 0 0; display: flex; flex-direction: row; flex-wrap: wrap; gap: 10px; }
@@ -642,6 +684,7 @@ a.card:hover { background: var(--mist); }
   .team { grid-template-columns: 1fr 1fr; }
   .grid-4, .kv--4 { grid-template-columns: 1fr 1fr; }
   .links, .nav-cta { display: none; }
+  .nav-mobile { display: flex; }
   .burger { display: block; }
 }
 @media (max-width: 680px) {
@@ -649,6 +692,8 @@ a.card:hover { background: var(--mist); }
   section { padding: 56px 0; }
   .team, .numgrid, .kv, .kv--4, .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .foot-grid { grid-template-columns: 1fr 1fr; }
+  .foot-doors { grid-template-columns: 1fr; }
+  .foot .foot-door .btn { align-self: stretch; }
   .cta-box { padding: 32px 22px; }
   .who img { width: 104px; flex-basis: 104px; }
   .seg button { font-size: .95rem; }

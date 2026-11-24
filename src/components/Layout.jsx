@@ -16,6 +16,11 @@ const NAV_EVENTS = [
    Site map v2 (October 2026):
    Services / Free resources / Events & media / Team, then Get started.
    Client portal moves to the footer and the mobile menu.
+   November 2026: new vs current clients made explicit everywhere.
+   "Client login" (current clients) sits next to "Get started" (new
+   clients) in the masthead, a "Client login" button stays visible on
+   phones, the mobile menu opens with both doors, and the footer starts
+   with two big doors. Footer links are full-height tap targets (44px).
    ========================================================================== */
 
 export function Wordmark() {
@@ -77,21 +82,29 @@ function Nav() {
             <Dropdown id="resources-menu" label="Free resources" items={NAV_RESOURCES} open={resourcesOpen} setOpen={setResourcesOpen} innerRef={resourcesRef} />
             <Dropdown id="events-menu" label="Events & media" items={NAV_EVENTS} open={eventsOpen} setOpen={setEventsOpen} innerRef={eventsRef} />
             <li><NavLink to="/team">Team</NavLink></li>
-            <li><NavLink to="/clients">Clients</NavLink></li>
           </ul>
         </nav>
 
+        {/* Two doors, side by side: current clients log in, new clients get started. */}
         <div className="nav-cta">
+          <Link className="btn btn--outline" to="/clients">Client login</Link>
           <Link className="btn btn--teal" to={BOOK_PATH}>Get started</Link>
         </div>
 
-        <button className="burger" aria-label="Menu" aria-expanded={drawer} aria-controls="mnav"
-          onClick={() => setDrawer((v) => !v)}>
-          <span></span><span></span><span></span>
-        </button>
+        <div className="nav-mobile">
+          <Link className="nav-client" to="/clients">Client login</Link>
+          <button className="burger" aria-label="Menu" aria-expanded={drawer} aria-controls="mnav"
+            onClick={() => setDrawer((v) => !v)}>
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </div>
 
       <nav className={`mnav wrap${drawer ? ' open' : ''}`} id="mnav" aria-label="Mobile">
+        <div className="mnav-doors">
+          <Link className="btn btn--teal btn--wrap" to={BOOK_PATH}>New to Estus? Get started</Link>
+          <Link className="btn btn--ghost btn--wrap" to="/clients">Current client? Book, move or cancel</Link>
+        </div>
         <p className="group">Services</p>
         {SERVICES.map((s) => <Link key={s.to} className="sub" to={s.to}>{s.label}{s.soon ? ' (coming soon)' : ''}</Link>)}
         <p className="group">Free resources</p>
@@ -100,8 +113,6 @@ function Nav() {
         {NAV_EVENTS.map((e) => <Link key={e.to} className="sub" to={e.to}>{e.label}</Link>)}
         <p className="group">Estus</p>
         <Link className="sub" to="/team">Team</Link>
-        <Link className="sub" to="/clients">Current clients: book, move or cancel</Link>
-        <Link className="btn btn--teal" to={BOOK_PATH}>Get started</Link>
       </nav>
     </header>
   )
@@ -112,6 +123,19 @@ function Footer() {
   return (
     <footer className="foot">
       <div className="wrap">
+        <div className="foot-doors">
+          <section className="foot-door" aria-labelledby="door-new">
+            <h2 id="door-new">New to Estus</h2>
+            <p>Send a short referral form, then book a free 15 minute call.</p>
+            <Link className="btn btn--teal btn--wrap" to={BOOK_PATH}>Get started</Link>
+          </section>
+          <section className="foot-door" aria-labelledby="door-current">
+            <h2 id="door-current">Current clients</h2>
+            <p>Book, move or cancel your sessions in the client portal.</p>
+            <a className="btn btn--ghost btn--wrap" href={CLIENT_PORTAL} target="_blank" rel="noopener">Open the client portal <span aria-hidden="true">↗</span></a>
+            <Link className="door-help" to="/clients">First time? How the portal works</Link>
+          </section>
+        </div>
         <div className="foot-grid">
           <div>
             <div className="brand"><Wordmark /></div>
@@ -145,10 +169,10 @@ function Footer() {
             <h2>Estus</h2>
             <ul>
               <li><Link to="/team">Meet the team</Link></li>
-              <li><Link to={BOOK_PATH}>Get started</Link></li>
+              <li><Link to={BOOK_PATH}>New clients: get started</Link></li>
+              <li><Link to="/clients">Current clients: client portal</Link></li>
               <li><Link to={`${BOOK_PATH}#pros`}>For professionals</Link></li>
-              <li><Link to="/clients">Client portal: book, move or cancel</Link></li>
-              <li>Mon to Sat, 8am to 7pm AWST</li>
+              <li className="plain">Mon to Sat, 8am to 7pm AWST</li>
               <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
             </ul>
           </nav>

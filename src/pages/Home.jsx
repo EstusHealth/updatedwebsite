@@ -108,6 +108,7 @@ export default function Home() {
                 <Btn to={BOOK_PATH} big>Get started</Btn>
                 <a href="#services" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>See what we do</a>
               </div>
+              <p className="small" style={{ margin: 0 }}>Already a client? <Link to="/clients" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3, display: 'inline-block', padding: '10px 0' }}>Book, move or cancel in the client portal</Link></p>
             </div>
           </div>
 

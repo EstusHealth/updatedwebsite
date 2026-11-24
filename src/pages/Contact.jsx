@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import SEO, { breadcrumb } from '../components/SEO'
 import { Btn } from '../components/Bits'
 import { FactStrip, SecIntro, Crew } from './Home'
@@ -79,6 +80,10 @@ export default function Contact() {
             <span className="eyebrow">Referrals · Perth + telehealth Australia-wide</span>
             <h1 id="page-title" style={{ margin: 0 }}>Start with a short referral form.</h1>
             <p className="sub" style={{ margin: 0 }}>Then book a free 15 minute call with the OT you'd actually work with.</p>
+            <p style={{ margin: 0, padding: '12px 16px', borderLeft: '6px solid var(--teal-brand)', background: 'var(--surface-2)' }}>
+              <b>Already an Estus client?</b> You don't need this form.{' '}
+              <Link to="/clients" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3, display: 'inline-block', padding: '6px 0' }}>Book, move or cancel in the client portal</Link>
+            </p>
             <div className="panel">
               <div className="ph label">What the free call looks like</div>
               <div className="panel-row"><span className="step-n c-navy" style={{ fontSize: '1.4rem', width: 30 }}>01</span><span><b>15 minutes</b>, by video or phone</span></div>

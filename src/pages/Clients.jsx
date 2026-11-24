@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import SEO, { breadcrumb } from '../components/SEO'
 import { SecIntro } from './Home'
-import { CLIENT_PORTAL, EMAIL } from '../lib/site'
+import { CLIENT_PORTAL, EMAIL, BOOK_PATH } from '../lib/site'
 
 /*
   For current clients: how to use the PracSuite client portal to book,
@@ -57,8 +58,9 @@ export default function Clients() {
             <p className="sub" style={{ margin: 0 }}>Book, move or cancel your own sessions in the client portal. Any time, day or night. No calls, no texts, no waiting on us.</p>
             <div className="hero-cta" style={{ marginTop: 0 }}>
               <PortalButton />
-              <a href="#setup" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3 }}>First time? Set up your login</a>
+              <a href="#setup" style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3, display: 'inline-block', padding: '10px 0' }}>First time? Set up your login</a>
             </div>
+            <p className="small" style={{ margin: 0 }}>Not a client yet? This page is for people already working with us. <Link to={BOOK_PATH} style={{ fontWeight: 600, color: 'var(--navy)', textDecoration: 'underline', textUnderlineOffset: 3, display: 'inline-block', padding: '10px 0' }}>New clients start here</Link></p>
           </div>
           <div className="panel" style={{ flex: '1 1 320px', minWidth: 0, maxWidth: 440, boxShadow: '8px 8px 0 var(--teal-brand)' }}>
             <div className="ph label">In the portal you can</div>
