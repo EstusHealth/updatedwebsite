@@ -10,6 +10,7 @@ import Contact from './pages/Contact'
 import WhatToExpect from './pages/WhatToExpect'
 import Clients from './pages/Clients'
 import BookYourCall from './pages/BookYourCall'
+import ForAI from './pages/ForAI'
 
 import OccupationalTherapy from './pages/services/OccupationalTherapy'
 import GamingInformedTherapy from './pages/services/GamingInformedTherapy'
@@ -69,6 +70,7 @@ export default function App() {
         <Route path="/what-to-expect" element={<WhatToExpect />} />
         <Route path="/clients" element={<Clients />} />
         <Route path="/book-your-call" element={<BookYourCall />} />
+        <Route path="/ai" element={<ForAI />} />
         <Route path="/events" element={<Events />} />
         <Route path="/events/gaming-informed-therapy" element={<GamingInformedTherapyWebinar />} />
         <Route path="/events/boundary-setting" element={<BoundarySettingWebinar />} />

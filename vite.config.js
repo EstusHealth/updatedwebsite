@@ -33,4 +33,7 @@ function noscriptNav() {
 // so it ships in the same deploy and is reachable at /commcard/.
 export default defineConfig({
   plugins: [react(), noscriptNav()],
+  // The build-time SSR bundle (src/entry-server.jsx) runs under plain Node.
+  // react-helmet-async ships CommonJS that Node cannot named-import, so bundle it.
+  ssr: { noExternal: ['react-helmet-async'] },
 })

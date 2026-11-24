@@ -6,7 +6,7 @@ import { SecIntro } from '../Home'
 /* Small Hinges: six single-session OT hinges. Each hinge is one session.
    People pick one, a few or all six, so a program is 1 to 6 sessions.
    "Small hinges swing big doors." */
-const HINGES = [
+export const HINGES = [
   { id: 'sleep', top: 'var(--navy)', tone: 'c-navy', h: 'Sleep', p: 'A wind-down that suits your brain and a sleep window you can actually keep.', out: 'A wind-down routine and a set bedtime window' },
   { id: 'morning', top: 'var(--blue)', tone: 'c-blue', h: 'Mornings', p: 'Up and out the door without burning your energy before the day starts.', out: 'A morning sequence with the decisions taken out' },
   { id: 'energy', top: 'var(--teal-brand)', tone: 'c-teal', h: 'Energy', p: 'Spend energy on purpose, with rest built in rather than earned.', out: 'A weekly energy budget' },

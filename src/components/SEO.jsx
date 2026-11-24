@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async'
 
-const SITE = 'https://www.estushealth.com'
+import { ORIGIN } from '../lib/origin'
+
+const SITE = ORIGIN
 const OG_IMAGE = `${SITE}/og-image.png`
 
 /* The practice itself, declared once in index.html as a JS-less fallback.
@@ -40,7 +42,7 @@ export function service({ name, description, path }) {
     ],
     availableChannel: {
       '@type': 'ServiceChannel',
-      name: 'In person (Perth) and telehealth Australia-wide',
+      name: 'Telehealth Australia-wide (driving assessments in person in Perth, coming soon)',
       serviceUrl: `${SITE}/contact`,
     },
   }

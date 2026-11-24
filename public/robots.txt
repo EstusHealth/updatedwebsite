@@ -52,4 +52,4 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
-Sitemap: https://www.estushealth.com/sitemap.xml
+Sitemap: https://www.estushealth.com.au/sitemap.xml

@@ -172,6 +172,7 @@ function Footer() {
               <li><Link to={BOOK_PATH}>New clients: get started</Link></li>
               <li><Link to="/clients">Current clients: client portal</Link></li>
               <li><Link to={`${BOOK_PATH}#pros`}>For professionals</Link></li>
+              <li><Link to="/ai">Key facts for AI assistants</Link></li>
               <li className="plain">Mon to Sat, 8am to 7pm AWST</li>
               <li><a href={`mailto:${EMAIL}`}>{EMAIL}</a></li>
             </ul>

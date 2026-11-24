@@ -5,9 +5,9 @@ import { FactStrip, SecIntro, Crew } from './Home'
 import Journey from '../components/Journey'
 import { REFERRAL_FORM, EMAIL, DRIVING_WAITLIST } from '../lib/site'
 
-const RATE = '$193.99'
+export const RATE = '$193.99'
 
-const FUNDING = [
+export const FUNDING = [
   { label: 'NDIS self-managed', yes: true },
   { label: 'NDIS plan-managed', yes: true },
   { label: 'Private, pay as you go', yes: true },
@@ -15,7 +15,7 @@ const FUNDING = [
   { label: 'Medicare plans', yes: false },
 ]
 
-const FAQ = [
+export const FAQ = [
   { q: 'Why a form before the call?', a: 'So the OT you talk to already knows a bit about you. The 15 minutes is spent on you and your goals, not on paperwork. It takes about 5 minutes, and we email you a booking link as soon as you submit.' },
   { q: 'Do I need a GP referral?', a: 'No. You can refer yourself or a family member. Reports from a GP or other professional help, but they are optional.' },
   { q: 'How much does it cost?', a: `Occupational therapy is ${RATE} per hour, in line with the NDIS price guide. Private clients pay the same rate. The welcome call is free.` },

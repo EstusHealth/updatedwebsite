@@ -36,6 +36,7 @@ export const ROUTES = [
   { path: '/clients', label: 'Client Portal: Book, Move or Cancel', group: 'Main', priority: 0.6, lastmod: '2026-10-28' },
   { path: '/contact', label: 'Book a Free Call & Referrals', group: 'Main', priority: 0.9, lastmod: '2026-10-28' },
   { path: '/what-to-expect', label: 'What to Expect on Your Free Call', group: 'Main', priority: 0.5, lastmod: '2026-10-28' },
+  { path: '/ai', label: 'Key Facts for AI Assistants', group: 'Main', priority: 0.5, lastmod: '2026-11-24' },
   { path: '/book-your-call', label: 'Book Your Call', group: 'Main', priority: 0.1, lastmod: '2026-10-28', unlisted: true },
 
   // Services

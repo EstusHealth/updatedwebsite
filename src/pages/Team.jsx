@@ -99,11 +99,11 @@ export default function Team() {
             name: b.name,
             // `role` is a display string joining several titles with "·".
             jobTitle: b.role.split('·').map((t) => t.trim()),
-            image: `https://www.estushealth.com${b.img}`,
+            image: `https://www.estushealth.com.au${b.img}`,
             description: b.opening,
             knowsAbout: b.works,
             worksFor: { '@id': ORG_ID },
-            url: `https://www.estushealth.com/team#${b.id}`,
+            url: `https://www.estushealth.com.au/team#${b.id}`,
           })),
           breadcrumb([
             { name: 'Home', path: '/' },

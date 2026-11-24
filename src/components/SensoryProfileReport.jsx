@@ -73,7 +73,7 @@ function PageFooter({ page, total }) {
         <span style={{ flex: 1, background: '#ab5c95' }} />
       </span>
       <span className="esr-foot__mark">ESTUS HEALTH</span>
-      <span className="esr-foot__contact">estushealth.com&nbsp;&nbsp;·&nbsp;&nbsp;Neuroaffirming Occupational Therapy</span>
+      <span className="esr-foot__contact">estushealth.com.au&nbsp;&nbsp;·&nbsp;&nbsp;Neuroaffirming Occupational Therapy</span>
       <span className="esr-foot__page">
         {page} / {total}
       </span>
@@ -261,7 +261,7 @@ export default function SensoryProfileReport({ profile, versionLabel, contexts =
             <span style={{ flex: 1, background: '#ab5c95' }} />
           </span>
           <span className="esr-foot__mark">ESTUS HEALTH</span>
-          <span className="esr-foot__contact">estushealth.com</span>
+          <span className="esr-foot__contact">estushealth.com.au</span>
         </div>
       </section>
 
@@ -325,7 +325,7 @@ export default function SensoryProfileReport({ profile, versionLabel, contexts =
             {profileContent.cta.headline}
           </h2>
           <p>{profileContent.cta.body}</p>
-          <div className="esr-whatnext__cta">estushealth.com&nbsp;&nbsp;·&nbsp;&nbsp;Book a first conversation</div>
+          <div className="esr-whatnext__cta">estushealth.com.au&nbsp;&nbsp;·&nbsp;&nbsp;Book a first conversation</div>
         </div>
       </Page>
 

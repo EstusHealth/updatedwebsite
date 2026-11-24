@@ -1,145 +1,131 @@
-// Post-build prerender. Most AI/answer-engine crawlers (GPTBot, ClaudeBot,
-// PerplexityBot, CCBot) do not execute JavaScript, so a client-rendered SPA
-// serves them the shared fallback on every URL instead of the page's real
-// content. This drives headless Chromium over `vite preview`, snapshots the
-// hydrated DOM for each route in the sitemap, and writes it to
-// dist/<route>/index.html. Vercel serves those static files directly (the
-// filesystem is checked before the SPA-fallback rewrite), while real users
-// still boot the full SPA on top of the snapshot.
-import { existsSync } from 'node:fs'
+// Post-build prerender. Most AI and answer-engine crawlers (GPTBot, ClaudeBot,
+// PerplexityBot, CCBot) do not run JavaScript, so a client-rendered SPA would
+// serve them the same empty shell on every URL. This renders every route in the
+// sitemap with React on the server (src/entry-server.jsx, built by
+// `vite build --ssr`) and writes dist/<route>/index.html. Vercel serves those
+// static files directly (the filesystem is checked before the SPA rewrite),
+// and real users still boot the full SPA on top.
+//
+// No headless browser is involved, so there is no environment-dependent step
+// that can skip. Any route that renders empty, stuck on "Loading...", or with
+// the wrong canonical FAILS THE BUILD. A deploy either has real HTML on every
+// page or it does not ship.
+//
+// It also writes dist/llms-full.txt: the main content of every listed page as
+// Markdown, generated from the same render so it can never drift from the site.
 import { readFile, mkdir, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-import { preview } from 'vite'
-import { chromium } from 'playwright-core'
-import { NO_PRERENDER } from '../src/lib/routes.js'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import { NodeHtmlMarkdown } from 'node-html-markdown'
+import { ROUTES, NO_PRERENDER } from '../src/lib/routes.js'
+import { ORIGIN } from '../src/lib/origin.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
-const ORIGIN = 'https://www.estushealth.com'
-const PORT = 4180
+const SSR_ENTRY = join(ROOT, 'dist-server', 'entry-server.js')
 
-// Routes come from the built sitemap so this stays in sync with one source of
-// truth. Strip the canonical origin down to path-only.
-//
-// The sitemap also lists the standalone apps under public/ (/commcard/,
-// /giveway/), which are hand-written static HTML with no React #root. The
-// readiness gate in snapshot() waits for #root to have children, so those
-// would time out, land in `failures`, and fail the build. They are already
-// static, so there is nothing to prerender: skip them.
-async function readRoutes() {
-  const xml = await readFile(join(DIST, 'sitemap.xml'), 'utf8')
-  const paths = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
-    .map((m) => m[1].replace(ORIGIN, '') || '/')
-  return [...new Set(paths)].filter((p) => !NO_PRERENDER.has(p))
-}
+// Minimum visible text for a page to count as really rendered. The emptiest
+// real page (a quiz intro) is well over this; the old shell was about 60 words.
+const MIN_TEXT_CHARS = 400
 
-// Resolve a Chromium to drive, in priority order:
-//  1. An explicit executable via PLAYWRIGHT_CHROMIUM_PATH.
-//  2. The Chromium pre-installed in this sandbox (used for local verification).
-//  3. On serverless Linux (the Vercel build image), @sparticuz/chromium — a
-//     dependency-free Chromium that needs no system libraries or OS-specific
-//     Playwright download. Vercel's build image reports as an unsupported OS
-//     and lacks Chrome's shared libs, so a normal `playwright install` browser
-//     will not launch there; this bundled build does.
-//  4. A locally-installed Google Chrome (macOS/Windows dev machines).
-async function launchBrowser() {
-  const explicit = process.env.PLAYWRIGHT_CHROMIUM_PATH
-  if (explicit) return chromium.launch({ executablePath: explicit })
-  if (existsSync('/opt/pw-browsers/chromium')) {
-    return chromium.launch({ executablePath: '/opt/pw-browsers/chromium' })
-  }
-  if (process.platform === 'linux') {
-    const { default: sparticuz } = await import('@sparticuz/chromium')
-    return chromium.launch({
-      args: sparticuz.args,
-      executablePath: await sparticuz.executablePath(),
-      headless: true,
-    })
-  }
-  return chromium.launch({ channel: 'chrome' })
-}
-
-// Map a route path to its output file: '/' -> dist/index.html,
-// '/services/x' -> dist/services/x/index.html.
 function outputFile(path) {
   if (path === '/') return join(DIST, 'index.html')
   return join(DIST, path.replace(/^\/+/, ''), 'index.html')
 }
 
-async function snapshot(page, path) {
-  await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: 'load', timeout: 30000 })
-  // Wait for a deterministic "page fully rendered" signal:
-  //  - #root has real content and is past the React.lazy Suspense "Loading…"
-  //    fallback, and
-  //  - react-helmet-async has flushed the head for THIS route. Every page's
-  //    <SEO> sets a canonical to its own path, so once the canonical matches
-  //    the route we know title/description/canonical are all committed. This
-  //    replaces a flaky fixed timeout that could snapshot a stale head.
-  await page.waitForFunction(
-    (expected) => {
-      const root = document.getElementById('root')
-      if (!root || root.children.length === 0 || root.innerText.includes('Loading…')) return false
-      const link = document.querySelector('link[rel="canonical"]')
-      if (!link) return false
-      const norm = (p) => p.replace(/\/+$/, '') || '/'
-      return norm(new URL(link.href).pathname) === norm(expected)
-    },
-    path,
-    { timeout: 15000 },
-  )
-  return page.content()
+const textOf = (html) => html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '').replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+
+/* The client template, with its static fallback head removed. index.html
+   carries a default <title> and data-rh meta for the bare shell; each page
+   gets its own from Helmet instead, so the defaults would only duplicate. The
+   <noscript> nav is also dropped: every prerendered page now has real content
+   and the site header and footer links. */
+function prepareTemplate(raw) {
+  return raw
+    .replace(/<title>[\s\S]*?<\/title>\s*/, '')
+    .replace(/^[ \t]*<(meta|link)[^>]*data-rh="true"[^>]*>\s*$\n?/gm, '')
+    .replace(/<noscript>\s*<main>[\s\S]*?<\/noscript>\s*/, '')
+}
+
+function headFrom(helmet) {
+  if (!helmet) return ''
+  return ['title', 'meta', 'link', 'script'].map((k) => helmet[k].toString()).filter(Boolean).join('\n  ')
+}
+
+function checkRoute(route, html, helmet) {
+  const problems = []
+  const text = textOf(html)
+  if (text.length < MIN_TEXT_CHARS) problems.push(`only ${text.length} chars of text`)
+  if (html.includes('Loading…')) problems.push('stuck on the Suspense "Loading…" fallback')
+  if (!route.unlisted) {
+    const want = `${ORIGIN}${route.path}`
+    const link = helmet?.link?.toString() ?? ''
+    const m = link.match(/rel="canonical" href="([^"]+)"/)
+    const got = m ? m[1] : null
+    const norm = (u) => (u || '').replace(/\/+$/, '')
+    if (norm(got) !== norm(want)) problems.push(`canonical is ${got ?? 'missing'}, expected ${want}`)
+  }
+  return problems
+}
+
+/* Just the page's own content (inside <main>), as Markdown, for llms-full.txt.
+   Header and footer repeat on every page, so they are left out. */
+function mainMarkdown(html) {
+  const m = html.match(/<main id="main">([\s\S]*)<\/main>/)
+  const md = NodeHtmlMarkdown.translate(m ? m[1] : html)
+  // Make relative links absolute so the file stands on its own.
+  return md.replace(/\]\(\/(?!\/)/g, `](${ORIGIN}/`).replace(/\n{3,}/g, '\n\n').trim()
 }
 
 async function main() {
-  const routes = await readRoutes()
-  const server = await preview({ preview: { port: PORT, strictPort: true } })
+  const { render } = await import(pathToFileURL(SSR_ENTRY).href)
+  const template = prepareTemplate(await readFile(join(DIST, 'index.html'), 'utf8'))
+  if (!template.includes('<div id="root"></div>')) throw new Error('dist/index.html has no empty #root to fill')
 
-  // Prerendering is a build-time SEO enhancement, not a hard requirement: if no
-  // headless browser can start in this environment (for example @sparticuz
-  // Chromium missing system libs like libnss3 in the Vercel build container),
-  // skip it and ship the SPA rather than failing the whole deploy. JS-less
-  // crawlers then get the shared fallback HTML, exactly as before prerendering
-  // existed. This is loud on purpose so a broken browser is easy to spot.
-  let browser
-  try {
-    browser = await launchBrowser()
-  } catch (err) {
-    console.error('\n==================================================================')
-    console.error('  PRERENDER SKIPPED: could not launch a headless browser.')
-    console.error(`  ${err.message.split('\n')[0]}`)
-    console.error('  The SPA still deploys; JS-less crawlers get the fallback HTML.')
-    console.error('==================================================================\n')
-    await new Promise((resolve) => server.httpServer.close(resolve))
-    return
-  }
-  const page = await browser.newPage()
-  // Keep build-time snapshots out of Google Analytics: without this every
-  // deploy would record a fake pageview per route from localhost.
-  await page.route(/googletagmanager\.com|google-analytics\.com|connect\.facebook\.net|facebook\.com\/tr/, (route) => route.abort())
-
+  const routes = ROUTES.filter((r) => !NO_PRERENDER.has(r.path) && !r.unlisted)
   const failures = []
-  for (const path of routes) {
+  const sections = []
+
+  for (const route of routes) {
     try {
-      const html = await snapshot(page, path)
-      const file = outputFile(path)
+      const { html, helmet } = await render(route.path)
+      const problems = checkRoute(route, html, helmet)
+      if (problems.length) throw new Error(problems.join('; '))
+
+      const page = template
+        .replace('</head>', `  ${headFrom(helmet)}\n</head>`)
+        .replace('<div id="root"></div>', `<div id="root">${html}</div>`)
+      const file = outputFile(route.path)
       await mkdir(dirname(file), { recursive: true })
-      await writeFile(file, html)
-      console.log(`  prerendered ${path}`)
+      await writeFile(file, page)
+
+      if (!route.unlisted) {
+        const title = (helmet.title.toString().match(/>([^<]*)</) || [, route.label])[1]
+        sections.push(`# ${title}\n\nURL: ${ORIGIN}${route.path}\n\n${mainMarkdown(html)}`)
+      }
+      console.log(`  prerendered ${route.path}`)
     } catch (err) {
-      failures.push(path)
-      console.error(`  FAILED ${path}: ${err.message}`)
+      failures.push(route.path)
+      console.error(`  FAILED ${route.path}: ${err.message}`)
     }
   }
-
-  await browser.close()
-  await new Promise((resolve) => server.httpServer.close(resolve))
 
   console.log(`\nPrerendered ${routes.length - failures.length}/${routes.length} routes.`)
   if (failures.length) {
     console.error(`Prerender failed for: ${failures.join(', ')}`)
+    console.error('Not deploying: these pages would reach crawlers and AI agents with no content.')
     process.exit(1)
   }
+
+  const header = [
+    '# Estus Health: full site content',
+    '',
+    `> Every public page of ${ORIGIN}, as plain Markdown, generated at build time from the live pages. For a short index, see ${ORIGIN}/llms.txt. For key facts in one place, see ${ORIGIN}/ai.`,
+    '',
+    `Generated: ${new Date().toISOString().slice(0, 10)}`,
+  ].join('\n')
+  await writeFile(join(DIST, 'llms-full.txt'), `${header}\n\n---\n\n${sections.join('\n\n---\n\n')}\n`)
+  console.log(`Wrote dist/llms-full.txt (${sections.length} pages).`)
 }
 
 main().catch((err) => {

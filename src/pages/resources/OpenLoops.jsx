@@ -84,7 +84,7 @@ function toExport(loops) {
     })
     lines.push('')
   })
-  lines.push('From the Open Loops tool by Estus Health, www.estushealth.com')
+  lines.push('From the Open Loops tool by Estus Health, www.estushealth.com.au')
   return lines.join('\n')
 }
 
@@ -110,7 +110,7 @@ function toMarkdown(loops) {
       out.push('')
     })
   })
-  out.push('---', '', 'Made with the Open Loops tool by Estus Health, www.estushealth.com')
+  out.push('---', '', 'Made with the Open Loops tool by Estus Health, www.estushealth.com.au')
   return out.join('\n')
 }
 

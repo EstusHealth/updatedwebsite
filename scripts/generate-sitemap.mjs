@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url'
 import { ROUTES, NO_PRERENDER, LISTED } from '../src/lib/routes.js'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
-const ORIGIN = 'https://www.estushealth.com'
+import { ORIGIN } from '../src/lib/origin.js'
 
 const problems = []
 
